@@ -1,0 +1,21 @@
+.csl-entry {
+  margin-bottom: 1em;
+}
+
+.pagebreak {page-break-before: always;}
+
+.red-text {
+  color: red;
+}
+
+.mathjax .mjx-math {
+  font-family: inherit;
+}
+
+span.gap {
+  color: red !important;
+}
+
+body {
+  background-color: pink;
+}
