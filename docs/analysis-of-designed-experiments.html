@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Analysis of designed experiments | notes</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Analysis of designed experiments | notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Analysis of designed experiments | notes" />
+  
+  
+  
+
+<meta name="author" content="Dr Pete Philipson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="inference-for-the-multiple-linear-regression-model.html"/>
+<link rel="next" href="general-linear-models.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>MAS3928: Statistical Modelling</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module information</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#lecturer-information"><i class="fa fa-check"></i>Lecturer information</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#module-schedule"><i class="fa fa-check"></i>Module schedule</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#course-materials"><i class="fa fa-check"></i>Course materials</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#relevant-texts"><i class="fa fa-check"></i>Relevant texts</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#matrix-form-of-the-model"><i class="fa fa-check"></i><b>1.2</b> Matrix form of the model</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr"><i class="fa fa-check"></i>Example - Matrix form for body weight in pre-diabetes patients (MLR)</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#parameter-estimation"><i class="fa fa-check"></i><b>1.3</b> Parameter estimation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#estimation-of-underlinebeta"><i class="fa fa-check"></i><b>1.3.1</b> Estimation of <span class="math inline">\(\underline{\beta}\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#estimation-of-sigma_epsilon2"><i class="fa fa-check"></i><b>1.3.2</b> Estimation of <span class="math inline">\(\sigma_{\epsilon}^2\)</span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#sec:resfithat"><i class="fa fa-check"></i><b>1.3.3</b> Residuals, fitted values and the ‘hat matrix’</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#properties-of-the-hat-matrix"><i class="fa fa-check"></i><b>1.3.4</b> Properties of the hat matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multiple-linear-regresion-analysis-of-bodyweight-data"><i class="fa fa-check"></i>Example: Multiple linear regresion analysis of bodyweight data</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#expectations-variances-and-inference"><i class="fa fa-check"></i><b>1.4</b> Expectations, variances and inference</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#expectation-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.1</b> Expectation of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#variance-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.2</b> Variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction.html"><a href="introduction.html#sec:inferforbetahat"><i class="fa fa-check"></i><b>1.4.3</b> Inference for <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction.html"><a href="introduction.html#sec:expvaryhat"><i class="fa fa-check"></i><b>1.4.4</b> Expectation and variance of the fitted values</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction.html"><a href="introduction.html#expectation-and-variance-of-the-residuals"><i class="fa fa-check"></i><b>1.4.5</b> Expectation and variance of the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#sec:mlrinr"><i class="fa fa-check"></i><b>1.5</b> Multiple linear regression in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction.html"><a href="introduction.html#using-data-in-r"><i class="fa fa-check"></i><b>1.5.1</b> Using data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-using-r"><i class="fa fa-check"></i>Example: Analysis of bodyweight data using <code>R</code></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#the-role-of-the-intercept"><i class="fa fa-check"></i><b>1.6</b> The role of the intercept</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-without-an-intercept-term"><i class="fa fa-check"></i>Example: Analysis of bodyweight data without an intercept term</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept"><i class="fa fa-check"></i>Example: Analysis of men’s Premier League football data - the role of the intercept</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#interpretability-of-the-intercept-and-extrapolation"><i class="fa fa-check"></i><b>1.6.1</b> Interpretability of the intercept and extrapolation</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#standardised-residuals"><i class="fa fa-check"></i><b>2.1</b> Standardised residuals</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#residual-plots"><i class="fa fa-check"></i><b>2.1.1</b> Residual plots</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values"><i class="fa fa-check"></i>Independence of residuals and fitted values</a></li>
+<li class="chapter" data-level="2.1.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#outliers"><i class="fa fa-check"></i><b>2.1.2</b> Outliers</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data"><i class="fa fa-check"></i>Example: Residual analysis for bodyweight data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#normality-of-the-residuals"><i class="fa fa-check"></i><b>2.1.3</b> Normality of the residuals</a></li>
+<li class="chapter" data-level="2.1.4" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#anderson-darling-test"><i class="fa fa-check"></i><b>2.1.4</b> Anderson-Darling test</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#a-cautionary-note"><i class="fa fa-check"></i>A cautionary note</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>2.2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#leverage-values"><i class="fa fa-check"></i><b>2.2.1</b> Leverage values</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data"><i class="fa fa-check"></i>Example: Leverage values for the bodyweight data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#influential-observations"><i class="fa fa-check"></i><b>2.2.2</b> Influential observations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#dealing-with-unusual-observations"><i class="fa fa-check"></i><b>2.2.3</b> Dealing with unusual observations</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-model-checking-for-the-premier-league-data"><i class="fa fa-check"></i>Example: Model checking for the Premier League data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html"><i class="fa fa-check"></i><b>3</b> Inference for the multiple linear regression model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#assessing-the-fit"><i class="fa fa-check"></i><b>3.1</b> Assessing the fit</a></li>
+<li class="chapter" data-level="3.2" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-basic-anova-table"><i class="fa fa-check"></i><b>3.2</b> The basic anova table</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem"><i class="fa fa-check"></i>Cochran’s Theorem</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination"><i class="fa fa-check"></i>The coefficient of determination</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-cheddar-cheese-study"><i class="fa fa-check"></i>Example: Cheddar cheese study</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#anova-in-r"><i class="fa fa-check"></i>Anova in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.3</b> The extra sum of squares method</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extended-anova-table"><i class="fa fa-check"></i><b>3.3.1</b> The extended anova table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extra sum of squares for cheese data</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-warfarin-study"><i class="fa fa-check"></i>Example: Warfarin study</a></li>
+<li class="chapter" data-level="3.4" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-general-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.4</b> The general extra sum of squares method</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extended extra sum of squares for cheese data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method"><i class="fa fa-check"></i>Summary: extra sum of squares method</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html"><i class="fa fa-check"></i><b>4</b> Analysis of designed experiments</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design"><i class="fa fa-check"></i><b>4.1</b> Completely randomised design</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-one-way-anova"><i class="fa fa-check"></i>Example: One-way anova</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Analysis of completely randomised design data in <code>R</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#interpretation-of-results-multiple-comparisons"><i class="fa fa-check"></i><b>4.1.2</b> Interpretation of results: multiple comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-multiple-comparisons"><i class="fa fa-check"></i>Example: Multiple comparisons</a>
+<ul>
+<li class="chapter" data-level="4.1.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#model-checking"><i class="fa fa-check"></i><b>4.1.3</b> Model checking</a></li>
+<li class="chapter" data-level="4.1.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables"><i class="fa fa-check"></i><b>4.1.4</b> Completely randomised design: dealing with quantitative variables</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable"><i class="fa fa-check"></i>Example: Randomised design with a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
+<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data"><i class="fa fa-check"></i>Example: Two-way anova with interactions for the yeast data</a></li>
+<li class="chapter" data-level="4.3.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#exploratory-plots-for-interactions"><i class="fa fa-check"></i><b>4.3.1</b> Exploratory plots for interactions</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-transforming-the-response"><i class="fa fa-check"></i>Example: Transforming the response</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>5</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="general-linear-models.html"><a href="general-linear-models.html#indicator-and-dummy-variables"><i class="fa fa-check"></i><b>5.1</b> Indicator and dummy variables</a></li>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#example-gasoline-data"><i class="fa fa-check"></i>Example: Gasoline data</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-designed-experiments" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Analysis of designed experiments<a href="analysis-of-designed-experiments.html#analysis-of-designed-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="completely-randomised-design" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Completely randomised design<a href="analysis-of-designed-experiments.html#completely-randomised-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A completely randomised design occurs when all experimental units are drawn from the same ‘population’ of interest. In this scenario, there are no obvious ‘groupings’ where members of different groups might be expected to respond differently. ‘Treatments’ are then applied to the experimental units - this is an example of a ‘factor’ which can take <span class="math inline">\(k\)</span> values, one for each of <span class="math inline">\(k\)</span> potential treatments.</p>
+<p>A sensible initial model might be</p>
+<p><span class="math display">\[
+\color{red}{Y_{ij} = \mu + \alpha_i + \epsilon_{ij}}
+\]</span></p>
+<p>for <span class="math inline">\(i = 1, \ldots, k\)</span> and <span class="math inline">\(j = 1, \ldots n_i\)</span> where <span class="math inline">\(k\)</span> is the number of treatments or factor values, <span class="math inline">\(n_i\)</span> is the number of observations on the <span class="math inline">\(i^{th}\)</span> treatment. We make the usual assumptions about the error terms, <span class="math inline">\(\epsilon_i\)</span>. In this model:</p>
+<ul>
+<li><span style="color: red;"><span class="math inline">\(\mu\)</span> denotes an overall mean</span></li>
+<li><span style="color: red;"><span class="math inline">\(\alpha_i\)</span> is the additional effect of the <span class="math inline">\(i^{th}\)</span> treatment.</span></li>
+</ul>
+<p>However, this is an <em>over-parameterised</em> model since we have <span class="math inline">\(k + 1\)</span> parameters and essentially only <span class="math inline">\(k\)</span> pieces of information, the sample means for each treatment group, to estimate them from. Thus we must make some (further) assumptions concerning the <span class="math inline">\(\alpha_i\)</span> parameters. The most commonly adopted assumption is to take <span class="math inline">\(\alpha_1\)</span> to be zero. Thus, under this assumption,</p>
+<ol type="i">
+<li>
+<span style="color: red;">the mean of the first group is given by <span class="math inline">\(\mu\)</span></span>
+</li>
+<li>
+<span style="color: red;">the mean of the <span class="math inline">\(i^{th}\)</span> group by <span class="math inline">\(\mu + \alpha_i\)</span> for <span class="math inline">\(i = 2, 3, \ldots, k\)</span></span>
+</li>
+</ol>
+<p><br>
+We can then set this model up as a linear model and estimate the parameters using our general theory established in chapter 1.</p>
+</div>
+<div id="example-one-way-anova" class="section level2 unnumbered hasAnchor">
+<h2>Example: One-way anova<a href="analysis-of-designed-experiments.html#example-one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We shall demonstrate this design with a simple example. An experiment was carried out to determine the effects of four treatments <span class="math inline">\(A, B, C\)</span> and <span class="math inline">\(D\)</span> on a certain crop. A field was divided into <span class="math inline">\(12\)</span> plots and <span class="math inline">\(3\)</span> replicates of each of the <span class="math inline">\(4\)</span> treatments were randomly assigned to the plots. The following data were recorded:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Treatment
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Yield
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Mean
+</div>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+33.63
+</td>
+<td style="text-align:right;">
+37.80
+</td>
+<td style="text-align:right;">
+36.58
+</td>
+<td style="text-align:right;">
+108.01
+</td>
+<td style="text-align:right;">
+36.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+35.83
+</td>
+<td style="text-align:right;">
+38.18
+</td>
+<td style="text-align:right;">
+37.89
+</td>
+<td style="text-align:right;">
+111.90
+</td>
+<td style="text-align:right;">
+37.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+42.92
+</td>
+<td style="text-align:right;">
+40.43
+</td>
+<td style="text-align:right;">
+41.46
+</td>
+<td style="text-align:right;">
+124.81
+</td>
+<td style="text-align:right;">
+41.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:right;">
+38.02
+</td>
+<td style="text-align:right;">
+39.62
+</td>
+<td style="text-align:right;">
+35.99
+</td>
+<td style="text-align:right;">
+113.63
+</td>
+<td style="text-align:right;">
+37.88
+</td>
+</tr>
+</tbody>
+</table>
+<p>Comment: There is clearly some variability between our treatments. What we want to know is whether this is just chance or is there evidence of a genuine difference between treatments? By inspection, <span class="math inline">\(C\)</span> seems to have a higher mean than the other 3 treatments.</p>
+<p>We can set this up as a linear model
+<span class="math display">\[
+\color{red}{\underline{Y} = \mathrm{X}\underline{\beta} + \underline{\epsilon}}
+\]</span></p>
+<p>where, from the data above, we have:
+<span class="math display">\[\begin{align*}
+\underline{y} =
+\begin{pmatrix}
+    33.63 \\
+    37.80 \\
+    36.58 \\
+    35.83 \\ 38.18 \\ 37.89 \\ 42.92 \\ 40.43 \\ 41.46 \\ 38.02 \\ 39.62 \\ 35.99 \\
+         \end{pmatrix},
+            \mathrm{X} =
+     \begin{pmatrix}
+    1&amp; 0&amp; 0&amp; 0  \\
+    1&amp; 0&amp; 0&amp; 0  \\
+    1&amp; 0&amp; 0&amp; 0  \\
+    1&amp; 1&amp; 0&amp; 0  \\
+    1&amp; 1&amp; 0&amp; 0  \\
+    1&amp; 1&amp; 0&amp; 0  \\
+    1&amp; 0&amp; 1&amp; 0  \\
+    1&amp; 0&amp; 1&amp; 0  \\
+    1&amp; 0&amp; 1&amp; 0  \\
+    1&amp; 0&amp; 0&amp; 1  \\
+    1&amp; 0&amp; 0&amp; 1  \\
+    1&amp; 0&amp; 0&amp; 1  \\
+         \end{pmatrix},
+         \underline{\beta} = \begin{pmatrix}
+        \mu \\
+    \alpha_2 \\
+    \alpha_3 \\
+    \alpha_4 \\
+         \end{pmatrix},
+         \underline{\epsilon} =    \begin{pmatrix}
+        \epsilon_1 \\
+    \epsilon_2 \\
+    \epsilon_3 \\
+    \epsilon_4 \\
+  \epsilon_5 \\
+    \epsilon_6 \\
+    \epsilon_7 \\
+    \epsilon_8 \\
+  \epsilon_9 \\
+    \epsilon_{10} \\
+    \epsilon_{11} \\
+    \epsilon_{12}
+         \end{pmatrix} ,
+   \end{align*}\]</span></p>
+<p>Then we have seen from the general theory, given in chapter 1, that the parameter estimates are
+<span class="math display">\[
+\color{red}{\underline{\hat{\beta}} = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{Y}}
+\]</span></p>
+<p>where
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{X}^T\mathrm{X} =
+\begin{pmatrix}
+12&amp; 3&amp; 3&amp; 3 \\
+3&amp; 3&amp; 0&amp; 0  \\
+3&amp; 0&amp; 3&amp; 0 \\
+3&amp; 0&amp; 0&amp; 3 \\
+\end{pmatrix},
+\mathrm{X}^T\underline{y} = \begin{bmatrix}
+\sum_{i,j} y_{ij}\\
+\sum_{j=1}^3 y_{2j} \\
+\sum_{j=1}^3 y_{3j} \\
+\sum_{j=1}^3 y_{4j} \\
+\end{bmatrix} = \begin{bmatrix}
+458.35 \\
+111.90 \\
+124.81 \\
+113.63 \\
+\end{bmatrix}}
+\end{align*}\]</span>
+and
+<span class="math display">\[\begin{align*}
+(\mathrm{X}^T\mathrm{X})^{-1} =
+\begin{pmatrix}
+1/3&amp; -1/3&amp; -1/3&amp; -1/3  \\
+-1/3&amp; 2/3&amp; 1/3&amp; 1/3  \\
+-1/3&amp; 1/3&amp; 2/3&amp; 1/3  \\
+-1/3&amp; 1/3&amp; 1/3&amp; 2/3  \\
+\end{pmatrix}
+\end{align*}\]</span></p>
+<p>This leads to <span class="math inline">\(\underline{\hat{\beta}} = (\bar{y}_1, \bar{y}_2 - \bar{y}_1, \bar{y}_3 - \bar{y}_1, \bar{y}_4 - \bar{y}_1)^T\)</span>
+where <span class="math inline">\(\bar{y_i}\)</span> is the mean of the <span class="math inline">\(i^{th}\)</span> group. Note that since, as in chapter one, <span class="math inline">\(\mathrm{Var}\left({\underline{\hat{\beta}}}\right) = (\mathrm{X}^T\mathrm{X})^{-1}\sigma_{\epsilon}^2\)</span>, all the parameter estimates are correlated. We can then use anova to test</p>
+<ul>
+<li><span class="math inline">\(H_0: \alpha_2 = \alpha_3 = \alpha_4 = 0\)</span> versus</li>
+<li><span class="math inline">\(H_1\)</span>: at least one of the <span class="math inline">\(\alpha_i\)</span> is non-zero</li>
+</ul>
+<p>The anova table used to test these hypotheses is of the general form:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+Degrees of freedom (df)
+</th>
+<th style="text-align:left;">
+Sum of squares (SS)
+</th>
+<th style="text-align:left;">
+Mean square (MS)
+</th>
+<th style="text-align:left;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Treatment
+</td>
+<td style="text-align:left;">
+k-1
+</td>
+<td style="text-align:left;">
+Trt SS
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\text{Trt MS}\, = \frac{\text{Trt SS}}{k-1}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(F = \frac{\text{Trt MS}}{\text{RMS}}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+n-k
+</td>
+<td style="text-align:left;">
+RSS
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\text{RMS} = \frac{\text{RSS}}{n - k}\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:left;">
+n - 1
+</td>
+<td style="text-align:left;">
+TSS
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(k\)</span> is the number of `treatments’.</p>
+<p>We then compare the <span class="math inline">\(F\)</span>-statistic with <span class="math inline">\(F\)</span>-tables on <span class="math inline">\(k-1\)</span> (from the ‘treatment’ row) and <span class="math inline">\(n - k\)</span> (from the residual row) degrees of freedom, rejecting the null hypothesis if the <span class="math inline">\(F\)</span>-statistic is large relative to the tables, and calculating a <span class="math inline">\(p\)</span>-value in the usual way.</p>
+<div id="analysis-of-completely-randomised-design-data-in-r" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Analysis of completely randomised design data in <code>R</code><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We enter the data as</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="analysis-of-designed-experiments.html#cb87-1" tabindex="-1"></a>yield <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">33.63</span>, <span class="fl">37.80</span>, <span class="fl">36.58</span>, <span class="fl">35.83</span>, <span class="fl">38.18</span>, <span class="fl">37.89</span>, </span>
+<span id="cb87-2"><a href="analysis-of-designed-experiments.html#cb87-2" tabindex="-1"></a>             <span class="fl">42.92</span>, <span class="fl">40.43</span>, <span class="fl">41.46</span>, <span class="fl">38.02</span>, <span class="fl">39.62</span>, <span class="fl">35.99</span>)</span>
+<span id="cb87-3"><a href="analysis-of-designed-experiments.html#cb87-3" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)</span>
+<span id="cb87-4"><a href="analysis-of-designed-experiments.html#cb87-4" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(treat)</span>
+<span id="cb87-5"><a href="analysis-of-designed-experiments.html#cb87-5" tabindex="-1"></a><span class="co"># Or alternatively (more directly)</span></span>
+<span id="cb87-6"><a href="analysis-of-designed-experiments.html#cb87-6" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">12</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<p>The analysis then proceeds as</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="analysis-of-designed-experiments.html#cb88-1" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> treatf)</span>
+<span id="cb88-2"><a href="analysis-of-designed-experiments.html#cb88-2" tabindex="-1"></a><span class="fu">summary</span>(fitaov)             </span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## treatf       3  51.97  17.322   6.235 0.0173 *
+## Residuals    8  22.23   2.778                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span style="color: red;">Comment: As the <span class="math inline">\(F\)</span>-value is large and the <span class="math inline">\(p\)</span>-value small (<span class="math inline">\(&lt;0.05\)</span>), we reject the null hypothesis and say there is a difference in mean yields amongst the treatment groups. Where might these differences lie?</span></p>
+</div>
+<div id="interpretation-of-results-multiple-comparisons" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Interpretation of results: multiple comparisons<a href="analysis-of-designed-experiments.html#interpretation-of-results-multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the overall <span class="math inline">\(F\)</span>-value is significant (<span class="math inline">\(p &lt; 0.05\)</span>), we want to investigate further to see which treatment groups differ significantly, i.e. where do the differences lie? We can do this using Tukey’s honest significant differences which takes account of the multiple testing problem (by adjusting the <span class="math inline">\(p\)</span>-values).</p>
+<p>Tukey’s test compares the mean of each group to the mean of every other group, i.e. it considers every possible pair <span class="math inline">\(\mu_A - \mu_B\)</span> for <span class="math inline">\(A, B = 1, \ldots, k, A \neq B\)</span>. The test statistic is formulated as</p>
+<p><span class="math display">\[
+q = \frac{\mu_A - \mu_B}{s\sqrt{0.5 \left(\frac{1}{n_A} + \frac{1}{n_B}\right)}}
+\]</span></p>
+<p>where <span class="math inline">\(s\)</span> is the square root of the residual mean square and <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_B\)</span> are the sample sizes for treatment <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> respectively. These <span class="math inline">\(q\)</span> values (one for each pairwise comparison) are then compared to a critical value, <span class="math inline">\(q_{t, \nu}(\alpha)\)</span>, from the studentised range distribution (available in <code>R</code> via <code>qtukey()</code>), where <span class="math inline">\(t\)</span> is the number of treatments, <span class="math inline">\(\nu\)</span> is the residual degrees of freedom and <span class="math inline">\(\alpha\)</span> is the overall significance level for all of the comparisons, not each individual comparison.</p>
+<p>With <span class="math inline">\(k\)</span> groups we have, in principle, <span class="math inline">\(k(k-1)/2\)</span> possible <span class="math inline">\(t\)</span>-tests that can be done. As <span class="math inline">\(k\)</span> increases we would be doing many tests and some will be significant by chance. The Tukey’s comparisons show us which group means differ significantly, whilst allowing for this multiple testing.</p>
+</div>
+</div>
+<div id="example-multiple-comparisons" class="section level2 unnumbered hasAnchor">
+<h2>Example: Multiple comparisons<a href="analysis-of-designed-experiments.html#example-multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can calculate Tukey’s honest significant differences (HSD) in <code>R</code> as follows:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="analysis-of-designed-experiments.html#cb90-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = yield ~ treatf)
+## 
+## $treatf
+##           diff         lwr       upr     p adj
+## B-A  1.2966667 -3.06163127 5.6549646 0.7786392
+## C-A  5.6000000  1.24170206 9.9582979 0.0142896
+## D-A  1.8733333 -2.48496461 6.2316313 0.5456469
+## C-B  4.3033333 -0.05496461 8.6616313 0.0529252
+## D-B  0.5766667 -3.78163127 4.9349646 0.9727893
+## D-C -3.7266667 -8.08496461 0.6316313 0.0962564</code></pre>
+<p><span style="color: red;">Comments: This tells us that <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> differ significantly in mean and that <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are approaching significance, and <span class="math inline">\(D\)</span> and <span class="math inline">\(C\)</span> are weakly significant. There is no evidence of any difference in mean between <span class="math inline">\(A, B\)</span> and <span class="math inline">\(D\)</span>. <span class="math inline">\(C\)</span> however seems to be different. This is what was suggested by inspection of the treatment means earlier.</span></p>
+<div id="model-checking" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Model checking<a href="analysis-of-designed-experiments.html#model-checking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is much less common to have highly influential points in an anova context as several observations typically come from each possible treatment/factor level, which provides a measure of robustness. However, it is useful to conduct a conventional residual check by plotting the standardised residuals against the fitted values to check for constant variance and outliers, and to produce a quantile-quantile plot to check for normality, alongside a formal test (via Anderson-Darling). This is done as before, i.e.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="analysis-of-designed-experiments.html#cb92-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted.values</span>(fitaov), <span class="fu">rstandard</span>(fitaov), </span>
+<span id="cb92-2"><a href="analysis-of-designed-experiments.html#cb92-2" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Fitted values&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb92-3"><a href="analysis-of-designed-experiments.html#cb92-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb92-4"><a href="analysis-of-designed-experiments.html#cb92-4" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(fitaov), <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb92-5"><a href="analysis-of-designed-experiments.html#cb92-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cropresids"></span>
+<img src="analysis_des_exp_files/figure-html/cropresids-1.png" alt="Residual plots for the crop yield data." width="48%" /><img src="analysis_des_exp_files/figure-html/cropresids-2.png" alt="Residual plots for the crop yield data." width="48%" />
+<p class="caption">
+Figure 4.1: Residual plots for the crop yield data.
+</p>
+</div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-of-designed-experiments.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb93-2"><a href="analysis-of-designed-experiments.html#cb93-2" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fitaov))</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(fitaov)
+## A = 0.32721, p-value = 0.466</code></pre>
+<p>From the Anderson-Darling test we obtain a <span class="math inline">\(p\)</span>-value of 0.466, suggesting that normality of the residuals can be safely assumed.</p>
+<div id="comments" class="section level4 unnumbered hasAnchor">
+<h4>Comments<a href="analysis-of-designed-experiments.html#comments" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span style="color: red;">- We see an approximately random scatter in the first plot, implying constant variance. All the standardised residuals lie in <span class="math inline">\([-2,2]\)</span> and so no outliers.<br>
+- The second plot fits quite well to a straight line implying approximate normality of the residuals and the large <span class="math inline">\(p\)</span>-value implies that there is no significant departure from normality.</span></p>
+</div>
+</div>
+<div id="completely-randomised-design-dealing-with-quantitative-variables" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Completely randomised design: dealing with quantitative variables<a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes the treatments are quantitative levels of an additive, or particular levels of an underlying continuous variable such as temperature, or pressure. For example: 0, 5, 10, 20, 30 grams of supplement in the diet with three individuals allocated to each treatment. This should be analysed as a regression problem with multiple observations at each <span class="math inline">\(x\)</span>-value. When handling quantitative variables we must also consider the functional form of the covariate, i.e. is the effect linear, or quadratic?</p>
+</div>
+<div id="example-randomised-design-with-a-quantitative-variable" class="section level3 unnumbered hasAnchor">
+<h3>Example: Randomised design with a quantitative variable<a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The data in this example are the amount of grain obtained at various plant densities (per square metre), available in the file <em>grain.RData</em>. An exploratory plot allows us to see the structure of the data, and look for patterns which may suggest candidate models.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grainplot"></span>
+<img src="analysis_des_exp_files/figure-html/grainplot-1.png" alt="Exploratory plot for the grain and plant density data." width="65%" />
+<p class="caption">
+Figure 4.2: Exploratory plot for the grain and plant density data.
+</p>
+</div>
+<p>We observe clear non-linearity in the relationship between grain and plant density. This suggests that a polynomial (i.e. a quadratic in this case) model may be appropriate, or we can treat <span class="math inline">\(x\)</span> as a factor.</p>
+<p>In cases such as this, we have to choose whether to treat <span class="math inline">\(x\)</span> as a continuous covariate, or to convert it to a factor - there are pros and cons to either approach. A continuous variable</p>
+<p>+ <span style="color: red;">may offer a simpler interpretation (and allow predictions for intermediate values)</span><br>
+- <span style="color: red;">may overlook more complex relationships between the response and the covariate unless we resort to high-order polynomials. </span></p>
+<p>On the other hand, a factor will use <span class="math inline">\(k-1\)</span> degrees of freedom (for a variable with <span class="math inline">\(k\)</span> levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data.</p>
+<div id="quadratic-model" class="section level4 unnumbered hasAnchor">
+<h4>Quadratic model<a href="analysis-of-designed-experiments.html#quadratic-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can fit a quadratic model in various ways. Here we will use the raw polynomial version:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="analysis-of-designed-experiments.html#cb95-1" tabindex="-1"></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> grain)</span>
+<span id="cb95-2"><a href="analysis-of-designed-experiments.html#cb95-2" tabindex="-1"></a><span class="fu">anova</span>(fit_poly)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##                        Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## poly(x, 2, raw = TRUE)  2  85.20  42.600  51.741 1.259e-06 ***
+## Residuals              12   9.88   0.823                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span style="color: red;">Comment: We see from above that the polynomial model is highly significant, with a very small <span class="math inline">\(p\)</span>-value. This does not, however, tell us about the relative contributions of the linear and quadratic terms (the above is another example of an omnibus test).
+</span></p>
+</div>
+<div id="factor-model" class="section level4 unnumbered hasAnchor">
+<h4>Factor model<a href="analysis-of-designed-experiments.html#factor-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Alternatively, we can recast <span class="math inline">\(x\)</span> as a factor. This, in fact, leads to a <em>one-way analysis of variance</em> model. As such, we can analyse it using the <code>aov()</code> command (or <code>lm()</code> as usual).</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="analysis-of-designed-experiments.html#cb97-1" tabindex="-1"></a>(grain<span class="sc">$</span>x.factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(grain<span class="sc">$</span>x<span class="sc">/</span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
+## Levels: 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="analysis-of-designed-experiments.html#cb99-1" tabindex="-1"></a>fit_factor <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> x.factor, <span class="at">data =</span> grain)</span>
+<span id="cb99-2"><a href="analysis-of-designed-experiments.html#cb99-2" tabindex="-1"></a><span class="fu">anova</span>(fit_factor)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## x.factor   4  87.60  21.900  29.278 1.69e-05 ***
+## Residuals 10   7.48   0.748                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span style="color: red;">Comment: The <span class="math inline">\(F\)</span>-test shows that there is a significant difference between the 5 treatment levels, which was obvious from our plot.</span></p>
+</div>
+<div id="choosing-between-non-nested-models" class="section level4 unnumbered hasAnchor">
+<h4>Choosing between non-nested models<a href="analysis-of-designed-experiments.html#choosing-between-non-nested-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can assess each fit by eye by plotting the fitted values (at each distinct <span class="math inline">\(x\)</span> value) and overlaying the lines of best fit. Note that the quadratic model produces a continuous curve for the mean response, whereas the factor model is piecewise linear. The fits are very close though and there is no obvious preference based on the figure alone.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fittedgrainplot"></span>
+<img src="analysis_des_exp_files/figure-html/fittedgrainplot-1.png" alt="Fitted models for the grain and plant density data: blue (polynomial), red(factor)." width="65%" />
+<p class="caption">
+Figure 4.3: Fitted models for the grain and plant density data: blue (polynomial), red(factor).
+</p>
+</div>
+<p>Our two candidate models are <em>non-nested</em>, i.e. one is not a subset of another. The respective <span class="math inline">\(R^2\)</span> values for the quadratic and factor models are <span class="math inline">\(89.6\%\)</span> and <span class="math inline">\(92.1\%\)</span>. We may be guilty of overfitting in the factor model - ideally we would like to validate this result in another dataset. Often we choose a simpler model, even if it has lower values of <span class="math inline">\(R^2\)</span> and higher RMS (or MSE). Note in passing that the adjusted <span class="math inline">\(R^2\)</span> values are <span class="math inline">\(87.9\%\)</span> and <span class="math inline">\(89.0\%\)</span>.</p>
+<p>Choosing a model is <em>subjective</em> and you must use your judgement. Here, we may opt for the simpler quadratic model as there is little difference between the models and this is better for predictive purposes. We also check the residuals - if these flag up any concerns we may revert to an alternative model:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:grainresidplot"></span>
+<img src="analysis_des_exp_files/figure-html/grainresidplot-1.png" alt="Residual plots for the polynomial model fitted to the grain data." width="48%" /><img src="analysis_des_exp_files/figure-html/grainresidplot-2.png" alt="Residual plots for the polynomial model fitted to the grain data." width="48%" />
+<p class="caption">
+Figure 4.4: Residual plots for the polynomial model fitted to the grain data.
+</p>
+</div>
+<p>In this case the residuals checks are fine and the model also has standardised residuals that yield a p-value <span class="math inline">\(&gt;0.1\)</span> for the Anderson-Darling test:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="analysis-of-designed-experiments.html#cb101-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fit_poly))</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(fit_poly)
+## A = 0.21793, p-value = 0.8041</code></pre>
+</div>
+</div>
+</div>
+<div id="randomised-block-design" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Randomised block design<a href="analysis-of-designed-experiments.html#randomised-block-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A randomised block design is the most commonly used design in practice. Background: often the experimental units are grouped such that those in a group (year, farm, day, laboratory) are expected to respond similarly to a treatment, but different groups are expected to respond differently.</p>
+<p>The groups are called <em>blocks</em>. Essentially the blocking factor is a `nuisance factor’; we know it probably affects the response but we are not that interested in it per se. However we need to correct for it to make our treatment comparisons more exact, i.e. by reducing the residual mean square (i.e. the variance). Randomised block designs are analysed with a <em>two-way analysis of variance</em>.</p>
+<div id="two-way-analysis-of-variance" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Two-way analysis of variance<a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In a one-way anova we look for the effect of one ‘factor’, in a two-way anova we look for the effects of two factors. The second factor may also be of genuine interest, or it may be a <em>blocking</em> or <em>nuisance factor</em> (c.f. the paired sample t-test). A further complication arises because of the possibility of <em>interactions</em> between the factors, namely do the treatments work differently in the different groups? We will consider interactions later.</p>
+<p>The different values of a factor are called ‘levels’. A factorial experiment is one where all of the explanatory variables are qualitative factors rather than quantitative variables. We will later consider cases where we have both factors and quantitative explanatory variables.</p>
+<p>Typically, we are interested in a randomised block design when we have models of the form:</p>
+<p><span class="math display">\[
+\color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}}
+\]</span></p>
+<p>where <span class="math inline">\(i = 1, 2, \ldots, k_1\)</span> refer to the levels of factor 1 and <span class="math inline">\(j = 1, 2, \ldots, k_2\)</span> refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make an assumption in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that <span class="math inline">\(\alpha_1 = \beta_1 = 0\)</span>. The additional source of variation leads to an extra row in the anova table.</p>
+</div>
+<div id="orthogonality-in-a-two-way-analysis-of-variance-model" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Orthogonality in a two-way analysis of variance model<a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be <em>orthogonal</em>; if there is not equal replication then the sums of squares depends on the order of fitting. To avoid bias we fit the blocking factor first. Generally, if the <span class="math inline">\(F\)</span>-statistic for blocks exceeds unity (i.e. <span class="math inline">\(&gt; 1\)</span>) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.</p>
+</div>
+<div id="example-two-way-anova-on-nitrate-data" class="section level3 unnumbered hasAnchor">
+<h3>Example: Two-way anova on nitrate data<a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Six nitrogen timing treatments were used in six fields in each of four farms (the <em>blocking</em> factor), giving <span class="math inline">\(n = 24\)</span>, and the resulting nitrate in wheat stems was assayed. The data were analysed to produce the anova table below:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:right;">
+Degrees of freedom
+</th>
+<th style="text-align:right;">
+Sum of squares
+</th>
+<th style="text-align:left;">
+Mean square
+</th>
+<th style="text-align:left;">
+Mean square ratio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Farms
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+197.00
+</td>
+<td style="text-align:left;">
+65.67
+</td>
+<td style="text-align:left;">
+9.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Timings
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+201.32
+</td>
+<td style="text-align:left;">
+40.26
+</td>
+<td style="text-align:left;">
+5.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+108.01
+</td>
+<td style="text-align:left;">
+7.20
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+506.33
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: red;">There is a large difference between farms (<span class="math inline">\(F &gt;&gt; 1\)</span>). Thus blocking was worthwhile. There are significant differences between timings - these could be investigated using Tukey’s HSD as before. The adequacy of the model is checked by residual plots as usual. </span></p>
+</div>
+<div id="example-chicken-egg-production" class="section level3 unnumbered hasAnchor">
+<h3>Example: Chicken egg production<a href="analysis-of-designed-experiments.html#example-chicken-egg-production" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An experiment was conducted at each of four units to see if extra lighting increased egg production by chickens during the winter months. The treatments were</p>
+<ol type="i">
+<li>
+natural daylight;
+</li>
+<li>
+extended day length to 14 hours using artificial lighting;
+</li>
+<li>
+two 20 second light periods during the night.
+</li>
+</ol>
+<p>The number of eggs laid by six chickens in a three-month period was recorded:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Treatment
+</th>
+<th style="text-align:right;">
+Unit 1
+</th>
+<th style="text-align:right;">
+Unit 2
+</th>
+<th style="text-align:right;">
+Unit 1
+</th>
+<th style="text-align:right;">
+Unit 4
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+330
+</td>
+<td style="text-align:right;">
+288
+</td>
+<td style="text-align:right;">
+295
+</td>
+<td style="text-align:right;">
+313
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+372
+</td>
+<td style="text-align:right;">
+340
+</td>
+<td style="text-align:right;">
+343
+</td>
+<td style="text-align:right;">
+341
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+359
+</td>
+<td style="text-align:right;">
+337
+</td>
+<td style="text-align:right;">
+373
+</td>
+<td style="text-align:right;">
+302
+</td>
+</tr>
+</tbody>
+</table>
+<p>The data are available on Canvas in the data file <em>ChickenEggs.RData</em>. We can carry out a two-way anova in <code>R</code> as follows:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="analysis-of-designed-experiments.html#cb103-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;ChickenEggs.RData&quot;</span>)</span>
+<span id="cb103-2"><a href="analysis-of-designed-experiments.html#cb103-2" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(eggs <span class="sc">~</span> unit <span class="sc">+</span> light, <span class="at">data =</span> ChickenEggs)</span>
+<span id="cb103-3"><a href="analysis-of-designed-experiments.html#cb103-3" tabindex="-1"></a><span class="fu">summary</span>(fitaov)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## unit         3   2330   776.8   2.008 0.2145  
+## light        2   4212  2106.2   5.444 0.0449 *
+## Residuals    6   2322   386.9                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div id="comments-1" class="section level4 unnumbered hasAnchor">
+<h4>Comments<a href="analysis-of-designed-experiments.html#comments-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><span style="color: red;"><span class="math inline">\(F\)</span>-ratio for units (blocks) is greater than 1 so the treatment comparison was made more exact by blocking, but the differences between units were not large.</span></li>
+<li><span style="color: red;">The differences between treatment were significant (<span class="math inline">\(p=0.045\)</span>). </span></li>
+</ol>
+<p>We can now use Tukey’s HSD (via <code>R</code>) to see where the differences are:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="analysis-of-designed-experiments.html#cb105-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = eggs ~ unit + light, data = ChickenEggs)
+## 
+## $unit
+##          diff       lwr      upr     p adj
+## 2-1 -32.00000 -87.59733 23.59733 0.2874709
+## 3-1 -16.66667 -72.26400 38.93066 0.7356765
+## 4-1 -35.00000 -90.59733 20.59733 0.2308903
+## 3-2  15.33333 -40.26400 70.93066 0.7785977
+## 4-2  -3.00000 -58.59733 52.59733 0.9974306
+## 4-3 -18.33333 -73.93066 37.26400 0.6802599
+## 
+## $light
+##      diff         lwr      upr     p adj
+## 2-1 42.50  -0.1764142 85.17641 0.0507874
+## 3-1 36.25  -6.4264142 78.92641 0.0891770
+## 3-2 -6.25 -48.9264142 36.42641 0.8965079</code></pre>
+<p><span style="color: red;">We see that there is a borderline significant difference in means between treatments 1 and 2. The difference between 1 and 3 is approaching significance and there is no evidence of a difference between treatments 2 and 3. Thus, extra lighting seems to increase egg production, but there is little difference between the two extra light treatments. As expected from the <span class="math inline">\(p\)</span>-value there is no significant differences between the units themselves.</span></p>
+<p>We can check model adequacy in the usual way:</p>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(fitaov)
+## A = 0.256, p-value = 0.6577</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:eggresidplot"></span>
+<img src="analysis_des_exp_files/figure-html/eggresidplot-1.png" alt="Residual plots for the two-way anova model on the chicken egg data." width="48%" /><img src="analysis_des_exp_files/figure-html/eggresidplot-2.png" alt="Residual plots for the two-way anova model on the chicken egg data." width="48%" />
+<p class="caption">
+Figure 4.5: Residual plots for the two-way anova model on the chicken egg data.
+</p>
+</div>
+<p>From the left-hand plot we see there is random scatter with no evidence of curvature or changing variance, and no outliers. There is a good fit to the straight line on the right-hand plot, and a large <span class="math inline">\(p\)</span>-value from the Anderson-Darling test, implying the normality assumption is fine.</p>
+</div>
+</div>
+<div id="contrasts" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Contrasts<a href="analysis-of-designed-experiments.html#contrasts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints:</p>
+<ol type="i">
+<li>
+<span style="color: red;">The coefficients must sum to zero for each contrast.</span>
+</li>
+<li>
+<span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span>
+</li>
+<li>
+<span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts <span class="math inline">\(= 0\)</span>). </span>
+</li>
+</ol>
+<p>We can then test if any of the contrasts are significantly different from zero. Using <code>R</code>, we can generate a <span class="math inline">\(t\)</span>-statistic, testing if the true value of the contrast is zero, with an associated <span class="math inline">\(p\)</span>-value that can be interpreted in the usual way so that small <span class="math inline">\(p\)</span>-values imply the contrast is significantly different from zero.</p>
+</div>
+<div id="example-contrasts-for-the-chicken-egg-production-data" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Example: Contrasts for the chicken egg production data<a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the example on whether lighting affected egg production, the two most obvious comparisons are:</p>
+<ol style="list-style-type: decimal">
+<li>the average of the two enhanced light treatments against standard daylight (<span class="math inline">\(\text{contrast} = (-1, 0.5,0.5)\)</span>) and</li>
+<li>comparing the two enhanced light treatments (<span class="math inline">\(\text{contrast} = (0, 1, -1)\)</span>).</li>
+</ol>
+<p>These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since:</p>
+<p><span class="math display">\[\begin{align*}
+\begin{matrix}\begin{pmatrix}-1.0&amp; 0.5&amp; 0.5\end{pmatrix}\\\mbox{}\end{matrix}
+\begin{pmatrix}
+    0.0 \\
+     1.0 \\
+    -1.0 \\
+         \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0
+\end{align*}\]</span></p>
+<p>Using <code>R</code> to carry out the analysis:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="analysis-of-designed-experiments.html#cb108-1" tabindex="-1"></a>ContrastMatrix1 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span>
+<span id="cb108-2"><a href="analysis-of-designed-experiments.html#cb108-2" tabindex="-1"></a><span class="fu">contrasts</span>(ChickenEggs<span class="sc">$</span>light) <span class="ot">&lt;-</span> ContrastMatrix1</span>
+<span id="cb108-3"><a href="analysis-of-designed-experiments.html#cb108-3" tabindex="-1"></a><span class="fu">summary.lm</span>(<span class="fu">aov</span>(eggs <span class="sc">~</span> unit <span class="sc">+</span> light, <span class="at">data =</span> ChickenEggs))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## aov(formula = eggs ~ unit + light, data = ChickenEggs)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -26.667  -8.125   2.083   5.521  26.000 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  353.667     11.357  31.142 7.28e-08 ***
+## unit2        -32.000     16.061  -1.992   0.0934 .  
+## unit3        -16.667     16.061  -1.038   0.3394    
+## unit4        -35.000     16.061  -2.179   0.0721 .  
+## light1        26.250      8.030   3.269   0.0171 *  
+## light2         3.125      6.954   0.449   0.6690    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 19.67 on 6 degrees of freedom
+## Multiple R-squared:  0.7381, Adjusted R-squared:  0.5199 
+## F-statistic: 3.382 on 5 and 6 DF,  p-value: 0.08504</code></pre>
+<div id="comments-2" class="section level4 unnumbered hasAnchor">
+<h4>Comments<a href="analysis-of-designed-experiments.html#comments-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><span style="color: red;">The first contrast is significant (<span class="math inline">\(p = 0.0171\)</span>) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span></li>
+<li><span style="color: red;">The second contrast has a large <span class="math inline">\(p\)</span>-value, implying no significant differences in mean between the two light treatments. </span></li>
+<li><span style="color: red;">As we have not specified contrasts for units, <code>R</code> has compared each unit against the first unit. </span></li>
+<li><span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="factorial-experiments" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Factorial experiments<a href="analysis-of-designed-experiments.html#factorial-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes, when there are two factors in an experiment, both are of genuine, and equal, interest and we are interested as to whether they are each important. In addition, we may wish to consider whether they interact, i.e. whether the level of one factor affects the effect of the other factor.</p>
+<p>We are thus interested in fitting a model of the form:</p>
+<p><span class="math display">\[
+\color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij}}
+\]</span></p>
+<p>where we make similar assumptions to the randomised block structure, but we additionally have the term, <span class="math inline">\(\gamma_{ij}\)</span>, which denotes the interaction between the two factors. Again, any term with <span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span> equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples.</p>
+<div id="example-two-way-anova-with-interactions-for-the-yeast-data" class="section level3 unnumbered hasAnchor">
+<h3>Example: Two-way anova with interactions for the yeast data<a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As part of an investigation of toxic agents, 48 yeast strains were allocated to three poisons (I, II, III) and four treatments (<span class="math inline">\(A, B, C, D\)</span>). Each poison-treatment combination occurred four times and the response was survival time (measured in tens of hours). A snapshot of the data are given below:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Time
+</th>
+<th style="text-align:left;">
+Poison
+</th>
+<th style="text-align:left;">
+Treatment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0.31
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.82
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.43
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.45
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.45
+</td>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+⋮
+</td>
+<td style="text-align:left;">
+⋮
+</td>
+<td style="text-align:left;">
+⋮
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.29
+</td>
+<td style="text-align:left;">
+II
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.61
+</td>
+<td style="text-align:left;">
+II
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+⋮
+</td>
+<td style="text-align:left;">
+⋮
+</td>
+<td style="text-align:left;">
+⋮
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.33
+</td>
+<td style="text-align:left;">
+III
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+</tbody>
+</table>
+<p>The data are available in the file <em>yeast.RData</em>. The syntax <code>:</code> is used in <code>R</code> to represent an interaction. Thus, we can fit the interaction model as follows</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-of-designed-experiments.html#cb110-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;yeast.RData&quot;</span>)</span>
+<span id="cb110-2"><a href="analysis-of-designed-experiments.html#cb110-2" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> poison <span class="sc">+</span> treatment <span class="sc">+</span> poison<span class="sc">:</span>treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb110-3"><a href="analysis-of-designed-experiments.html#cb110-3" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
+<pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## poison            2 1.0330  0.5165  23.222 3.33e-07 ***
+## treatment         3 0.9212  0.3071  13.806 3.78e-06 ***
+## poison:treatment  6 0.2501  0.0417   1.874    0.112    
+## Residuals        36 0.8007  0.0222                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>From an Anderson-Darling test of the standardised residuals we obtain a test statistic of <span class="math inline">\(1.59\)</span> and <span class="math inline">\(p &lt; 0.001\)</span> (we will investigate this shortly …):</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="analysis-of-designed-experiments.html#cb112-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(aov1))</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(aov1)
+## A = 1.5923, p-value = 0.0003712</code></pre>
+<div id="comments-3" class="section level4 unnumbered hasAnchor">
+<h4>Comments<a href="analysis-of-designed-experiments.html#comments-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><span style="color: red;">The interaction term is not significant, implying that the effects of the poisons are approximately the same for each treatment and vice versa. </span></li>
+<li><span style="color: red;">However, poison and treatment are both highly significant. </span></li>
+</ol>
+</div>
+</div>
+<div id="exploratory-plots-for-interactions" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Exploratory plots for interactions<a href="analysis-of-designed-experiments.html#exploratory-plots-for-interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Potential presence or absence of an interaction can be explored using interaction plots. In such plots, non-parallel (or crossing) lines are indicative of the presence of an interaction since this suggests that the response differs for certain combinations of the factors. We can produce an interaction plot in <code>R</code> via the below commands:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:yeastinteract"></span>
+<img src="analysis_des_exp_files/figure-html/yeastinteract-1.png" alt="Interaction plots for the yeast data." width="48%" /><img src="analysis_des_exp_files/figure-html/yeastinteract-2.png" alt="Interaction plots for the yeast data." width="48%" />
+<p class="caption">
+Figure 4.6: Interaction plots for the yeast data.
+</p>
+</div>
+<p><span style="color: red;">We can see that the plots are approximately parallel, implying no significant interaction, although we see that treatment <span class="math inline">\(D\)</span> responds somewhat differently to the others for poisons <span class="math inline">\(I\)</span> and <span class="math inline">\(II\)</span>. For each treatment (left-hand plot), poisons are generally <span class="math inline">\(I &gt; II&gt; III\)</span> whereas for each poison (right-hand plot), treatments are <span class="math inline">\(B &gt; D &gt; C &gt; A\)</span>. </span></p>
+<div id="model-checking-1" class="section level4 unnumbered hasAnchor">
+<h4>Model checking<a href="analysis-of-designed-experiments.html#model-checking-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As usual, we can look at a plot of standardised residuals versus the fitted values as well as a plot of the standardised residuals and a formal test of normality:</p>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(aov1)
+## A = 1.5923, p-value = 0.0003712</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:yeastresidplot"></span>
+<img src="analysis_des_exp_files/figure-html/yeastresidplot-1.png" alt="Residual plots for the yeast data." width="48%" /><img src="analysis_des_exp_files/figure-html/yeastresidplot-2.png" alt="Residual plots for the yeast data." width="48%" />
+<p class="caption">
+Figure 4.7: Residual plots for the yeast data.
+</p>
+</div>
+<p>We see from the first plot that there is clearly an increase in variance with two large positive residuals. There is also a poor fit to normality in the quantile-quantile plot with the large positive standardised residuals distorting the plot. This leads to the very small <span class="math inline">\(p\)</span>-value from the Anderson-Darling statistic. In cases of increasing variance as the mean increases (a funnel shape), a log transformation usually works well. Thus, we fit a new model with <span class="math inline">\(\log(\text{time})\)</span> as the response variable.</p>
+</div>
+</div>
+<div id="example-transforming-the-response" class="section level3 unnumbered hasAnchor">
+<h3>Example: Transforming the response<a href="analysis-of-designed-experiments.html#example-transforming-the-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can fit a transformed model directly in <code>R</code> via the following commands:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis-of-designed-experiments.html#cb115-1" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> treatment <span class="sc">+</span> poison <span class="sc">+</span> treatment<span class="sc">*</span>poison, <span class="at">data =</span> yeast)</span>
+<span id="cb115-2"><a href="analysis-of-designed-experiments.html#cb115-2" tabindex="-1"></a><span class="fu">anova</span>(aov2)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: log(time)
+##                  Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## treatment         3 3.5572 1.18572 21.9295 2.987e-08 ***
+## poison            2 5.2375 2.61874 48.4324 6.195e-11 ***
+## treatment:poison  6 0.3957 0.06596  1.2199    0.3189    
+## Residuals        36 1.9465 0.05407                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We see that the <span class="math inline">\(p\)</span>-values for the factors have decreased and are even more significant but the interaction is still not significant. The <span class="math inline">\(R^2\)</span> (not shown) due to the two factors has increased from <span class="math inline">\(65\%\)</span> to <span class="math inline">\(79\%\)</span>, showing a better fit to the data.</p>
+<div id="model-checking-for-the-log-response-model" class="section level4 unnumbered hasAnchor">
+<h4>Model checking for the log-response model<a href="analysis-of-designed-experiments.html#model-checking-for-the-log-response-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can again perform our residual checks:</p>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  rstandard(aov2)
+## A = 0.35688, p-value = 0.442</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:yeastresidplot2"></span>
+<img src="analysis_des_exp_files/figure-html/yeastresidplot2-1.png" alt="Residual plots for the transformed yeast data." width="48%" /><img src="analysis_des_exp_files/figure-html/yeastresidplot2-2.png" alt="Residual plots for the transformed yeast data." width="48%" />
+<p class="caption">
+Figure 4.8: Residual plots for the transformed yeast data.
+</p>
+</div>
+<p>The Anderson-Darling test now produces a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.442\)</span>. We see now that there is still evidence of an increasing variance for the standardised residuals, but this has been mitigated through the log-transform. There are still 4 points outside (-2, 2) which is more than we would expect by chance (<span class="math inline">\(5\%\; \text{of}\; 48 = 2.4\)</span>), but they are all only just outside the range. The points fit well to a straight line in the quantile-quantile plot, and the <span class="math inline">\(p\)</span>-value for the AD test is large, implying that the normality assumption is now fine.</p>
+</div>
+<div id="multiple-comparisions-for-the-log-response-model" class="section level4 unnumbered hasAnchor">
+<h4>Multiple comparisions for the log-response model<a href="analysis-of-designed-experiments.html#multiple-comparisions-for-the-log-response-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In order to see how the different levels of the factor affect the response, we need to fit the factors without an interaction and then look at which factor levels differ in mean value:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="analysis-of-designed-experiments.html#cb118-1" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> poison <span class="sc">+</span> treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb118-2"><a href="analysis-of-designed-experiments.html#cb118-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov3)</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = log(time) ~ poison + treatment, data = yeast)
+## 
+## $poison
+##              diff        lwr         upr     p adj
+## II-I   -0.1866630 -0.3895078  0.01618181 0.0767735
+## III-I  -0.7751531 -0.9779980 -0.57230832 0.0000000
+## III-II -0.5884901 -0.7913350 -0.38564531 0.0000000
+## 
+## $treatment
+##           diff         lwr         upr     p adj
+## B-A  0.7046545  0.44676456  0.96254438 0.0000000
+## C-A  0.1967076 -0.06118234  0.45459748 0.1897915
+## D-A  0.5070686  0.24917864  0.76495846 0.0000264
+## C-B -0.5079469 -0.76583681 -0.25005699 0.0000257
+## D-B -0.1975859 -0.45547583  0.06030399 0.1866278
+## D-C  0.3103610  0.05247107  0.56825089 0.0127525</code></pre>
+</div>
+<div id="comment" class="section level4 unnumbered hasAnchor">
+<h4>Comment<a href="analysis-of-designed-experiments.html#comment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span style="color: red;">For the poisons, <span class="math inline">\(III\)</span> differs highly significantly from both <span class="math inline">\(I\)</span> and <span class="math inline">\(II\)</span> but <span class="math inline">\(I\)</span> and <span class="math inline">\(II\)</span> do not differ significantly from each other (but the <span class="math inline">\(p\)</span>-value is approaching significance.
+<br>
+<br>
+In this model we are also interested in the treatment differences themselves. For the treatments: we see that <span class="math inline">\(A\)</span> differs significantly from <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>, and that <span class="math inline">\(C\)</span> differs significantly from <span class="math inline">\(B\)</span> and <span class="math inline">\(D\)</span>. Neither of the other two differences are significant giving <span class="math inline">\(B,D &gt; C,A\)</span> as a general interpretation.</span></p>
+<!-- ## Larger factorial experiments -->
+<!-- In principle we can have experiments with three, four and more factors. We could then look at three-way, four-way, and higher interactions. However, such interactions are difficult to interpret. Thus they should not be included unless they are significant. Furthermore, potential interactions of interest ought to be identified \textit{prior} to the analysis. If higher-order interactions are found to be significant, it suggests dividing up the data by a key factor (e.g. sex) and analysing the levels of that factor separately. This is known as a stratified model. -->
+<!-- ## Example: Fruit pulp data {-} -->
+<!-- Dried fruit pulp is often used to flavour or sweeten foods, but the texture of the fruit pulp can affect the sensory qualities of the foods as well. As such, researchers are interested in minimising, in particular, the graininess quality of fruit pulp. Three factors which could affect graininess are the temperature at which the fruit is dried, the acidity of the resulting fruit pulp, and the sugar content of the fruit pulp.  -->
+<!-- In a designed experiment, two batches of fruit pulp were prepared and each was divided into twelve parts. The twelve parts were then randomly assigned to the twelve treatment combinations formed from three temperatures, two sugar contents (low and high), and two acidities (low and high pH), since $12 = 3\times 2\times 2$. In this set-up we have four factors: one blocking factor (batch) and three treatment factors – one with three levels and two with two levels. We need to investigate the four factors and also whether the treatment factors interact (we don't expect the treatments and batch to interact). -->
+<!-- Initially, we shall consider the factors on their own. We can enter the data in `R` as follows: -->
+<!-- ```{r} -->
+<!-- graininess <- c(21, 12, 13, 1, 23, 14, 13, 1, 17, 20, 16, 14, 21, 18, 14, 8, -->
+<!--                 23, 17, 16, 11, 23, 17, 17, 5) -->
+<!-- batch <- gl(2,12,24) -->
+<!-- temp <- gl(3,4,24) -->
+<!-- sugar <- gl(2,2,24) -->
+<!-- ph <- gl(2,1,24) -->
+<!-- aov1 <-  aov(graininess ~ batch + temp + sugar + ph) -->
+<!-- ``` -->
+<!-- The fitted model can be inspected in the usual way -->
+<!-- ```{r} -->
+<!-- summary(aov1) -->
+<!-- ``` -->
+<!-- #### Comments {-} -->
+<!-- 1. <span style="color: red;">We can see immediately that sugar and ph are highly significant (beyond the $0.1\%$ level. </span> -->
+<!-- 1. <span style="color: red;">Batch, the blocking factor, has $F > 1$ and so has improved the accuracy of treatment comparison even though it is not ‘significant’. </span> -->
+<!-- 1. <span style="color: red;">Temperature seems unimportant but may interact with the important factors. </span> -->
+<!-- \end{enumerate} -->
+<!-- We will now look at the two-way interactions -->
+<!-- ```{r} -->
+<!-- aov2 <-  aov(graininess ~ batch + temp + sugar + ph +  -->
+<!--                temp:sugar + temp:ph + sugar:ph) -->
+<!-- summary(aov2) -->
+<!-- ``` -->
+<!-- We see that all the interaction terms have large $p$-values and don't appear to be important. We can investigate this via the extra sum of squares method: -->
+<!-- ```{r} -->
+<!-- anova(aov1, aov2) -->
+<!-- ``` -->
+<!-- Thus, since $p = 0.60$, we do not need to include the interactions in the model. Inspecting the original main effects model (`aov1()`), we see that `temp` is also not significant, with a $p$-value - from an omnibus test - of 0.289. Note that since the experiment factors are orthogonal, the order variables enter the models does not matter so we can use the `aov()` output directly to make decisions. -->
+<!-- Hence we can select a model with batch, sugar and pH. As the important factors only have two levels we do not need to use Tukey’s HSD (why?). Fitting these factors as a linear model and using the `summary()` command we obtain: -->
+<!-- ```{r} -->
+<!-- fit <-  lm(graininess ~ batch + sugar + ph) -->
+<!-- summary(fit) -->
+<!-- ``` -->
+<!-- #### Comments {-} -->
+<!-- 1. <span style="color: red;">We see that the higher level of sugar leads to a decline of $8.08\; (SE = 1.34)$. </span> -->
+<!-- 1. <span style="color: red;">Similarly the higher level of PH leads to a decline of $6.58\; (SE. = 1.34)$. </span> -->
+<!-- We now need to look at, and test, the residuals of this reduced model to check for model adequacy. -->
+<!-- ```{r pulpresidplot, fig.show = "hold", fig.cap = 'Residual plots for the fruit pulp data.', echo=FALSE, fig.align='center', cex.lab = 1.2, cex.axis = 1.2, out.width='48%'} -->
+<!-- plot(fitted.values(fit), rstandard(fit),   -->
+<!--        xlab="Fitted values", ylab="Standardised residuals", -->
+<!--        pch = 16) -->
+<!-- abline(h = c(-2, 0, 2), lty = 2) -->
+<!-- qqnorm(rstandard(fit), pch = 16) -->
+<!-- abline(0, 1, lty = 2) -->
+<!-- ad.test(rstandard(fit)) -->
+<!-- ``` -->
+<!-- We see that the fitted value plot (left) gives an approximate random scatter. The quantile-quantile plot (right) implies approximate normality ($p$-value of Anderson-Darling statistic $= 0.2442$). There is a single observation (out of 24) with a standardised residual greater than two in modulus, but this may well be due to chance. Thus the assumptions seem to be fine.  -->
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="inference-for-the-multiple-linear-regression-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="general-linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/analysis_des_exp.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

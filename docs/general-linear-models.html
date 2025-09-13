@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 General linear models | notes</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 General linear models | notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 General linear models | notes" />
+  
+  
+  
+
+<meta name="author" content="Dr Pete Philipson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-designed-experiments.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>MAS3928: Statistical Modelling</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module information</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#lecturer-information"><i class="fa fa-check"></i>Lecturer information</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#module-schedule"><i class="fa fa-check"></i>Module schedule</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#course-materials"><i class="fa fa-check"></i>Course materials</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#relevant-texts"><i class="fa fa-check"></i>Relevant texts</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#matrix-form-of-the-model"><i class="fa fa-check"></i><b>1.2</b> Matrix form of the model</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr"><i class="fa fa-check"></i>Example - Matrix form for body weight in pre-diabetes patients (MLR)</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#parameter-estimation"><i class="fa fa-check"></i><b>1.3</b> Parameter estimation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#estimation-of-underlinebeta"><i class="fa fa-check"></i><b>1.3.1</b> Estimation of <span class="math inline">\(\underline{\beta}\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#estimation-of-sigma_epsilon2"><i class="fa fa-check"></i><b>1.3.2</b> Estimation of <span class="math inline">\(\sigma_{\epsilon}^2\)</span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#sec:resfithat"><i class="fa fa-check"></i><b>1.3.3</b> Residuals, fitted values and the ‘hat matrix’</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#properties-of-the-hat-matrix"><i class="fa fa-check"></i><b>1.3.4</b> Properties of the hat matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multiple-linear-regresion-analysis-of-bodyweight-data"><i class="fa fa-check"></i>Example: Multiple linear regresion analysis of bodyweight data</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#expectations-variances-and-inference"><i class="fa fa-check"></i><b>1.4</b> Expectations, variances and inference</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#expectation-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.1</b> Expectation of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#variance-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.2</b> Variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction.html"><a href="introduction.html#sec:inferforbetahat"><i class="fa fa-check"></i><b>1.4.3</b> Inference for <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction.html"><a href="introduction.html#sec:expvaryhat"><i class="fa fa-check"></i><b>1.4.4</b> Expectation and variance of the fitted values</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction.html"><a href="introduction.html#expectation-and-variance-of-the-residuals"><i class="fa fa-check"></i><b>1.4.5</b> Expectation and variance of the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#sec:mlrinr"><i class="fa fa-check"></i><b>1.5</b> Multiple linear regression in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction.html"><a href="introduction.html#using-data-in-r"><i class="fa fa-check"></i><b>1.5.1</b> Using data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-using-r"><i class="fa fa-check"></i>Example: Analysis of bodyweight data using <code>R</code></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#the-role-of-the-intercept"><i class="fa fa-check"></i><b>1.6</b> The role of the intercept</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-without-an-intercept-term"><i class="fa fa-check"></i>Example: Analysis of bodyweight data without an intercept term</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept"><i class="fa fa-check"></i>Example: Analysis of men’s Premier League football data - the role of the intercept</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#interpretability-of-the-intercept-and-extrapolation"><i class="fa fa-check"></i><b>1.6.1</b> Interpretability of the intercept and extrapolation</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#standardised-residuals"><i class="fa fa-check"></i><b>2.1</b> Standardised residuals</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#residual-plots"><i class="fa fa-check"></i><b>2.1.1</b> Residual plots</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values"><i class="fa fa-check"></i>Independence of residuals and fitted values</a></li>
+<li class="chapter" data-level="2.1.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#outliers"><i class="fa fa-check"></i><b>2.1.2</b> Outliers</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data"><i class="fa fa-check"></i>Example: Residual analysis for bodyweight data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#normality-of-the-residuals"><i class="fa fa-check"></i><b>2.1.3</b> Normality of the residuals</a></li>
+<li class="chapter" data-level="2.1.4" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#anderson-darling-test"><i class="fa fa-check"></i><b>2.1.4</b> Anderson-Darling test</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#a-cautionary-note"><i class="fa fa-check"></i>A cautionary note</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>2.2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#leverage-values"><i class="fa fa-check"></i><b>2.2.1</b> Leverage values</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data"><i class="fa fa-check"></i>Example: Leverage values for the bodyweight data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#influential-observations"><i class="fa fa-check"></i><b>2.2.2</b> Influential observations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#dealing-with-unusual-observations"><i class="fa fa-check"></i><b>2.2.3</b> Dealing with unusual observations</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-model-checking-for-the-premier-league-data"><i class="fa fa-check"></i>Example: Model checking for the Premier League data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html"><i class="fa fa-check"></i><b>3</b> Inference for the multiple linear regression model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#assessing-the-fit"><i class="fa fa-check"></i><b>3.1</b> Assessing the fit</a></li>
+<li class="chapter" data-level="3.2" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-basic-anova-table"><i class="fa fa-check"></i><b>3.2</b> The basic anova table</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem"><i class="fa fa-check"></i>Cochran’s Theorem</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination"><i class="fa fa-check"></i>The coefficient of determination</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-cheddar-cheese-study"><i class="fa fa-check"></i>Example: Cheddar cheese study</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#anova-in-r"><i class="fa fa-check"></i>Anova in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.3</b> The extra sum of squares method</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extended-anova-table"><i class="fa fa-check"></i><b>3.3.1</b> The extended anova table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extra sum of squares for cheese data</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-warfarin-study"><i class="fa fa-check"></i>Example: Warfarin study</a></li>
+<li class="chapter" data-level="3.4" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-general-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.4</b> The general extra sum of squares method</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extended extra sum of squares for cheese data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method"><i class="fa fa-check"></i>Summary: extra sum of squares method</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html"><i class="fa fa-check"></i><b>4</b> Analysis of designed experiments</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design"><i class="fa fa-check"></i><b>4.1</b> Completely randomised design</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-one-way-anova"><i class="fa fa-check"></i>Example: One-way anova</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Analysis of completely randomised design data in <code>R</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#interpretation-of-results-multiple-comparisons"><i class="fa fa-check"></i><b>4.1.2</b> Interpretation of results: multiple comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-multiple-comparisons"><i class="fa fa-check"></i>Example: Multiple comparisons</a>
+<ul>
+<li class="chapter" data-level="4.1.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#model-checking"><i class="fa fa-check"></i><b>4.1.3</b> Model checking</a></li>
+<li class="chapter" data-level="4.1.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables"><i class="fa fa-check"></i><b>4.1.4</b> Completely randomised design: dealing with quantitative variables</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable"><i class="fa fa-check"></i>Example: Randomised design with a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
+<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data"><i class="fa fa-check"></i>Example: Two-way anova with interactions for the yeast data</a></li>
+<li class="chapter" data-level="4.3.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#exploratory-plots-for-interactions"><i class="fa fa-check"></i><b>4.3.1</b> Exploratory plots for interactions</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-transforming-the-response"><i class="fa fa-check"></i>Example: Transforming the response</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>5</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="general-linear-models.html"><a href="general-linear-models.html#indicator-and-dummy-variables"><i class="fa fa-check"></i><b>5.1</b> Indicator and dummy variables</a></li>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#example-gasoline-data"><i class="fa fa-check"></i>Example: Gasoline data</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="general-linear-models" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> General linear models<a href="general-linear-models.html#general-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the models considered thus far, we have either had exclusively continuous covariates (multiple linear regression models) or solely factors (anova models). In reality, we are often faced with variables of both types within the same dataset. Both of these models actually fall under the umbrella term of a <em>general linear model</em>, as do many more. We will now consider a model of this type.</p>
+<div id="indicator-and-dummy-variables" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Indicator and dummy variables<a href="general-linear-models.html#indicator-and-dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. However we may want to consider:</p>
+<ol style="list-style-type: decimal">
+<li>Is there a difference in the intercepts between males and females?</li>
+<li>Is there a difference in the slopes?</li>
+</ol>
+<p>We can thus define an indicator variable which indicates the sex of the lobster. Let <span class="math inline">\(x_1 = 0\)</span> for a male and <span class="math inline">\(x_1 = 1\)</span> for a female, i.e.</p>
+<p><span class="math display">\[
+\color{red}{x_{1} = \begin{cases} 1&amp; \text{if ``Female&#39;&#39;} \\
+0&amp; \text{if ``Male&#39;&#39;}
+\end{cases}}
+\]</span></p>
+<p>This can also be written as <span class="math inline">\(I(x_1 = \text{``Female&#39;&#39;})\)</span>, where <span class="math inline">\(I()\)</span> is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is `female’).</p>
+<p>If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we did in Chapter 4); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously.</p>
+<p>Consider the model:
+<span class="math display">\[
+Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
+\]</span></p>
+<p>where <span class="math inline">\(x_1\)</span> is an indicator variable and <span class="math inline">\(x_2\)</span> is a quantitative variable. Then</p>
+<ol style="list-style-type: decimal">
+<li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2\)</span>, and </span></li>
+<li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + \beta_2 x_2\)</span> </span></li>
+</ol>
+<p>So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of <span class="math inline">\(\beta_1\)</span>. Hence, if this value is close to zero then one line will suffice.</p>
+<p>Formally, we can test for a common intercept by testing
+<span class="math display">\[
+\color{red}{H_0: \beta_1 = 0 \;\;\text{versus}\;\; H_1: \beta_1 \neq 0}
+\]</span></p>
+<p>in the usual way (i.e. we are testing for a common line, which corresponds to no difference between the two categories). To fit two lines with different slopes, we fit:</p>
+<p><span class="math display">\[
+\color{red}{Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + \epsilon}
+\]</span></p>
+<p>Under this formulation</p>
+<ol style="list-style-type: decimal">
+<li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2\)</span> </span></li>
+<li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + (\beta_2 + \beta_3) x_2\)</span> </span></li>
+</ol>
+<p>This is an interaction model! We can test for a common slope via
+<span class="math display">\[
+\color{red}{H_0: \beta_3 = 0 \;\;\text{versus}\;\; H_1: \beta_3 \neq 0.}
+\]</span></p>
+</div>
+<div id="example-gasoline-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Gasoline data<a href="general-linear-models.html#example-gasoline-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data in the file <em>gasoline.RData</em> gives the gasoline mileage (<span class="math inline">\(y\)</span>), the engine displacement (<span class="math inline">\(x_1\)</span>) and the type of transmission (<span class="math inline">\(x_2\)</span>) for a sample of cars, where <span class="math inline">\(x_2\)</span> is coded as 0 for automatic transmission and 1 for manual transmission.</p>
+<p>We begin by plotting the data. We can use the command <code>xyplot()</code> to produce an appropriate plot (although <code>plot()</code> can also be used with different symbols for each factor level).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gasolinexyplot"></span>
+<img src="general_linear_models_files/figure-html/gasolinexyplot-1.png" alt="Plot of mileage against engine displacement by transmission type." width="65%" />
+<p class="caption">
+Figure 5.1: Plot of mileage against engine displacement by transmission type.
+</p>
+</div>
+<p>There is a clear difference in the intercepts with most automatic transmission points above manual transmission points. Mileage declines with engine displacement, and it looks like the rate of decline may be different for the two transmission types. In particular, there looks to be a steeper decline for cars with automatic transmission. Let us see what happens if we fit a common line, i.e. ignore transmission type.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="general-linear-models.html#cb120-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> gasoline)</span>
+<span id="cb120-2"><a href="general-linear-models.html#cb120-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1, data = gasoline)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.9498 -1.8377 -0.0842  1.8158  6.6023 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.026933   1.674994  20.315 2.40e-14 ***
+## x1          -0.048408   0.006168  -7.848 2.22e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.324 on 19 degrees of freedom
+## Multiple R-squared:  0.7643, Adjusted R-squared:  0.7519 
+## F-statistic:  61.6 on 1 and 19 DF,  p-value: 2.224e-07</code></pre>
+<p>Comments: <br>
+<span style="color: red;">- We can see that engine displacement gives a very small <span class="math inline">\(p\)</span>-value , suggesting that this is very important. <br>
+- However, we have ignored the crucial information on transmission type, and this can give misleading conclusions. </span></p>
+<p>We can add the fitted line to the raw data using <code>abline(m1)</code>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gasolinefitplot"></span>
+<img src="general_linear_models_files/figure-html/gasolinefitplot-1.png" alt="Plot of mileage against engine displacement by transmission type with line of best fit overlaid." width="65%" />
+<p class="caption">
+Figure 5.2: Plot of mileage against engine displacement by transmission type with line of best fit overlaid.
+</p>
+</div>
+<p>We can see that the line captures that there is a decline with engine displacement. However, it does not fit the data well, particularly for automatic transmission cars, because we have ignored transmission type. We will now add in the transmission type, allowing a test of</p>
+<p><span class="math display">\[
+\color{red}{H_0: \beta_2 = 0 \;\;\text{versus}\;\; H_1: \beta_2 \neq 0}
+\]</span></p>
+<p>We use the <code>R</code> commands</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="general-linear-models.html#cb122-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb122-2"><a href="general-linear-models.html#cb122-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2, data = gasoline)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -6.880 -1.970 -0.104  1.796  6.605 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.12798    1.89989  17.963  6.1e-13 ***
+## x1          -0.04963    0.01162  -4.271  0.00046 ***
+## x21          0.34592    2.76144   0.125  0.90170    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.414 on 18 degrees of freedom
+## Multiple R-squared:  0.7645, Adjusted R-squared:  0.7383 
+## F-statistic: 29.21 on 2 and 18 DF,  p-value: 2.231e-06</code></pre>
+<p>We observe that the addition of the transmission type indicator variable is not significant, and <span class="math inline">\(R^2\)</span> has not changed much either. Perhaps a common slope is a plausible claim?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gasolinefitplot2"></span>
+<img src="general_linear_models_files/figure-html/gasolinefitplot2-1.png" alt="Plot of mileage against engine displacement by transmission type with lines of best fit for each transmission type overlaid (automatic - black, manual - red)." width="65%" />
+<p class="caption">
+Figure 5.3: Plot of mileage against engine displacement by transmission type with lines of best fit for each transmission type overlaid (automatic - black, manual - red).
+</p>
+</div>
+<p>Are we overlooking something? What about the gradients? We now fit a model with different intercepts <em>and</em> different slopes</p>
+<p><span class="math display">\[
+\color{red}{H_0: \beta_3 = 0 \;\;\text{versus}\;\; H_1: \beta_3 \neq 0}
+\]</span></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="general-linear-models.html#cb124-1" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb124-2"><a href="general-linear-models.html#cb124-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x1:x2, data = gasoline)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.2712 -1.2042  0.2958  1.4758  3.5412 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  42.91963    2.78705  15.400 2.04e-11 ***
+## x1           -0.11677    0.02022  -5.776 2.24e-05 ***
+## x21         -13.77463    4.36449  -3.156  0.00577 ** 
+## x1:x21        0.08329    0.02252   3.699  0.00178 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.615 on 17 degrees of freedom
+## Multiple R-squared:  0.8695, Adjusted R-squared:  0.8465 
+## F-statistic: 37.75 on 3 and 17 DF,  p-value: 9.809e-08</code></pre>
+<p>We see that the <span class="math inline">\(p\)</span>-value for the interaction is significant beyond the <span class="math inline">\(1\%\)</span> level, suggesting the slopes are different and <span class="math inline">\(\beta_3 \neq 0\)</span>. Furthermore, we also see that the main effect of the transmission type is also now significant (also at the <span class="math inline">\(1\%\)</span> level). The conclusion for engine displacement is largely as before, with a significant (and negative) coefficient although the magnitude has now changed. <span class="math inline">\(R^2\)</span> has increased to around <span class="math inline">\(87\%\)</span>, indicating that this model captures more of the uncertainty in mileage.</p>
+<p>These results highlight the need to always include all lower order terms up-to-and-including the highest order term. Adding the respective lines of best fit to the raw data now gives:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gasolinefitplot3"></span>
+<img src="general_linear_models_files/figure-html/gasolinefitplot3-1.png" alt="Plot of mileage against engine displacement by transmission type with lines of best fit for each transmission type overlaid (automatic - black, manual - red) from interaction model." width="65%" />
+<p class="caption">
+Figure 5.4: Plot of mileage against engine displacement by transmission type with lines of best fit for each transmission type overlaid (automatic - black, manual - red) from interaction model.
+</p>
+</div>
+<p>This is clearly a much better fit. Note the crossing lines, which are indicative of an interaction. Now that we are happier with our model we should carry out the usual residual checks (not included here).</p>
+<div id="model-interpretation" class="section level3 unnumbered hasAnchor">
+<h3>Model interpretation<a href="general-linear-models.html#model-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The final model is:</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\text{Mileage} = 42.92} &amp;\color{red}{- 0.12\times\text{Engine displacement}} \\
+&amp;\color{red}{- 13.77 \times I(\text{Transmission type} = 1)} \\
+&amp;\color{red}{+ 0.08\times \text{Engine displacement} \times I(\text{Transmission type} = 1)}
+\end{align*}\]</span></p>
+<p>This can be expressed as two separate models:</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\text{Type 0: Mileage}} &amp;\color{red}{= 42.92 - 0.12\times \text{Engine displacement}} \\
+\color{red}{\text{Type 1: Mileage}} &amp;\color{red}{= 29.15 - 0.04\times \text{Engine displacement}}
+\end{align*}\]</span></p>
+<p>Overall it can be seen that the mileage decreases by 0.12 for every unit increase in engine displacement when the transmission is automatic, and by 0.04 units when the transmission is manual. The decrease is greater when the transmission is automatic, as we would expect based on our initial plot. The effect of engine displacement differs according to the transmission type and two non-parallel lines must be used to model the data.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-designed-experiments.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/general_linear_models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

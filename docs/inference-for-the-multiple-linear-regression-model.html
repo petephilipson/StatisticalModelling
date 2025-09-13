@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Inference for the multiple linear regression model | notes</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Inference for the multiple linear regression model | notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Inference for the multiple linear regression model | notes" />
+  
+  
+  
+
+<meta name="author" content="Dr Pete Philipson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-diagnostics.html"/>
+<link rel="next" href="analysis-of-designed-experiments.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>MAS3928: Statistical Modelling</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module information</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#lecturer-information"><i class="fa fa-check"></i>Lecturer information</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#module-schedule"><i class="fa fa-check"></i>Module schedule</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#course-materials"><i class="fa fa-check"></i>Course materials</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#relevant-texts"><i class="fa fa-check"></i>Relevant texts</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#matrix-form-of-the-model"><i class="fa fa-check"></i><b>1.2</b> Matrix form of the model</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr"><i class="fa fa-check"></i>Example - Matrix form for body weight in pre-diabetes patients (MLR)</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#parameter-estimation"><i class="fa fa-check"></i><b>1.3</b> Parameter estimation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#estimation-of-underlinebeta"><i class="fa fa-check"></i><b>1.3.1</b> Estimation of <span class="math inline">\(\underline{\beta}\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#estimation-of-sigma_epsilon2"><i class="fa fa-check"></i><b>1.3.2</b> Estimation of <span class="math inline">\(\sigma_{\epsilon}^2\)</span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#sec:resfithat"><i class="fa fa-check"></i><b>1.3.3</b> Residuals, fitted values and the ‘hat matrix’</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#properties-of-the-hat-matrix"><i class="fa fa-check"></i><b>1.3.4</b> Properties of the hat matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multiple-linear-regresion-analysis-of-bodyweight-data"><i class="fa fa-check"></i>Example: Multiple linear regresion analysis of bodyweight data</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#expectations-variances-and-inference"><i class="fa fa-check"></i><b>1.4</b> Expectations, variances and inference</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#expectation-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.1</b> Expectation of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#variance-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.2</b> Variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction.html"><a href="introduction.html#sec:inferforbetahat"><i class="fa fa-check"></i><b>1.4.3</b> Inference for <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction.html"><a href="introduction.html#sec:expvaryhat"><i class="fa fa-check"></i><b>1.4.4</b> Expectation and variance of the fitted values</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction.html"><a href="introduction.html#expectation-and-variance-of-the-residuals"><i class="fa fa-check"></i><b>1.4.5</b> Expectation and variance of the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#sec:mlrinr"><i class="fa fa-check"></i><b>1.5</b> Multiple linear regression in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction.html"><a href="introduction.html#using-data-in-r"><i class="fa fa-check"></i><b>1.5.1</b> Using data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-using-r"><i class="fa fa-check"></i>Example: Analysis of bodyweight data using <code>R</code></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#the-role-of-the-intercept"><i class="fa fa-check"></i><b>1.6</b> The role of the intercept</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-without-an-intercept-term"><i class="fa fa-check"></i>Example: Analysis of bodyweight data without an intercept term</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept"><i class="fa fa-check"></i>Example: Analysis of men’s Premier League football data - the role of the intercept</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#interpretability-of-the-intercept-and-extrapolation"><i class="fa fa-check"></i><b>1.6.1</b> Interpretability of the intercept and extrapolation</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#standardised-residuals"><i class="fa fa-check"></i><b>2.1</b> Standardised residuals</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#residual-plots"><i class="fa fa-check"></i><b>2.1.1</b> Residual plots</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values"><i class="fa fa-check"></i>Independence of residuals and fitted values</a></li>
+<li class="chapter" data-level="2.1.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#outliers"><i class="fa fa-check"></i><b>2.1.2</b> Outliers</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data"><i class="fa fa-check"></i>Example: Residual analysis for bodyweight data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#normality-of-the-residuals"><i class="fa fa-check"></i><b>2.1.3</b> Normality of the residuals</a></li>
+<li class="chapter" data-level="2.1.4" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#anderson-darling-test"><i class="fa fa-check"></i><b>2.1.4</b> Anderson-Darling test</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#a-cautionary-note"><i class="fa fa-check"></i>A cautionary note</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>2.2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#leverage-values"><i class="fa fa-check"></i><b>2.2.1</b> Leverage values</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data"><i class="fa fa-check"></i>Example: Leverage values for the bodyweight data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#influential-observations"><i class="fa fa-check"></i><b>2.2.2</b> Influential observations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#dealing-with-unusual-observations"><i class="fa fa-check"></i><b>2.2.3</b> Dealing with unusual observations</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-model-checking-for-the-premier-league-data"><i class="fa fa-check"></i>Example: Model checking for the Premier League data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html"><i class="fa fa-check"></i><b>3</b> Inference for the multiple linear regression model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#assessing-the-fit"><i class="fa fa-check"></i><b>3.1</b> Assessing the fit</a></li>
+<li class="chapter" data-level="3.2" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-basic-anova-table"><i class="fa fa-check"></i><b>3.2</b> The basic anova table</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem"><i class="fa fa-check"></i>Cochran’s Theorem</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination"><i class="fa fa-check"></i>The coefficient of determination</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-cheddar-cheese-study"><i class="fa fa-check"></i>Example: Cheddar cheese study</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#anova-in-r"><i class="fa fa-check"></i>Anova in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.3</b> The extra sum of squares method</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extended-anova-table"><i class="fa fa-check"></i><b>3.3.1</b> The extended anova table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extra sum of squares for cheese data</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-warfarin-study"><i class="fa fa-check"></i>Example: Warfarin study</a></li>
+<li class="chapter" data-level="3.4" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-general-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.4</b> The general extra sum of squares method</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extended extra sum of squares for cheese data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method"><i class="fa fa-check"></i>Summary: extra sum of squares method</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html"><i class="fa fa-check"></i><b>4</b> Analysis of designed experiments</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design"><i class="fa fa-check"></i><b>4.1</b> Completely randomised design</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-one-way-anova"><i class="fa fa-check"></i>Example: One-way anova</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Analysis of completely randomised design data in <code>R</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#interpretation-of-results-multiple-comparisons"><i class="fa fa-check"></i><b>4.1.2</b> Interpretation of results: multiple comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-multiple-comparisons"><i class="fa fa-check"></i>Example: Multiple comparisons</a>
+<ul>
+<li class="chapter" data-level="4.1.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#model-checking"><i class="fa fa-check"></i><b>4.1.3</b> Model checking</a></li>
+<li class="chapter" data-level="4.1.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables"><i class="fa fa-check"></i><b>4.1.4</b> Completely randomised design: dealing with quantitative variables</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable"><i class="fa fa-check"></i>Example: Randomised design with a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
+<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data"><i class="fa fa-check"></i>Example: Two-way anova with interactions for the yeast data</a></li>
+<li class="chapter" data-level="4.3.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#exploratory-plots-for-interactions"><i class="fa fa-check"></i><b>4.3.1</b> Exploratory plots for interactions</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-transforming-the-response"><i class="fa fa-check"></i>Example: Transforming the response</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>5</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="general-linear-models.html"><a href="general-linear-models.html#indicator-and-dummy-variables"><i class="fa fa-check"></i><b>5.1</b> Indicator and dummy variables</a></li>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#example-gasoline-data"><i class="fa fa-check"></i>Example: Gasoline data</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference-for-the-multiple-linear-regression-model" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Inference for the multiple linear regression model<a href="inference-for-the-multiple-linear-regression-model.html#inference-for-the-multiple-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="assessing-the-fit" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Assessing the fit<a href="inference-for-the-multiple-linear-regression-model.html#assessing-the-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can now formulate and fit a multiple linear regression model, and carry out a residual check to verify assumptions. However, a model can pass these checks and not be a good fit in terms of how much uncertainty in the response is accounted for by the explanatory variables, and/or the model itself may need to be simplified. Ideally, we would like a simple measure of how well our model fits the data. In a simple linear regression model we could do this by eye, i.e. a scatterplot of the data with the line of best fit overlaid, or by looking at <span class="math inline">\(R^2\)</span>. If the points lie close to the line of best fit, and <span class="math inline">\(R^2\)</span> is large, then we have some assurance about the model.</p>
+<p>However, this is less straightforward for multiple linear regression models, which may contain a mixture of continuous and categorical covariates, as we would have to look at multiple plots (and non-continuous covariates are less suited to this graphical approach), which might be misleading when we are primarily interested in the overall fit, i.e. the combined effect of all of the explanatory variables. Furthermore, in a simple linear regression model there is a direct equivalence between <span class="math inline">\(R^2\)</span> and the sample correlation <span class="math inline">\(r\)</span>; this relationship does not extend to the multiple linear regression model.</p>
+<p>One alternative approach is to use techniques from analysis of variance (anova) - which we will see again in a different context in chapter 4. We begin by considering the basic regression line concept</p>
+<p><span class="math display">\[
+\color{red}{\text{(observed) data} = \text{fit} + \text{residual}}
+\]</span></p>
+<p>For a fitted multiple linear regression model this amounts to</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{Y_i} &amp; \color{red}{ = \hat{Y_i} + \hat{\epsilon_i}} \\
+&amp;\color{red}{= \hat{Y_i} + (Y_i - \hat{Y_i})}
+\end{align*}\]</span></p>
+<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. To map this on to an anova-type problem, we can take the seemingly artificial step of subtracting the observed data mean, <span class="math inline">\(\bar{Y}\)</span>, from both sides to obtain</p>
+<p><span class="math display">\[
+\color{red}{Y_i - \bar{Y} = \hat{Y_i} + (Y_i - \hat{Y_i}) - \bar{Y}}
+\]</span></p>
+<p>which can be rearranged as
+<span class="math display">\[
+\color{red}{(Y_i - \bar{Y}) = (\hat{Y_i} - \bar{Y}) + (Y_i - \hat{Y_i}).}
+\]</span></p>
+<p>The first term captures the difference between an observed data point and the mean response, the second term captures the difference between a fitted data point and the mean response and the third term is the usual (unaltered) definition of the <span class="math inline">\(i^{th}\)</span> (raw) residual.</p>
+<p>By squaring each observation and taking the sum across each of the <span class="math inline">\(n\)</span> observations we obtain</p>
+<p><span class="math display">\[
+\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2 = \sum_{i=1}^n\left\{(\hat{Y_i} - \bar{Y}) + (Y_i - \hat{Y_i}) \right\}^2}
+\]</span></p>
+<p>This remarkably leads to the following result</p>
+<p><span class="math display" id="eq:ssreg">\[\begin{align}
+\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2} &amp;\color{red}{= \sum_{i=1}^n(\hat{Y}_i - \bar{Y})^2
++ \sum_{i=1}^n(Y_i - \hat{Y}_i)^2} \tag{3.1}\\
+\color{red}{(\textrm{TSS}} &amp;\color{red}{= \textrm{Reg SS} + \textrm{RSS})} \nonumber
+\end{align}\]</span></p>
+<p>since</p>
+<p><span class="math display">\[
+\color{red}{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})(Y_i - \hat{Y}_i) = 0.}
+\]</span></p>
+</div>
+<div id="the-basic-anova-table" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> The basic anova table<a href="inference-for-the-multiple-linear-regression-model.html#the-basic-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Equation <a href="inference-for-the-multiple-linear-regression-model.html#eq:ssreg">(3.1)</a> can also be stated as
+<span class="math display">\[
+\color{red}{\text{Total SS (TSS)} = \text{Regression SS} + \text{Residual SS}}
+\]</span></p>
+<p>where <span class="math inline">\(\text{SS}\)</span> refers to the <em>sum of squares</em>. Under an anova approach, results are typically presented and summarised in table form:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+Degrees of freedom (df)
+</th>
+<th style="text-align:left;">
+Sum of squares (SS)
+</th>
+<th style="text-align:left;">
+Mean square (MS)
+</th>
+<th style="text-align:left;">
+Mean square ratio (MSR)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regression
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{p}\)</span>
+</td>
+<td style="text-align:left;">
+Reg SS
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{\text{Reg MS}\, = \frac{\text{Reg SS}}{p}}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{F = \frac{\text{Reg MS}}{\text{RMS}}}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{n - p - 1}\)</span>
+</td>
+<td style="text-align:left;">
+RSS
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{\text{RMS} = \frac{\text{RSS}}{n - p - 1}}\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{n - 1}\)</span>
+</td>
+<td style="text-align:left;">
+TSS
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>So the regression model can be reduced to a single summary measure, <span class="math inline">\(F\)</span>, that can be used to test the overall significance of the model. Recall, from chapter 1, that our (unbiased) estimate of the error variance was found as</p>
+<p><span class="math display">\[\begin{equation*}
+\color{red}{s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1}}
+\end{equation*}\]</span></p>
+<p>and this is exactly equivalent to the <span class="math inline">\(\text{RMS}\)</span> in the anova table. Recall also (further back ) from MAS2902 that</p>
+<p><span class="math display">\[
+\color{red}{\frac{(N - 1)s^2}{\sigma^2} \sim \chi^2_{N - 1}}
+\]</span></p>
+<p>is the sampling distribution for the sample variance. Hence, letting <span class="math inline">\(N = n - p\)</span> we get</p>
+<p><span class="math display">\[
+\color{red}{\frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\]</span></p>
+<p>By recognising that we can rearrange the residual sum of squares term as <span class="math inline">\(\text{RSS} = (n - p - 1)\times\text{RMS}\)</span> (see the anova table) we then have</p>
+<p><span class="math display">\[
+\color{red}{\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\]</span></p>
+<p>To find the sampling distribution of <span class="math inline">\(F\)</span> (which we need in order to assess the significance of our result) we will make use of Cochran’s theorem.</p>
+<div id="cochrans-theorem" class="section level3 unnumbered hasAnchor">
+<h3>Cochran’s Theorem<a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Suppose we have <span class="math inline">\(n\)</span> observations, <span class="math inline">\(Y_i\)</span>, where <span class="math inline">\(i = 1, \ldots, n\)</span> from the same normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> and the total sum of squares is decomposed into <span class="math inline">\(k\)</span> sums of squares, <span class="math inline">\(\text{SS}_{\ell}\)</span>, with associated degrees of freedom <span class="math inline">\(\nu_{\ell}\)</span> for <span class="math inline">\(j = 1, \ldots, k\)</span>. Then, each of the sums of squares, scaled by the population variance</em></p>
+<p><span class="math display">\[
+\color{red}{\text{SS}_{\ell}/\sigma^2}
+\]</span></p>
+<p><em>is an independent <span class="math inline">\(\chi^2\)</span> variable with <span class="math inline">\(\nu_{\ell}\)</span> degrees of freedom if</em></p>
+<p><span class="math display">\[
+\color{red}{\sum_{j = 1}^k \nu_{\ell} = n - 1.}
+\]</span></p>
+<p>In our case, we have broken the total sum of squares for our multiple linear regression model into two components, Reg SS and RSS. The observations will have the same mean when all the <span class="math inline">\(\beta\)</span> parameters are simultaneously zero, which we can use as a null hypothesis (see later). Each observation has the same variance, <span class="math inline">\(\sigma_\epsilon^2\)</span> in our case (this is one of our key assumptions) and the respective degrees of freedom are <span class="math inline">\(p\)</span> (for Reg SS) and <span class="math inline">\(n - p - 1\)</span> (for RSS) and these sum to <span class="math inline">\(n - 1\)</span>.</p>
+<p>Thus, applying Cochran’s theorem we must have that</p>
+<p><span class="math display">\[
+\color{red}{\text{Reg SS}/\sigma_{\epsilon}^2}
+\]</span></p>
+<p>is an independent <span class="math inline">\(\chi^2\)</span> variable, with <span class="math inline">\(p\)</span> degrees of freedom, since</p>
+<p><span class="math display">\[
+\color{red}{\text{RSS}/\sigma_{\epsilon}^2}
+\]</span></p>
+<p>is also an independent <span class="math inline">\(\chi^2\)</span> variable, with <span class="math inline">\(n - p - 1\)</span> degrees of freedom (we already demonstrated this). When we form our <span class="math inline">\(F\)</span> statistic we divide Reg MS by RMS, i.e. we form the mean square ratio (MSR) which we denote by <span class="math inline">\(F\)</span>:</p>
+<p><span class="math display">\[
+\color{red}{F = \frac{\text{Reg MS}}{\text{RMS}}}
+\]</span></p>
+<p>Both of these quantities are a sum of squares divided by its associated degrees of freedom, hence</p>
+<p><span class="math display">\[
+\color{red}{F = \frac{\left(\frac{\text{Reg SS}}{p}\right)}{\left(\frac{\text{RSS}}{n - p - 1}\right)}}
+\]</span></p>
+<p>We can divide the top and bottom by <span class="math inline">\(\sigma_{\epsilon}^2\)</span> to ensure the numerator and denominator are both <span class="math inline">\(\chi^2\)</span> quantities</p>
+<p><span class="math display">\[
+\color{red}{F = \frac{\left(\frac{\text{Reg SS}/\sigma_{\epsilon}^2}{p}\right)}{\left(\frac{\text{RSS}/\sigma_{\epsilon}^2}{n - p - 1}\right)} = \frac{\left(\frac{\chi^2_p}{p}\right)}{\left(\frac{\chi^2_{n - p - 1}}{n - p - 1}\right)} \sim F_{p, n - p - 1}}
+\]</span></p>
+<p>Why do we do this? The F-distribution arises as a ratio of scaled, independent <span class="math inline">\(\chi^2\)</span> variables, and this is exactly what we now have above. Hence <span class="math inline">\(F\)</span> in our anova table provides us with a means of testing</p>
+<p><span class="math display">\[
+\color{red}{H_0: \beta_1 = \beta_2 = \ldots = \beta_p = 0}
+\]</span></p>
+<p>versus</p>
+<p><span class="math display">\[
+\color{red}{H_1: \text{at least one}\; \beta_j \neq 0, j = 1, \ldots, p.}
+\]</span></p>
+<p>This is an example of an omnibus test and we use the test statistic above, <span class="math inline">\(F = \text{Reg MS}/\text{RMS}\)</span>. When the values of <span class="math inline">\(F\)</span> are large (why?) we reject the null hypothesis, <span class="math inline">\(H_0\)</span>, in favour of the alternative hypothesis, <span class="math inline">\(H_1\)</span> and we judge this using <span class="math inline">\(p\)</span>-values as before. Note that both the total sum of squares (TSS) and the total degrees of freedom are unaffected by model choice since these are fixed quantities from the data.</p>
+</div>
+<div id="the-coefficient-of-determination" class="section level3 unnumbered hasAnchor">
+<h3>The coefficient of determination<a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A widely-used summary measure of the performance of the regression is the coefficient of determination (or correlation), <span class="math inline">\(R^2\)</span>, where</p>
+<p><span class="math display">\[
+\color{red}{R^2 = \frac{\text{Reg SS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}.}
+\]</span></p>
+<p>This can be interpreted as the proportion of the corrected sum of squares that is explained by the candidate model, i.e. the proportion of the variability in the response that is explained by the explanatory variables. The range of <span class="math inline">\(R^2\)</span> is zero to one but it is often expressed as a percentage to aid interpretation.</p>
+</div>
+</div>
+<div id="example-cheddar-cheese-study" class="section level2 unnumbered hasAnchor">
+<h2>Example: Cheddar cheese study<a href="inference-for-the-multiple-linear-regression-model.html#example-cheddar-cheese-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As cheddar cheese matures, a variety of chemical processes take place. The taste of matured cheese is related to the concentration of several chemicals in the final product. In a study of cheddar cheese from several regions in the UK, 30 samples of cheese were analyzed for their chemical composition and were subjected to taste tests. Data from the study are available in the file <em>cheese.RData</em> with the following variables:</p>
+<ul>
+<li>Taste: a combined score obtained from several tasters with higher scores indicating tastier cheese (the variable);</li>
+<li>H2S: the natural log of the concentration of hydrogen sulfide;</li>
+<li>Lactic: the concentration of lactic acid.</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb45-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese.RData&quot;</span>)</span>
+<span id="cb45-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb45-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(cheese, <span class="dv">5</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Taste</th>
+<th align="right">H2S</th>
+<th align="right">Lactic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">57.2</td>
+<td align="right">7.908</td>
+<td align="right">1.90</td>
+</tr>
+<tr class="even">
+<td align="right">56.7</td>
+<td align="right">10.199</td>
+<td align="right">2.01</td>
+</tr>
+<tr class="odd">
+<td align="right">54.9</td>
+<td align="right">6.752</td>
+<td align="right">1.52</td>
+</tr>
+<tr class="even">
+<td align="right">47.9</td>
+<td align="right">7.496</td>
+<td align="right">1.81</td>
+</tr>
+<tr class="odd">
+<td align="right">40.9</td>
+<td align="right">9.588</td>
+<td align="right">1.74</td>
+</tr>
+</tbody>
+</table>
+<p>For these data we can fit a multiple linear regression model</p>
+<p><span class="math display">\[
+\color{red}{\text{Taste}_i = \beta_0 + \beta_1\text{H2S}_i + \beta_2\text{Lactic}_i + \epsilon_i}
+\]</span></p>
+<p>for <span class="math inline">\(i = 1, \ldots, 30\)</span>, and with the usual assumptions about <span class="math inline">\(\epsilon_i\)</span> of normality, independence and a common variance. Construct an anova table and test the overall significance of the model.</p>
+<div id="solution" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="inference-for-the-multiple-linear-regression-model.html#solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span style="color: red;">We have <span class="math inline">\(n = 30\)</span> here, and can calculate the total sum of squares from the raw data. We then use the `lm’ command to fit a model in the usual way before extracting the residual sum of squares, the regression sum of squares are then obtained by subtraction; note that both of these quantities depend on the fitted model. Now</span>
+<span class="math display">\[\begin{align*}
+\color{red}{\textrm{TSS}} &amp;\color{red}{= \sum_{i=1}^{30} (y_i - \bar{y})^2} \\
+&amp;\color{red}{= \sum_{i=1}^{30} y_i^2 - 30\bar{y}^2} \\
+&amp;\color{red}{= (57.2^2 + 56.7^2 + \ldots ... + 0.7^2) - 30 \times 24.53^2} \\
+&amp;\color{red}{= 7662.887}
+\end{align*}\]</span></p>
+<p><span style="color: red;">We can then fit a regression model in the usual way, before extracting the <em>residual</em> sum of squares as follows:</span></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb46-1" tabindex="-1"></a>fit_cheese <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
+<span id="cb46-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb46-2" tabindex="-1"></a>(<span class="at">rss =</span> <span class="fu">sum</span>(fit_cheese<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 2668.965</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb48-1" tabindex="-1"></a><span class="co"># Brackets output answer to console</span></span></code></pre></div>
+<p><span style="color: red;">We can now produce the anova table for this model:</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;color: red !important;">
+Source
+</th>
+<th style="text-align:left;color: red !important;">
+df
+</th>
+<th style="text-align:left;color: red !important;">
+SS
+</th>
+<th style="text-align:left;color: red !important;">
+MS
+</th>
+<th style="text-align:left;color: red !important;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{\text{Regression}}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{2}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{4993.921}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{2496.961}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{25.260}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{\text{Residual}}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{27}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{2668.965}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{98.851}\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{\text{Total}}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{29}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\color{red}{7662.887}\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: red;">Clearly, we have a large F-statistic. Comparing with <span class="math inline">\(F_{2, 27}\)</span> (why?) in tables we see that <span class="math inline">\(p &lt; 0.01\)</span> and we clearly reject the null hypothesis that <span class="math inline">\(\beta_1 = \beta_2 = 0\)</span>. We can also calculate</span>
+<span class="math display">\[
+\color{red}{R^2 = \frac{4993.921}{7662.887} = 0.6517}
+\]</span></p>
+<p>Thus, around two-thirds of the variation has been explained, but this does not necessarily mean this is the right model. The (omnibus) <span class="math inline">\(F\)</span>-test considers all the coefficients together and a significant result indicates that at least one of them is non-zero, but which one, or is it both? In order to answer this question we also need a procedure to consider the coefficients separately. We first, however, take a detour and demonstrate how to fully construct an anova table using <code>R</code>, although it is a slightly clunky procedure.</p>
+</div>
+<div id="anova-in-r" class="section level3 unnumbered hasAnchor">
+<h3>Anova in <code>R</code><a href="inference-for-the-multiple-linear-regression-model.html#anova-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can fit the model in <code>R</code> in the usual way and then use the <code>anova()</code> command to get the sum of squares breakdown via the following commands:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb49-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese.RData&quot;</span>)</span>
+<span id="cb49-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb49-2" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
+<span id="cb49-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb49-3" tabindex="-1"></a><span class="fu">anova</span>(fit1)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## H2S        1 4376.7  4376.7 44.2764 3.851e-07 ***
+## Lactic     1  617.2   617.2  6.2435   0.01885 *  
+## Residuals 27 2669.0    98.9                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We get the (rounded) residual sum of squares directly (<span class="math inline">\(RSS = 2669\)</span>), but a breakdown of the regression sum of squares rather than the total value, although we can easily get the total by addition, i.e. <span class="math inline">\(\text{Reg SS} = 4376.7 + 617.2 = 4993.9\)</span>.</p>
+<p>N.B. What we actually get is the <em>Type I</em> sums of squares, where the order variables are entered matters, as opposed to <em>Type II</em> sums of squares which condition on the other variables and are thus independent of order.</p>
+<p>The F-statistic can be found in <code>R</code> using the last line of the output from</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb51-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Taste ~ H2S + Lactic, data = cheese)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.343  -6.530  -1.164   4.844  25.618 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  -27.592      8.982  -3.072  0.00481 **
+## H2S            3.946      1.136   3.475  0.00174 **
+## Lactic        19.887      7.959   2.499  0.01885 * 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.942 on 27 degrees of freedom
+## Multiple R-squared:  0.6517, Adjusted R-squared:  0.6259 
+## F-statistic: 25.26 on 2 and 27 DF,  p-value: 6.551e-07</code></pre>
+<p>Hence <span class="math inline">\(F = 25.26\)</span> in this case - as in our anova table, with an exact p-value of <span class="math inline">\(6.551 \times 10^{-7}\)</span>. We can also obtain <span class="math inline">\(R^2\)</span> from the penultimate line of the output, or directly using</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb53-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.6517024</code></pre>
+<p>which again matches what we found earlier. Hence, we can use <code>R</code> to circumvent the need for a formal anova table since both <span class="math inline">\(F\)</span> and <span class="math inline">\(R^2\)</span> can be easily extracted.</p>
+</div>
+</div>
+<div id="the-extra-sum-of-squares-method" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> The extra sum of squares method<a href="inference-for-the-multiple-linear-regression-model.html#the-extra-sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we fit a multiple linear regression model with two continuous covariates:
+<span class="math display">\[
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i.
+\]</span>
+How should we decide if either of the explanatory variables adds anything to the model? The easiest way is to fit the model with and without the variable and observe the change in the model sum of squares. We can test this change using the `extra sum of squares’ principle. Helpfully, we can use an anova table - similar to those seen earlier - by including an additional row to the basic table.</p>
+<div id="the-extended-anova-table" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> The extended anova table<a href="inference-for-the-multiple-linear-regression-model.html#the-extended-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The regression sum of squares is broken down in to its contribution from each covariate. A key feature of this method is that the order that the covariates are entered into the model matters, as we shall see in the following examples. The general table structure is given below:</p>
+<p>Note that <span class="math inline">\(\text{Reg SS}_{x_1 + x_2}\)</span> is the regression sum of squares from the <em>full</em> model.</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="3%" />
+<col width="35%" />
+<col width="23%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">df</th>
+<th align="left">SS</th>
+<th align="left">MS</th>
+<th align="left">MSR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regression on <span class="math inline">\(x_1\)</span></td>
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\text{Reg SS}_{x_1}\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg MS}_{x_1}=\text{Reg SS}_{x_1}\)</span></td>
+<td align="left"><span class="math inline">\(F_1 = \frac{\text{Reg MS}_{x_1}}{\text{RMS}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Regression on <span class="math inline">\(x_2\)</span> having fitted <span class="math inline">\(x_1\)</span></td>
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\text{Reg SS}_{x_2 \mid x_1} =\)</span> <br> <span class="math inline">\(\text{Reg SS}_{x_1 + x_2} - \text{Reg SS}_{x_1}\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg MS}_{x_2 \mid x_1}=\text{Reg MS}_{x_2 \mid x_1}\)</span></td>
+<td align="left"><span class="math inline">\(F_2= \frac{\text{Reg MS}_{x_2 \mid x_1}}{\text{RMS}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="left"><span class="math inline">\(n - 3\)</span></td>
+<td align="left">RSS</td>
+<td align="left"><span class="math inline">\(\text{RMS} = \frac{\text{RSS}}{n - 3}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(n - 1\)</span></td>
+<td align="left">TSS</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Note that <span class="math inline">\(\text{Reg SS}_{x_1 + x_2}\)</span> is the regression sum of squares from the <em>full</em> model.</p>
+</div>
+</div>
+<div id="example-extra-sum-of-squares-for-cheese-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Extra sum of squares for cheese data<a href="inference-for-the-multiple-linear-regression-model.html#example-extra-sum-of-squares-for-cheese-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to the cheese data, we can fit the model with either hydrogen sulfide or lactic acid first, i.e. there are two possible orderings. As order matters in the extra sum of squares method we will consider both possibilities in turn to investigate any possible differences.</p>
+<p>To produce anova tables for the extra sum of squares approach we can use the generic <code>R</code> command <code>anova()</code> as a basis, albeit with some additional work involved to construct the anova table. Fitting hydrogen sulfide first, we get:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb55-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
+<span id="cb55-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb55-2" tabindex="-1"></a><span class="fu">anova</span>(fit1)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## H2S        1 4376.7  4376.7 44.2764 3.851e-07 ***
+## Lactic     1  617.2   617.2  6.2435   0.01885 *  
+## Residuals 27 2669.0    98.9                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We can thus populate the anova table:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+SS
+</th>
+<th style="text-align:left;">
+MS
+</th>
+<th style="text-align:left;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regression on H2S
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4376.746
+</td>
+<td style="text-align:left;">
+4376.746
+</td>
+<td style="text-align:left;">
+44.276
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Regression on lactic acid having fitted H2S
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+617.176
+</td>
+<td style="text-align:left;">
+617.176
+</td>
+<td style="text-align:left;">
+6.244
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+2668.965
+</td>
+<td style="text-align:left;">
+98.851
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+7662.887
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Since <span class="math inline">\(F_{1, 27}(5\%) = 4.21\)</span> we can see that H2S is needed in the model since <span class="math inline">\(F_1 = 44.276\)</span> hugely exceeds this critical value (the exact p-value from <code>R</code> is <span class="math inline">\(3.851 \times 10^{-7}\)</span>). We also see that <span class="math inline">\(F_2 = 6.244\)</span> exceeds the critical value, so lactic acid is needed in the model, after H2S has already been included (from <code>R</code>, <span class="math inline">\(p = 0.01885\)</span>). The model where we switch the order of the variables can be fitted in <code>R</code> using</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb57-1" tabindex="-1"></a>fit1A <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> Lactic <span class="sc">+</span> H2S, <span class="at">data =</span> cheese)</span>
+<span id="cb57-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb57-2" tabindex="-1"></a><span class="fu">anova</span>(fit1A)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Lactic     1 3800.4  3800.4  38.446 1.25e-06 ***
+## H2S        1 1193.5  1193.5  12.074 0.001743 ** 
+## Residuals 27 2669.0    98.9                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>This leads to the anova table below:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+SS
+</th>
+<th style="text-align:left;">
+MS
+</th>
+<th style="text-align:left;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regression on lactic acid
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3800.398
+</td>
+<td style="text-align:left;">
+3800.398
+</td>
+<td style="text-align:left;">
+38.446
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Regression on H2S having fitted lactic acid
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1193.523
+</td>
+<td style="text-align:left;">
+1193.523
+</td>
+<td style="text-align:left;">
+12.074
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+2668.965
+</td>
+<td style="text-align:left;">
+98.851
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+7662.887
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that both <span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span> are comfortably bigger than our critical value of 4.21 (this is still the same value) so conclude that lactic acid is needed in the model, and that hydrogen sulfide is needed in the model after lactic acid has been included. The conclusion is unambiguous here: both variables are needed in the model, irrespective of ordering. Note that the residual and total SS are unaffected by the ordering (this is also true for the critical value).</p>
+<p>We now consider another example where the conclusion is not so clear cut. Henceforth, we will use <code>R</code> directly without formally constructing anova tables.</p>
+</div>
+<div id="example-warfarin-study" class="section level2 unnumbered hasAnchor">
+<h2>Example: Warfarin study<a href="inference-for-the-multiple-linear-regression-model.html#example-warfarin-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Children with heart problems take warfarin to avoid getting strokes.
+In a study of 120 children, the warfarin dose (mg), age (months) and height (cm) were measured. A scatterplot of the dose against age produced the following plot</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:warfarinplot1"></span>
+<img src="inference_files/figure-html/warfarinplot1-1.png" alt="Scatterplot of dose against age for the warfarin study." width="65%" />
+<p class="caption">
+Figure 3.1: Scatterplot of dose against age for the warfarin study.
+</p>
+</div>
+<p>The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance - we will return to transformations formally later in the semester. Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator).</p>
+<p>The original variable is in the <code>R</code> dataframe <em>warfarinStudy</em> so we can perform the transformation using</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb59-1" tabindex="-1"></a><span class="co"># Add the new variable to the data frame</span></span>
+<span id="cb59-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb59-2" tabindex="-1"></a>warfarinStudy<span class="sc">$</span>root_dose <span class="ot">=</span> <span class="fu">sqrt</span>(warfarinStudy<span class="sc">$</span>warfarin_dose)</span></code></pre></div>
+<p>Plotting the square root of dose against age we see that it increases on average with increasing age and that the variability is now approximately constant.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:warfarinplot2"></span>
+<img src="inference_files/figure-html/warfarinplot2-1.png" alt="Scatterplot of the square root of dose against age for the warfarin study." width="65%" />
+<p class="caption">
+Figure 3.2: Scatterplot of the square root of dose against age for the warfarin study.
+</p>
+</div>
+<p>A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings.</p>
+<p>The <code>R</code> command <code>anova()</code> breaks down the regression sum of squares into its individual contribution from each covariate:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb60-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> warfarinStudy)</span>
+<span id="cb60-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb60-2" tabindex="-1"></a><span class="fu">anova</span>(m1)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: root_dose
+##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## height      1 13.046 13.0462 58.4899 6.289e-12 ***
+## age         1  1.152  1.1520  5.1647   0.02488 *  
+## Residuals 117 26.097  0.2231                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span style="color: red;">Height on its own produces a <em>miniscule</em> p-value (<span class="math inline">\(6.289 \times 10^{-12}\)</span>) and thus we clearly need to include height. Fitting age height also gives a small p-value (<span class="math inline">\(0.025 &lt; 0.05\)</span>) which implies that we also need age, <em>once height has been fitted</em>.</span></p>
+<p>In a similar way we can again use the command <code>anova()</code> for a model that includes age first, followed by height.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb62-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> age <span class="sc">+</span> height, <span class="at">data =</span> warfarinStudy)</span>
+<span id="cb62-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb62-2" tabindex="-1"></a><span class="fu">anova</span>(m2)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: root_dose
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## age         1 14.1975 14.1975  63.652 1.124e-12 ***
+## height      1  0.0007  0.0007   0.003    0.9564    
+## Residuals 117 26.0969  0.2231                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><span style="color: red;">Age on its own produces a very small p-value (<span class="math inline">\(1.124 \times 10^{-12}\)</span>) and thus we clearly need to include age. Fitting height <em>after</em> age gives a non-significant p-value (<span class="math inline">\(0.9564 &gt; 0.05\)</span>), however, which implies that we do not need height <em>once age has been fitted</em>.</span></p>
+<p>Thus we have conflicting conclusions (for height) - model one suggests we do need height, model two indicates that we do not; both models unanimously agree that age is needed. We want as simple model as possible and so we should just include age and then do model checking as described in chapter 2.</p>
+<p>Why has this happened?
+<span style="color: red;">The problem has arisen because age and height are highly correlated. We shall come back to this problem later. The correlation is in fact 0.95 (see plot).</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:warfarinplot3"></span>
+<img src="inference_files/figure-html/warfarinplot3-1.png" alt="Scatterplot of height against age for the warfarin study." width="65%" />
+<p class="caption">
+Figure 3.3: Scatterplot of height against age for the warfarin study.
+</p>
+</div>
+</div>
+<div id="the-general-extra-sum-of-squares-method" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> The general extra sum of squares method<a href="inference-for-the-multiple-linear-regression-model.html#the-general-extra-sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The extra sum of squares method is most useful if we wish to test whether a subset of the explanatory variables have no effect on the response variable. This can help simplify the model by removing several covariates at once - it is also useful for dealing with factors that have several levels, such as eye colour or favoured mode of transport.</p>
+<p>In order to use the extra sum of squares method in this scenario we order the <span class="math inline">\(x\)</span> variables so that the subset we are going to test takes the last <span class="math inline">\(q\)</span> places of the parameter vector <span class="math inline">\(\underline{\beta}\)</span>. Notationally, we partition the parameter vector as</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\underline{\beta} = \begin{pmatrix}
+    \underline{\beta}_1 \\
+    \underline{\beta}_2 \\
+         \end{pmatrix}}
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(\underline{\beta}_2\)</span> is the <span class="math inline">\(q-\)</span>vector of parameters that we wish to consider for removal from the model, and <span class="math inline">\(\underline{\beta}_1\)</span> is the <span class="math inline">\((p-q)\)</span>-vector of parameters which we wish to keep in the model.</p>
+<p>First calculate (usually using <code>R</code>) the regression sum of squares for fitting all <span class="math inline">\(p\)</span> candidate parameters, i.e. fit the full (additive) model. We then calculate (again using <code>R</code>, typically) the regression sum of squares for fitting the <span class="math inline">\(p - q\)</span> parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="18%" />
+<col width="3%" />
+<col width="30%" />
+<col width="28%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">df</th>
+<th align="left">SS</th>
+<th align="left">MS</th>
+<th align="left">MSR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regression on <span class="math inline">\(x_1, \ldots x_{p-q}\)</span></td>
+<td align="left"><span class="math inline">\(p - q\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg SS}_{\underline{\beta}_1}\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg MS}_{\underline{\beta}_1}=\frac{\text{Reg SS}_{\underline{\beta}_1}}{p-q}\)</span></td>
+<td align="left"><span class="math inline">\(F_1 = \frac{\text{Reg MS}_{\underline{\beta}_1}}{\text{RMS}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Regression on <span class="math inline">\(x_{p-q+1}, \ldots x_p\)</span> having fitted <span class="math inline">\(x_1, \ldots x_{p-q}\)</span></td>
+<td align="left"><span class="math inline">\(q\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg SS}_{\underline{\beta}_2 \mid \underline{\beta}_1} =\)</span> <br> <span class="math inline">\(\text{Reg SS}_{\underline{\beta}} - \text{Reg SS}_{\underline{\beta}_1}\)</span></td>
+<td align="left"><span class="math inline">\(\text{Reg MS}_{\underline{\beta}_2 \mid \underline{\beta}_1}=\frac{\text{Reg MS}_{\underline{\beta}_2 \mid \underline{\beta}_1}}{q}\)</span></td>
+<td align="left"><span class="math inline">\(F_2= \frac{\text{Reg MS}_{\underline{\beta}_2 \mid \underline{\beta}_1}}{\text{RMS}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="left"><span class="math inline">\(n - p - 1\)</span></td>
+<td align="left">RSS</td>
+<td align="left"><span class="math inline">\(\text{RMS} = \frac{\text{RSS}}{n - p - 1}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(n - 1\)</span></td>
+<td align="left">TSS</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>We can now test <span class="math inline">\(H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0\)</span> given that <span class="math inline">\(\beta_1, \ldots, \beta_{p - q}\)</span> have been included in the model using <span class="math inline">\(F_2\)</span>. This is tested against a general alternative <span class="math inline">\(H_1: \text{at least one}\;\; \beta_j \neq 0\)</span> for <span class="math inline">\(j = p - q + 1, \ldots, p\)</span>. This is an example of an test as we are testing for several things simultaneously. Large values of <span class="math inline">\(F_2\)</span> lead to rejection of the null hypothesis, <span class="math inline">\(H_0\)</span>. This process allows to remove a block of parameters from a model, rather than one-by-one and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.</p>
+</div>
+<div id="example-extended-extra-sum-of-squares-for-cheese-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Extended extra sum of squares for cheese data<a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to the cheese data, three additional variables are also available in the dataset <em>cheese2.RData</em>, namely</p>
+<ul>
+<li>Acetic: the natural log of the concentration of acetic acid;</li>
+<li>Phosphoric: the amount of phosphoric acid (in mg);</li>
+<li>Citric: the amount of citric acid (in ml).</li>
+</ul>
+<p>We can use the extra sum of squares to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first <span class="math inline">\(p\)</span> parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of <code>lm()</code> to do this:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese2.RData&quot;</span>)</span>
+<span id="cb64-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-2" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese2)</span>
+<span id="cb64-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-3" tabindex="-1"></a>fit2 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> ., <span class="at">data =</span> cheese2)</span>
+<span id="cb64-4"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-4" tabindex="-1"></a><span class="co"># Using . fits every variable in the dataset as a predictor</span></span></code></pre></div>
+<p>We can then use the <code>anova</code> command with two arguments (which must be <em>nested</em> models) to carry out the extra sum of squares method and test whether any of acetic, phosphoric or citric acid are needed in the model. The <code>R</code> command and output is shown below:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb65-1" tabindex="-1"></a><span class="fu">anova</span>(fit1, fit2)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Taste ~ H2S + Lactic
+## Model 2: Taste ~ H2S + Lactic + Acetic + Phosphoric + Citric
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     27 2669.0                           
+## 2     24 2602.5  3    66.484 0.2044 0.8923</code></pre>
+<p>The syntax is such that we should always have the reduced model first, i.e.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb67-1" tabindex="-1"></a><span class="fu">anova</span>(reduced_model, full_model)</span></code></pre></div>
+<p>We see that <span class="math inline">\(p = 0.8923 &gt; 0.05\)</span> so we can retain the null hypothesis and our original model containing both H2S and lactic acid is our chosen model; acetic, phosphoric and citric acid are not needed in the model, in the presence of H2S and lactic acid.</p>
+<div id="summary-extra-sum-of-squares-method" class="section level3 unnumbered hasAnchor">
+<h3>Summary: extra sum of squares method<a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously, and use exploratory plots to verify our findings. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific <span class="math inline">\(p\)</span>-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) we can still apply the method, but it is slightly inefficient - as we shall see in section <a href="inference-for-the-multiple-linear-regression-model.html#sec:infer">3.5</a>.</p>
+</div>
+</div>
+<div id="example-anova-for-crime-data-based-on-summary-information" class="section level2 unnumbered hasAnchor">
+<h2>Example: Anova for crime data based on summary information<a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in <code>R</code> using an additive multiple linear regression model. A partial analysis of variance using all 13 predictors produced the following table:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+df
+</th>
+<th style="text-align:right;">
+SS
+</th>
+<th style="text-align:left;">
+MS
+</th>
+<th style="text-align:left;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regression on all predictors
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+52931
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+15879
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:left;">
+46
+</td>
+<td style="text-align:right;">
+68810
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>
+Complete the anova table and test for significance for all 13 predictors simultaneously.
+</li>
+<li>
+<p>A criminologist postulates that there are five key drivers of state crime and conducts a multiple linear regression model using these five covariates. The parameter estimates (and their standard errors) are given below.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Standard error
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1.02
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.23
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+</tbody>
+</table>
+Which variable appears to be the most important? Which seems to be the least important?
+</li>
+<li>
+The data analyst further reports that the residual sum of squares is <span class="math inline">\(18604\)</span> for the reduced model. Use this information to test whether the criminologist’s model is sufficient for these data.
+[You are not required to produce the formal anova table.]
+</li>
+<li>
+Compare the values of <span class="math inline">\(R^2\)</span> for the full model and that put forward by the criminologist.
+</li>
+</ol>
+</div>
+<div id="solution-1" class="section level2 unnumbered hasAnchor">
+<h2>Solution<a href="inference-for-the-multiple-linear-regression-model.html#solution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol type="a">
+<li>
+<p><span style="color: red;">Since we have 13 <em>continuous</em> predictors we must have 13 degrees of freedom for the regression. Then, by subtraction, we can get the error degrees of freedom as <span class="math inline">\(46 - 13 = 33\)</span>.</span></p>
+<p><span style="color: red;">Once we have the sums of squares and their associated degrees of freedom it is easy to calculate the mean square terms working within rows. For the regression we have <span class="math inline">\(52931/13 = 4071.615\)</span> and for the error <span class="math inline">\(15879/33 = 481.82\)</span>. Finally, we calculate the test statistics as the ratio of the regression mean square to the error mean square, i.e. <span class="math inline">\(4071.615/481.182 = 8.462\)</span>. This completes the anova table.</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+df
+</th>
+<th style="text-align:right;">
+SS
+</th>
+<th style="text-align:left;">
+MS
+</th>
+<th style="text-align:left;">
+MSR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regression on all predictors
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">13</span>
+</td>
+<td style="text-align:right;">
+52931
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">4071.615</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">8.462</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residual
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">33</span>
+</td>
+<td style="text-align:right;">
+15879
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">481.82</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;"></span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;">46</span>
+</td>
+<td style="text-align:right;">
+68810
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;"></span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black !important;"></span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: red;">We can look up the <span class="math inline">\(5\%, 1\%\)</span> and <span class="math inline">\(0.1\%\)</span> critical values in <code>R</code> using</span></p>
+<p><code style="color: red;">qf(c(0.95, 0.99, 0.999), 13, 33)</code></p>
+<p><span style="color: red;">to get 2.030, 2.723 and 3.773 respectively. Since <span class="math inline">\(8.462 &gt; 3.773\)</span> we conclude that at least one of the predictors is important and there is very strong evidence of some relationship between crime rate and the explanatory variables.</span></p>
+</li>
+<li>
+<p><span style="color: red;">To answer this question we must take the ratios to get the respective <span class="math inline">\(t\)</span>-statistics. This gives</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Standard error
+</th>
+<th style="text-align:left;">
+t
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1.02
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">2.914</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">4.319</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.23
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">8.786</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">2.116</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:left;">
+<span style="     color: red !important;">4.5</span>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="color: red;">Hence, we can now say that <span class="math inline">\(x_3\)</span> is the most important predictor, followed by <span class="math inline">\(x_5\)</span> (which had the lowest estimate). The least important predictor is <span class="math inline">\(x_4\)</span>, although it still has a reasonably large <span class="math inline">\(t\)</span>-value</span>
+</li>
+<br>
+<li>
+<span style="color: red;">Using the relation that the total SS is the sum of the regression and error SS terms we can get the regression SS for the five-predictor model as <span class="math inline">\(68810 - 18604 = 50206\)</span>. To test the reduced model we need its sum of squares, found by subtraction as <span class="math inline">\(52931 - 50206 = 2725\)</span> (note that <span class="math inline">\(52931\)</span> is the regression sum of squares from the full model in (a)).
+<br>
+<br>
+This has 8 degrees of freedom associated so the regression MS for the additional 8 variables is <span class="math inline">\(2725/8 = 340.625\)</span> which we compare to the full model error MS to get <span class="math inline">\(F = 340.625/481.182 = 0.71\)</span>. From <code>R</code>, <span class="math inline">\(F_{8, 33}(5\%) = 2.235\)</span> so we retain the null hypothesis - the extra 8 predictors are not needed if the five variables nominated by the criminologist are already in the model.
+<br>
+<br>
+A more direct solution is to note that the difference in the residual sums of squares will also give us the reduced model SS, namely <span class="math inline">\(18604 - 15879 = 2725\)</span>. We then proceed as above.</span>
+</li>
+<br>
+<li>
+<span style="color: red;">To calculate <span class="math inline">\(R^2\)</span> we divide the regression total sum of squares by the total sum of squares to identify how much of the total is explained by the regressors. In this case <span class="math inline">\(R^2 = 52931/68810 = 0.769\)</span>, so all of the predictors combined explain around <span class="math inline">\(77\%\)</span> of the variability in crime rates. For the pathologist’s model <span class="math inline">\(R^2 = 50206/68810 = 0.730\)</span>, i.e. around <span class="math inline">\(73\%\)</span> of the variability. This is not much different for the loss of eight predictors and suggests there is some validity to the claim.</span>
+</li>
+</ol>
+</div>
+<div id="sec:infer" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Inference on individual parameters<a href="inference-for-the-multiple-linear-regression-model.html#sec:infer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the <code>summary()</code> command considers the joint distribution of the parameter vector, <span class="math inline">\(\underline{\beta}\)</span>. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.</p>
+<p>To test the hypothesis <span class="math inline">\(H_0: \beta_j = b_j\)</span> for a chosen <span class="math inline">\(j \in 1, \ldots, p\)</span>, given that the other parameters are fitted, we use</p>
+<p><span class="math display">\[
+\color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}}
+\]</span></p>
+<p>and this is compared to the <span class="math inline">\(t\)</span>-distribution on <span class="math inline">\(n - p - 1\)</span> degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. <span class="math inline">\(\hat{\beta}_j = 0\)</span>, whereby <span class="math inline">\(b_j = 0\)</span>.</p>
+<p>As in chapter 1, subsection <a href="introduction.html#sec:inferforbetahat">1.4.3</a>, let <span class="math inline">\(v_{jj}\)</span> be the <span class="math inline">\((j+1)^{th}\)</span> diagonal element of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>, for <span class="math inline">\(j = 0, \ldots, p\)</span>. The variance of <span class="math inline">\(\hat{\beta}_j\)</span> is then estimated as <span class="math inline">\(v_{jj}s^2\)</span> since our <span class="math inline">\(\beta\)</span> parameters are indexed starting at <span class="math inline">\(0\)</span> for the intercept. We can then construct a <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_j\)</span> as</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\hat{\beta}_j} &amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\
+&amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
+\end{align*}\]</span></p>
+<p>Note that these hypothesis tests are only a guide. The <span class="math inline">\(t\)</span>-test outlined above, which are given in the model output via <code>R</code>, are exactly equivalent to an <span class="math inline">\(F\)</span>-test on this parameter <em>having been fitted last</em>. Since the <span class="math inline">\(\hat{\beta}_j\)</span> are correlated, statements about single parameters are not independent from statements about the remaining parameters.</p>
+<p>In practice, we often remove the variable with the largest <span class="math inline">\(p\)</span>-value (assuming <span class="math inline">\(p &gt; 0.05\)</span>, say) and refit the model, continuing until all the remaining variables have small <span class="math inline">\(p\)</span>-values (<span class="math inline">\(&lt;0.05\)</span>, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.</p>
+</div>
+<div id="example-inference-on-individual-parameters---warfarin-example" class="section level2 unnumbered hasAnchor">
+<h2>Example: Inference on individual parameters - warfarin example<a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb68-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = root_dose ~ height + age, data = warfarinStudy)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.95647 -0.30922 -0.07802  0.33932  1.09938 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.0529539  0.3002567   3.507 0.000644 ***
+## height      0.0002249  0.0041024   0.055 0.956367    
+## age         0.0058346  0.0025674   2.273 0.024876 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4723 on 117 degrees of freedom
+## Multiple R-squared:  0.3524, Adjusted R-squared:  0.3413 
+## F-statistic: 31.83 on 2 and 117 DF,  p-value: 9.187e-12</code></pre>
+<p>The <span class="math inline">\(p\)</span>-values given above for the <span class="math inline">\(t\)</span>-tests are exactly the same as those for the respective <span class="math inline">\(F\)</span>-tests - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The <span class="math inline">\(p\)</span>-value for age then reduces to <span class="math inline">\(1.124 \times 10^{-12}\)</span>!</p>
+<p>We can easily produce confidence intervals for the fitted parameters in <code>R</code> using the <code>confint()</code> function.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb70-1" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
+<pre><code>##                     2.5 %      97.5 %
+## (Intercept)  0.4583113390 1.647596552
+## height      -0.0078996982 0.008349579
+## age          0.0007500711 0.010919132</code></pre>
+<p>We see that the confidence interval for height <span class="math inline">\((-0.008, 0.008)\)</span> contains zero implying that parameter should be removed. Note that this relationship between a <span class="math inline">\(p\)</span>-value at the <span class="math inline">\(\alpha\%\)</span> level and an associated confidence interval at the equivalent level, i.e. <span class="math inline">\(100(1 - \alpha)\%\)</span>, always holds.</p>
+<p>Thus we should remove height and <em>recalculate</em> the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model <code>m2</code> (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters.</p>
+<p>Fitting the model without height and recalculating the confidence interval for height we get</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-1" tabindex="-1"></a>mfinal <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> age, <span class="at">data =</span> warfarinStudy)</span>
+<span id="cb72-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-2" tabindex="-1"></a><span class="fu">summary</span>(mfinal)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = root_dose ~ age, data = warfarinStudy)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.9546 -0.3119 -0.0802  0.3416  1.1020 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.068346   0.106103  10.069  &lt; 2e-16 ***
+## age         0.005969   0.000745   8.012 9.01e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4703 on 118 degrees of freedom
+## Multiple R-squared:  0.3523, Adjusted R-squared:  0.3469 
+## F-statistic: 64.19 on 1 and 118 DF,  p-value: 9.01e-13</code></pre>
+<p>The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The <span class="math inline">\(95\%\)</span> confidence interval for age is thus <span class="math inline">\(0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)\)</span>. This can be equivalently obtained from <code>R</code> using <code>confint(mfinal)</code>.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb74-1" tabindex="-1"></a><span class="fu">confint</span>(mfinal)</span></code></pre></div>
+<pre><code>##                   2.5 %      97.5 %
+## (Intercept) 0.858232773 1.278458803
+## age         0.004493902 0.007444623</code></pre>
+<p>Comparing with the confidence interval from the full model we see that it is now much narrower.</p>
+</div>
+<div id="confidence-and-prediction-intervals-for-the-fitted-values" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Confidence and prediction intervals for the fitted values<a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall that the fitted values in a mutliple linear regression model are given by</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\underline{\hat{Y}}} &amp;\color{red}{= \mathrm{X}\underline{\hat{\beta}}} \\
+&amp;\color{red}{= \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{Y}} \\
+&amp;\color{red}{= \mathrm{H}\underline{Y}}
+\end{align*}\]</span></p>
+<p>Making use of these alternative forms we found the expectation and the variance of the fitted values back in subsection <a href="introduction.html#sec:expvaryhat">1.4.4</a> of the notes, namely</p>
+<p><span class="math display">\[
+\color{red}{\mathrm{E}[\underline{\hat{Y}}] = \mathrm{X}\underline{\beta}}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\begin{equation*}
+\color{red}{\mathrm{Var}[\underline{\hat{Y}}] = \mathrm{H}\sigma_{\epsilon}^2.}
+\end{equation*}\]</span></p>
+<p>Hence, at the individual observation level, we have <span class="math inline">\(\mathrm{E}[\hat{Y}_i] =\underline{x}_i^T \underline{\hat{\beta}}\)</span>. Also, for the variance we have <span class="math inline">\(\mathrm{Var}[\hat{Y}_i] = h_{ii}\sigma_{\epsilon}^2\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>, where the <span class="math inline">\(h_{ii}\)</span> are the diagonal elements (the leverages, recall) of the hat matrix <span class="math inline">\(\mathrm{H}\)</span>. By noting that the fitted values are a linear combination of random variables, <span class="math inline">\(\underline{\hat{\beta}}\)</span>, we can see that they are also normally distributed. This means we can find a <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for the fitted value in the usual way as</p>
+<p><span class="math display">\[
+\color{red}{\hat{Y}_i \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{ii}}}
+\]</span></p>
+<p>where <span class="math inline">\(\nu = n - p - 1\)</span> is the residual degrees of freedom and <span class="math inline">\(s\)</span> is the square root of RMS (see earlier).</p>
+<p>It is instructive at this point to consider how the individual <span class="math inline">\(h_{ii}\)</span> terms are calculated. Clearly, from a fitted model object we can just extract them using the R command <code>hatvalues()</code>, but what about for a new observation? Consider the variance of the fitted value, <span class="math inline">\(\hat{Y}_p\)</span>, for this new observation, with covariate vector <span class="math inline">\(\underline{x}_p\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\mathrm{Var}\left[\hat{Y}_p\right]} &amp;\color{red}{= \mathrm{Var}\left[\underline{x}_p^T \underline{\hat{\beta}}\right]} \\
+&amp;\color{red}{= \underline{x}_p^T \mathrm{Var}\left[\underline{\hat{\beta}}\right] \underline{x}_p} \\
+&amp;\color{red}{= \underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p \sigma_{\epsilon}^2}
+\end{align*}\]</span></p>
+<p>Hence, for any (observed or typically new) covariate pattern <span class="math inline">\(\underline{x}_p\)</span> we can calculate the confidence interval for the fitted response as</p>
+<p><span class="math display">\[
+\color{red}{\hat{Y}_p \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{pp}}}
+\]</span></p>
+<p>where <span class="math inline">\(h_{pp} = \underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p\)</span>. Note that this interval is for the <em>average</em> or mean response, i.e. for observations that lie perfectly on the line of best fit and have no error attached to them. To account for error, we can also calculate a <em>prediction</em> interval for an individual observation, based on a vector of covariates, again either observed or, more likely, new. We now have
+<span class="math display">\[\begin{align*}
+\color{red}{\hat{Y}_p^*} &amp;\color{red}{= \underline{x}_i^T \underline{\hat{\beta}} + \epsilon_p} \\
+&amp;\color{red}{= \hat{Y}_p + \epsilon_p}
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(\epsilon_p\)</span> captures the unknown error associated with the prediction, and is assumed to be normally distributed, and independent of <span class="math inline">\(\hat{Y}_p\)</span>. Hence,</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\mathrm{Var}\left[\hat{Y}_p^* \right]} &amp;\color{red}{= \mathrm{Var}\left[\underline{x}_p^T \underline{\hat{\beta}}\right] + \mathrm{Var}[\epsilon_p]} \\
+&amp;\color{red}{= \underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p\sigma_{\epsilon}^2 + \sigma_{\epsilon}^2} \\
+&amp;\color{red}{= (\underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p + 1) \sigma_{\epsilon}^2},
+\end{align*}\]</span></p>
+<p>and a <em>prediction</em> interval for a <em>new observation</em> is found as
+<span class="math display">\[
+\color{red}{\hat{Y}_p^* \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{pp} + 1}.}
+\]</span></p>
+<p>Note the distinction between the two intervals - the prediction interval is always wider. The prediction interval is the interval for an actual observation, whereas the confidence interval is for the average observation, both based on the same set of covariate values. In each case, the width of the interval increases with the leverage - high leverage points are predicted less accurately.</p>
+</div>
+<div id="example-confidence-and-prediction-intervals-for-the-cheese-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Confidence and prediction intervals for the cheese data<a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Confidence and prediction intervals for the fitted values can be easily calculated using <code>R</code>. We need a fitted model (obviously!) and a dataframe containing the covariate values for which we want to construct our confidence and prediction intervals - this is best seen by example. Thus, for the original cheese example with just two covariates:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
+<span id="cb76-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-2" tabindex="-1"></a>newdat <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">H2S =</span> <span class="dv">6</span>, <span class="at">Lactic =</span> <span class="fl">1.5</span>)</span>
+<span id="cb76-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-3" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>##       fit      lwr      upr
+## 1 25.9166 22.09274 29.74045</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb78-1" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>##       fit      lwr      upr
+## 1 25.9166 5.161269 46.67192</code></pre>
+<p>The prediction interval is much wider, by a factor of about 5 for these values of the explanatory variables.</p>
+</div>
+<div id="polynomial-models" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Polynomial models<a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes the response might have a curvilinear relationship with one or more of the explanatory variables and we may think about fitting a polynomial model - remember that this still falls under our multiple linear regression framework as long as the postulated model is linear in the parameters, <span class="math inline">\(\underline{\beta}\)</span>. For instance, if there is just one explanatory variable we might consider fitting</p>
+<p><span class="math display">\[
+\color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
+\]</span></p>
+<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. To fit the model, we proceed as usual, except we define
+<span class="math display">\[
+\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3}
+\]</span></p>
+<p>The model then becomes</p>
+<p><span class="math display">\[
+\color{red}{Y_i = \beta_0 + \beta_1 x_{i1}^* + \beta_2 x_{i2}^* + \beta_3 x_{i3}^* + \epsilon_i}
+\]</span></p>
+<p>which is of exactly the form of a multiple linear regression model. Other covariates can also be included in the usual way, i.e.</p>
+<p><span class="math display">\[
+\color{red}{Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1}^2 +
+\beta_4 x_{i1}x_{i2} + \beta_5 x_{i2}^2 + \epsilon_i}
+\]</span></p>
+<p><em>Warning:</em> When fitting polynomials, there can be high correlations between powers of the covariates, and hence multicollinearity problems, (i.e. problems in inverting (<span class="math inline">\(\mathrm{X}^T\mathrm{X})^{-1}\)</span>. For example, consider a(n equi-spaced) covariate <span class="math inline">\(\underline{x}^T = (1, 2, \ldots, 10)\)</span></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb80-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-2" tabindex="-1"></a><span class="fu">cor</span>(x, x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.9745586</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb82-1" tabindex="-1"></a><span class="fu">cor</span>(x<span class="sc">^</span><span class="dv">2</span>, x<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.9871797</code></pre>
+<p>These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is <span class="math inline">\(\underline{x}_1\)</span> then we introduce <span class="math inline">\(z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)\)</span> and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.</p>
+</div>
+<div id="example-polynomial-model" class="section level2 unnumbered hasAnchor">
+<h2>Example: Polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for three brands of beer were measured. The results for one particular brand can be found on Canvas in the file <em>beer1.RData</em>. A plot of the foam height against time is given below:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:beerplot"></span>
+<img src="inference_files/figure-html/beerplot-1.png" alt="Scatterplot of foam height against time for the beer data." width="65%" />
+<p class="caption">
+Figure 3.4: Scatterplot of foam height against time for the beer data.
+</p>
+</div>
+<p>The plot is strongly suggestive of a curvilinear (possibly quadratic?) relationship. We can fit the model with a quadratic term for time</p>
+<p><span class="math display">\[
+\color{red}{\text{Height}_i = \beta_0 + \beta_1 \text{Time}_i + \beta_2 \text{Time}_i^2 + \epsilon_i}
+\]</span></p>
+<p>This can be done in several ways in <code>R</code>. We will use the built-in function <code>poly()</code> to fit the model - note that this function automatically uses <em>orthogonal</em> polynomials which remove the correlations between the powers of the covariate completely. Fitting the model in <code>R</code>, we use the following commands:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb84-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Height <span class="sc">~</span> <span class="fu">poly</span>(Time, <span class="dv">2</span>), <span class="at">data =</span> beer1)</span></code></pre></div>
+<p>We can summarise the model in the usual way (as it is still a multiple linear regression model):</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb85-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Height ~ poly(Time, 2), data = beer1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.36021 -0.22760 -0.06058  0.25347  0.41401 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     11.16000    0.07612  146.62  &lt; 2e-16 ***
+## poly(Time, 2)1 -12.85980    0.29480  -43.62 1.37e-14 ***
+## poly(Time, 2)2   2.96964    0.29480   10.07 3.31e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2948 on 12 degrees of freedom
+## Multiple R-squared:  0.994,  Adjusted R-squared:  0.9931 
+## F-statistic:  1002 on 2 and 12 DF,  p-value: 4.442e-14</code></pre>
+<p>We see that both the linear and quadratic terms in time are highly significant beyond the <span class="math inline">\(0.1\%\)</span> level. The <span class="math inline">\(R^2\)</span> value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time.</p>
+<div id="choosing-the-order-of-a-polynomial-model" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Choosing the order of a polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.</p>
+<p>We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of <span class="math inline">\(R^2\)</span> (although other criteria may be better). As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.</p>
+<p>Consider the model
+<span class="math display">\[
+Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i
+\]</span></p>
+<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. Suppose we fit this model and find that the regression summary shows that the linear term is not significant but the quadratic term is. If we then removed the linear term, our reduced model would then become
+<span class="math display">\[
+\color{red}{Y_i = \beta_0 + \beta_2 x_i^2 + \epsilon_i.}
+\]</span></p>
+<p>Suppose, however, we then made a scale change whereby <span class="math inline">\(x_i \rightarrow x_i + z\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>. The model above then becomes</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{Y_i} &amp;\color{red}{= \beta_0 + \beta_2 (x_i + z)^2 + \epsilon_i} \\
+&amp;\color{red}{= \beta_0 + \beta_2 z^2 + 2\beta_2 x_i z + \beta_2 x_i^2 + \epsilon_i}
+\end{align*}\]</span></p>
+<p>The linear term has now reappeared and so our model has effectively changed. Scale changes (such as our mean-centering seen in chapter 1) should not make any important changes to the model, but in this case an additional term has been added, which is highly undesirable. We want our models to be scale invariant.</p>
+<p>This illustrates why we should not remove lower order terms in the presence of higher order terms. Model building should be hierarchical and we do not want the interpretation of the model to depend on the choice of scale. Removal of the first order term here corresponds to the hypothesis that the predicted response is symmetric about <span class="math inline">\(x_i = 0\)</span>, which is not usually tenable and the same argument can be made about taking out the intercept term when it is not significant. Thus it also should be retained.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-diagnostics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-designed-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/inference.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

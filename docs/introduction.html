@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Introduction | notes</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Introduction | notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Introduction | notes" />
+  
+  
+  
+
+<meta name="author" content="Dr Pete Philipson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="module-information.html"/>
+<link rel="next" href="regression-diagnostics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>MAS3928: Statistical Modelling</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module information</a>
+<ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#lecturer-information"><i class="fa fa-check"></i>Lecturer information</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#module-schedule"><i class="fa fa-check"></i>Module schedule</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#course-materials"><i class="fa fa-check"></i>Course materials</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#relevant-texts"><i class="fa fa-check"></i>Relevant texts</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Multiple linear regression</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#matrix-form-of-the-model"><i class="fa fa-check"></i><b>1.2</b> Matrix form of the model</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr"><i class="fa fa-check"></i>Example - Matrix form for body weight in pre-diabetes patients (MLR)</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#parameter-estimation"><i class="fa fa-check"></i><b>1.3</b> Parameter estimation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#estimation-of-underlinebeta"><i class="fa fa-check"></i><b>1.3.1</b> Estimation of <span class="math inline">\(\underline{\beta}\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduction.html"><a href="introduction.html#estimation-of-sigma_epsilon2"><i class="fa fa-check"></i><b>1.3.2</b> Estimation of <span class="math inline">\(\sigma_{\epsilon}^2\)</span></a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduction.html"><a href="introduction.html#sec:resfithat"><i class="fa fa-check"></i><b>1.3.3</b> Residuals, fitted values and the ‘hat matrix’</a></li>
+<li class="chapter" data-level="1.3.4" data-path="introduction.html"><a href="introduction.html#properties-of-the-hat-matrix"><i class="fa fa-check"></i><b>1.3.4</b> Properties of the hat matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multiple-linear-regresion-analysis-of-bodyweight-data"><i class="fa fa-check"></i>Example: Multiple linear regresion analysis of bodyweight data</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#expectations-variances-and-inference"><i class="fa fa-check"></i><b>1.4</b> Expectations, variances and inference</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#expectation-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.1</b> Expectation of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#variance-of-underlinehatbeta"><i class="fa fa-check"></i><b>1.4.2</b> Variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="introduction.html"><a href="introduction.html#sec:inferforbetahat"><i class="fa fa-check"></i><b>1.4.3</b> Inference for <span class="math inline">\(\underline{\hat{\beta}}\)</span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="introduction.html"><a href="introduction.html#sec:expvaryhat"><i class="fa fa-check"></i><b>1.4.4</b> Expectation and variance of the fitted values</a></li>
+<li class="chapter" data-level="1.4.5" data-path="introduction.html"><a href="introduction.html#expectation-and-variance-of-the-residuals"><i class="fa fa-check"></i><b>1.4.5</b> Expectation and variance of the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#sec:mlrinr"><i class="fa fa-check"></i><b>1.5</b> Multiple linear regression in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction.html"><a href="introduction.html#using-data-in-r"><i class="fa fa-check"></i><b>1.5.1</b> Using data in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-using-r"><i class="fa fa-check"></i>Example: Analysis of bodyweight data using <code>R</code></a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#the-role-of-the-intercept"><i class="fa fa-check"></i><b>1.6</b> The role of the intercept</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-bodyweight-data-without-an-intercept-term"><i class="fa fa-check"></i>Example: Analysis of bodyweight data without an intercept term</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept"><i class="fa fa-check"></i>Example: Analysis of men’s Premier League football data - the role of the intercept</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction.html"><a href="introduction.html#interpretability-of-the-intercept-and-extrapolation"><i class="fa fa-check"></i><b>1.6.1</b> Interpretability of the intercept and extrapolation</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#standardised-residuals"><i class="fa fa-check"></i><b>2.1</b> Standardised residuals</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#residual-plots"><i class="fa fa-check"></i><b>2.1.1</b> Residual plots</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values"><i class="fa fa-check"></i>Independence of residuals and fitted values</a></li>
+<li class="chapter" data-level="2.1.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#outliers"><i class="fa fa-check"></i><b>2.1.2</b> Outliers</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data"><i class="fa fa-check"></i>Example: Residual analysis for bodyweight data</a></li>
+<li class="chapter" data-level="2.1.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#normality-of-the-residuals"><i class="fa fa-check"></i><b>2.1.3</b> Normality of the residuals</a></li>
+<li class="chapter" data-level="2.1.4" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#anderson-darling-test"><i class="fa fa-check"></i><b>2.1.4</b> Anderson-Darling test</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#a-cautionary-note"><i class="fa fa-check"></i>A cautionary note</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>2.2</b> Regression diagnostics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#leverage-values"><i class="fa fa-check"></i><b>2.2.1</b> Leverage values</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data"><i class="fa fa-check"></i>Example: Leverage values for the bodyweight data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#influential-observations"><i class="fa fa-check"></i><b>2.2.2</b> Influential observations</a></li>
+<li class="chapter" data-level="2.2.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#dealing-with-unusual-observations"><i class="fa fa-check"></i><b>2.2.3</b> Dealing with unusual observations</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-model-checking-for-the-premier-league-data"><i class="fa fa-check"></i>Example: Model checking for the Premier League data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html"><i class="fa fa-check"></i><b>3</b> Inference for the multiple linear regression model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#assessing-the-fit"><i class="fa fa-check"></i><b>3.1</b> Assessing the fit</a></li>
+<li class="chapter" data-level="3.2" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-basic-anova-table"><i class="fa fa-check"></i><b>3.2</b> The basic anova table</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem"><i class="fa fa-check"></i>Cochran’s Theorem</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination"><i class="fa fa-check"></i>The coefficient of determination</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-cheddar-cheese-study"><i class="fa fa-check"></i>Example: Cheddar cheese study</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#anova-in-r"><i class="fa fa-check"></i>Anova in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.3</b> The extra sum of squares method</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-extended-anova-table"><i class="fa fa-check"></i><b>3.3.1</b> The extended anova table</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extra sum of squares for cheese data</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-warfarin-study"><i class="fa fa-check"></i>Example: Warfarin study</a></li>
+<li class="chapter" data-level="3.4" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#the-general-extra-sum-of-squares-method"><i class="fa fa-check"></i><b>3.4</b> The general extra sum of squares method</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data"><i class="fa fa-check"></i>Example: Extended extra sum of squares for cheese data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method"><i class="fa fa-check"></i>Summary: extra sum of squares method</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html"><i class="fa fa-check"></i><b>4</b> Analysis of designed experiments</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design"><i class="fa fa-check"></i><b>4.1</b> Completely randomised design</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-one-way-anova"><i class="fa fa-check"></i>Example: One-way anova</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Analysis of completely randomised design data in <code>R</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#interpretation-of-results-multiple-comparisons"><i class="fa fa-check"></i><b>4.1.2</b> Interpretation of results: multiple comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-multiple-comparisons"><i class="fa fa-check"></i>Example: Multiple comparisons</a>
+<ul>
+<li class="chapter" data-level="4.1.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#model-checking"><i class="fa fa-check"></i><b>4.1.3</b> Model checking</a></li>
+<li class="chapter" data-level="4.1.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables"><i class="fa fa-check"></i><b>4.1.4</b> Completely randomised design: dealing with quantitative variables</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable"><i class="fa fa-check"></i>Example: Randomised design with a quantitative variable</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
+<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
+<ul>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data"><i class="fa fa-check"></i>Example: Two-way anova with interactions for the yeast data</a></li>
+<li class="chapter" data-level="4.3.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#exploratory-plots-for-interactions"><i class="fa fa-check"></i><b>4.3.1</b> Exploratory plots for interactions</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-transforming-the-response"><i class="fa fa-check"></i>Example: Transforming the response</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>5</b> General linear models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="general-linear-models.html"><a href="general-linear-models.html#indicator-and-dummy-variables"><i class="fa fa-check"></i><b>5.1</b> Indicator and dummy variables</a></li>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#example-gasoline-data"><i class="fa fa-check"></i>Example: Gasoline data</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Regression is one of the fundamental topics in statistical modelling, providing a mechanism for expressing the potential dependence of some response of interest on a number of covariates. Its uses are widespread, permeating almost every scientific field, providing the bedrock for analysis of data arising from medicine, population health, demography, agriculture, sports and many more. In this module we will focus on the particular modelling case of when the response variable is continuous.</p>
+<p>We will begin with a recap of the multiple linear regression model in chapter 1, extending some of the ideas you have seen in MAS2902. Subsequently, we will consider checking our core assumptions and using regression diagnostics to identify any unusual observations. The method of analysis of variance (anova) will then be introduced in chapter 3, allowing us to remove predictors from a model using the extra sum of squares technique. Focus then shifts in chapter 4 to looking at models to handle factors in the context of designed experiments, giving rise to classic one-way and two-way anova models. The fifth and final chapter will introduce indicator variables to handle binary explanatory variables and consider model selection techniques.</p>
+<!-- The long-term aim is to build towards a framework of a general linear model, which will itself be developed further in MAS3906 (should you take this optional module) to allow for response variables of alternative types, i.e. binary or count data, via a generalised linear model. -->
+<div id="multiple-linear-regression" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Multiple linear regression<a href="introduction.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As you have seen in MAS2902, there are often several possible explanatory variables to consider in a regression model. For example, in modelling someone’s weight we may want to include height and age (as well as a few other things) as covariates. We can extend the simple linear regression model to the multiple linear regression model
+<span class="math display" id="eq:mlrmodel">\[
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots \beta_p x_{ip} + \epsilon_i \tag{1.1}
+\]</span>
+for <span class="math inline">\(i = 1, \ldots n\)</span>. As in simple linear regression, we make assumptions about the (unobserved) error terms, namely that they have zero mean and are independent, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0\)</span>.</p>
+<p>Note our model in <a href="introduction.html#eq:mlrmodel">(1.1)</a> is called a multiple linear regression model because it is linear in the <em>parameters</em>, <span class="math inline">\(\underline{\beta} = \left(\beta_0, \ldots, \beta_p\right)^T\)</span> - it does not have to be linear in the explanatory variables. For example, the following are multiple linear regression models
+<span class="math display">\[\begin{eqnarray*}
+Y_i &amp;=&amp; \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i \\
+Y_i &amp;=&amp; \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}^2 + \beta_3 \ln x_{i3} + \epsilon_i
+\end{eqnarray*}\]</span>
+for <span class="math inline">\(i = 1, \ldots n\)</span>. To see this, we can substitute <span class="math inline">\(w_i\)</span>, say, for <span class="math inline">\(x_i^2\)</span> in the first model. However, the below example is not a multiple linear regression model:
+<span class="math display">\[
+Y_i = \beta_0 + e^{\beta_1 x_{i1} + \beta_2 x_{i2}} + \epsilon_i \;\; \textrm{for}\;\; i = 1, \ldots n.
+\]</span>
+Sometimes seemingly nonlinear models can be transformed to linear models, but this will have a knock-on effect on the assumptions.</p>
+</div>
+<div id="matrix-form-of-the-model" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Matrix form of the model<a href="introduction.html#matrix-form-of-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have <span class="math inline">\(n\)</span> observations then equation <a href="introduction.html#eq:mlrmodel">(1.1)</a> gives us the following system of equations:
+<span class="math display">\[\begin{eqnarray*}
+Y_1 &amp;=&amp; \beta_0 + \beta_1 x_{11} + \beta_2 x_{12} + \ldots \beta_p x_{1p} + \epsilon_1 \\
+Y_2 &amp;=&amp; \beta_0 + \beta_1 x_{21} + \beta_2 x_{22} + \ldots \beta_p x_{2p} +
+\epsilon_2 \\
+&amp;\vdots&amp; \\
+Y_n &amp;=&amp; \beta_0 + \beta_1 x_{n1} + \beta_2 x_{n2} + \ldots \beta_p x_{np} +
+\epsilon_n.
+\end{eqnarray*}\]</span></p>
+Note that the sample size is usually far greater than the number of covariates (<span class="math inline">\(n&gt;&gt;p\)</span>), i.e. the problem is . This set-up is more conveniently represented in matrix format by placing
+<p>This leads to
+<span class="math display">\[\begin{align*}
+\begin{pmatrix}
+        Y_1 \\
+    Y_2 \\
+    \vdots \\
+    Y_n \\
+         \end{pmatrix} =  
+             \begin{pmatrix}
+    1 &amp; x_{11} &amp; x_{12}&amp; \ldots&amp; x_{1p} \\
+    1 &amp; x_{21} &amp; x_{22}&amp; \ldots&amp; x_{2p} \\
+\vdots&amp; \vdots&amp; \vdots&amp; \vdots&amp; \vdots \\
+    1 &amp; x_{n1} &amp; x_{n2}&amp; \ldots&amp; x_{np} \\
+         \end{pmatrix}
+         \begin{pmatrix}
+        \beta_0 \\
+    \beta_1 \\
+    \vdots \\
+    \beta_p
+         \end{pmatrix} +
+         \begin{pmatrix}
+        \epsilon_1 \\
+    \epsilon_2 \\
+    \vdots \\
+    \epsilon_n
+         \end{pmatrix}.
+   \end{align*}\]</span>
+This can be compactly written as
+<span class="math display">\[\begin{equation}
+\underline{Y} = \mathrm{X}\underline{\beta} + \underline{\epsilon}.
+\end{equation}\]</span>
+The associated dimensions are.<br />
+(i) <span class="math inline">\([n \times 1]\)</span> for the <em>response vector</em>, <span class="math inline">\(\underline{Y}\)</span>,<br />
+(ii) <span class="math inline">\([n \times (p+1)]\)</span> for the <em>design matrix</em>, <span class="math inline">\(\mathrm{X}\)</span>,<br />
+(iii) <span class="math inline">\([(p+1) \times 1]\)</span> for the <em>parameter vector</em>, <span class="math inline">\(\underline{\beta}\)</span>,<br />
+(iv) <span class="math inline">\([n \times 1]\)</span> for the <em>error vector</em>, <span class="math inline">\(\underline{\epsilon}\)</span>.<br />
+The column of ‘1’s in the design matrix is necessary to give the constant term for each observation, i.e. the intercept. We will discuss the role of the intercept in greater detail later. We can collect the covariate information for each item or individual into a vector alongside the ’1’ for the intercept:
+<span class="math display">\[
+\underline{x}_i =
+\begin{pmatrix}
+1 \\
+x_{i1} \\
+x_{i2} \\
+\vdots \\
+x_{ip}
+\end{pmatrix},
+\]</span>
+for <span class="math inline">\(i = 1, \ldots, n\)</span>. This allows us to express the design matrix as
+<span class="math display">\[
+\mathrm{X} =
+\begin{pmatrix}
+\underline{x}_1^T \\
+\underline{x}_2^T \\
+\vdots \\
+\underline{x}_n^T
+\end{pmatrix}.
+\]</span></p>
+<p>It is sometimes convenient to set <span class="math inline">\(\underline{x}_i^* = (x_{i1}, x_{i2}, \ldots x_{ip})\)</span>
+for <span class="math inline">\(i = 1, \ldots, n\)</span>. This is the vector of explanatory variables alone (i.e. no intercept term) for the <span class="math inline">\(i^{th}\)</span> observation, which we will make use of later. We will now illustrate the multivariate regression model with a few examples.</p>
+</div>
+<div id="example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr" class="section level2 unnumbered hasAnchor">
+<h2>Example - Matrix form for body weight in pre-diabetes patients (MLR)<a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now introduce a specific example, which we shall return to throughout the chapter. In a study on body weight in 24 patients over 50, who have been diagnosed with pre-diabetes. Data were collected on their weight (in kilograms), food consumption (in calories), and a(n) (ordinal) measure of how much exercise each patient takes, on average per week: 0 = no exercise, 1 = some exercise, 2 = moderate exercise, 3 = heavy exercise. The food consumption was calculated by averaging over a week’s consumption and we will treat the ordinal covariate (exercise) as if it was continuous. The full data are given in Table <a href="introduction.html#tab:bodyweight">1.1</a></p>
+<table>
+<caption><span id="tab:bodyweight">Table 1.1: </span>Weight, average food consumption and exercise score for twenty-four pre-diabetes patients in body weight study.</caption>
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="11%" />
+<col width="15%" />
+<col width="23%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Weight (kg)</th>
+<th align="right">Consumption (cal)</th>
+<th align="right">Exercise</th>
+<th align="right">Weight (kg)</th>
+<th align="right">Consumption (cal)</th>
+<th align="right">Exercise</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">60.4</td>
+<td align="right">2680</td>
+<td align="right">3</td>
+<td align="right">84.4</td>
+<td align="right">3160</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">81.1</td>
+<td align="right">3280</td>
+<td align="right">1</td>
+<td align="right">93.0</td>
+<td align="right">3330</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">94.9</td>
+<td align="right">3890</td>
+<td align="right">2</td>
+<td align="right">61.3</td>
+<td align="right">2360</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">86.4</td>
+<td align="right">3170</td>
+<td align="right">0</td>
+<td align="right">74.9</td>
+<td align="right">3030</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">90.3</td>
+<td align="right">3390</td>
+<td align="right">1</td>
+<td align="right">94.3</td>
+<td align="right">3390</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">60.4</td>
+<td align="right">2670</td>
+<td align="right">2</td>
+<td align="right">61.8</td>
+<td align="right">2700</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">77.8</td>
+<td align="right">2770</td>
+<td align="right">0</td>
+<td align="right">78.1</td>
+<td align="right">3090</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">85.0</td>
+<td align="right">3330</td>
+<td align="right">1</td>
+<td align="right">74.8</td>
+<td align="right">3020</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">71.6</td>
+<td align="right">2710</td>
+<td align="right">0</td>
+<td align="right">59.0</td>
+<td align="right">2410</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">64.6</td>
+<td align="right">2600</td>
+<td align="right">1</td>
+<td align="right">69.2</td>
+<td align="right">2830</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">75.1</td>
+<td align="right">2880</td>
+<td align="right">0</td>
+<td align="right">67.1</td>
+<td align="right">2620</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">89.6</td>
+<td align="right">3430</td>
+<td align="right">0</td>
+<td align="right">82.4</td>
+<td align="right">2820</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>We can produce scatterplots of weight against consumption and exercise:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study" width="48%" /><img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-2.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study" width="48%" />
+<p class="caption">
+Figure 1.1: Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study
+</p>
+</div>
+<p>Comments:</p>
+<ol style="list-style-type: decimal">
+<li><p>We see that body weight is approximately linearly related to food consumption with a positive slope. There may be one unusual observation (top-right)? Could this be influential? Could others? We will consider these questions in more detail in the next chapter.</p></li>
+<li><p>There is some evidence that body weight declines with increasing exercise but the effect is possibly being masked by the variability in food consumption. Note that we observe vertical strips when dealing with ordinal variables so trends are perhaps harder to see.</p></li>
+</ol>
+<p>We wish to fit the model:
+<span class="math display">\[
+\color{red}{Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i}
+\]</span>
+for <span class="math inline">\(i = 1, \ldots, n\)</span>, where <span class="math inline">\(x_{i1}\)</span> is food consumption and <span class="math inline">\(x_{i2}\)</span> is exercise for the <span class="math inline">\(i^{th}\)</span> patient. Equivalently, using our matrix formulation, we can express the model as
+<span class="math display">\[
+\color{red}{\underline{Y} = \mathrm{X}\underline{\beta} + \underline{\epsilon}}
+\]</span>
+We can define the relevant quantities using the available data for the multiple linear regression model as follows:
+<span class="math display">\[\begin{align*}
+\color{red}{
+\underline{Y} =
+\begin{pmatrix}
+    60.4     \\
+    81.1 \\
+  \vdots \\
+    82.4 \\
+         \end{pmatrix},
+            \mathrm{X} =
+     \begin{pmatrix}
+    1 &amp; 2680&amp; 3  \\
+    1 &amp; 3280&amp; 1  \\
+  \vdots&amp; \vdots&amp; \vdots \\
+    1 &amp; 2820&amp; 1 \\
+         \end{pmatrix},
+         \underline{\beta} = \begin{pmatrix}
+        \beta_0 \\
+    \beta_1 \\
+    \beta_2 \\
+         \end{pmatrix},
+         \underline{\epsilon} =    \begin{pmatrix}
+  \epsilon_1 \\
+    \epsilon_2 \\
+  \vdots \\
+    \epsilon_{24} \\
+         \end{pmatrix}.}
+   \end{align*}\]</span></p>
+<p>Note that both <span class="math inline">\(\underline{Y}\)</span> and <span class="math inline">\(\underline{\epsilon}\)</span> are unchanged by the addition of variables since these are fixed data in the case of the former, and, as yet, unknown errors in the case of the latter - note that since there is a single error term, <span class="math inline">\(\epsilon_i\)</span>, for each observation, <span class="math inline">\(Y_i\)</span>, the errors will always form a vector of length <span class="math inline">\(n\)</span>.</p>
+<p>The residuals (which estimate the errors) can also be collected in a vector of length <span class="math inline">\(n\)</span>, but we only know the values of the residuals <em>after</em> model fitting and their values will be different under each model. Both <span class="math inline">\(\mathrm{X}\)</span> and <span class="math inline">\(\underline{\beta}\)</span> do change, with the addition of a column and row respectively for each additional covariate.</p>
+</div>
+<div id="parameter-estimation" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Parameter estimation<a href="introduction.html#parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Having set up the model, how do we obtain estimates for the unknown parameters? One approach is to use maximum likelihood.</p>
+<p>In order to set the scene, recall that our key assumptions are normality, zero mean, common variance and independence of the errors, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0\)</span>. Since <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip} + \epsilon_i\)</span>, then the normality assumption on <span class="math inline">\(\epsilon_i\)</span> induces a normal distribution on each <span class="math inline">\(Y_i\)</span> (and, in turn, the vector <span class="math inline">\(\underline{Y}\)</span>). The values for the covariates are fixed, as are the true (usually unknown) values of <span class="math inline">\(\underline{\beta}\)</span> so these just serve as constants when thinking about the distribution of <span class="math inline">\(Y_i\)</span>.</p>
+<p>Furthermore, the assumption of independence also carries through and the variance is unaltered (since we are simply adding scalars to a random variable). This tells us that <span class="math inline">\(Y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2 \sim N(\beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip}, \sigma_{\epsilon}^2)\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>. This can be written more compactly as <span class="math inline">\(Y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2 \sim N(\underline{x}_i^T\underline{\beta}, \sigma_{\epsilon}^2)\)</span>.</p>
+<p>Before going further, recall that the probability density function for a univariate normal random variable, <span class="math inline">\(Y \sim N(\mu, \sigma^2)\)</span>, is:
+<span class="math display">\[
+\color{red}{f(y \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left\{-\frac{(y - \mu)^2}{2\sigma^2}\right\}}
+\]</span></p>
+<p>The likelihood principle instructs us to pick values of the parameters that maximise the likelihood. If observations are independent (as we have just shown they are here), then the likelihood function for all observations is a product of the individual normal densities for each observation of the form:
+<span class="math display">\[
+\color{red}{L(\mu, \sigma^2 \mid y_1, \ldots, y_n) = \prod_{i=1}^n f(y_i \mid \mu, \sigma^2).}
+\]</span>
+Now, for our multiple linear regression model, we have
+<span class="math display">\[\begin{align*}
+\color{red}{L(\underline{\beta}, \sigma_{\epsilon}^2 \mid y_1, \ldots, y_n, \mathrm{X})} &amp;\color{red}{= \prod_{i=1}^n f(y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2)} \\
+&amp;\color{red}{= \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma_{\epsilon}^2}}
+\exp\left\{-\frac{(y_i - \underline{x}_i^T\underline{\beta})^2}{2\sigma_{\epsilon}^2}\right\}} \\
+&amp;\color{red}{= (2\pi\sigma_{\epsilon}^2)^{-n/2}
+\exp\left\{-\frac{1}{2\sigma_{\epsilon}^2}\sum_{i=1}^n (y_i - \underline{x}_i^T\underline{\beta})^2 \right\}}  \\
+&amp;\color{red}{= (2\pi)^{-n/2} (\sigma_{\epsilon}^2)^{-n/2}
+\exp\left\{-\frac{1}{2\sigma_{\epsilon}^2}\sum_{i=1}^n (y_i - \underline{x}_i^T\underline{\beta})^2 \right\}} \\
+\end{align*}\]</span></p>
+<div id="estimation-of-underlinebeta" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Estimation of <span class="math inline">\(\underline{\beta}\)</span><a href="introduction.html#estimation-of-underlinebeta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To estimate the parameter vector, <span class="math inline">\(\underline{\beta}\)</span> we consider the log-likelihood since this is typically easier to work with, being additive as opposed to multiplicative. The log-likelihood is given by
+<span class="math display">\[\begin{equation*}
+\color{red}{\ell(\underline{\beta}, \sigma_{\epsilon}^2 \mid y_1, \ldots, y_n, \mathrm{X}) = -\frac{n}{2} \ln(2\pi) -\frac{n}{2} \ln (\sigma_{\epsilon}^2) - \frac{1}{2\sigma_{\epsilon}^2} \sum_{i=1}^n (y_i - \underline{x}_i^T\underline{\beta})^2}
+\end{equation*}\]</span>
+We could (partially) differentiate with respect to each element of <span class="math inline">\(\underline{\beta}\)</span> and this would lead to a system of equations (with a lot of structure) known as the normal equations. However, it is easier to consider the matrix formulation of the model by noting that
+<span class="math display">\[
+\sum_{i=1}^n (y_i - \underline{x}_i^T\underline{\beta})^2 = (\underline{y} - \mathrm{X}\underline{\beta})^T
+(\underline{y} - \mathrm{X}\underline{\beta})
+\]</span></p>
+<p>This is, in fact, the exact quantity that is minimised using the method of least squares, which can also be used to estimate the parameters for this model (and simple linear regression). Now, ignoring the constant terms (by treating <span class="math inline">\(\sigma_{\epsilon}^2\)</span> as fixed at this stage), we wish to minimise
+<span class="math display">\[\begin{align*}
+\color{red}{(\underline{y} - \mathrm{X}\underline{\beta})^T (\underline{y} - \mathrm{X}\underline{\beta})} &amp;\color{red}{=
+(\underline{y}^T - \underline{\beta}^T\mathrm{X}^T)(\underline{y} - \mathrm{X}\underline{\beta})} \\
+&amp;\color{red}{= \underline{y}^T\underline{y} - \underline{y}^T\mathrm{X}\underline{\beta} - \underline{\beta}^T\mathrm{X}^T\underline{y} + \underline{\beta}^T\mathrm{X}^T \mathrm{X}\underline{\beta}}
+\end{align*}\]</span></p>
+<p>By noting that <span class="math inline">\(\underline{y}^T\mathrm{X}\underline{\beta}\)</span> is a scalar we can rewrite this as its transpose, i.e. <span class="math inline">\(\underline{y}^T\mathrm{X}\underline{\beta} = \underline{\beta}^T\mathrm{X}^T\underline{y}\)</span>. Hence
+<span class="math display">\[
+\color{red}{(\underline{y} - \mathrm{X}\underline{\beta})^T (\underline{y} - \mathrm{X}\underline{\beta}) =
+\underline{y}^T\underline{y} -  2\underline{\beta}^T\mathrm{X}^T\underline{y} + \underline{\beta}^T\mathrm{X}^T \mathrm{X}\underline{\beta}}
+\]</span></p>
+<p>We can now differentiate to obtain
+<span class="math display">\[
+\color{red}{\frac{\partial \ell}{\partial \underline{\beta}} = -  2\mathrm{X}^T\underline{y} + 2\mathrm{X}^T \mathrm{X}\underline{\beta}}
+\]</span></p>
+<p>Setting equal to zero and solving for <span class="math inline">\(\underline{\beta}\)</span> leads to the solution
+<span class="math display">\[\begin{equation}
+\color{red}{\underline{\hat{\beta}} = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}}
+\end{equation}\]</span></p>
+<p>This estimate exists as long as the inverse exists, i.e. no column of <span class="math inline">\(\mathrm{X}\)</span> is a linear combination of other columns, i.e. there is no multicollinearity. We have to be careful that no columns of <span class="math inline">\(\mathrm{X}\)</span> are linearly related as this can be harder to detect and leads to serious issues; we will discuss multicollinearity in more detail in section <a href="introduction.html#sec:multicol">1.7</a>.</p>
+</div>
+<div id="estimation-of-sigma_epsilon2" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Estimation of <span class="math inline">\(\sigma_{\epsilon}^2\)</span><a href="introduction.html#estimation-of-sigma_epsilon2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can estimate <span class="math inline">\(\sigma_{\epsilon}^2\)</span> in a similar fashion (now treating <span class="math inline">\(\underline{\beta}\)</span> as fixed), using maximum likelihood once more. Recall that
+<span class="math display">\[\begin{equation*}
+\ell(\underline{\beta}, \sigma_{\epsilon}^2 \mid y_1, \ldots, y_n, \mathrm{X}) = -\frac{n}{2} \ln(2\pi) -\frac{n}{2} \ln (\sigma_{\epsilon}^2) - \frac{1}{2\sigma_{\epsilon}^2} \sum_{i=1}^n (y_i - \underline{x}_i^T\underline{\beta})^2.
+\end{equation*}\]</span></p>
+<p>For ease of calculation we let <span class="math inline">\(\tau = \sigma_{\epsilon}^2\)</span> and then differentiating with respect to <span class="math inline">\(\tau\)</span> we obtain
+<span class="math display">\[\begin{equation*}
+\color{red}{\frac{\partial \ell}{\partial\tau} = -\frac{n}{2\tau} +
+\frac{\sum (y_i - \underline{x}_i^T\underline{\beta})^2}{2\tau^2}}
+\end{equation*}\]</span></p>
+<p>Setting the above equal to zero and solving for <span class="math inline">\(\tau\)</span> we obtain
+<span class="math display">\[\begin{equation}
+\color{red}{\hat{\tau} = \frac{\sum (y_i - \underline{x}_i^T\underline{\beta})^2}{n} =
+\frac{\sum (y_i - \hat{y_i})^2}{n}.}
+\end{equation}\]</span></p>
+<p>However, this is a biased estimate (akin to the sample variance bias problem), so we adjust for the fact that we have estimated the <span class="math inline">\(p\)</span>-vector <span class="math inline">\(\underline{\beta}\)</span> by using
+<span class="math display" id="eq:ssquared">\[
+\color{red}{\hat{\sigma}_{\epsilon}^2 = s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1} } \tag{1.2}
+\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the number of explanatory variables in the model. Note that <span class="math inline">\(\underline{\beta}\)</span> has length <span class="math inline">\(k = p+1\)</span> typically, with the additional intercept term.</p>
+</div>
+<div id="sec:resfithat" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Residuals, fitted values and the ‘hat matrix’<a href="introduction.html#sec:resfithat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The vector of residuals (which estimate the errors) can be obtained by subtraction after model fitting, namely as ‘observed - fitted’
+<span class="math display">\[\begin{align*}
+\color{red}{\underline{\hat{\epsilon}}} &amp;\color{red}{= \underline{y} - \hat{\underline{y}}} \\
+&amp;\color{red}{= \underline{y} - \mathrm{X}\underline{\hat{\beta}},}
+\end{align*}\]</span>
+where the fitted values are found as <span class="math inline">\(\hat{\underline{y}} = \mathrm{X}\underline{\hat{\beta}}\)</span>.</p>
+<div id="the-hat-matrix" class="section level4 unnumbered hasAnchor">
+<h4>The hat matrix<a href="introduction.html#the-hat-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can rewrite the estimate for the errors by substituting in <span class="math inline">\(\underline{\hat{\beta}} = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}\)</span> to obtain
+<span class="math display">\[\begin{align*}
+\color{red}{\underline{\hat{\epsilon}}} &amp;\color{red}{= \underline{y} - \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}} \\
+&amp;\color{red}{= (\mathrm{I} - \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T) \underline{y}} \\
+&amp;\color{red}{= (\mathrm{I} - \mathrm{H})\underline{y},}
+\end{align*}\]</span>
+where <span class="math inline">\(\mathrm{H} = \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\)</span>. <span class="math inline">\(\mathrm{H}\)</span> is known as the ‘hat’ matrix since
+<span class="math display">\[\begin{align*}
+\color{red}{\hat{\underline{y}}} &amp;\color{red}{= \mathrm{X}\hat{\underline{\beta}}} \\
+&amp;\color{red}{= \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}} \\
+&amp;\color{red}{= \mathrm{H}\underline{y}.}
+\end{align*}\]</span></p>
+<p>Hence, multiplying by <span class="math inline">\(\mathrm{H}\)</span> converts <span class="math inline">\(\underline{y}\)</span> to <span class="math inline">\(\hat{\underline{y}}\)</span>, i.e. it is the matrix that puts a hat on <span class="math inline">\(\underline{y}\)</span>. The hat matrix is an <span class="math inline">\(n \times n\)</span> matrix with elements
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{H} =
+\begin{pmatrix}
+  h_{11}&amp; h_{12}&amp; \ldots&amp; h_{1n} \\
+  h_{21}&amp; h_{22}&amp; \ldots&amp; h_{2n} \\
+  \vdots&amp; \vdots&amp; &amp; \vdots \\
+  h_{n1}&amp; h_{n2}&amp; \ldots&amp; h_{nn} \\
+         \end{pmatrix}} \;\;\;\;
+\end{align*}\]</span></p>
+<p>The diagonal values of <span class="math inline">\(\mathrm{H}\)</span> (i.e. the <span class="math inline">\(h_{ii}\)</span> values for <span class="math inline">\(i = 1, \ldots, n\)</span>) are called the leverages (see chapter 2).</p>
+</div>
+</div>
+<div id="properties-of-the-hat-matrix" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Properties of the hat matrix<a href="introduction.html#properties-of-the-hat-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It turns out that the hat matrix, <span class="math inline">\(\mathrm{H}\)</span>, has some useful properties, which will prove to be handy later. Namely,</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathrm{H}\)</span> is symmetric, whereby <span class="math inline">\(\mathrm{H}^T = \mathrm{H}\)</span>,</li>
+<li><span class="math inline">\(\mathrm{H}\)</span> is idempotent, i.e <span class="math inline">\(\mathrm{H}^2 = \mathrm{H}\mathrm{H} = \mathrm{H}\)</span>.</li>
+</ol>
+<div id="proof" class="section level4 unnumbered hasAnchor">
+<h4>Proof<a href="introduction.html#proof" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><span style="color: red">Now</span>
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{H}^T} &amp;\color{red}{=\Bigl(\mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T\Bigr)^T} \\
+&amp;\color{red}{= \mathrm{X}\left(\mathrm{X}^T\mathrm{X})^{-1}\right)^T \mathrm{X}^T} \\
+&amp;\color{red}{= \mathrm{X}\left(\mathrm{X}^T\mathrm{X})^T\right)^{-1} \mathrm{X}^T} \\
+&amp;\color{red}{= \mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T} \\
+&amp;\color{red}{= \mathrm{H}.} \\
+\end{align*}\]</span></li>
+<li><span style="color: red">We now have</span>
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{H}\mathrm{H}} &amp;\color{red}{= \Bigl(\mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T\Bigr) \Bigl(\mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T\Bigr)}  \\
+&amp;\color{red}{= \mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T\mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T} \\
+&amp;\color{red}{= \mathrm{X} (\mathrm{X}^T\mathrm{X})^{-1} \mathrm{X}^T} \\
+&amp;\color{red}{= \mathrm{H}.} \\
+\end{align*}\]</span></li>
+</ol>
+<!-- ## Example: Simple linear regresion analysis of bodyweight data {-} -->
+<!-- We are now in a position to estimate the parameters for the data on pre-diabetes patients introduced earlier. Recall that for the simple linear regression model for the bodyweight data we have the data and design matrix: -->
+<!-- \begin{align*} -->
+<!-- \vec{Y} = -->
+<!-- \begin{pmatrix} -->
+<!--   60.4 \\ -->
+<!--    81.1 \\ -->
+<!--   \vdots \\ -->
+<!--    82.4 \\ -->
+<!--          \end{pmatrix}, \;\;\;\; -->
+<!--            \up{X} = -->
+<!--      \begin{pmatrix} -->
+<!--    1 & 2680  \\ -->
+<!--    1 & 3280  \\ -->
+<!--   \vdots& \vdots \\ -->
+<!--    1 & 2820 \\ -->
+<!-- \end{pmatrix} -->
+<!-- \end{align*} -->
+<!-- Hence we can use matrix algebra to calculate -->
+<!-- \begin{align*} -->
+<!-- \up{X}^T\up{X} &= -->
+<!-- \begin{pmatrix} -->
+<!-- 24 & 71560  \\ -->
+<!-- 71560 & 216577400  \\ -->
+<!-- \end{pmatrix}, \\ -->
+<!-- \up{X}^T\vec{y} &= \begin{pmatrix} -->
+<!-- 1837.50 \\ -->
+<!-- 5570449 \\ -->
+<!-- \end{pmatrix}. -->
+<!-- \end{align*} -->
+<!-- We can then find  -->
+<!-- \begin{align*} -->
+<!-- \gap{(\up{X}^T\up{X})^{-1} = \frac{1}{(24\times 216577400 - 71560^2)} -->
+<!-- \begin{pmatrix} -->
+<!-- 216577400 & -71560  \\ -->
+<!-- -71560 & 24  \\ -->
+<!-- \end{pmatrix}} -->
+<!-- \end{align*} -->
+<!-- Simplifying, we obtain (to 2 d.p.) -->
+<!-- \begin{align*} -->
+<!-- \gap{ -->
+<!-- (\up{X}^T\up{X})^{-1} =  -->
+<!-- \begin{pmatrix} -->
+<!-- 2.81 & -9.29 \times 10^{-4}  \\ -->
+<!-- -9.29 \times 10^{-4} & 3.12 \times 10^{-7}  \\ -->
+<!-- \end{pmatrix}} -->
+<!-- \end{align*} -->
+<!-- So the parameter estimates can be found as -->
+<!-- \begin{align*} -->
+<!-- \vec{\beta} &= \begin{pmatrix} -->
+<!-- 2.81 & -9.29 \times 10^{-4}  \\ -->
+<!-- -9.29 \times 10^{-4} & 3.12 \times 10^{-7}  \\ -->
+<!-- \end{pmatrix} -->
+<!-- \begin{pmatrix} -->
+<!-- 1837.50 \\ -->
+<!-- 5570449 \\ -->
+<!-- \end{pmatrix} \\ -->
+<!-- &= \begin{pmatrix} -->
+<!-- -8.573 \\ -->
+<!-- 0.029 \\ -->
+<!-- \end{pmatrix} \\ -->
+<!-- \end{align*} -->
+<!-- The fitted line is thus -->
+<!-- \[ -->
+<!-- \gap{\textrm{Weight} = -8.573 + 0.029\times \textrm{Consumption}.} -->
+<!-- \]  -->
+<!-- This can be interpreted in the usual way, i.e. body weight goes up by 0.029 kg for every additional calorie consumed. This is not particularly helpful in this instance, and it may be more meaningful to express this as the change per 100 calories, say (which would equate to an approximate 3 kg weight increase since $0.029 \times 100 = 2.9$). Note that, as an alternative, we could change the units of the calorie variable at the outset, i.e. before fitting the model, to achieve the same result. -->
+<!-- We can also calculate the fitted values -->
+<!-- \begin{align*} -->
+<!-- \gap{ -->
+<!-- \hat{\vec{y}} = \up{X}\hat{\vec{\beta}} = -->
+<!-- \begin{pmatrix} -->
+<!-- 67.95 \\ -->
+<!-- 85.08 \\ -->
+<!-- \vdots \\ -->
+<!-- 71.95 -->
+<!-- \end{pmatrix} \\} -->
+<!-- \end{align*} -->
+<!-- From the fitted values we can also calculate the residuals -->
+<!-- \begin{align*} -->
+<!-- \gap{\vec{\hat{\epsilon}} = \vec{y} - \vec{\hat{y}} =  -->
+<!-- \begin{pmatrix} -->
+<!-- -7.55 \\ -->
+<!-- -3.98 \\ -->
+<!-- \vdots \\ -->
+<!-- 10.45 -->
+<!-- \end{pmatrix} \\} -->
+<!-- \end{align*} -->
+</div>
+</div>
+</div>
+<div id="example-multiple-linear-regresion-analysis-of-bodyweight-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Multiple linear regresion analysis of bodyweight data<a href="introduction.html#example-multiple-linear-regresion-analysis-of-bodyweight-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are now in a position to estimate the parameters for the data on pre-diabetes patients introduced earlier. First we recall that for the multiple linear regression model for the bodyweight data we have the design matrix given by:
+<span class="math display">\[\begin{align*}
+\mathrm{X} =
+     \begin{pmatrix}
+    1 &amp; 2680&amp; 3  \\
+    1 &amp; 3280&amp; 1  \\
+  \vdots&amp; \vdots&amp; \vdots \\
+    1 &amp; 2820&amp; 1 \\
+\end{pmatrix}
+\end{align*}\]</span>
+Using matrix algebra we can calculate
+<span class="math display">\[\begin{align*}
+\mathrm{X}^T\mathrm{X} &amp;=
+\begin{pmatrix}
+24 &amp; 71560 &amp; 19  \\
+71560 &amp; 216577400 &amp;  55380\\
+19 &amp; 55380 &amp;  35\\
+\end{pmatrix} \\
+\mathrm{X}^T\underline{y} &amp;= \begin{pmatrix}
+1837.50 \\
+5570449 \\
+1354.60
+\end{pmatrix}.
+\end{align*}\]</span></p>
+<p>Taking the (3 by 3) matrix inverse we get</p>
+<p><span class="math display">\[\begin{align*}
+(\mathrm{X}^T\mathrm{X})^{-1} =
+\begin{pmatrix}
+3.02 &amp; -9.69 \times 10^{-4} &amp; -0.10 \\
+-9.69 \times 10^{-4} &amp; 3.20 \times 10^{-7} &amp; 2.04 \times 10^{-5} \\
+-0.10 &amp; 2.04 \times 10^{-5} &amp; 0.05 \\
+\end{pmatrix}
+\end{align*}\]</span></p>
+<p>Hence, the parameter estimates can be found as</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\color{red}{
+\underline{\beta} = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}
+= (-2.104, 0.027, -3.278)^T.}
+\end{eqnarray*}\]</span>
+Note that we can also calculate <span class="math inline">\(\underline{\hat{y}} = \mathrm{X}\underline{\hat{\beta}}\)</span> from the above, and subsequently <span class="math inline">\(\underline{\hat{\varepsilon}} = \underline{y} - \underline{\hat{y}}\)</span>. The fitted line for the multiple linear regression model is
+<span class="math display">\[
+\color{red}{\textrm{Weight} = -2.014 + 0.027\times \textrm{Consumption} -3.278\times\textrm{Exercise}.}
+\]</span>
+This can be interpreted in a similar way to simple linear regression, but with a few caveats:</p>
+<ul>
+<li><p>body weight goes up by 0.027 kg for every additional calorie consumed, .</p></li>
+<li><p>body weight decreases by around 3.3 kg as individuals move up an exercise category, .</p></li>
+<li><p>be careful not to interpret the above as exercise being ‘more important’ than consumption due to having a larger coefficient - the scales of the variables are different and we also have no idea (yet!) whether these values are significant.</p></li>
+</ul>
+<p>It may be more meaningful to express the change due to consumption in different units. Also, note that the values of the parameter estimates change with the introduction (or removal) of variables into (from) the model - this is always the case (unless the covariates are independent), no matter how significant (or not) they are. This is important when building a regression model.</p>
+<p>We have seen that fitting a multiple linear regression model with two covariates can be achieved `by hand’. However, it is clear that as we look to build more complex models then it may be advantageous to use software - we will see how to do this in section <a href="introduction.html#sec:mlrinr">1.5</a>.</p>
+</div>
+<div id="expectations-variances-and-inference" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Expectations, variances and inference<a href="introduction.html#expectations-variances-and-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now consider the properties of the estimators <span class="math inline">\(\underline{\hat{\beta}}\)</span> and <span class="math inline">\(\underline{\hat{\epsilon}}\)</span>, i.e. is <span class="math inline">\(\underline{\hat{\beta}}\)</span> unbiased? This will allow us, among other things, to assess the significance (or otherwise) of the parameter estimates. We begin by considering the expectation and variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span>.</p>
+<div id="expectation-of-underlinehatbeta" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Expectation of <span class="math inline">\(\underline{\hat{\beta}}\)</span><a href="introduction.html#expectation-of-underlinehatbeta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now,
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{E}\left[\underline{\hat{\beta}}\right]} &amp;\color{red}{= \mathrm{E}\left[\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T\underline{Y}\right]} \\
+&amp;\color{red}{= \left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T \mathrm{E}[\underline{Y}]} \\
+&amp;\color{red}{= \left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T \mathrm{X}\underline{\beta}} \\
+&amp;\color{red}{= \underline{\beta}}
+\end{align*}\]</span></p>
+<p>Hence, <span class="math inline">\(\underline{\hat{\beta}}\)</span> is an unbiased estimator of <span class="math inline">\(\underline{\beta}\)</span>.</p>
+</div>
+<div id="variance-of-underlinehatbeta" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Variance of <span class="math inline">\(\underline{\hat{\beta}}\)</span><a href="introduction.html#variance-of-underlinehatbeta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before looking at the variance in detail we note
+<span class="math display">\[
+\left\{\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T\right\}^T = \mathrm{X}\left\{\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\right\}^T = \mathrm{X}\left(\mathrm{X}^T\mathrm{X}\right)^{-1}
+\]</span>
+since <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span> is a symmetric matrix.</p>
+<p>We are now in a position to look at the variance
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{Var}\left[\underline{\hat{\beta}}\right]} &amp;\color{red}{= \mathrm{Var}\left[\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T\underline{Y}\right]} \\
+&amp;\color{red}{= \left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T \mathrm{Var}\left[\underline{Y}\right] \left\{\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T\right\}^T} \\
+&amp;\color{red}{= \left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T \mathrm{I}\sigma_{\epsilon}^2 \mathrm{X}\left(\mathrm{X}^T\mathrm{X}\right)^{-1}} \\
+&amp;\color{red}{= \sigma_{\epsilon}^2 \left(\mathrm{X}^T\mathrm{X}\right)^{-1}\mathrm{X}^T \mathrm{X}\left(\mathrm{X}^T\mathrm{X}\right)^{-1}} \\
+&amp;\color{red}{= \sigma_{\epsilon}^2 \left(\mathrm{X}^T\mathrm{X}\right)^{-1}}
+\end{align*}\]</span></p>
+</div>
+<div id="sec:inferforbetahat" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Inference for <span class="math inline">\(\underline{\hat{\beta}}\)</span><a href="introduction.html#sec:inferforbetahat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since <span class="math inline">\(\underline{\hat{\beta}}\)</span> consists of linear combinations of the <span class="math inline">\(Y_i\)</span>’s, which are independent and normally distributed, it has a multivariate normal distribution, namely <span class="math inline">\(\underline{\hat{\beta}} \sim N_{p+1}\left(\underline{\beta}, \sigma_{\epsilon}^2 (\mathrm{X}^T\mathrm{X})^{-1}\right)\)</span> and each of the individual parameter estimates are univariate normal (due to properties of the multivariate normal distribution). Their (individual) significance can be asssessed via the test statistic
+<span class="math display">\[
+\color{red}{\hat{\beta_j}\bigg/\sqrt{v_{jj}s^2} \sim t_{n-p-1}}
+\]</span>
+where <span class="math inline">\(v_{jj}\)</span> is the <span class="math inline">\((j+1)^{th}\)</span> diagonal element of <span class="math inline">\(\mathrm{V} = (\mathrm{X}^T\mathrm{X})^{-1}\)</span>, and <span class="math inline">\(s^2\)</span> is our (unbiased) estimate of <span class="math inline">\(\sigma_{\epsilon}^2\)</span> from equation <a href="introduction.html#eq:ssquared">(1.2)</a>. Note the use of the <span class="math inline">\(t\)</span>-distribution since we must also estimate <span class="math inline">\(s^2\)</span>.</p>
+</div>
+<div id="sec:expvaryhat" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Expectation and variance of the fitted values<a href="introduction.html#sec:expvaryhat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The fitted values are calculated as
+<span class="math display">\[
+\hat{\underline{Y}} = \mathrm{X}\underline{\hat{\beta}}
+\]</span>
+or equivalently as
+<span class="math display">\[
+\hat{\underline{Y}} = \mathrm{H}\underline{Y}.
+\]</span></p>
+<p>Their expectation is</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\mathrm{E}\left[\underline{\hat{Y}}\right]} &amp;\color{red}{= \mathrm{E}\left[\mathrm{X}\underline{\hat{\beta}}\right]} \\
+&amp;\color{red}{=\mathrm{X} \mathrm{E}[\underline{\hat{\beta}}]} \\
+&amp;\color{red}{=\mathrm{X}\underline{\beta}},
+\end{align*}\]</span></p>
+<p>with variance given by</p>
+<p><span class="math display">\[\begin{align*}
+\color{red}{\mathrm{Var}\left[\underline{\hat{Y}}\right]} &amp;\color{red}{= \mathrm{Var}\left[\mathrm{H}\underline{Y}\right]} \\
+&amp;\color{red}{= \mathrm{H} \mathrm{Var}\left[\underline{Y}\right] \mathrm{H}^T} \\
+&amp;\color{red}{= \mathrm{H} \mathrm{I}\sigma_{\epsilon}^2 \mathrm{H}^T} \\
+&amp;\color{red}{= \mathrm{H}\mathrm{H}\sigma_{\epsilon}^2} \\
+&amp;\color{red}{= \mathrm{H} \sigma_{\epsilon}^2}
+\end{align*}\]</span>
+Hence, the variability of the fitted values depends on the hat matrix, <span class="math inline">\(\mathrm{H}\)</span>. We will discuss this further in chapter 2.</p>
+</div>
+<div id="expectation-and-variance-of-the-residuals" class="section level3 hasAnchor" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Expectation and variance of the residuals<a href="introduction.html#expectation-and-variance-of-the-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that the residuals are found as
+<span class="math display">\[
+\color{red}{\underline{\hat{\epsilon}} = \underline{Y} - \hat{\underline{Y}}.}
+\]</span>
+or alternatively as
+<span class="math display">\[
+\color{red}{\underline{\hat{\epsilon}} = (\mathrm{I} - \mathrm{H})\underline{Y}.}
+\]</span></p>
+<p>We can find the expectation and variance as
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{E}[\underline{\hat{\epsilon}}]} &amp; \color{red}{= \mathrm{E}[\underline{Y} - \hat{\underline{Y}}]} \\
+&amp;\color{red}{= \mathrm{E}[\mathrm{X}\underline{\beta}] - \mathrm{E}[\mathrm{X}\underline{\hat{\beta}}]} \\
+&amp;\color{red}{= \mathrm{X}\underline{\beta} - \mathrm{X}\underline{\beta}} \\
+&amp;\color{red}{= \underline{0},}
+\end{align*}\]</span>
+and
+<span class="math display">\[\begin{align*}
+\color{red}{\mathrm{Var}[\underline{\hat{\epsilon}}]} &amp;\color{red}{= \mathrm{Var}[(\mathrm{I} - \mathrm{H})\underline{Y}]} \\
+&amp;\color{red}{= (\mathrm{I} - \mathrm{H})\mathrm{Var}[\underline{Y}](\mathrm{I} - \mathrm{H})^T} \\
+&amp;\color{red}{= (\mathrm{I} - \mathrm{H})\sigma_{\epsilon}^2\mathrm{I}(\mathrm{I} - \mathrm{H})} \\
+&amp;\color{red}{= \sigma_{\epsilon}^2(\mathrm{I} - \mathrm{H} - \mathrm{H} + \mathrm{H}\mathrm{H})} \\
+&amp;\color{red}{= \sigma_{\epsilon}^2(\mathrm{I} - \mathrm{H}).}
+\end{align*}\]</span></p>
+<p>Note that this implies that, unless all the diagonal values of <span class="math inline">\(\mathrm{H}\)</span> are equal then the errors have different variances, and that these variances are smaller for larger values of <span class="math inline">\(h_{ii}\)</span>, i.e. higher leverages (see chapter 2).</p>
+</div>
+</div>
+<div id="sec:mlrinr" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Multiple linear regression in <code>R</code><a href="introduction.html#sec:mlrinr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once we start to think about large datasets and a large number of parameters, finding the parameter estimates by hand becomes laborious, not to mention the possibility of both data entry and/or numerical errors occurring increases greatly. Happily, we can use <code>R</code> to conduct the analyses instead.</p>
+<div id="using-data-in-r" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Using data in <code>R</code><a href="introduction.html#using-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are various ways of using data with <code>R</code>. Data can be read in manually, i.e.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" tabindex="-1"></a><span class="do">## Type the data in the console</span></span>
+<span id="cb1-2"><a href="introduction.html#cb1-2" tabindex="-1"></a>bodyweight <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">60.4</span>, <span class="fl">81.1</span>, <span class="fl">94.9</span>, <span class="fl">86.4</span>, <span class="fl">90.3</span>, <span class="fl">60.4</span>, <span class="fl">77.8</span>, <span class="fl">85.0</span>, <span class="fl">71.6</span>, <span class="fl">64.6</span>, <span class="fl">75.1</span>, <span class="fl">89.6</span>, </span>
+<span id="cb1-3"><a href="introduction.html#cb1-3" tabindex="-1"></a><span class="fl">84.4</span>, <span class="fl">93.0</span>, <span class="fl">61.3</span>, <span class="fl">74.9</span>, <span class="fl">94.3</span>, <span class="fl">61.8</span>, <span class="fl">78.1</span>, <span class="fl">74.8</span>, <span class="fl">59.0</span>, <span class="fl">69.2</span>, <span class="fl">67.1</span>, <span class="fl">82.4</span>)</span></code></pre></div>
+<p>The majority of the time, in this module and the wider world, the (external) data in the file <code>ExternalData.RData</code> will be read/loaded directly into <code>R</code>, e.g.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="introduction.html#cb2-1" tabindex="-1"></a><span class="do">## Load in an external dataset</span></span>
+<span id="cb2-2"><a href="introduction.html#cb2-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;ExternalData.RData&quot;</span>)</span></code></pre></div>
+<p>Alternatively, we may sometimes make use of datasets that are internal to <code>R</code> in that they are part of an <code>R</code> package, i.e. for the dataset <code>InternalRDataset</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" tabindex="-1"></a><span class="do">## Load in an internal dataset</span></span>
+<span id="cb3-2"><a href="introduction.html#cb3-2" tabindex="-1"></a><span class="fu">data</span>(InternalRDataset)</span></code></pre></div>
+<p>To view the available datasets in <code>R</code> we can type <code>data()</code> at the console, or, for datasets attached to a particular package we can use <code>data(library = "Rpackage")</code>.</p>
+</div>
+</div>
+<div id="example-analysis-of-bodyweight-data-using-r" class="section level2 unnumbered hasAnchor">
+<h2>Example: Analysis of bodyweight data using <code>R</code><a href="introduction.html#example-analysis-of-bodyweight-data-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To use <code>R</code> for the plots and analysis seen earlier:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction.html#cb4-1" tabindex="-1"></a><span class="do">## Load the data</span></span>
+<span id="cb4-2"><a href="introduction.html#cb4-2" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;bodyweight.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction.html#cb5-1" tabindex="-1"></a><span class="do">## Plots</span></span>
+<span id="cb5-2"><a href="introduction.html#cb5-2" tabindex="-1"></a><span class="co"># Weight versus consumption</span></span>
+<span id="cb5-3"><a href="introduction.html#cb5-3" tabindex="-1"></a><span class="fu">plot</span>(Weight <span class="sc">~</span> Consumption, <span class="at">data =</span> bodyweight, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb5-4"><a href="introduction.html#cb5-4" tabindex="-1"></a><span class="co"># Weight versus exercise</span></span>
+<span id="cb5-5"><a href="introduction.html#cb5-5" tabindex="-1"></a><span class="fu">plot</span>(Weight <span class="sc">~</span> Exercise, <span class="at">data =</span> bodyweight, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction.html#cb6-1" tabindex="-1"></a><span class="do">## Analysis</span></span>
+<span id="cb6-2"><a href="introduction.html#cb6-2" tabindex="-1"></a><span class="co"># Simple linear regression on consumption</span></span>
+<span id="cb6-3"><a href="introduction.html#cb6-3" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Consumption, <span class="at">data =</span> bodyweight)</span>
+<span id="cb6-4"><a href="introduction.html#cb6-4" tabindex="-1"></a><span class="co"># Multiple linear regression on consumption &amp; exercise</span></span>
+<span id="cb6-5"><a href="introduction.html#cb6-5" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Consumption <span class="sc">+</span> Exercise, <span class="at">data =</span> bodyweight)</span></code></pre></div>
+We can inspect a model fit using various commands
+<ol type="i">
+<li>
+The <code>summary()</code> command gives an overview of the fit
+</li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction.html#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Weight ~ Consumption + Exercise, data = bodyweight)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.5751 -2.5704 -0.7894  2.4049 10.9266 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.104925   7.017861  -0.300  0.76717    
+## Consumption  0.027254   0.002286  11.921 8.23e-11 ***
+## Exercise    -3.278296   0.916795  -3.576  0.00178 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.044 on 21 degrees of freedom
+## Multiple R-squared:  0.8916, Adjusted R-squared:  0.8813 
+## F-statistic:  86.4 on 2 and 21 DF,  p-value: 7.346e-11</code></pre>
+We will consider output of this nature in detail later in the module.
+<li>
+<p>The fitted values and residuals can also be extracted (output - to three decimal places - is suppressed here)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction.html#cb9-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">fitted.values</span>(fit2), <span class="dv">3</span>)</span>
+<span id="cb9-2"><a href="introduction.html#cb9-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">residuals</span>(fit2), <span class="dv">3</span>)</span></code></pre></div>
+</li>
+<li>
+<p>The variance-covariance matrix for <span class="math inline">\(\underline{\hat{\beta}}\)</span> is also contained within the fit. For the second model fit we get</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introduction.html#cb10-1" tabindex="-1"></a><span class="fu">vcov</span>(fit2)</span></code></pre></div>
+<pre><code>##             (Intercept)   Consumption      Exercise
+## (Intercept)  49.2503765 -1.584890e-02 -1.6584367474
+## Consumption  -0.0158489  5.227021e-06  0.0003330453
+## Exercise     -1.6584367  3.330453e-04  0.8405137595</code></pre>
+</li>
+<li>
+<p>The hat-values that make up the diagonal of the <span class="math inline">\(\mathrm{H}\)</span> matrix can also be found - again we round to three decimal places:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introduction.html#cb12-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">hatvalues</span>(fit2), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##     1     2     3     4     5     6     7     8     9    10    11    12    13 
+## 0.294 0.075 0.425 0.079 0.101 0.132 0.095 0.086 0.106 0.087 0.080 0.124 0.078 
+##    14    15    16    17    18    19    20    21    22    23    24 
+## 0.101 0.210 0.073 0.114 0.128 0.074 0.045 0.197 0.117 0.127 0.051</code></pre>
+</li>
+<li>
+<p>We can also add a fitted regression line to a scatterplot via the <code>abline()</code> command:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introduction.html#cb14-1" tabindex="-1"></a><span class="fu">plot</span>(Weight <span class="sc">~</span> Consumption, <span class="at">data =</span> bodyweight, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb14-2"><a href="introduction.html#cb14-2" tabindex="-1"></a><span class="fu">abline</span>(fit1, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+</li>
+</ol>
+</div>
+<div id="the-role-of-the-intercept" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> The role of the intercept<a href="introduction.html#the-role-of-the-intercept" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The intercept, via the parameter <span class="math inline">\(\beta_0\)</span>, is included as a matter of course when fitting a regression model (the default behaviour in R is to have an intercept present in a model). Why is this the case? What would happen if we removed the intercept?</p>
+<p>Suppose we thought that we should fit the model without an intercept, then the multiple linear regression model takes the form
+<span class="math display" id="eq:mlrmodelnoint">\[
+\color{red}{Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots \beta_p x_{ip} + \epsilon_i \tag{1.3}}
+\]</span>
+for <span class="math inline">\(i = 1, \ldots, n\)</span>. Or, equivalently, in matrix notation
+<span class="math display">\[\begin{equation}
+\color{red}{\underline{Y} = \mathrm{\tilde{X}}\underline{\beta} + \underline{\epsilon}.}
+\end{equation}\]</span>
+where <span class="math inline">\(\mathrm{\tilde{X}}\)</span> represents the design matrix that does not now have a first column of ’1’s.</p>
+</div>
+<div id="example-analysis-of-bodyweight-data-without-an-intercept-term" class="section level2 unnumbered hasAnchor">
+<h2>Example: Analysis of bodyweight data without an intercept term<a href="introduction.html#example-analysis-of-bodyweight-data-without-an-intercept-term" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to our example on pre-diabetes we would have
+<span class="math display">\[\begin{align*}
+\color{red}{\underline{Y} =
+\begin{pmatrix}
+    60.4     \\
+    81.1 \\
+  \vdots \\
+    82.4 \\
+         \end{pmatrix},
+            \mathrm{\tilde{X}} =
+     \begin{pmatrix}
+    2680&amp; 3  \\
+    3280&amp; 1  \\
+  \vdots&amp; \vdots \\
+    2820&amp; 1 \\
+         \end{pmatrix},
+         \underline{\beta} = \begin{pmatrix}
+    \beta_1 \\
+    \beta_2 \\
+         \end{pmatrix},
+         \underline{\epsilon} =    \begin{pmatrix}
+  \epsilon_1 \\
+    \epsilon_2 \\
+  \vdots \\
+    \epsilon_{24} \\
+         \end{pmatrix}.}
+   \end{align*}\]</span></p>
+<p>Note that <span class="math inline">\(\underline{Y}\)</span> and <span class="math inline">\(\underline{\epsilon}\)</span> are unchanged, whereas both the design matrix and <span class="math inline">\(\underline{\beta}\)</span> are affected by the removal of the intercept term.</p>
+<p>Upon fitting we would obtain the fitted model
+<span class="math display">\[
+\textrm{Weight} = \hat{\beta}_1\times \textrm{Consumption} + \hat{\beta}_2\times\textrm{Exercise}.
+\]</span></p>
+<p>This model - and the equivalent model with an intercept term - assumes the relationship between weight and consumption remains the same for all values of calorific consumption and exercise. Moreover, the model without the intercept further assumes that zero calorie intake and zero exercise gives zero body weight!</p>
+<p>This may well not be true (or possible), not just here but for many datasets. Forcing a zero intercept can give nonsensical values for the predicted response and it can also severely affect the fit of the regression line, particularly if our estimate of the intercept is significantly different from zero. In the absence of an intercept term, the line of best fit is forced to go through the origin. We will now investigate further with another example.</p>
+</div>
+<div id="example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept" class="section level2 unnumbered hasAnchor">
+<h2>Example: Analysis of men’s Premier League football data - the role of the intercept<a href="introduction.html#example-analysis-of-mens-premier-league-football-data---the-role-of-the-intercept" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data in the following example comes from the 2012-13 men’s English Premier League final football table (on Canvas in the file <em>prem.RData</em>). For each team the number of points they achieved (the response - why?), goals they scored, conceded, and their goal difference (scored - conceded) are recorded, alongside how many times they did not concede a goal (a ‘clean sheet’), which will be our primary focus for now. A snapshot of the data are given below:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction.html#cb15-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;prem.RData&quot;</span>)</span>
+<span id="cb15-2"><a href="introduction.html#cb15-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(prem, <span class="dv">5</span>))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="23%" />
+<col width="9%" />
+<col width="11%" />
+<col width="19%" />
+<col width="9%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Position</th>
+<th align="left">Team</th>
+<th align="right">Scored</th>
+<th align="right">Conceded</th>
+<th align="right">GoalDifference</th>
+<th align="right">Points</th>
+<th align="right">CleanSheets</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Manchester United</td>
+<td align="right">86</td>
+<td align="right">43</td>
+<td align="right">43</td>
+<td align="right">89</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Manchester City</td>
+<td align="right">66</td>
+<td align="right">34</td>
+<td align="right">32</td>
+<td align="right">78</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Chelsea</td>
+<td align="right">75</td>
+<td align="right">39</td>
+<td align="right">36</td>
+<td align="right">75</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Arsenal</td>
+<td align="right">72</td>
+<td align="right">37</td>
+<td align="right">35</td>
+<td align="right">73</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Tottenham Hotspur</td>
+<td align="right">66</td>
+<td align="right">46</td>
+<td align="right">20</td>
+<td align="right">72</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+Below is a scatterplot of points against clean sheets:
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:premplot1"></span>
+<img src="multiplelinearreg_files/figure-html/premplot1-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data." width="65%" />
+<p class="caption">
+Figure 1.2: Scatterplot of points against clean sheets for the Premier League 2012/13 data.
+</p>
+</div>
+<ol type="a">
+<li>
+<p>Fit a simple linear regression model with clean sheets as the sole covariate. Overlay the regression line on the scatterplot of the raw data and comment.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introduction.html#cb16-1" tabindex="-1"></a>fitprem1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Points <span class="sc">~</span> CleanSheets, <span class="at">data =</span> prem)</span>
+<span id="cb16-2"><a href="introduction.html#cb16-2" tabindex="-1"></a><span class="fu">plot</span>(Points <span class="sc">~</span> CleanSheets, <span class="at">data =</span> prem, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span>
+<span id="cb16-3"><a href="introduction.html#cb16-3" tabindex="-1"></a><span class="fu">abline</span>(fitprem1, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:premfitted1"></span>
+<img src="multiplelinearreg_files/figure-html/premfitted1-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit." width="65%" />
+<p class="caption">
+Figure 1.3: Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.
+</p>
+</div>
+</li>
+<li>
+<p>Fit a second model, this time without an intercept and overlay this regression line. What do you observe?<br />
+<span style="color: red">We can fit the second model and overlay the line using:</span></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction.html#cb17-1" tabindex="-1"></a>fitprem2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Points <span class="sc">~</span> CleanSheets <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> prem)</span>
+<span id="cb17-2"><a href="introduction.html#cb17-2" tabindex="-1"></a><span class="fu">abline</span>(fitprem2, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:premfitted2"></span>
+<img src="multiplelinearreg_files/figure-html/premfitted2-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with two overlaid model fits." width="65%" />
+<p class="caption">
+Figure 1.4: Scatterplot of points against clean sheets for the Premier League 2012/13 data with two overlaid model fits.
+</p>
+</div>
+</ol>
+<p><span style="color: red">We can see that the model without the intercept has a different slope since <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span> are correlated (see MAS2902). Note also that the line of best fit for the model without the intercept is forced to go through the origin. Both models seem to do a reasonable job - assessing by eye - of capturing the relationship between points and clean sheets. This is not always the case though, as we will see in practical 1.</span></p>
+<div id="interpretability-of-the-intercept-and-extrapolation" class="section level3 hasAnchor" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Interpretability of the intercept and extrapolation<a href="introduction.html#interpretability-of-the-intercept-and-extrapolation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Having established that including an intercept is a sensible thing to do, we now move on to the question of its interpretation. Note that we did not formally interpret the intercept in our previous analysis of the bodyweight data, and this is common practice.</p>
+<p>However, if we did wish to say something meaningful about the intercept how would we go about it? We first inspect the fit for our first model from the previous example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction.html#cb18-1" tabindex="-1"></a><span class="fu">summary</span>(fitprem1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Points ~ CleanSheets, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.6526  -7.9816  -0.7842   7.0974  26.8211 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  16.3368     8.0303   2.034 0.056915 .  
+## CleanSheets   3.5263     0.7544   4.674 0.000189 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 12.3 on 18 degrees of freedom
+## Multiple R-squared:  0.5483, Adjusted R-squared:  0.5232 
+## F-statistic: 21.85 on 1 and 18 DF,  p-value: 0.0001888</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-15-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit." width="65%" />
+<p class="caption">
+Figure 1.5: Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.
+</p>
+</div>
+<p>We see that the estimate of the intercept, <span class="math inline">\(\hat{\beta}_0\)</span>, is 16.34. This tells us that when clean sheets takes the value zero, then we would expect a team to obtain around 16 points (as points is an integer we round). Here this makes some sense, since no clean sheets would mean a team concedes at least one goal in every match they play. Note, however, that the smallest observed value for this variable is five, so by using the value of zero we are extrapolating beyond the observed range of our data and this can be problematic.</p>
+</div>
+<div id="mean-centering-of-covariates" class="section level3 hasAnchor" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Mean-centering of covariates<a href="introduction.html#mean-centering-of-covariates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Without any data manipulation prior to model fitting we have seen that the estimate for the intercept is interpreted as the value for the response when all of the covariates take the value zero. This, however, might be a scenario that is either not likely (i.e. a weight of zero kg for an adult), or not permissible (amount of a drug administered as part of a treatment) in the context of the data at hand.</p>
+<p>One solution to this issue is to scale the covariates via <em>mean-centering</em>.
+<span class="math display">\[
+\color{red}{\underline{\tilde{x}}^{(j)} = \underline{x}^{(j)} - \bar{x}^{(j)}}
+\]</span>
+where <span class="math inline">\(j = 1, \ldots, p\)</span>, <span class="math inline">\(\underline{x}^{(j)} = (x_{1j}, x_{2j}, \ldots, x_{nj})\)</span> is the vector of values for the <span class="math inline">\(j^{th}\)</span> covariate and <span class="math inline">\(\bar{x}^{(j)}\)</span> is the sample mean for the <span class="math inline">\(j^{th}\)</span> covariate, for example the mean of the exercise values in the bodyweight data. Note the distinction between <span class="math inline">\(\underline{x}^{(j)}\)</span> and <span class="math inline">\(\underline{x}_i\)</span> introduced earlier, which is the vector of values for each individual (or subject).</p>
+<p>The intercept has the same interpretation as above, namely the value of the response when the covariates are all simultaneously set to zero, i.e. <span class="math inline">\(\underline{x}_i = \underline{0}\)</span>. However, zero is now the <em>mean</em> value for each covariate, after mean-centering, so the intercept can also now be interpreted as the value of the response when each covariate is at its (own) <em>average value</em>. Furthermore, the value of the intercept turns out to be <span class="math inline">\(\bar{y}\)</span>, the sample mean of the response vector. Recall that in simple linear regression
+<span class="math display">\[
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \times \bar{x}
+\]</span>
+and this will clearly reduce to <span class="math inline">\(\hat{\beta}_0 = \bar{y}\)</span> when <span class="math inline">\(\bar{x} = 0\)</span>. This result generalises to the multiple linear regression case.</p>
+<p>This tends to give a more intuitive interpretation generally. Mean-centering also removes the correlation between <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1, \ldots \beta_p\)</span>. We will now see the effect of mean-centering in an example.</p>
+</div>
+</div>
+<div id="example-mean-centering-mens-premier-league-football-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Mean-centering (men’s Premier League football data)<a href="introduction.html#example-mean-centering-mens-premier-league-football-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to the data from the men’s football Premier League. Below is a scatterplot of points against the raw (solid circles) and mean-centered (triangles) versions of our clean sheets covariate.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-16-1.png" alt="Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles)." width="65%" />
+<p class="caption">
+Figure 1.6: Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles).
+</p>
+</div>
+<ol type="a">
+<li>
+<p>Fit a model using a mean-centered version of clean sheets.<br />
+[Hint: use the <code>scale</code> command in <code>R</code> to perform the mean-centering].<br />
+<span style="color: red">We fit - and inspect - the model using the <code>R</code> commands</span></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction.html#cb20-1" tabindex="-1"></a>CleanSheetsScaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(prem<span class="sc">$</span>CleanSheets, </span>
+<span id="cb20-2"><a href="introduction.html#cb20-2" tabindex="-1"></a>                           <span class="at">scale =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-3"><a href="introduction.html#cb20-3" tabindex="-1"></a>fit_mean_centre <span class="ot">&lt;-</span> <span class="fu">lm</span>(Points <span class="sc">~</span> CleanSheetsScaled, </span>
+<span id="cb20-4"><a href="introduction.html#cb20-4" tabindex="-1"></a>                      <span class="at">data =</span> prem)</span>
+<span id="cb20-5"><a href="introduction.html#cb20-5" tabindex="-1"></a><span class="fu">summary</span>(fit_mean_centre)  </span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Points ~ CleanSheetsScaled, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.6526  -7.9816  -0.7842   7.0974  26.8211 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        51.6000     2.7513  18.755 2.91e-13 ***
+## CleanSheetsScaled   3.5263     0.7544   4.674 0.000189 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 12.3 on 18 degrees of freedom
+## Multiple R-squared:  0.5483, Adjusted R-squared:  0.5232 
+## F-statistic: 21.85 on 1 and 18 DF,  p-value: 0.0001888</code></pre>
+</li>
+<li>
+Overlay the lines of best fit for the models using the raw and mean-centered covariates. What do you notice?
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-18-1.png" alt="Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles) with overlaid lines of best fit." width="65%" />
+<p class="caption">
+Figure 1.7: Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles) with overlaid lines of best fit.
+</p>
+</div>
+</li>
+<span style="color: red">From the summary, we see that the estimate of the slope is exactly the same as before, i.e. <span class="math inline">\(\hat{\beta}_1 = 3.53\)</span> so the line has the same gradient, but the intercept is different. The intercept estimate is <span class="math inline">\(\hat{\beta}_0 = 51.60\)</span> (recall, it was around 16 earlier) which suggests that a team with the number of clean sheets will obtain around 52 points (nearest integer, as before). This interpretation is cleaner than our earlier interpretation using the raw rather than mean-centered covariate.</span>
+</ol>
+<p>Although we have illustrated the role of the intercept using simple linear regression, the same ideas hold in the multiple linear regression model. We now return to the issue of multicollinearity.</p>
+</div>
+<div id="sec:multicol" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity<a href="introduction.html#sec:multicol" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We saw earlier that both the estimator of <span class="math inline">\(\underline{\beta}\)</span> and its variance both depend on the quantity <span class="math inline">\(\mathrm{X}^T\mathrm{X}^{-1}\)</span>. As such, this quantity plays a critical part in fitting a regression model and in determining the significance (or otherwise) of estimated parameters. We will now consider a situation known as <em>multicollinearity</em> that leads to problems with taking the inverse of <span class="math inline">\(\mathrm{X}^T\mathrm{X}\)</span>.</p>
+</div>
+<div id="example-multicollinearity-in-mens-premier-league-football-data" class="section level2 unnumbered hasAnchor">
+<h2>Example: Multicollinearity in men’s Premier League football data<a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Returning to the Premier League football data, a sports data analyst sets out to fit the following model:
+<span class="math display">\[
+\textrm{Points}_i = \beta_0 + \beta_1 \textrm{Goal difference}_i + \beta_2 \textrm{Scored}_i + \beta_3 \textrm{Conceded}_i  + \epsilon_i
+\]</span></p>
+<ol type="a">
+<li>
+<p>Construct the design matrix <span class="math inline">\(\mathrm{X}\)</span>, and hence calculate <span class="math inline">\(\mathrm{X}^T\mathrm{X}\)</span> and <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction.html#cb22-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, prem<span class="sc">$</span>GoalDifference, prem<span class="sc">$</span>Scored, </span>
+<span id="cb22-2"><a href="introduction.html#cb22-2" tabindex="-1"></a>           prem<span class="sc">$</span>Conceded)</span>
+<span id="cb22-3"><a href="introduction.html#cb22-3" tabindex="-1"></a>XTX <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(X)</span>
+<span id="cb22-4"><a href="introduction.html#cb22-4" tabindex="-1"></a><span class="fu">solve</span>(XTX) </span></code></pre></div>
+<span style="color: red">The last line fails, we cannot invert the matrix as it is singular.</span>
+</li>
+<li>
+<p>Can you spot an obvious problem with this model?</p>
+<p><span style="color: red">The problem here is that one of the variables is a linear combination of the others, namely goal difference which is defined as ‘scored’ - ‘conceded’. This means they are collinear and that we will have problems inverting <span class="math inline">\(\mathrm{X}^T\mathrm{X}\)</span>.</span></p>
+</li>
+<li>
+<p>Fit the model in <code>R</code> and inspect the fit - what do you notice?</p>
+<p><span style="color: red">Implementing the model we get</span></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction.html#cb23-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Points <span class="sc">~</span> GoalDifference <span class="sc">+</span> Scored <span class="sc">+</span> Conceded, <span class="at">data =</span> prem))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Points ~ GoalDifference + Scored + Conceded, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.0387  -2.7741   0.2508   3.7633   5.7760 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     38.3511     9.6368   3.980 0.000969 ***
+## GoalDifference   0.5710     0.1097   5.206 7.13e-05 ***
+## Scored           0.2493     0.1803   1.382 0.184780    
+## Conceded             NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.471 on 17 degrees of freedom
+## Multiple R-squared:  0.9437, Adjusted R-squared:  0.937 
+## F-statistic: 142.4 on 2 and 17 DF,  p-value: 2.404e-11</code></pre>
+<span style="color: red">There is no parameter estimate or standard error for goals conceded, which seems to have been removed from the model.</span>
+</li>
+</ol>
+<p>Here it was clear what was driving the multicollinearity, and the issue could be easily spotted, and resolved. Sometimes, however, the problem is more subtle and we will consider this scenario further in practical 1. In the next chapter we will investigate whether our model conforms to assumptions and/or has any unusual observations that warrant further investigation.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/multiplelinearreg.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["notes.pdf", "notes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

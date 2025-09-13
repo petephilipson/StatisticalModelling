@@ -1,0 +1,27 @@
+book_filename: "notes"
+output_dir: "docs"
+rmd_files:
+  - index.Rmd
+  - moduleInfo_MAS3928.Rmd
+  - multiplelinearreg.Rmd
+  - diagnostics.Rmd
+  - inference.Rmd
+  - analysis_des_exp.Rmd
+  - general_linear_models.Rmd
+output:
+  bookdown::gitbook:
+    includes:
+      in_header: header.html    
+    self_contained: false
+    number_sections: true
+    toc: true
+    toc_depth: 2
+new_session: yes
+clean: true
+language:
+  label:
+    fig: 'Figure '
+    tab: 'Table '
+    eq: 'Equation '
+resources:
+ - Graphics/cache
