@@ -36,8 +36,8 @@ library(kableExtra)
 schedule <- data.frame(
     "Type" = c("Formative", "Summative"),
     "Weight (%)" = c(0, 20),
-    "Release date" = c("Wednesday 1st October", "Wednesday 29th October"),
-    "Submission date" = c("Wednesday 15th October", "Wednesday 12th November"),
+    "Release date" = c("Wednesday 15th October", "Wednesday 22nd October"),
+    "Submission date" = c("Wednesday 22nd October", "Wednesday 12th November"),
   check.names = FALSE
 )
 kable(schedule) #%>%

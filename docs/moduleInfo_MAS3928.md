@@ -35,8 +35,8 @@ Table: (\#tab:assessched)Provisional in-course-assessment schedule.
 
 |Type      | Weight (%)|Release date           |Submission date         |
 |:---------|----------:|:----------------------|:-----------------------|
-|Formative |          0|Wednesday 1st October  |Wednesday 15th October  |
-|Summative |         20|Wednesday 29th October |Wednesday 12th November |
+|Formative |          0|Wednesday 15th October |Wednesday 22nd October  |
+|Summative |         20|Wednesday 22nd October |Wednesday 12th November |
 
 ## Relevant texts {-}
 <div style="display:none;">

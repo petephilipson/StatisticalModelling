@@ -1,6 +1,5 @@
 ---
 title: 'MAS3928: Statistical Modelling'
-subtitle: 'Semester 1, 2025/26'
 number_sections: false
 unnumbered: true
 author: "Dr Pete Philipson"
