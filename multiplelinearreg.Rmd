@@ -15,7 +15,7 @@ As you have seen in MAS2902, there are often several possible explanatory variab
 \[
 Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots \beta_p x_{ip} + \epsilon_i (\#eq:mlrmodel)
 \]
-for $i = 1, \ldots n$. As in simple linear regression, we make assumptions about the (unobserved) error terms, namely that they have zero mean and are independent, i.e. $\epsilon_i \sim N(0, \sigma_{\epsilon}^2)$ and $\textrm{Cov}(\epsilon_i, \epsilon_j) = 0$.
+for $i = 1, \ldots n$. As in simple linear regression, we make assumptions about the (unobserved) error terms, namely that they have zero mean and are independently normally distributed, i.e. $\epsilon_i \sim N(0, \sigma_{\epsilon}^2)$ and $\textrm{Cov}(\epsilon_i, \epsilon_j) = 0$.
 
 Note our model in \@ref(eq:mlrmodel) is called a multiple linear regression model because it is linear in the *parameters*, $\vec{\beta}  = \left(\beta_0, \ldots, \beta_p\right)^T$ - it does not have to be linear in the explanatory variables. For example, the following are multiple linear regression models
 \begin{eqnarray*}
@@ -107,7 +107,7 @@ for $i = 1, \ldots, n$. This allows us to express the design matrix as
 It is sometimes convenient to set $\vec{x}_i^* = (x_{i1}, x_{i2}, \ldots x_{ip})$
 for $i = 1, \ldots, n$. This is the vector of explanatory variables alone (i.e. no intercept term) for the $i^{th}$ observation, which we will make use of later. We will now illustrate the multivariate regression model with a few examples. 
 
-## Example - Matrix form for body weight in pre-diabetes patients (MLR) {-}
+## Example - Matrix form for pre-diabetes data {-}
 We now introduce a specific example, which we shall return to throughout the chapter. In a study on body weight in 24 patients over 50, who have been diagnosed with pre-diabetes. Data were collected on their weight (in kilograms), food consumption (in calories), and a(n) (ordinal) measure of how much exercise each patient takes, on average per week: 0 = no exercise, 1 = some exercise, 2 = moderate exercise, 3 = heavy exercise. The food consumption was calculated by averaging over a week’s consumption and we will treat the ordinal covariate (exercise) as if it was continuous. The full data are given in Table \@ref(tab:bodyweight)
 
 ```{r bodyweight, echo=FALSE, results='asis', tab.cap = "Weight, average food consumption and exercise score for twenty-four pre-diabetes patients in body weight study."}
@@ -129,7 +129,7 @@ kable(bodyweighttab2) #, caption = "Weight and average food consumption for twen
 
 We can produce scatterplots of weight against consumption and exercise:
 
-```{r, fig.show = 'hold', fig.cap = "Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study", echo=FALSE, fig.align='center', out.width='48%'}
+```{r, fig.show = 'hold', fig.cap = "Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data", echo=FALSE, fig.align='center', out.width='48%'}
 bodyweight <- data.frame(
     "Weight (kg)" = c(60.4, 81.1, 94.9, 86.4, 90.3, 60.4, 77.8, 85.0, 71.6, 64.6, 75.1, 89.6, 84.4, 93.0, 61.3, 74.9, 94.3, 61.8, 78.1, 74.8, 59.0, 69.2, 67.1, 82.4),
     "Consumption (cal)" = c(2680, 3280, 3890, 3170, 3390, 2670, 2770, 3330, 2710, 2600, 2880, 3430,3160, 3330, 2360, 3030, 3390, 2700, 3090, 3020, 2410, 2830, 2620, 2820), 
@@ -193,7 +193,7 @@ The residuals (which estimate the errors) can also be collected in a vector of l
 ## Parameter estimation
 Having set up the model, how do we obtain estimates for the unknown parameters? One approach is to use maximum likelihood. 
 
-In order to set the scene, recall that our key assumptions are normality, zero mean, common variance and independence of the errors, i.e. $\epsilon_i \sim N(0, \sigma_{\epsilon}^2)$ and $\textrm{Cov}(\epsilon_i, \epsilon_j) = 0$. Since $Y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip} + \epsilon_i$, then the normality assumption on $\epsilon_i$ induces a normal distribution on each $Y_i$ (and, in turn, the vector $\vec{Y}$). The values for the covariates are fixed, as are the true (usually unknown) values of $\vec{\beta}$ so these just serve as constants when thinking about the distribution of $Y_i$. 
+In order to set the scene, recall that our key assumptions are normality, zero mean, common variance and independence of the errors, i.e. $\epsilon_i \sim N(0, \sigma_{\epsilon}^2)$ and $\textrm{Cov}(\epsilon_i, \epsilon_j) = 0, i \neq j$. Since $Y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip} + \epsilon_i$, then the normality assumption on $\epsilon_i$ induces a normal distribution on each $Y_i$ (and, in turn, the vector $\vec{Y}$). The values for the covariates are fixed, as are the true (usually unknown) values of $\vec{\beta}$ so these just serve as constants when thinking about the distribution of $Y_i$. 
 
 Furthermore, the assumption of independence also carries through and the variance is unaltered (since we are simply adding scalars to a random variable). This tells us that $Y_i \mid \vec{x}_i, \vec{\beta}, \sigma_{\epsilon}^2 \sim N(\beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip}, \sigma_{\epsilon}^2)$ for $i = 1, \ldots, n$. This can be written more compactly as $Y_i \mid \vec{x}_i, \vec{\beta}, \sigma_{\epsilon}^2 \sim N(\vec{x}_i^T\vec{\beta}, \sigma_{\epsilon}^2)$. 
 
@@ -282,10 +282,10 @@ where $p$ is the number of explanatory variables in the model. Note that $\vec{\
 ### Residuals, fitted values and the 'hat matrix' {#sec:resfithat}
 The vector of residuals (which estimate the errors) can be obtained by subtraction after model fitting, namely as 'observed - fitted'
 \begin{align*}
-\gap{\vec{\hat{\epsilon}}} &\gap{= \vec{y} - \hat{\vec{y}}} \\
+\gap{\vec{\hat{\epsilon}}} &\gap{= \vec{y} - \vec{\hat{y}}} \\
 &\gap{= \vec{y} - \up{X}\vec{\hat{\beta}},}
 \end{align*}
-where the fitted values are found as $\hat{\vec{y}} = \up{X}\vec{\hat{\beta}}$.
+where the fitted values are found as $\vec{\hat{y}} = \up{X}\vec{\hat{\beta}}$.
 
 #### The hat matrix {-}
 We can rewrite the estimate for the errors by substituting in $\vec{\hat{\beta}} = (\up{X}^T\up{X})^{-1}\up{X}^T\vec{y}$ to obtain 
@@ -296,12 +296,12 @@ We can rewrite the estimate for the errors by substituting in $\vec{\hat{\beta}}
 \end{align*}
 where $\up{H} = \up{X}(\up{X}^T\up{X})^{-1}\up{X}^T$. $\up{H}$ is known as the 'hat' matrix since
 \begin{align*}
-\gap{\hat{\vec{y}}} &\gap{= \up{X}\hat{\vec{\beta}}} \\
+\gap{\vec{\hat{y}}} &\gap{= \up{X}\vec{\hat{\beta}}} \\
 &\gap{= \up{X}(\up{X}^T\up{X})^{-1}\up{X}^T\vec{y}} \\
 &\gap{= \up{H}\vec{y}.}
 \end{align*}
 
-Hence, multiplying by $\up{H}$ converts $\vec{y}$ to $\hat{\vec{y}}$, i.e. it is the matrix that puts a hat on $\vec{y}$. The hat matrix is an $n \times n$ matrix with elements
+Hence, multiplying by $\up{H}$ converts $\vec{y}$ to $\vec{\hat{y}}$, i.e. it is the matrix that puts a hat on $\vec{y}$. The hat matrix is an $n \times n$ matrix with elements
 \begin{align*}
 \gap{\up{H} =
 \begin{pmatrix}
@@ -414,7 +414,7 @@ It turns out that the hat matrix, $\up{H}$, has some useful properties, which wi
 <!-- We can also calculate the fitted values -->
 <!-- \begin{align*} -->
 <!-- \gap{ -->
-<!-- \hat{\vec{y}} = \up{X}\hat{\vec{\beta}} = -->
+<!-- \vec{\hat{y}} = \up{X}\vec{\hat{\beta}} = -->
 <!-- \begin{pmatrix} -->
 <!-- 67.95 \\ -->
 <!-- 85.08 \\ -->
@@ -534,11 +534,11 @@ where $v_{jj}$ is the $(j+1)^{th}$ diagonal element of $\up{V} = (\up{X}^T\up{X}
 ### Expectation and variance of the fitted values {#sec:expvaryhat}
 The fitted values are calculated as
 \[
-\hat{\vec{Y}} = \up{X}\vec{\hat{\beta}}
+\vec{\hat{Y}} = \up{X}\vec{\hat{\beta}}
 \]
 or equivalently as
 \[
-\hat{\vec{Y}} = \up{H}\vec{Y}.
+\vec{\hat{Y}} = \up{H}\vec{Y}.
 \]
 
 Their expectation is
@@ -563,7 +563,7 @@ Hence, the variability of the fitted values depends on the hat matrix, $\up{H}$.
 ### Expectation and variance of the residuals
 Recall that the residuals are found as
 \[
-\gap{\vec{\hat{\epsilon}} = \vec{Y} - \hat{\vec{Y}}.}
+\gap{\vec{\hat{\epsilon}} = \vec{Y} - \vec{\hat{Y}}.}
 \]
 or alternatively as
 \[
@@ -572,8 +572,8 @@ or alternatively as
 
 We can find the expectation and variance as
 \begin{align*}
-\gap{\E[\vec{\hat{\epsilon}}]} & \gap{= \E[\vec{Y} - \hat{\vec{Y}}]} \\
-&\gap{= \E[\up{X}\vec{\beta}] - \E[\up{X}\vec{\hat{\beta}}]} \\
+\gap{\E[\vec{\hat{\epsilon}}]} & \gap{= \E[\vec{Y} - \vec{\hat{Y}}]} \\
+&\gap{= \E[\up{X}\vec{\beta}] - \E\left[\up{X}\vec{\hat{\beta}}\right]} \\
 &\gap{= \up{X}\vec{\beta} - \up{X}\vec{\beta}} \\
 &\gap{= \vec{0},}
 \end{align*}

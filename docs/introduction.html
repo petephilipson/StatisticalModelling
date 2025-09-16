@@ -176,7 +176,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Multiple linear regression</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#matrix-form-of-the-model"><i class="fa fa-check"></i><b>1.2</b> Matrix form of the model</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr"><i class="fa fa-check"></i>Example - Matrix form for body weight in pre-diabetes patients (MLR)</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example---matrix-form-for-pre-diabetes-data"><i class="fa fa-check"></i>Example - Matrix form for pre-diabetes data</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#parameter-estimation"><i class="fa fa-check"></i><b>1.3</b> Parameter estimation</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="introduction.html"><a href="introduction.html#estimation-of-underlinebeta"><i class="fa fa-check"></i><b>1.3.1</b> Estimation of <span class="math inline">\(\underline{\beta}\)</span></a></li>
@@ -335,7 +335,7 @@ div.csl-indent {
 <span class="math display" id="eq:mlrmodel">\[
 Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots \beta_p x_{ip} + \epsilon_i \tag{1.1}
 \]</span>
-for <span class="math inline">\(i = 1, \ldots n\)</span>. As in simple linear regression, we make assumptions about the (unobserved) error terms, namely that they have zero mean and are independent, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0\)</span>.</p>
+for <span class="math inline">\(i = 1, \ldots n\)</span>. As in simple linear regression, we make assumptions about the (unobserved) error terms, namely that they have zero mean and are independently normally distributed, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0\)</span>.</p>
 <p>Note our model in <a href="introduction.html#eq:mlrmodel">(1.1)</a> is called a multiple linear regression model because it is linear in the <em>parameters</em>, <span class="math inline">\(\underline{\beta} = \left(\beta_0, \ldots, \beta_p\right)^T\)</span> - it does not have to be linear in the explanatory variables. For example, the following are multiple linear regression models
 <span class="math display">\[\begin{eqnarray*}
 Y_i &amp;=&amp; \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i \\
@@ -419,8 +419,8 @@ for <span class="math inline">\(i = 1, \ldots, n\)</span>. This allows us to exp
 <p>It is sometimes convenient to set <span class="math inline">\(\underline{x}_i^* = (x_{i1}, x_{i2}, \ldots x_{ip})\)</span>
 for <span class="math inline">\(i = 1, \ldots, n\)</span>. This is the vector of explanatory variables alone (i.e. no intercept term) for the <span class="math inline">\(i^{th}\)</span> observation, which we will make use of later. We will now illustrate the multivariate regression model with a few examples.</p>
 </div>
-<div id="example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr" class="section level2 unnumbered hasAnchor">
-<h2>Example - Matrix form for body weight in pre-diabetes patients (MLR)<a href="introduction.html#example---matrix-form-for-body-weight-in-pre-diabetes-patients-mlr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example---matrix-form-for-pre-diabetes-data" class="section level2 unnumbered hasAnchor">
+<h2>Example - Matrix form for pre-diabetes data<a href="introduction.html#example---matrix-form-for-pre-diabetes-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We now introduce a specific example, which we shall return to throughout the chapter. In a study on body weight in 24 patients over 50, who have been diagnosed with pre-diabetes. Data were collected on their weight (in kilograms), food consumption (in calories), and a(n) (ordinal) measure of how much exercise each patient takes, on average per week: 0 = no exercise, 1 = some exercise, 2 = moderate exercise, 3 = heavy exercise. The food consumption was calculated by averaging over a week’s consumption and we will treat the ordinal covariate (exercise) as if it was continuous. The full data are given in Table <a href="introduction.html#tab:bodyweight">1.1</a></p>
 <table>
 <caption><span id="tab:bodyweight">Table 1.1: </span>Weight, average food consumption and exercise score for twenty-four pre-diabetes patients in body weight study.</caption>
@@ -543,9 +543,9 @@ for <span class="math inline">\(i = 1, \ldots, n\)</span>. This is the vector of
 </table>
 <p>We can produce scatterplots of weight against consumption and exercise:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
-<img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study" width="48%" /><img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-2.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study" width="48%" />
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data" width="48%" /><img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-2.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data" width="48%" />
 <p class="caption">
-Figure 1.1: Scatterplot of weight against (average) food consumption (left) and exercise (right) for the body weight study
+Figure 1.1: Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data
 </p>
 </div>
 <p>Comments:</p>
@@ -596,7 +596,7 @@ We can define the relevant quantities using the available data for the multiple 
 <div id="parameter-estimation" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Parameter estimation<a href="introduction.html#parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Having set up the model, how do we obtain estimates for the unknown parameters? One approach is to use maximum likelihood.</p>
-<p>In order to set the scene, recall that our key assumptions are normality, zero mean, common variance and independence of the errors, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0\)</span>. Since <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip} + \epsilon_i\)</span>, then the normality assumption on <span class="math inline">\(\epsilon_i\)</span> induces a normal distribution on each <span class="math inline">\(Y_i\)</span> (and, in turn, the vector <span class="math inline">\(\underline{Y}\)</span>). The values for the covariates are fixed, as are the true (usually unknown) values of <span class="math inline">\(\underline{\beta}\)</span> so these just serve as constants when thinking about the distribution of <span class="math inline">\(Y_i\)</span>.</p>
+<p>In order to set the scene, recall that our key assumptions are normality, zero mean, common variance and independence of the errors, i.e. <span class="math inline">\(\epsilon_i \sim N(0, \sigma_{\epsilon}^2)\)</span> and <span class="math inline">\(\textrm{Cov}(\epsilon_i, \epsilon_j) = 0, i \neq j\)</span>. Since <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip} + \epsilon_i\)</span>, then the normality assumption on <span class="math inline">\(\epsilon_i\)</span> induces a normal distribution on each <span class="math inline">\(Y_i\)</span> (and, in turn, the vector <span class="math inline">\(\underline{Y}\)</span>). The values for the covariates are fixed, as are the true (usually unknown) values of <span class="math inline">\(\underline{\beta}\)</span> so these just serve as constants when thinking about the distribution of <span class="math inline">\(Y_i\)</span>.</p>
 <p>Furthermore, the assumption of independence also carries through and the variance is unaltered (since we are simply adding scalars to a random variable). This tells us that <span class="math inline">\(Y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2 \sim N(\beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip}, \sigma_{\epsilon}^2)\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>. This can be written more compactly as <span class="math inline">\(Y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2 \sim N(\underline{x}_i^T\underline{\beta}, \sigma_{\epsilon}^2)\)</span>.</p>
 <p>Before going further, recall that the probability density function for a univariate normal random variable, <span class="math inline">\(Y \sim N(\mu, \sigma^2)\)</span>, is:
 <span class="math display">\[
@@ -675,10 +675,10 @@ We could (partially) differentiate with respect to each element of <span class="
 <h3><span class="header-section-number">1.3.3</span> Residuals, fitted values and the ‘hat matrix’<a href="introduction.html#sec:resfithat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The vector of residuals (which estimate the errors) can be obtained by subtraction after model fitting, namely as ‘observed - fitted’
 <span class="math display">\[\begin{align*}
-\color{red}{\underline{\hat{\epsilon}}} &amp;\color{red}{= \underline{y} - \hat{\underline{y}}} \\
+\color{red}{\underline{\hat{\epsilon}}} &amp;\color{red}{= \underline{y} - \underline{\hat{y}}} \\
 &amp;\color{red}{= \underline{y} - \mathrm{X}\underline{\hat{\beta}},}
 \end{align*}\]</span>
-where the fitted values are found as <span class="math inline">\(\hat{\underline{y}} = \mathrm{X}\underline{\hat{\beta}}\)</span>.</p>
+where the fitted values are found as <span class="math inline">\(\underline{\hat{y}} = \mathrm{X}\underline{\hat{\beta}}\)</span>.</p>
 <div id="the-hat-matrix" class="section level4 unnumbered hasAnchor">
 <h4>The hat matrix<a href="introduction.html#the-hat-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can rewrite the estimate for the errors by substituting in <span class="math inline">\(\underline{\hat{\beta}} = (\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}\)</span> to obtain
@@ -689,11 +689,11 @@ where the fitted values are found as <span class="math inline">\(\hat{\underline
 \end{align*}\]</span>
 where <span class="math inline">\(\mathrm{H} = \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\)</span>. <span class="math inline">\(\mathrm{H}\)</span> is known as the ‘hat’ matrix since
 <span class="math display">\[\begin{align*}
-\color{red}{\hat{\underline{y}}} &amp;\color{red}{= \mathrm{X}\hat{\underline{\beta}}} \\
+\color{red}{\underline{\hat{y}}} &amp;\color{red}{= \mathrm{X}\underline{\hat{\beta}}} \\
 &amp;\color{red}{= \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{y}} \\
 &amp;\color{red}{= \mathrm{H}\underline{y}.}
 \end{align*}\]</span></p>
-<p>Hence, multiplying by <span class="math inline">\(\mathrm{H}\)</span> converts <span class="math inline">\(\underline{y}\)</span> to <span class="math inline">\(\hat{\underline{y}}\)</span>, i.e. it is the matrix that puts a hat on <span class="math inline">\(\underline{y}\)</span>. The hat matrix is an <span class="math inline">\(n \times n\)</span> matrix with elements
+<p>Hence, multiplying by <span class="math inline">\(\mathrm{H}\)</span> converts <span class="math inline">\(\underline{y}\)</span> to <span class="math inline">\(\underline{\hat{y}}\)</span>, i.e. it is the matrix that puts a hat on <span class="math inline">\(\underline{y}\)</span>. The hat matrix is an <span class="math inline">\(n \times n\)</span> matrix with elements
 <span class="math display">\[\begin{align*}
 \color{red}{\mathrm{H} =
 \begin{pmatrix}
@@ -802,7 +802,7 @@ where <span class="math inline">\(\mathrm{H} = \mathrm{X}(\mathrm{X}^T\mathrm{X}
 <!-- We can also calculate the fitted values -->
 <!-- \begin{align*} -->
 <!-- \gap{ -->
-<!-- \hat{\vec{y}} = \up{X}\hat{\vec{\beta}} = -->
+<!-- \vec{\hat{y}} = \up{X}\vec{\hat{\beta}} = -->
 <!-- \begin{pmatrix} -->
 <!-- 67.95 \\ -->
 <!-- 85.08 \\ -->
@@ -919,11 +919,11 @@ where <span class="math inline">\(v_{jj}\)</span> is the <span class="math inlin
 <h3><span class="header-section-number">1.4.4</span> Expectation and variance of the fitted values<a href="introduction.html#sec:expvaryhat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The fitted values are calculated as
 <span class="math display">\[
-\hat{\underline{Y}} = \mathrm{X}\underline{\hat{\beta}}
+\underline{\hat{Y}} = \mathrm{X}\underline{\hat{\beta}}
 \]</span>
 or equivalently as
 <span class="math display">\[
-\hat{\underline{Y}} = \mathrm{H}\underline{Y}.
+\underline{\hat{Y}} = \mathrm{H}\underline{Y}.
 \]</span></p>
 <p>Their expectation is</p>
 <p><span class="math display">\[\begin{align*}
@@ -945,7 +945,7 @@ Hence, the variability of the fitted values depends on the hat matrix, <span cla
 <h3><span class="header-section-number">1.4.5</span> Expectation and variance of the residuals<a href="introduction.html#expectation-and-variance-of-the-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Recall that the residuals are found as
 <span class="math display">\[
-\color{red}{\underline{\hat{\epsilon}} = \underline{Y} - \hat{\underline{Y}}.}
+\color{red}{\underline{\hat{\epsilon}} = \underline{Y} - \underline{\hat{Y}}.}
 \]</span>
 or alternatively as
 <span class="math display">\[
@@ -953,8 +953,8 @@ or alternatively as
 \]</span></p>
 <p>We can find the expectation and variance as
 <span class="math display">\[\begin{align*}
-\color{red}{\mathrm{E}[\underline{\hat{\epsilon}}]} &amp; \color{red}{= \mathrm{E}[\underline{Y} - \hat{\underline{Y}}]} \\
-&amp;\color{red}{= \mathrm{E}[\mathrm{X}\underline{\beta}] - \mathrm{E}[\mathrm{X}\underline{\hat{\beta}}]} \\
+\color{red}{\mathrm{E}[\underline{\hat{\epsilon}}]} &amp; \color{red}{= \mathrm{E}[\underline{Y} - \underline{\hat{Y}}]} \\
+&amp;\color{red}{= \mathrm{E}[\mathrm{X}\underline{\beta}] - \mathrm{E}\left[\mathrm{X}\underline{\hat{\beta}}\right]} \\
 &amp;\color{red}{= \mathrm{X}\underline{\beta} - \mathrm{X}\underline{\beta}} \\
 &amp;\color{red}{= \underline{0},}
 \end{align*}\]</span>
