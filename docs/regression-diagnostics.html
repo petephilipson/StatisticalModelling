@@ -326,29 +326,32 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="regression-diagnostics" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> Regression diagnostics<a href="regression-diagnostics.html#regression-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Chapter 1 introduced the multiple linear regression model, how to estimate the parameters and some properties of the estimators, amongst other things. We now consider the situation where, having fitted a model (or several candidate models), we wish to assess the validity of the model(s). Recall that when defining the multiple linear regression model we made a series of assumptions, which, in turn, allowed us to use maximum likelihood to estimate the parameters. In this chapter we describe a subset of methods that can be used to check if our model conforms to the assumptions. Namely, we will consider whether</p>
+<p>Chapter 1 introduced the multiple linear regression model, how to estimate the parameters and some properties of the estimators, amongst other things. We now consider the situation where, having fitted a model (or several candidate models), we wish to assess the validity of the model(s). Recall that when defining the multiple linear regression model we made a series of assumptions, which, in turn, allowed us to use maximum likelihood to estimate the parameters. In this chapter we describe a suite of methods that can be used to check if our model conforms to the assumptions. Namely, we can consider whether</p>
 <ol type="i">
 <li>
 the relationship between <span class="math inline">\(Y\)</span> and the <span class="math inline">\(x\)</span>-variables is linear;
 </li>
 <li>
-the error term, <span class="math inline">\(\epsilon_i\)</span>, has constant variance <span class="math inline">\(\sigma_{\epsilon}^2\)</span>;
+the errors are normally distributed;
 </li>
 <li>
 the errors are uncorrelated;
 </li>
 <li>
-the errors are normally distributed;
+the error term, <span class="math inline">\(\epsilon_i\)</span>, has constant variance <span class="math inline">\(\sigma_{\epsilon}^2\)</span>;
+</li>
+</ol>
+Additionally, we will investigate whether
+<ol type="i" start="5">
+<li>
+any points have a large effect on the regression coefficients (via their leverage).
 </li>
 <li>
 any points are unduly influential (via their Cook’s distance);
 </li>
-<li>
-any points have a large effect on the regression coefficients (via their leverage).
-</li>
 </ol>
 <p>You may have encountered some of these before. In the previous chapter, we informally assessed the assumption of a linear relationship through a scatterplot, or a series of pairwise scatterplots when we have more than one covariate. However, when there are many covariates (and particularly if some of these are categorical or ordinal) this can become an unwieldy approach.</p>
-<p>Moreover, the underlying linear (or otherwise) relationship can be masked by the relationship of the response with the other variables. As such, it is recommended to use residual checks to further verify this assumption. Happily, the residuals also allow us to check the remaining assumptions too, since they are our estimate of the true (but unknown) errors.</p>
+<p>Moreover, the underlying linear (or otherwise) relationship can be masked by the relationship of the response with the other variables; the residuals, however, are adjusted for this. As such, it is recommended to use residual checks to verify the functional form of the model, i.e. are the relationships linear? Happily, the residuals also allow us to check the remaining assumptions too, since they are our estimate of the true (but unknown) errors.</p>
 <div id="standardised-residuals" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Standardised residuals<a href="regression-diagnostics.html#standardised-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall, from section <a href="introduction.html#sec:resfithat">1.3.3</a>, that the residual is the observed value minus the fitted value. Its definition and variance are given by
@@ -375,8 +378,7 @@ respectively, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
 <span class="math display">\[
 \color{red}{\hat{e}_i = \frac{\hat{\epsilon}_i}{\sqrt{(1 - h_{ii})s^2}}}
 \]</span></p>
-<p>where <span class="math inline">\(s^2\)</span> is our estimate of <span class="math inline">\(\sigma_{\epsilon}^2\)</span> (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (nearly) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later).</p>
-<p>We can calculate the standardised residuals in <code>R</code> using the following command, where <code>fit2</code> is our second fitted model from chapter 1:</p>
+<p>where <span class="math inline">\(s^2\)</span> is our estimate of <span class="math inline">\(\sigma_{\epsilon}^2\)</span> (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (nearly) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). We can calculate the standardised residuals in <code>R</code> using the following command, where <code>fit2</code> is our second fitted model from chapter 1:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="regression-diagnostics.html#cb25-1" tabindex="-1"></a><span class="fu">rstandard</span>(fit2)</span></code></pre></div>
 <pre><code>##           1           2           3           4           5           6 
 ## -0.20643768 -0.74827738 -0.80142866  0.54358256  0.85837659 -0.98421544 

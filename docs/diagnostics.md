@@ -4,20 +4,22 @@ title: ''
 
 # Regression diagnostics
 
-Chapter 1 introduced the multiple linear regression model, how to estimate the parameters and some properties of the estimators, amongst other things. We now consider the situation where, having fitted a model (or several candidate models), we wish to assess the validity of the model(s). Recall that when defining the multiple linear regression model we made a series of assumptions, which, in turn, allowed us to use maximum likelihood to estimate the parameters. In this chapter we describe a subset of methods that can be used to check if our model conforms to the assumptions. Namely, we will consider whether
+Chapter 1 introduced the multiple linear regression model, how to estimate the parameters and some properties of the estimators, amongst other things. We now consider the situation where, having fitted a model (or several candidate models), we wish to assess the validity of the model(s). Recall that when defining the multiple linear regression model we made a series of assumptions, which, in turn, allowed us to use maximum likelihood to estimate the parameters. In this chapter we describe a suite of methods that can be used to check if our model conforms to the assumptions. Namely, we can consider whether
 
 <ol type="i">
 <li> the relationship between $Y$ and the $x$-variables is linear; </li>
-<li> the error term, $\epsilon_i$, has constant variance $\sigma_{\epsilon}^2$; </li>
-<li> the errors are uncorrelated; </li>
 <li> the errors are normally distributed; </li>
-<li> any points are unduly influential (via their Cook's distance); </li>
+<li> the errors are uncorrelated; </li>
+<li> the error term, $\epsilon_i$, has constant variance $\sigma_{\epsilon}^2$; </li> </ol>
+Additionally, we will investigate whether
+<ol type="i" start="5">
 <li>  any points have a large effect on the regression coefficients (via their leverage). </li>
+<li> any points are unduly influential (via their Cook's distance); </li>
 </ol>
 
 You may have encountered some of these before. In the previous chapter, we informally assessed the assumption of a linear relationship through a scatterplot, or a series of pairwise scatterplots when we have more than one covariate. However, when there are many covariates (and particularly if some of these are categorical or ordinal) this can become an unwieldy approach. 
 
-Moreover, the underlying linear (or otherwise) relationship can be masked by the relationship of the response with the other variables. As such, it is recommended to use residual checks to further verify this assumption. Happily, the residuals also allow us to check the remaining assumptions too, since they are our estimate of the true (but unknown) errors. 
+Moreover, the underlying linear (or otherwise) relationship can be masked by the relationship of the response with the other variables; the residuals, however, are adjusted for this. As such, it is recommended to use residual checks to verify the functional form of the model, i.e. are the relationships linear? Happily, the residuals also allow us to check the remaining assumptions too, since they are our estimate of the true (but unknown) errors. 
 
 ## Standardised residuals
 Recall, from section \@ref(sec:resfithat), that the residual is the observed value minus the fitted value. Its definition and variance are given by
@@ -49,9 +51,8 @@ To get around these issues, we work with the *standardised* residuals
 \color{red}{\hat{e}_i = \frac{\hat{\epsilon}_i}{\sqrt{(1 - h_{ii})s^2}}}
 \]
 
-where $s^2$ is our estimate of $\sigma_{\epsilon}^2$ (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (nearly) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). 
+where $s^2$ is our estimate of $\sigma_{\epsilon}^2$ (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (nearly) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). We can calculate the standardised residuals in `R` using the following command, where `fit2` is our second fitted model from chapter 1:
 
-We can calculate the standardised residuals in `R` using the following command, where `fit2` is our second fitted model from chapter 1:
 
 
 
