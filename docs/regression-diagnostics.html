@@ -214,9 +214,9 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#standardised-residuals"><i class="fa fa-check"></i><b>2.1</b> Standardised residuals</a>
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#residual-plots"><i class="fa fa-check"></i><b>2.1.1</b> Residual plots</a></li>
-<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values"><i class="fa fa-check"></i>Independence of residuals and fitted values</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#correlation-between-residuals-and-fitted-values"><i class="fa fa-check"></i>Correlation between residuals and fitted values</a></li>
 <li class="chapter" data-level="2.1.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#outliers"><i class="fa fa-check"></i><b>2.1.2</b> Outliers</a></li>
-<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data"><i class="fa fa-check"></i>Example: Residual analysis for bodyweight data</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-residual-analysis-for-pre-diabetes-data"><i class="fa fa-check"></i>Example: Residual analysis for pre-diabetes data</a></li>
 <li class="chapter" data-level="2.1.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#normality-of-the-residuals"><i class="fa fa-check"></i><b>2.1.3</b> Normality of the residuals</a></li>
 <li class="chapter" data-level="2.1.4" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#anderson-darling-test"><i class="fa fa-check"></i><b>2.1.4</b> Anderson-Darling test</a></li>
 <li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#a-cautionary-note"><i class="fa fa-check"></i>A cautionary note</a></li>
@@ -224,7 +224,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#regression-diagnostics-1"><i class="fa fa-check"></i><b>2.2</b> Regression diagnostics</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#leverage-values"><i class="fa fa-check"></i><b>2.2.1</b> Leverage values</a></li>
-<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data"><i class="fa fa-check"></i>Example: Leverage values for the bodyweight data</a></li>
+<li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-leverage-values-for-the-pre-diabetes-data"><i class="fa fa-check"></i>Example: Leverage values for the pre-diabetes data</a></li>
 <li class="chapter" data-level="2.2.2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#influential-observations"><i class="fa fa-check"></i><b>2.2.2</b> Influential observations</a></li>
 <li class="chapter" data-level="2.2.3" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#dealing-with-unusual-observations"><i class="fa fa-check"></i><b>2.2.3</b> Dealing with unusual observations</a></li>
 <li class="chapter" data-level="" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html#example-model-checking-for-the-premier-league-data"><i class="fa fa-check"></i>Example: Model checking for the Premier League data</a></li>
@@ -341,13 +341,16 @@ the errors are uncorrelated;
 the error term, <span class="math inline">\(\epsilon_i\)</span>, has constant variance <span class="math inline">\(\sigma_{\epsilon}^2\)</span>;
 </li>
 </ol>
-Additionally, we will investigate whether
+Additionally, we will investigate whether any points
 <ol type="i" start="5">
 <li>
-any points have a large effect on the regression coefficients (via their leverage).
+are unusual (outliers)
 </li>
 <li>
-any points are unduly influential (via their Cook’s distance);
+have a large effect on the regression coefficients (via their leverage).
+</li>
+<li>
+are unduly influential (via their Cook’s distance);
 </li>
 </ol>
 <p>You may have encountered some of these before. In the previous chapter, we informally assessed the assumption of a linear relationship through a scatterplot, or a series of pairwise scatterplots when we have more than one covariate. However, when there are many covariates (and particularly if some of these are categorical or ordinal) this can become an unwieldy approach.</p>
@@ -378,7 +381,7 @@ respectively, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
 <span class="math display">\[
 \color{red}{\hat{e}_i = \frac{\hat{\epsilon}_i}{\sqrt{(1 - h_{ii})s^2}}}
 \]</span></p>
-<p>where <span class="math inline">\(s^2\)</span> is our estimate of <span class="math inline">\(\sigma_{\epsilon}^2\)</span> (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (nearly) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). We can calculate the standardised residuals in <code>R</code> using the following command, where <code>fit2</code> is our second fitted model from chapter 1:</p>
+<p>where <span class="math inline">\(s^2\)</span> is our estimate of <span class="math inline">\(\sigma_{\epsilon}^2\)</span> (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (approximately) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). We can calculate the standardised residuals in <code>R</code> using the following command, where <code>fit2</code> is our second fitted model from chapter 1:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="regression-diagnostics.html#cb25-1" tabindex="-1"></a><span class="fu">rstandard</span>(fit2)</span></code></pre></div>
 <pre><code>##           1           2           3           4           5           6 
 ## -0.20643768 -0.74827738 -0.80142866  0.54358256  0.85837659 -0.98421544 
@@ -391,13 +394,13 @@ respectively, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
 <p>We use the terminology of standardised residuals in this module since this is what is adopted in <code>R</code>. You may sometimes see the phrase ‘(internally) studentised’ residuals elsewhere (in MAS2902 for instance) for this same concept. There is also, as you might expect, an externally studentised residual, but this is not explored further here.</p>
 <div id="residual-plots" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Residual plots<a href="regression-diagnostics.html#residual-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We typically use visual inspection (i.e. plots) to check the model assumptions since the raw values themselves are hard to interpret. We primarily plot <span class="math inline">\(\hat{e}_i\)</span> against the fitted values <span class="math inline">\(\hat{y_i}\)</span>, and they can also be plotted against each of the explanatory variables. If the model assumptions are satisfied, then for each plot, the standardised residuals should be randomly scattered within a horizontal band:</p>
+<p>We typically use visual inspection (i.e. plots) to check the model assumptions since the raw values themselves are hard to interpret. We primarily plot <span class="math inline">\(\hat{e}_i\)</span> against the fitted values <span class="math inline">\(\hat{y_i}\)</span>, and they can also be plotted against each of the explanatory variables in order to verify the functional form. If the model assumptions are satisfied, then, for each plot, the standardised residuals should be randomly scattered within a horizontal band:</p>
 <p><img src="diagnostics_files/figure-html/blank1-1.png" width="65%" style="display: block; margin: auto;" /></p>
 <p>Otherwise, we could get signs of non-constant variance, i.e. increasing, double bow, decreasing, or signs of non-linearity (see practical 2). In practice, nonlinearity is hard to distinguish from correlation in the standardised residuals. Some examples of residuals not conforming to model assumptions are given above.</p>
 </div>
-<div id="independence-of-residuals-and-fitted-values" class="section level3 unnumbered hasAnchor">
-<h3>Independence of residuals and fitted values<a href="regression-diagnostics.html#independence-of-residuals-and-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The reason we plot residuals against fitted values, rather than the observations themselves is because the residuals and fitted values are <em>independent</em>. This allows us to detect any unusual observations without worrying that these may be due to an underlying dependence between the quantities being plotted.</p>
+<div id="correlation-between-residuals-and-fitted-values" class="section level3 unnumbered hasAnchor">
+<h3>Correlation between residuals and fitted values<a href="regression-diagnostics.html#correlation-between-residuals-and-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The reason we plot residuals against fitted values, rather than the observations themselves is because the residuals and fitted values are <em>uncorrelated</em>. This allows us to detect any unusual observations without worrying that these may be due to an underlying dependence between the quantities being plotted.</p>
 <div id="proof-1" class="section level4 unnumbered hasAnchor">
 <h4>Proof<a href="regression-diagnostics.html#proof-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[\begin{align*}
@@ -413,36 +416,36 @@ respectively, for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
 &amp;\color{red}{= \sigma_{\epsilon}^2 (\mathrm{H} - \mathrm{H})} \\
 &amp;\color{red}{= \underline{0}}
 \end{align*}\]</span></p>
-<p>The residuals and the observed values, however, are not independent.</p>
+<p>This result also hold for the standardised residuals and the fitted values, but the proof is more convoluted; the residuals and the observed values, however, are not independent.</p>
 </div>
 </div>
 <div id="outliers" class="section level3 hasAnchor" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Outliers<a href="regression-diagnostics.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Outliers</em> are points which appear separated in some way from the remainder of the data. Part of the purpose of our residual plots is to check for unusual observations. The standardised residuals give a good initial indicator of outliers. If we assume the (raw) residuals are normally distributed (we will check this assumption shortly), then the standardised residuals are also normal, albeit with a different variance, which is close to one (see above).</p>
-<p>Hence the standardised residuals are assumed to be approximately standard normal, and this suggests that values outside the range <span class="math inline">\(\pm 2\)</span> are indicative of outliers. However, by normal distribution theory, we expect around <span class="math inline">\(5\%\)</span> of observations to be outside this range by chance - recall that <span class="math inline">\(\pm 1.96\)</span> cuts off <span class="math inline">\(2.5\%\)</span> of a standard normal distribution, i.e. <span class="math inline">\(Pr(Z &gt; 1.96) = 0.025\)</span>, where <span class="math inline">\(Z \sim N(0, 1)\)</span>. This value is often rounded to <span class="math inline">\(\pm 2\)</span> to act as a simple rule-of-thumb for residual plots. Clearly, the larger the absolute value of the standardised residual the more likely it is to be an outlier.</p>
-<p>Note that it is not reasonable to remove outliers just because we don’t like the look of them! It is of course worth checking the original source of the data - if the outliers are a result of recording error, then this should be corrected. If the outliers appear genuine, we should see how discrepant they are. We can carry out an analysis with and without the suspect observations to investigate the sensitivity of the results.</p>
+<p>Hence, the standardised residuals are assumed to be approximately <em>standard</em> normal, and this suggests that values outside the range <span class="math inline">\(\pm 2\)</span> are indicative of outliers. However, by normal distribution theory, we expect around <span class="math inline">\(5\%\)</span> of observations to be outside this range by chance - recall that <span class="math inline">\(\pm 1.96\)</span> cuts off <span class="math inline">\(2.5\%\)</span> of a standard normal distribution, i.e. <span class="math inline">\(Pr(Z &gt; 1.96) = 0.025\)</span>, where <span class="math inline">\(Z \sim N(0, 1)\)</span>. This value is often rounded to <span class="math inline">\(\pm 2\)</span> to act as a simple rule-of-thumb for residual plots. Clearly, the larger the absolute value of the standardised residual the more likely it is to be an outlier.</p>
+<p>Note that it is not reasonable to remove outliers just because we don’t like the look of them! It is, of course, worth checking the original source of the data - if the outliers are a result of recording error, then this should be corrected. If the outliers appear genuine, we should see how discrepant they are. We can carry out an analysis with and without the suspect observations to investigate the sensitivity of the results.</p>
 </div>
-<div id="example-residual-analysis-for-bodyweight-data" class="section level3 unnumbered hasAnchor">
-<h3>Example: Residual analysis for bodyweight data<a href="regression-diagnostics.html#example-residual-analysis-for-bodyweight-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Residual plots for the bodyweight data can be generated in <code>R</code> using the following commands:</p>
+<div id="example-residual-analysis-for-pre-diabetes-data" class="section level3 unnumbered hasAnchor">
+<h3>Example: Residual analysis for pre-diabetes data<a href="regression-diagnostics.html#example-residual-analysis-for-pre-diabetes-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Residual plots for the pre-diabetes data can be generated in <code>R</code> using the following commands:</p>
 <div id="standardised-residuals-against-covariates" class="section level4 unnumbered hasAnchor">
 <h4>Standardised residuals against covariates<a href="regression-diagnostics.html#standardised-residuals-against-covariates" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="regression-diagnostics.html#cb27-1" tabindex="-1"></a><span class="fu">plot</span>(bodyweight<span class="sc">$</span>Consumption, <span class="fu">rstandard</span>(fit2), </span>
 <span id="cb27-2"><a href="regression-diagnostics.html#cb27-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Consumption&quot;</span>, <span class="at">ylab =</span><span class="st">&quot;Standardised residuals&quot;</span>)</span>
 <span id="cb27-3"><a href="regression-diagnostics.html#cb27-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="diagnostics_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the body weight study." width="65%" />
+<img src="diagnostics_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data." width="65%" />
 <p class="caption">
-Figure 2.1: Scatterplot of standardised residuals against (average) food consumption for the body weight study.
+Figure 2.1: Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.
 </p>
 </div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="regression-diagnostics.html#cb28-1" tabindex="-1"></a><span class="fu">plot</span>(bodyweight<span class="sc">$</span>Exercise, <span class="fu">rstandard</span>(fit2), </span>
 <span id="cb28-2"><a href="regression-diagnostics.html#cb28-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Exercise&quot;</span>, <span class="at">ylab =</span><span class="st">&quot;Standardised residuals&quot;</span>)</span>
 <span id="cb28-3"><a href="regression-diagnostics.html#cb28-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>) </span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="diagnostics_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the body weight study." width="65%" />
+<img src="diagnostics_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data." width="65%" />
 <p class="caption">
-Figure 2.2: Scatterplot of standardised residuals against (average) food consumption for the body weight study.
+Figure 2.2: Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.
 </p>
 </div>
 </div>
@@ -459,11 +462,11 @@ Figure 2.3: Scatterplot of standardised residuals against fitted values for the 
 </div>
 <p>In each of the above plots, we have added a dashed horizontal line at zero to help look for patterns, we would expect around half of the standardised residuals to lie both above and below the line in each case. Further dashed lines at <span class="math inline">\(\pm 2\)</span> allow us to identify how many points lie outside these bounds (recall, we expect <span class="math inline">\(\approx 5\%\)</span> in a well-behaved model).</p>
 <p>To summarise these plots we can say:</p>
+<p><span style="color: red;">- there is no clear pattern in the residuals although there is a (mild) suggestion of curvature in the plot against exercise.</span></p>
 <p><span style="color: red;"> - the variance does not appear to change in a systematic way.</span></p>
-<p><span style="color: red;">- there is no clear pattern in the residuals although there is a suggestion of curvature in the plot against exercise.</span></p>
 <p><span style="color: red;">- there is one point with a standardised residual greater than 2 in modulus. Possible outlier? We expect about <span class="math inline">\(5\%\)</span> to be in this range, i.e. 1 in a sample size of 24.</span></p>
 <p><span style="color: red;">Thus there is no clear evidence of a departure from our assumptions.</span></p>
-<p>Note that when discrete variables are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.</p>
+<p>Note that when solely discrete (or ordinal) variable(s) are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.</p>
 </div>
 </div>
 <div id="normality-of-the-residuals" class="section level3 hasAnchor" number="2.1.3">
@@ -473,7 +476,7 @@ Figure 2.3: Scatterplot of standardised residuals against fitted values for the 
 <li><p>the least squares estimates, <span class="math inline">\(\underline{\hat{\beta}}\)</span>, may not be optimal;</p></li>
 <li><p>the associated tests and confidence intervals are inaccurate.</p></li>
 </ul>
-<p>However, it has been shown that only really long-tailed distributions cause a major problem and that mild non-normality can safely be ignored. Furthermore, the larger the sample size the more the the non-normality is the more the consequences are mitigated. To get the normality plot for the bodyweight data, we use the following commands:</p>
+<p>However, it has been shown that only really long-tailed distributions cause a major problem and that mild non-normality can safely be ignored. Furthermore, the larger the sample size the more the the non-normality is the more the consequences are mitigated. To get the normality plot for the pre-diabetes data, we use the following commands:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="regression-diagnostics.html#cb30-1" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(fit2), <span class="at">ylab =</span> <span class="st">&quot;Standardised residuals&quot;</span>)</span>
 <span id="cb30-2"><a href="regression-diagnostics.html#cb30-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
@@ -487,11 +490,11 @@ Figure 2.4: Normality plot of standardised residuals.
 </div>
 <div id="anderson-darling-test" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Anderson-Darling test<a href="regression-diagnostics.html#anderson-darling-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Visual inspection of residual plots is a useful way to see where any departures from our assumptions may lie. However, it may also be good to have a summary measure via a formal statistical test to assess where there is a significant departure from normality. The most commonly used statistic is the <em>Anderson-Darling</em> (AD) statistic - <code>R</code> outputs the test statistic and a p-value when carrying out an AD test. The null hypotheses is that the residuals can reasonably be assumed to come from a normal distribution. As such, large p-values imply the normality assumption is fine, small p-values imply a significant departure from normality.</p>
-<p>Comment: Note that there are some issues with the AD test for large sample sizes as it is very sensitive to outliers. From above we know that our model is reasonably robust to outliers so we should be careful not to over-interpret an AD test if the plots pass a visual check.</p>
+<p>Visual inspection of residual plots is a useful way to see where any departures from our assumptions may lie. However, it may also be good to have a summary measure via a formal statistical test to assess where there is a significant departure from normality. The most commonly used statistic is the <em>Anderson-Darling</em> (AD) statistic - <code>R</code> outputs the test statistic and a p-value when carrying out an AD test. The null hypotheses is that the residuals can reasonably be assumed to come from a normal distribution, with the alternative hypothesis stating the converse. As such, large p-values imply the normality assumption is fine, small p-values imply a significant departure from normality.</p>
+<p>Comment: Note that there are some issues with the AD test for large sample sizes as it is very sensitive to outliers. From above, we know that our model is reasonably robust to outliers so we should be careful not to over-interpret an AD test if the plots pass a visual check.</p>
 <div id="anderson-darling-test-in-r" class="section level5 unnumbered hasAnchor">
 <h5>Anderson-Darling test in <code>R</code><a href="regression-diagnostics.html#anderson-darling-test-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>To carry out an AD test in <code>R</code> we first need to load the library <code>nortest</code>. For the bodyweight example:</p>
+<p>To carry out an AD test in <code>R</code> we first need to load the library <code>nortest</code>. For the pre-diabetes example:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="regression-diagnostics.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
 <span id="cb31-2"><a href="regression-diagnostics.html#cb31-2" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fit2))</span></code></pre></div>
 <pre><code>## 
@@ -504,7 +507,7 @@ Figure 2.4: Normality plot of standardised residuals.
 </div>
 <div id="a-cautionary-note" class="section level3 unnumbered hasAnchor">
 <h3>A cautionary note<a href="regression-diagnostics.html#a-cautionary-note" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>One of the assumptions of the model is that the true (but unknown) errors, <span class="math inline">\(\underline{\epsilon}\)</span>, follow a normal distribution. We assess this using the estimated errors, i.e. the residuals. The assumed normality of the residuals also induces normality on the response, but this is conditional on the values of the covariates, namely <span class="math inline">\(Y_i \mid \underline{x}, \underline{\beta} \sim N(\underline{x}_i^T \underline{\beta}, \sigma_{\epsilon}^2)\)</span>. As such we cannot judge the normality assumption on plots of the response variable alone - even though it may be tempting or even feel intuitive to do so - without taking into account the values of the covariates. This can be awkward to construct whereas a residual check is straightforward (and will show the same thing).</p>
+<p>One of the assumptions of the model is that the true (but unknown) errors, <span class="math inline">\(\underline{\epsilon}\)</span>, follow a normal distribution. We assess this using the estimated errors, i.e. the residuals. The assumed normality of the errors also induces normality on the response, but this is conditional on the values of the covariates, namely <span class="math inline">\(Y_i \mid \underline{x}_i, \underline{\beta}, \sigma_{\epsilon}^2 \sim N(\underline{x}_i^T \underline{\beta}, \sigma_{\epsilon}^2)\)</span>. As such we cannot judge the normality assumption on plots of the response variable alone - even though it may be tempting or even feel intuitive to do so - without taking into account the values of the covariates. This can be awkward to construct whereas a residual check is straightforward (and will show the same thing).</p>
 <p>Consider a multiple linear regression model with one continuous covariate (<span class="math inline">\(x_1\)</span>) and one binary covariate (<span class="math inline">\(x_2\)</span>), such as a treatment arm in a trial. If there are considerable differences between the two treatment groups then this will induce a bimodal distribution on the (unconditional) response variable, <span class="math inline">\(\underline{Y}\)</span>:</p>
 <p><img src="Graphics/cache/y_bimodal.png" width="65%" style="display: block; margin: auto;" /></p>
 <p>However, if we then fit a multiple linear regression model and look at the (standardised) residuals we see an approximate normal distribution</p>
@@ -523,7 +526,7 @@ Figure 2.4: Normality plot of standardised residuals.
 <p><span class="math display">\[
 \color{red}{\mathrm{H} = \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T}
 \]</span></p>
-<p>High leverage points can have an unusually large effect on the estimates of regression coefficients. To detect high leverage points we look for large values of <span class="math inline">\(h_{ii}\)</span>, the diagonal elements of <span class="math inline">\(\mathrm{H}\)</span>, which are known as the leverages. Note that the leverage values depend on the covariates alone, and not on the response variable.</p>
+<p>High leverage points can have an unusually large effect on the estimates of regression coefficients. To detect high leverage points we look for large values of <span class="math inline">\(h_{ii}\)</span>, the diagonal elements of <span class="math inline">\(\mathrm{H}\)</span>, which are known as the <em>leverages</em>. Note that the leverage values depend on the covariates alone, and not on the response variable.</p>
 <p>If the value of <span class="math inline">\(h_{ii}\)</span> is large, then <span class="math inline">\(\mathrm{Var}[\hat{\epsilon}_i]\)</span> will be small, i.e. the fit will be close to <span class="math inline">\(Y_i\)</span>, since <span class="math inline">\(\mathrm{Var}[\hat{\epsilon}_i] = (1 - h_{ii})\sigma_{\epsilon}^2\)</span> and this will approach zero as the hat values get close to unity. This means that the regression line is `forced’ to fit well to points with a large leverage value so these points have the potential to severely alter the gradient of the regression line. A consequence of this is that the variance of <span class="math inline">\(\hat{Y_i}\)</span>, which is given by <span class="math inline">\(h_{ii}\sigma_{\epsilon}^2\)</span>, will be at its largest for points of high leverage. The sketches below demonstrate this.</p>
 <p><img src="diagnostics_files/figure-html/blank2-1.png" width="65%" style="display: block; margin: auto;" /></p>
 <div id="properties-of-the-leverage-values" class="section level4 unnumbered hasAnchor">
@@ -546,15 +549,15 @@ Figure 2.4: Normality plot of standardised residuals.
 </div>
 </div>
 </div>
-<div id="example-leverage-values-for-the-bodyweight-data" class="section level3 unnumbered hasAnchor">
-<h3>Example: Leverage values for the bodyweight data<a href="regression-diagnostics.html#example-leverage-values-for-the-bodyweight-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-leverage-values-for-the-pre-diabetes-data" class="section level3 unnumbered hasAnchor">
+<h3>Example: Leverage values for the pre-diabetes data<a href="regression-diagnostics.html#example-leverage-values-for-the-pre-diabetes-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As for the residual checks, we typically plot the leverage values to look for large values. This can be achieved in <code>R</code> via the following commands:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="regression-diagnostics.html#cb33-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hatvalues</span>(fit2), <span class="at">ylab =</span><span class="st">&quot;Leverages&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
 <span id="cb33-2"><a href="regression-diagnostics.html#cb33-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">24</span> , <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:levsplot1"></span>
-<img src="diagnostics_files/figure-html/levsplot1-1.png" alt="Leverage values from mutliple linear regression model for body weight data." width="65%" />
+<img src="diagnostics_files/figure-html/levsplot1-1.png" alt="Leverage values from mutliple linear regression model for pre-diabetes data." width="65%" />
 <p class="caption">
-Figure 2.5: Leverage values from mutliple linear regression model for body weight data.
+Figure 2.5: Leverage values from mutliple linear regression model for pre-diabetes data.
 </p>
 </div>
 <p>Note that <span class="math inline">\(p = 2\)</span> here (and <span class="math inline">\(n = 24\)</span>) since we have two explanatory variables: consumption and exercise. From the plot, we can identify that there are two points of high leverage here. For large datasets, it may be more prudent to use <code>R</code> to find out how many points exceed the threshold</p>
@@ -576,15 +579,15 @@ Figure 2.5: Leverage values from mutliple linear regression model for body weigh
 \color{red}{D_i = \frac{1}{p+1}(\hat{e}_i)^2 \frac{h_{ii}}{1 - h_{ii}}}
 \]</span></p>
 <p>for <span class="math inline">\(i = 1, \ldots, n\)</span>, and <span class="math inline">\(\hat{e}_i\)</span> and <span class="math inline">\(h_{ii}\)</span> are the standardised residual and leverage values respectively defined earlier. Although not clear from the formula, Cook’s distance is a measure of how much the fitted values in the model would change if the <span class="math inline">\(i^{th}\)</span> data point was deleted.</p>
-<p>Large values of <span class="math inline">\(D_i\)</span> indicate that the point has a large influence on the model but, unlike for leverage, there is no clear threshold to use. However, we can calculate and plot the Cook’s distances in <code>R</code> using:</p>
+<p>Large values of <span class="math inline">\(D_i\)</span> indicate that the point has a large influence on the model. We can calculate and plot the Cook’s distances in <code>R</code> using:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="regression-diagnostics.html#cb38-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cooks.distance</span>(fit2), <span class="at">ylab =</span> <span class="st">&quot;Cooks distance&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cooksplot1"></span>
-<img src="diagnostics_files/figure-html/cooksplot1-1.png" alt="Cook distances from mutliple linear regression model for body weight data." width="65%" />
+<img src="diagnostics_files/figure-html/cooksplot1-1.png" alt="Cook distances from mutliple linear regression model for pre-diabetes data." width="65%" />
 <p class="caption">
-Figure 2.6: Cook distances from mutliple linear regression model for body weight data.
+Figure 2.6: Cook distances from mutliple linear regression model for pre-diabetes data.
 </p>
 </div>
-<p>There is no agreed threshold to identify influential observations. However, a value of 1 has been suggested but this is typically conservative. A pragmatic approach is to investigate any (groups of) observations that appear to have larger values than the others. In our example, taking a threshold of 0.10 appears sensible.</p>
+<p>There is no agreed threshold to identify influential observations, unlike for points of high leverage. However, a value of 1 has been suggested but this is typically conservative. A pragmatic approach is to investigate any (groups of) observations that appear to have larger values than the others. In our example, taking a threshold of 0.10 appears sensible.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regression-diagnostics.html#cb39-1" tabindex="-1"></a>cooks <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(fit2)</span>
 <span id="cb39-2"><a href="regression-diagnostics.html#cb39-2" tabindex="-1"></a>cooks[cooks <span class="sc">&gt;</span> <span class="fl">0.10</span>]</span></code></pre></div>
 <pre><code>##         3        15        21        24 
@@ -593,11 +596,11 @@ Figure 2.6: Cook distances from mutliple linear regression model for body weight
 </div>
 <div id="dealing-with-unusual-observations" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Dealing with unusual observations<a href="regression-diagnostics.html#dealing-with-unusual-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>What should we do with the influential and/or high leverage points? As a first pass, we should check that they have been entered correctly, either by ourselves or by a data clerk or external source but this may not be possible. Visually, we can plot the data with them highlighted and check whether they stand out. Can they be explained? The following <code>R</code> code produces such a plot for our example, where we have highlighted points 3 (highest leverage), 15 (largest Cook’s distance) and 24 (large outlier) as X, Y and Z respectively:</p>
+<p>What should we do with the influential and/or high leverage points? As a first pass, we should check that they have been entered correctly, either by ourselves or by a data clerk or external source, but this may not be possible. Visually, we can plot the data with them highlighted and check whether they stand out. Can they be explained? The following <code>R</code> code produces such a plot for our example, where we have highlighted points 3 (highest leverage), 15 (largest Cook’s distance) and 24 (large outlier) as X, Y and Z respectively. We also colour-code points by exercise (1 is black, 2 is red, 3 is green):</p>
 <div class="figure" style="text-align: center">
-<img src="diagnostics_files/figure-html/label_inf_plot1-1.png" alt="Scatterplot for body weight data with influential points identified." width="65%" />
+<img src="diagnostics_files/figure-html/label_inf_plot1-1.png" alt="Scatterplot for pre-diabetes data with unusual points identified." width="65%" />
 <p class="caption">
-(#fig:label_inf_plot1)Scatterplot for body weight data with influential points identified.
+(#fig:label_inf_plot1)Scatterplot for pre-diabetes data with unusual points identified.
 </p>
 </div>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regression-diagnostics.html#cb41-1" tabindex="-1"></a><span class="co"># Or in one command</span></span>
@@ -624,7 +627,6 @@ Figure 2.7: Plot of standardised residuals against fitted values.
 </div>
 <p><span style="color: red;">- All but one of the residuals lies in <span class="math inline">\((-2, 2)\)</span>, and we would expect one by chance in this dataset of twenty observations.</span></p>
 <p><span style="color: red;">- There is no discernible pattern to the (standardised) residuals with random scatter within our horizontal band, with no evidence of nonlinearity or non constant variance.</span></p>
-<p><span style="color: red;">- Note that we cannot see the line at <span class="math inline">\(-2\)</span> so we know that there are no large negative residuals. </span></p>
 <li>
 Assess the normality assumption of the residuals and interpret the output of the Anderson-Darling test.
 </li>
@@ -654,7 +656,7 @@ Figure 2.9: Plot of leverages (left) and Cook distances (right) indexed by final
 </div>
 <p><span style="color: red;">The leverage values are plotted on the left, and the Cook’s distances on the right. We can see one point above the threshold (dashed line) for the leverages (which is <span class="math inline">\(2\times 2/20 = 0.20\)</span> here). This corresponds to observation 2. On inspection of the original data, we see that this is the team (Manchester City) with the most clean sheets, so is large in <span class="math inline">\(x\)</span> space, thus having the capacity to alter the regression line.</span></p>
 <p><img src="diagnostics_files/figure-html/unnamed-chunk-26-1.png" width="65%" style="display: block; margin: auto;" /></p>
-<p><span style="color: red;">For the influential points, we see that the largest is for observation 1. This point lies a considerable distance from the regression line, our model would expect fewer points based on this covariate value. Other covariates may be needed in the model. The next largest Cook’s distances (points 5 and 7) are not that much larger than the body of the points so we do not consider them further apart from observing that they deviate the most from the fitted line (for point 5 it is above the line of best fit, for point 7 it is below).</span></p>
+<p><span style="color: red;">For the influential points, we see that the largest is for observation 1. This point lies a considerable distance from the regression line, our model would expect fewer points based on this covariate value. Other covariates may be needed in the model. The next largest Cook’s distances (points 5 and 7) are not that much larger than the body of the points so we do not consider them further, apart from observing that they deviate the most from the fitted line (for point 5 it is above the line of best fit, for point 7 it is below).</span></p>
 </ol>
 
 </div>
