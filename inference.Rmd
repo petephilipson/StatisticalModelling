@@ -22,7 +22,7 @@ For a fitted multiple linear regression model this amounts to
 &\color{red}{= \hat{Y_i} + (Y_i - \hat{Y_i})}
 \end{align*}
 
-for $i = 1, \ldots, n$. To map this on to an anova-type problem, we can take the seemingly artificial step of subtracting the observed data mean, $\bar{Y}$, from both sides to obtain
+for $i = 1, \ldots, n$. To map this on to an anova-type problem, we can take the - seemingly artificial - step of subtracting the observed data mean, $\bar{Y}$, from both sides to obtain
 
 \[
 \color{red}{Y_i - \bar{Y} = \hat{Y_i} + (Y_i - \hat{Y_i}) - \bar{Y}}
@@ -43,11 +43,10 @@ By squaring each observation and taking the sum across each of the $n$ observati
 
 This remarkably leads to the following result 
 
-\begin{align}
-\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2} &\color{red}{= \sum_{i=1}^n(\hat{Y}_i - \bar{Y})^2 
-+ \sum_{i=1}^n(Y_i - \hat{Y}_i)^2} (\#eq:ssreg)\\
-\color{red}{(\textrm{TSS}} &\color{red}{= \textrm{Reg SS} + \textrm{RSS})} \nonumber
-\end{align}
+\begin{equation}
+\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2} \color{red}{= \sum_{i=1}^n(\hat{Y}_i - \bar{Y})^2 
++ \sum_{i=1}^n(Y_i - \hat{Y}_i)^2} (\#eq:ssreg)
+\end{equation}
 
 since
 
@@ -83,25 +82,25 @@ kable(anova_tbl, "html", escape = FALSE) %>%
 So the regression model can be reduced to a single summary measure, $F$, that can be used to test the overall significance of the model. Recall, from chapter 1, that our (unbiased) estimate of the error variance was found as
 
 \begin{equation*}
-\color{red}{s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1}}
+s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1}
 \end{equation*}
 
 and this is exactly equivalent to the $\text{RMS}$ in the anova table. Recall also (further back \ldots) from MAS2902 that
 
 \[
-\color{red}{\frac{(N - 1)s^2}{\sigma^2} \sim \chi^2_{N - 1}}
+\frac{(N - 1)s^2}{\sigma^2} \sim \chi^2_{N - 1}
 \]
 
 is the sampling distribution for the sample variance. Hence, letting $N = n - p$ we get
 
 \[
-\color{red}{\frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2_{n - p - 1}
 \]
 
 By recognising that we can rearrange the residual sum of squares term as $\text{RSS} = (n - p - 1)\times\text{RMS}$ (see the anova table) we then have
 
 \[
-\color{red}{\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n - p - 1}
 \]
 
 To find the sampling distribution of $F$ (which we need in order to assess the significance of our result) we will make use of Cochran's theorem.
@@ -110,18 +109,18 @@ To find the sampling distribution of $F$ (which we need in order to assess the s
 *Suppose we have $n$ observations, $Y_i$, where $i = 1, \ldots, n$ from the same normal distribution with mean $\mu$ and variance $\sigma^2$ and the total sum of squares is decomposed into $k$ sums of squares, $\text{SS}_{\ell}$, with associated degrees of freedom $\nu_{\ell}$ for $j = 1, \ldots, k$. Then, each of the sums of squares, scaled by the population variance*
 
 \[
-\color{red}{\text{SS}_{\ell}/\sigma^2}
+\text{SS}_{\ell}/\sigma^2
 \]
 
 *is an independent $\chi^2$ variable with $\nu_{\ell}$ degrees of freedom if*
 
 \[
-\color{red}{\sum_{j = 1}^k \nu_{\ell} = n - 1.}
+\sum_{j = 1}^k \nu_{\ell} = n - 1.
 \]
 
-In our case, we have broken the total sum of squares for our multiple linear regression model into two components, Reg SS and RSS. The observations will have the same mean when all the $\beta$ parameters are simultaneously zero, which we can use as a null hypothesis (see later). Each observation has the same variance, $\sigma_\epsilon^2$ in our case (this is one of our key assumptions) and the respective degrees of freedom are $p$ (for Reg SS) and $n - p - 1$ (for RSS) and these sum to $n - 1$.
+In our case, we have broken the total sum of squares for our multiple linear regression model into two components, Reg SS and RSS. The observations will have the same mean when all the $\beta$ parameters are simultaneously zero, which we can use as a null hypothesis (see later). Each observation has the same variance, $\sigma_\epsilon^2$ in our case (this is one of our key assumptions), and the respective degrees of freedom are $p$ (for Reg SS) and $n - p - 1$ (for RSS) and these sum to $n - 1$.
 
-Thus, applying Cochran's theorem we must have that
+Thus, applying Cochran's theorem, we must have that
 
 \[
 \color{red}{\text{Reg SS}/\sigma_{\epsilon}^2}
@@ -148,7 +147,7 @@ Both of these quantities are a sum of squares divided by its associated degrees 
 We can divide the top and bottom by $\sigma_{\epsilon}^2$ to ensure the numerator and denominator are both $\chi^2$ quantities
 
 \[
-\color{red}{F = \frac{\left(\frac{\text{Reg SS}/\sigma_{\epsilon}^2}{p}\right)}{\left(\frac{\text{RSS}/\sigma_{\epsilon}^2}{n - p - 1}\right)} = \frac{\left(\frac{\chi^2_p}{p}\right)}{\left(\frac{\chi^2_{n - p - 1}}{n - p - 1}\right)} \sim F_{p, n - p - 1}}
+\color{red}{F = \frac{\left(\frac{\text{Reg SS}/\sigma_{\epsilon}^2}{p}\right)}{\left(\frac{\text{RSS}/\sigma_{\epsilon}^2}{n - p - 1}\right)} \sim F_{p, n - p - 1}}
 \]
 
 Why do we do this? The F-distribution arises as a ratio of scaled, independent $\chi^2$ variables, and this is exactly what we now have above. Hence $F$ in our anova table provides us with a means of testing
@@ -163,7 +162,7 @@ versus
 \color{red}{H_1: \text{at least one}\; \beta_j \neq 0, j = 1, \ldots, p.}
 \]
 
-This is an example of an omnibus test and we use the test statistic above, $F = \text{Reg MS}/\text{RMS}$. When the values of $F$ are large (why?) we reject the null hypothesis, $H_0$, in favour of the alternative hypothesis, $H_1$ and we judge this using $p$-values as before. Note that both the total sum of squares (TSS) and the total degrees of freedom are unaffected by model choice since these are fixed quantities from the data.
+This is an example of an *omnibus* test and we use the test statistic above, $F = \text{Reg MS}/\text{RMS}$. When the values of $F$ are large (why?) we reject the null hypothesis, $H_0$, in favour of the alternative hypothesis, $H_1$ and we judge this using $p$-values as before. Note that both the total sum of squares (TSS) and the total degrees of freedom are unaffected by model choice since these are fixed quantities from the data.
 
 ### The coefficient of determination {-}
 A widely-used summary measure of the performance of the regression is the coefficient of determination (or correlation), $R^2$, where
@@ -362,9 +361,7 @@ plot(warfarin_dose ~ age, data = warfarinStudy, pch = 16,
      xlab = 'Age (months)', ylab = 'Warfarin dose (mg)')
 ```
 
-The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance - we will return to transformations formally later in the semester. Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator). 
-
-The original variable is in the `R` dataframe *warfarinStudy* so we can perform the transformation using
+The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance (we will return to transformations formally later in the semester). Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator). The original variable is in the `R` dataframe *warfarinStudy*, so we can perform the transformation using
 
 ```{r}
 # Add the new variable to the data frame
@@ -378,9 +375,7 @@ plot(root_dose ~ age, data = warfarinStudy, pch = 16,
      xlab = 'Age (months)', ylab = 'Square root of warfarin dose (mg)')
 ```
 
-A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings.
-
-The `R` command `anova()` breaks down the regression sum of squares into its individual contribution from each covariate:
+A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings. The `R` command `anova()` breaks down the regression sum of squares into its individual contribution from each covariate:
 
 ```{r}
 m1 = lm(root_dose ~ height + age, data = warfarinStudy)
@@ -423,7 +418,7 @@ In order to use the extra sum of squares method in this scenario we order the $x
 
 where $\vec{\beta}_2$ is the $q-$vector of parameters that we wish to consider for removal from the model, and $\vec{\beta}_1$ is the $(p-q)$-vector of parameters which we wish to keep in the model.
 
-First calculate (usually using `R`) the regression sum of squares for fitting all $p$ candidate parameters, i.e. fit the full (additive) model. We then calculate (again using `R`, typically) the regression sum of squares for fitting the $p - q$ parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:
+To carry out the procedure, we firstcalculate (usually using `R`) the regression sum of squares for fitting all $p$ candidate parameters, i.e. fit the full (additive) model. We then calculate (again using `R`, typically) the regression sum of squares for fitting the $p - q$ parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:
 
 ```{r genextanova, results='asis', echo=FALSE}
 library(knitr)
@@ -441,16 +436,16 @@ gen_ext_anova_tbl <- data.frame(
 kable(gen_ext_anova_tbl, escape = FALSE)
 ```
 
-We can now test $H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0$ given that $\beta_1, \ldots, \beta_{p - q}$ have been included in the model using $F_2$. This is tested against a general alternative $H_1: \text{at least one}\;\; \beta_j \neq 0$ for $j = p - q + 1, \ldots, p$. This is an example of an \textit{omnibus} test as we are testing for several things simultaneously. Large values of $F_2$ lead to rejection of the null hypothesis, $H_0$. This process allows to remove a block of parameters from a model, rather than one-by-one and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.
+We can now test $H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0$ given that $\beta_1, \ldots, \beta_{p - q}$ have been included in the model using $F_2$. This is tested against a general alternative $H_1: \text{at least one}\;\; \beta_j \neq 0$ for $j = p - q + 1, \ldots, p$. This is another example of an \textit{omnibus} test as we are testing for several things simultaneously. Large values of $F_2$ lead to rejection of the null hypothesis, $H_0$. This process allows us to remove a block of parameters from a model, rather than one-by-one, and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.
 
 ## Example: Extended extra sum of squares for cheese data {-}
 Returning to the cheese data, three additional variables are also available in the dataset *cheese2.RData*, namely
 
-- Acetic: the natural log of the concentration of acetic acid;
+- Acetic: the natural log of the concentration of acetic acid (in micromoles per liter, $\mu$mol/L);
 - Phosphoric: the amount of phosphoric acid (in mg);
 - Citric: the amount of citric acid (in ml).
 
-We can use the extra sum of squares to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first $p$ parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of `lm()` to do this:
+We can use the extra sum of squares method to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first $p$ parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of `lm()` to do this:
 
 ```{r}
 load("cheese2.RData")
@@ -474,10 +469,10 @@ anova(reduced_model, full_model)
 We see that $p = 0.8923 > 0.05$ so we can retain the null hypothesis and our original model containing both H2S and lactic acid is our chosen model; acetic, phosphoric and citric acid are not needed in the model, in the presence of H2S and lactic acid.
 
 ### Summary: extra sum of squares method {-}
-Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously, and use exploratory plots to verify our findings. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific $p$-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) we can still apply the method, but it is slightly inefficient - as we shall see in section \@ref(sec:infer).
+Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific $p$-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) - i.e. anything with a solitary degree of freedom - we can still apply the method, but it is slightly inefficient, as we shall see in section \@ref(sec:infer).
 
 ## Example: Anova for crime data based on summary information {-}
-A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in `R` using an additive multiple linear regression model. A partial analysis of variance using all 13 predictors produced the following table:
+A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in `R` using an additive multiple linear regression model. An incomplete analysis of variance using all thirteen predictors produced the following table:
 
 ```{r anovacrime, results='asis', echo=FALSE}
 anova_tbl_crime <- data.frame(
@@ -567,7 +562,7 @@ kable(tbl_crime_partial, "html", escape = FALSE) %>%
 <span style="color: red;">Hence, we can now say that $x_3$ is the most important predictor, followed by $x_5$ (which had the lowest estimate). The least important predictor is $x_4$, although it still has a reasonably large $t$-value</span>
 </li>
 <br>
-<li> <span style="color: red;">Using the relation that the total SS is the sum of the regression and error SS terms we can get the regression SS for the five-predictor model as $68810 - 18604 = 50206$. To test the reduced model we need its sum of squares, found by subtraction as $52931 - 50206 = 2725$ (note that $52931$ is the regression sum of squares from the full model in (a)). 
+<li> <span style="color: red;">Using the relation that the total SS is the sum of the regression and residual SS terms we can get the regression SS for the five-predictor model as $68810 - 18604 = 50206$. To test the reduced model we need its (conditional) regression sum of squares, found by subtraction as $52931 - 50206 = 2725$ (note that $52931$ is the regression sum of squares from the full model in (a)). 
 <br>
 <br>
 This has 8 degrees of freedom associated so the regression MS for the additional 8 variables is $2725/8 = 340.625$ which we compare to the full model error MS to get $F = 340.625/481.182 = 0.71$. From `R`, $F_{8, 33}(5\%) = 2.235$ so we retain the null hypothesis - the extra 8 predictors are not needed if the five variables nominated by the criminologist are already in the model.
@@ -581,7 +576,7 @@ A more direct solution is to note that the difference in the residual sums of sq
 </ol>
 
 ## Inference on individual parameters {#sec:infer}
-The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\beta}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.
+The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.
 
 To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use
 
@@ -598,7 +593,7 @@ As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+
 &\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
 \end{align*}
 
-Note that these hypothesis tests are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters. 
+Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters. 
 
 In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.
 
@@ -609,9 +604,7 @@ Returning to the warfarin example and inspecting the summary of the fitted model
 summary(m1)
 ```
 
-The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$!
-
-We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function.
+The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function:
 
 ```{r}
 confint(m1)
@@ -619,9 +612,7 @@ confint(m1)
 
 We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds. 
 
-Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters.
-
-Fitting the model without height and recalculating the confidence interval for height we get
+Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get
 
 ```{r}
 mfinal = lm(root_dose ~ age, data = warfarinStudy)
@@ -640,27 +631,27 @@ Comparing with the confidence interval from the full model we see that it is now
 Recall that the fitted values in a mutliple linear regression model are given by
 
 \begin{align*}
-\color{red}{\vec{\hat{Y}}} &\color{red}{= \up{X}\vec{\hat{\beta}}} \\
-&\color{red}{= \up{X}(\up{X}^T\up{X})^{-1}\up{X}^T\vec{Y}} \\
-&\color{red}{= \up{H}\vec{Y}}
+\vec{\hat{Y}} &= \up{X}\vec{\hat{\beta}} \\
+&= \up{X}(\up{X}^T\up{X})^{-1}\up{X}^T\vec{Y} \\
+&= \up{H}\vec{Y}
 \end{align*}
 
 Making use of these alternative forms we found the expectation and the variance of the fitted values back in subsection \@ref(sec:expvaryhat) of the notes, namely
 
 \[
-\color{red}{\E[\vec{\hat{Y}}] = \up{X}\vec{\beta}}
+\E[\vec{\hat{Y}}] = \up{X}\vec{\beta}
 \]
 
 and
 
 \begin{equation*}
-\color{red}{\Var[\vec{\hat{Y}}] = \up{H}\sigma_{\epsilon}^2.}
+\Var[\vec{\hat{Y}}] = \up{H}\sigma_{\epsilon}^2.
 \end{equation*}
 
-Hence, at the individual observation level, we have $\E[\hat{Y}_i] =\vec{x}_i^T \vec{\hat{\beta}}$. Also, for the variance we have $\Var[\hat{Y}_i] = h_{ii}\sigma_{\epsilon}^2$ for $i = 1, \ldots, n$, where the $h_{ii}$ are the diagonal elements (the leverages, recall) of the hat matrix $\up{H}$. By noting that the fitted values are a linear combination of random variables, $\vec{\hat{\beta}}$, we can see that they are also normally distributed. This means we can find a $100(1 - \alpha)\%$ confidence interval for the fitted value in the usual way as
+Hence, at the individual observation level, we have $\E\left[\hat{Y}_i\right] =\vec{x}_i^T \vec{\beta}$. Also, for the variance we have $\Var\left[\hat{Y}_i\right] = h_{ii}\sigma_{\epsilon}^2$ for $i = 1, \ldots, n$, where the $h_{ii}$ are the diagonal elements (the leverages, recall) of the hat matrix $\up{H}$. By noting that the fitted values are a linear combination of random variables, $\vec{\hat{\beta}}$, we can see that they are also normally distributed. This means we can find a $100(1 - \alpha)\%$ confidence interval for the fitted value in the usual way as
 
 \[
-\color{red}{\hat{Y}_i \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{ii}}}
+\hat{Y}_i \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{ii}}
 \]
 
 where $\nu = n - p - 1$ is the residual degrees of freedom and $s$ is the square root of RMS (see earlier). 
@@ -690,7 +681,7 @@ where $\epsilon_p$ captures the unknown error associated with the prediction, an
 \begin{align*}
 \color{red}{\Var\left[\hat{Y}_p^* \right]} &\color{red}{= \Var\left[\vec{x}_p^T \vec{\hat{\beta}}\right] + \Var[\epsilon_p]} \\
 &\color{red}{= \vec{x}_p^T (\up{X}^T\up{X})^{-1} \vec{x}_p\sigma_{\epsilon}^2 + \sigma_{\epsilon}^2} \\
-&\color{red}{= (\vec{x}_p^T (\up{X}^T\up{X})^{-1} \vec{x}_p + 1) \sigma_{\epsilon}^2},
+&\color{red}{= \left(\vec{x}_p^T (\up{X}^T\up{X})^{-1} \vec{x}_p + 1\right) \sigma_{\epsilon}^2},
 \end{align*}
 
 and a *prediction* interval for a *new observation* is found as
@@ -719,12 +710,13 @@ Sometimes the response might have a curvilinear relationship with one or more of
 \color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
 \]
 
-for $i = 1, \ldots, n$. To fit the model, we proceed as usual, except we define
+for $i = 1, \ldots, n$. Defining
+
 \[
-\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3}
+\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3},
 \]
 
-The model then becomes
+the model then becomes
 
 \[
 \color{red}{Y_i = \beta_0 + \beta_1 x_{i1}^* + \beta_2 x_{i2}^* + \beta_3 x_{i3}^* + \epsilon_i}
@@ -737,7 +729,7 @@ which is of exactly the form of a multiple linear regression model. Other covari
 \beta_4 x_{i1}x_{i2} + \beta_5 x_{i2}^2 + \epsilon_i}
 \]
 
-*Warning:* When fitting polynomials, there can be high correlations between powers of the covariates, and hence multicollinearity problems, (i.e. problems in inverting ($\up{X}^T\up{X})^{-1}$. For example, consider a(n equi-spaced) covariate $\vec{x}^T = (1, 2, \ldots, 10)$
+Hence, we can fit polynomial models in the same way to models seen so far during the module. However, when fitting polynomials, there can be high correlations between powers of the covariates, and hence near-multicollinearity problems, known as *polynomial multicollinearity*. For example, consider a(n equi-spaced) covariate $\vec{x}^T = (1, 2, \ldots, 10)$
 
 ```{r}
 x = 1:10
@@ -745,10 +737,10 @@ cor(x, x^2)
 cor(x^2, x^3)
 ```
 
-These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is $\vec{x}_1$ then we introduce $z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)$ and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.
+From practical 1, we saw that this can inflate standard errors, thereby diluting tests on individual parameters and this often conflicts with a large $F$ value (i.e. highly significant) for the overall model. These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is $\vec{x}_1$ then we introduce $z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)$ and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.
 
 ## Example: Polynomial model {-}
-An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for three brands of beer were measured. The results for one particular brand can be found on Canvas in the file *beer1.RData*. A plot of the foam height against time is given below:
+An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for the three brands of beer were measured. The results for one particular brand can be found on Canvas in the file *beer1.RData*. A plot of the foam height against time is given below:
 
 ```{r beerplot, fig.cap = 'Scatterplot of foam height against time for the beer data.', echo=FALSE, fig.align='center', out.width='65%'}
 load("beer1.RData")
@@ -761,7 +753,7 @@ The plot is strongly suggestive of a curvilinear (possibly quadratic?) relations
 \color{red}{\text{Height}_i = \beta_0 + \beta_1 \text{Time}_i + \beta_2 \text{Time}_i^2 + \epsilon_i}
 \]
 
-This can be done in several ways in `R`. We will use the built-in function `poly()` to fit the model - note that this function automatically uses *orthogonal* polynomials which remove the correlations between the powers of the covariate completely. Fitting the model in `R`, we use the following commands:
+for $i = 1, \ldots, 15$. This can be done in several ways in `R`. We will use the built-in function `poly()` to fit the model - note that this function automatically uses *orthogonal* polynomials which remove the correlations between the powers of the covariate completely, at the cost of interpretation but the gain of model selection. Fitting the model in `R`, we use the following commands:
 
 ```{r}
 fit1 = lm(Height ~ poly(Time, 2), data = beer1)
@@ -773,13 +765,14 @@ We can summarise the model in the usual way (as it is still a multiple linear re
 summary(fit1)
 ```
 
-We see that both the linear and quadratic terms in time are highly significant beyond the $0.1\%$ level. The $R^2$ value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time.
+We see that both the linear and quadratic terms in time are highly significant beyond the $0.1\%$ level. The $R^2$ value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time. There seems little value in considering higher order terms in this case, but how do we choose in cases that are less clear-cut?
 
 ### Choosing the order of a polynomial model
 When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.
 
-We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of $R^2$ (although other criteria may be better). As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.
+We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of $R^2$ (although other criteria may be better); in the special case of orthogonal polynomials this is made easier as each term in the model is independent. As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.
 
+#### Hierarchical model building {-}
 Consider the model
 \[
 Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i

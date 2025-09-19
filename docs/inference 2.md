@@ -1065,13 +1065,12 @@ Sometimes the response might have a curvilinear relationship with one or more of
 \color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
 \]
 
-for $i = 1, \ldots, n$. Defining
-
+for $i = 1, \ldots, n$. To fit the model, we proceed as usual, except we define
 \[
-\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3},
+\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3}
 \]
 
-the model then becomes
+The model then becomes
 
 \[
 \color{red}{Y_i = \beta_0 + \beta_1 x_{i1}^* + \beta_2 x_{i2}^* + \beta_3 x_{i3}^* + \epsilon_i}
@@ -1084,7 +1083,7 @@ which is of exactly the form of a multiple linear regression model. Other covari
 \beta_4 x_{i1}x_{i2} + \beta_5 x_{i2}^2 + \epsilon_i}
 \]
 
-Hence, we can fit polynomial models in the same way to models seen so far during the module. However, when fitting polynomials, there can be high correlations between powers of the covariates, and hence near-multicollinearity problems, known as *polynomial multicollinearity*. For example, consider a(n equi-spaced) covariate $\vec{x}^T = (1, 2, \ldots, 10)$
+*Warning:* When fitting polynomials, there can be high correlations between powers of the covariates, and hence multicollinearity problems, (i.e. problems in inverting ($\up{X}^T\up{X})^{-1}$. For example, consider a(n equi-spaced) covariate $\vec{x}^T = (1, 2, \ldots, 10)$
 
 
 ``` r
@@ -1104,10 +1103,10 @@ cor(x^2, x^3)
 ## [1] 0.9871797
 ```
 
-From practical 1, we saw that this can inflate standard errors, thereby diluting tests on individual parameters and this often conflicts with a large $F$ value (i.e. highly significant) for the overall model. These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is $\vec{x}_1$ then we introduce $z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)$ and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.
+These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is $\vec{x}_1$ then we introduce $z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)$ and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.
 
 ## Example: Polynomial model {-}
-An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for the three brands of beer were measured. The results for one particular brand can be found on Canvas in the file *beer1.RData*. A plot of the foam height against time is given below:
+An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for three brands of beer were measured. The results for one particular brand can be found on Canvas in the file *beer1.RData*. A plot of the foam height against time is given below:
 
 <div class="figure" style="text-align: center">
 <img src="inference_files/figure-html/beerplot-1.png" alt="Scatterplot of foam height against time for the beer data." width="65%" />
@@ -1120,7 +1119,7 @@ The plot is strongly suggestive of a curvilinear (possibly quadratic?) relations
 \color{red}{\text{Height}_i = \beta_0 + \beta_1 \text{Time}_i + \beta_2 \text{Time}_i^2 + \epsilon_i}
 \]
 
-for $i = 1, \ldots, 15$. This can be done in several ways in `R`. We will use the built-in function `poly()` to fit the model - note that this function automatically uses *orthogonal* polynomials which remove the correlations between the powers of the covariate completely, at the cost of interpretation but the gain of model selection. Fitting the model in `R`, we use the following commands:
+This can be done in several ways in `R`. We will use the built-in function `poly()` to fit the model - note that this function automatically uses *orthogonal* polynomials which remove the correlations between the powers of the covariate completely. Fitting the model in `R`, we use the following commands:
 
 
 ``` r
@@ -1156,14 +1155,13 @@ summary(fit1)
 ## F-statistic:  1002 on 2 and 12 DF,  p-value: 4.442e-14
 ```
 
-We see that both the linear and quadratic terms in time are highly significant beyond the $0.1\%$ level. The $R^2$ value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time. There seems little value in considering higher order terms in this case, but how do we choose in cases that are less clear-cut?
+We see that both the linear and quadratic terms in time are highly significant beyond the $0.1\%$ level. The $R^2$ value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time.
 
 ### Choosing the order of a polynomial model
 When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.
 
 We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of $R^2$ (although other criteria may be better). As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.
 
-#### Hierarchical model building {-}
 Consider the model
 \[
 Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i

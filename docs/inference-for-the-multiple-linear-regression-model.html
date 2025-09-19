@@ -339,7 +339,7 @@ div.csl-indent {
 \color{red}{Y_i} &amp; \color{red}{ = \hat{Y_i} + \hat{\epsilon_i}} \\
 &amp;\color{red}{= \hat{Y_i} + (Y_i - \hat{Y_i})}
 \end{align*}\]</span></p>
-<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. To map this on to an anova-type problem, we can take the seemingly artificial step of subtracting the observed data mean, <span class="math inline">\(\bar{Y}\)</span>, from both sides to obtain</p>
+<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. To map this on to an anova-type problem, we can take the - seemingly artificial - step of subtracting the observed data mean, <span class="math inline">\(\bar{Y}\)</span>, from both sides to obtain</p>
 <p><span class="math display">\[
 \color{red}{Y_i - \bar{Y} = \hat{Y_i} + (Y_i - \hat{Y_i}) - \bar{Y}}
 \]</span></p>
@@ -353,11 +353,10 @@ div.csl-indent {
 \color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2 = \sum_{i=1}^n\left\{(\hat{Y_i} - \bar{Y}) + (Y_i - \hat{Y_i}) \right\}^2}
 \]</span></p>
 <p>This remarkably leads to the following result</p>
-<p><span class="math display" id="eq:ssreg">\[\begin{align}
-\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2} &amp;\color{red}{= \sum_{i=1}^n(\hat{Y}_i - \bar{Y})^2
-+ \sum_{i=1}^n(Y_i - \hat{Y}_i)^2} \tag{3.1}\\
-\color{red}{(\textrm{TSS}} &amp;\color{red}{= \textrm{Reg SS} + \textrm{RSS})} \nonumber
-\end{align}\]</span></p>
+<p><span class="math display" id="eq:ssreg">\[\begin{equation}
+\color{red}{\sum_{i=1}^n(Y_i - \bar{Y})^2} \color{red}{= \sum_{i=1}^n(\hat{Y}_i - \bar{Y})^2
++ \sum_{i=1}^n(Y_i - \hat{Y}_i)^2} \tag{3.1}
+\end{equation}\]</span></p>
 <p>since</p>
 <p><span class="math display">\[
 \color{red}{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})(Y_i - \hat{Y}_i) = 0.}
@@ -443,33 +442,33 @@ TSS
 </table>
 <p>So the regression model can be reduced to a single summary measure, <span class="math inline">\(F\)</span>, that can be used to test the overall significance of the model. Recall, from chapter 1, that our (unbiased) estimate of the error variance was found as</p>
 <p><span class="math display">\[\begin{equation*}
-\color{red}{s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1}}
+s^2 = \frac{\sum (y_i - \hat{y_i})^2}{n - p - 1}
 \end{equation*}\]</span></p>
 <p>and this is exactly equivalent to the <span class="math inline">\(\text{RMS}\)</span> in the anova table. Recall also (further back ) from MAS2902 that</p>
 <p><span class="math display">\[
-\color{red}{\frac{(N - 1)s^2}{\sigma^2} \sim \chi^2_{N - 1}}
+\frac{(N - 1)s^2}{\sigma^2} \sim \chi^2_{N - 1}
 \]</span></p>
 <p>is the sampling distribution for the sample variance. Hence, letting <span class="math inline">\(N = n - p\)</span> we get</p>
 <p><span class="math display">\[
-\color{red}{\frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\frac{(n - p - 1)s^2}{\sigma^2} \sim \chi^2_{n - p - 1}
 \]</span></p>
 <p>By recognising that we can rearrange the residual sum of squares term as <span class="math inline">\(\text{RSS} = (n - p - 1)\times\text{RMS}\)</span> (see the anova table) we then have</p>
 <p><span class="math display">\[
-\color{red}{\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n - p - 1}}
+\frac{\text{RSS}}{\sigma^2} \sim \chi^2_{n - p - 1}
 \]</span></p>
 <p>To find the sampling distribution of <span class="math inline">\(F\)</span> (which we need in order to assess the significance of our result) we will make use of Cochran’s theorem.</p>
 <div id="cochrans-theorem" class="section level3 unnumbered hasAnchor">
 <h3>Cochran’s Theorem<a href="inference-for-the-multiple-linear-regression-model.html#cochrans-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>Suppose we have <span class="math inline">\(n\)</span> observations, <span class="math inline">\(Y_i\)</span>, where <span class="math inline">\(i = 1, \ldots, n\)</span> from the same normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> and the total sum of squares is decomposed into <span class="math inline">\(k\)</span> sums of squares, <span class="math inline">\(\text{SS}_{\ell}\)</span>, with associated degrees of freedom <span class="math inline">\(\nu_{\ell}\)</span> for <span class="math inline">\(j = 1, \ldots, k\)</span>. Then, each of the sums of squares, scaled by the population variance</em></p>
 <p><span class="math display">\[
-\color{red}{\text{SS}_{\ell}/\sigma^2}
+\text{SS}_{\ell}/\sigma^2
 \]</span></p>
 <p><em>is an independent <span class="math inline">\(\chi^2\)</span> variable with <span class="math inline">\(\nu_{\ell}\)</span> degrees of freedom if</em></p>
 <p><span class="math display">\[
-\color{red}{\sum_{j = 1}^k \nu_{\ell} = n - 1.}
+\sum_{j = 1}^k \nu_{\ell} = n - 1.
 \]</span></p>
-<p>In our case, we have broken the total sum of squares for our multiple linear regression model into two components, Reg SS and RSS. The observations will have the same mean when all the <span class="math inline">\(\beta\)</span> parameters are simultaneously zero, which we can use as a null hypothesis (see later). Each observation has the same variance, <span class="math inline">\(\sigma_\epsilon^2\)</span> in our case (this is one of our key assumptions) and the respective degrees of freedom are <span class="math inline">\(p\)</span> (for Reg SS) and <span class="math inline">\(n - p - 1\)</span> (for RSS) and these sum to <span class="math inline">\(n - 1\)</span>.</p>
-<p>Thus, applying Cochran’s theorem we must have that</p>
+<p>In our case, we have broken the total sum of squares for our multiple linear regression model into two components, Reg SS and RSS. The observations will have the same mean when all the <span class="math inline">\(\beta\)</span> parameters are simultaneously zero, which we can use as a null hypothesis (see later). Each observation has the same variance, <span class="math inline">\(\sigma_\epsilon^2\)</span> in our case (this is one of our key assumptions), and the respective degrees of freedom are <span class="math inline">\(p\)</span> (for Reg SS) and <span class="math inline">\(n - p - 1\)</span> (for RSS) and these sum to <span class="math inline">\(n - 1\)</span>.</p>
+<p>Thus, applying Cochran’s theorem, we must have that</p>
 <p><span class="math display">\[
 \color{red}{\text{Reg SS}/\sigma_{\epsilon}^2}
 \]</span></p>
@@ -487,7 +486,7 @@ TSS
 \]</span></p>
 <p>We can divide the top and bottom by <span class="math inline">\(\sigma_{\epsilon}^2\)</span> to ensure the numerator and denominator are both <span class="math inline">\(\chi^2\)</span> quantities</p>
 <p><span class="math display">\[
-\color{red}{F = \frac{\left(\frac{\text{Reg SS}/\sigma_{\epsilon}^2}{p}\right)}{\left(\frac{\text{RSS}/\sigma_{\epsilon}^2}{n - p - 1}\right)} = \frac{\left(\frac{\chi^2_p}{p}\right)}{\left(\frac{\chi^2_{n - p - 1}}{n - p - 1}\right)} \sim F_{p, n - p - 1}}
+\color{red}{F = \frac{\left(\frac{\text{Reg SS}/\sigma_{\epsilon}^2}{p}\right)}{\left(\frac{\text{RSS}/\sigma_{\epsilon}^2}{n - p - 1}\right)} \sim F_{p, n - p - 1}}
 \]</span></p>
 <p>Why do we do this? The F-distribution arises as a ratio of scaled, independent <span class="math inline">\(\chi^2\)</span> variables, and this is exactly what we now have above. Hence <span class="math inline">\(F\)</span> in our anova table provides us with a means of testing</p>
 <p><span class="math display">\[
@@ -497,7 +496,7 @@ TSS
 <p><span class="math display">\[
 \color{red}{H_1: \text{at least one}\; \beta_j \neq 0, j = 1, \ldots, p.}
 \]</span></p>
-<p>This is an example of an omnibus test and we use the test statistic above, <span class="math inline">\(F = \text{Reg MS}/\text{RMS}\)</span>. When the values of <span class="math inline">\(F\)</span> are large (why?) we reject the null hypothesis, <span class="math inline">\(H_0\)</span>, in favour of the alternative hypothesis, <span class="math inline">\(H_1\)</span> and we judge this using <span class="math inline">\(p\)</span>-values as before. Note that both the total sum of squares (TSS) and the total degrees of freedom are unaffected by model choice since these are fixed quantities from the data.</p>
+<p>This is an example of an <em>omnibus</em> test and we use the test statistic above, <span class="math inline">\(F = \text{Reg MS}/\text{RMS}\)</span>. When the values of <span class="math inline">\(F\)</span> are large (why?) we reject the null hypothesis, <span class="math inline">\(H_0\)</span>, in favour of the alternative hypothesis, <span class="math inline">\(H_1\)</span> and we judge this using <span class="math inline">\(p\)</span>-values as before. Note that both the total sum of squares (TSS) and the total degrees of freedom are unaffected by model choice since these are fixed quantities from the data.</p>
 </div>
 <div id="the-coefficient-of-determination" class="section level3 unnumbered hasAnchor">
 <h3>The coefficient of determination<a href="inference-for-the-multiple-linear-regression-model.html#the-coefficient-of-determination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -975,8 +974,7 @@ In a study of 120 children, the warfarin dose (mg), age (months) and height (cm)
 Figure 3.1: Scatterplot of dose against age for the warfarin study.
 </p>
 </div>
-<p>The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance - we will return to transformations formally later in the semester. Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator).</p>
-<p>The original variable is in the <code>R</code> dataframe <em>warfarinStudy</em> so we can perform the transformation using</p>
+<p>The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance (we will return to transformations formally later in the semester). Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator). The original variable is in the <code>R</code> dataframe <em>warfarinStudy</em>, so we can perform the transformation using</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb59-1" tabindex="-1"></a><span class="co"># Add the new variable to the data frame</span></span>
 <span id="cb59-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb59-2" tabindex="-1"></a>warfarinStudy<span class="sc">$</span>root_dose <span class="ot">=</span> <span class="fu">sqrt</span>(warfarinStudy<span class="sc">$</span>warfarin_dose)</span></code></pre></div>
 <p>Plotting the square root of dose against age we see that it increases on average with increasing age and that the variability is now approximately constant.</p>
@@ -986,8 +984,7 @@ Figure 3.1: Scatterplot of dose against age for the warfarin study.
 Figure 3.2: Scatterplot of the square root of dose against age for the warfarin study.
 </p>
 </div>
-<p>A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings.</p>
-<p>The <code>R</code> command <code>anova()</code> breaks down the regression sum of squares into its individual contribution from each covariate:</p>
+<p>A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings. The <code>R</code> command <code>anova()</code> breaks down the regression sum of squares into its individual contribution from each covariate:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb60-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> height <span class="sc">+</span> age, <span class="at">data =</span> warfarinStudy)</span>
 <span id="cb60-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb60-2" tabindex="-1"></a><span class="fu">anova</span>(m1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -1034,7 +1031,7 @@ Figure 3.3: Scatterplot of height against age for the warfarin study.
          \end{pmatrix}}
 \end{align*}\]</span></p>
 <p>where <span class="math inline">\(\underline{\beta}_2\)</span> is the <span class="math inline">\(q-\)</span>vector of parameters that we wish to consider for removal from the model, and <span class="math inline">\(\underline{\beta}_1\)</span> is the <span class="math inline">\((p-q)\)</span>-vector of parameters which we wish to keep in the model.</p>
-<p>First calculate (usually using <code>R</code>) the regression sum of squares for fitting all <span class="math inline">\(p\)</span> candidate parameters, i.e. fit the full (additive) model. We then calculate (again using <code>R</code>, typically) the regression sum of squares for fitting the <span class="math inline">\(p - q\)</span> parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:</p>
+<p>To carry out the procedure, we firstcalculate (usually using <code>R</code>) the regression sum of squares for fitting all <span class="math inline">\(p\)</span> candidate parameters, i.e. fit the full (additive) model. We then calculate (again using <code>R</code>, typically) the regression sum of squares for fitting the <span class="math inline">\(p - q\)</span> parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:</p>
 <table style="width:100%;">
 <colgroup>
 <col width="18%" />
@@ -1083,17 +1080,17 @@ Figure 3.3: Scatterplot of height against age for the warfarin study.
 </tr>
 </tbody>
 </table>
-<p>We can now test <span class="math inline">\(H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0\)</span> given that <span class="math inline">\(\beta_1, \ldots, \beta_{p - q}\)</span> have been included in the model using <span class="math inline">\(F_2\)</span>. This is tested against a general alternative <span class="math inline">\(H_1: \text{at least one}\;\; \beta_j \neq 0\)</span> for <span class="math inline">\(j = p - q + 1, \ldots, p\)</span>. This is an example of an test as we are testing for several things simultaneously. Large values of <span class="math inline">\(F_2\)</span> lead to rejection of the null hypothesis, <span class="math inline">\(H_0\)</span>. This process allows to remove a block of parameters from a model, rather than one-by-one and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.</p>
+<p>We can now test <span class="math inline">\(H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0\)</span> given that <span class="math inline">\(\beta_1, \ldots, \beta_{p - q}\)</span> have been included in the model using <span class="math inline">\(F_2\)</span>. This is tested against a general alternative <span class="math inline">\(H_1: \text{at least one}\;\; \beta_j \neq 0\)</span> for <span class="math inline">\(j = p - q + 1, \ldots, p\)</span>. This is another example of an test as we are testing for several things simultaneously. Large values of <span class="math inline">\(F_2\)</span> lead to rejection of the null hypothesis, <span class="math inline">\(H_0\)</span>. This process allows us to remove a block of parameters from a model, rather than one-by-one, and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.</p>
 </div>
 <div id="example-extended-extra-sum-of-squares-for-cheese-data" class="section level2 unnumbered hasAnchor">
 <h2>Example: Extended extra sum of squares for cheese data<a href="inference-for-the-multiple-linear-regression-model.html#example-extended-extra-sum-of-squares-for-cheese-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Returning to the cheese data, three additional variables are also available in the dataset <em>cheese2.RData</em>, namely</p>
 <ul>
-<li>Acetic: the natural log of the concentration of acetic acid;</li>
+<li>Acetic: the natural log of the concentration of acetic acid (in micromoles per liter, <span class="math inline">\(\mu\)</span>mol/L);</li>
 <li>Phosphoric: the amount of phosphoric acid (in mg);</li>
 <li>Citric: the amount of citric acid (in ml).</li>
 </ul>
-<p>We can use the extra sum of squares to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first <span class="math inline">\(p\)</span> parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of <code>lm()</code> to do this:</p>
+<p>We can use the extra sum of squares method to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first <span class="math inline">\(p\)</span> parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of <code>lm()</code> to do this:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese2.RData&quot;</span>)</span>
 <span id="cb64-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-2" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese2)</span>
 <span id="cb64-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb64-3" tabindex="-1"></a>fit2 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> ., <span class="at">data =</span> cheese2)</span>
@@ -1112,12 +1109,12 @@ Figure 3.3: Scatterplot of height against age for the warfarin study.
 <p>We see that <span class="math inline">\(p = 0.8923 &gt; 0.05\)</span> so we can retain the null hypothesis and our original model containing both H2S and lactic acid is our chosen model; acetic, phosphoric and citric acid are not needed in the model, in the presence of H2S and lactic acid.</p>
 <div id="summary-extra-sum-of-squares-method" class="section level3 unnumbered hasAnchor">
 <h3>Summary: extra sum of squares method<a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously, and use exploratory plots to verify our findings. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific <span class="math inline">\(p\)</span>-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) we can still apply the method, but it is slightly inefficient - as we shall see in section <a href="inference-for-the-multiple-linear-regression-model.html#sec:infer">3.5</a>.</p>
+<p>Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific <span class="math inline">\(p\)</span>-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) - i.e. anything with a solitary degree of freedom - we can still apply the method, but it is slightly inefficient, as we shall see in section <a href="inference-for-the-multiple-linear-regression-model.html#sec:infer">3.5</a>.</p>
 </div>
 </div>
 <div id="example-anova-for-crime-data-based-on-summary-information" class="section level2 unnumbered hasAnchor">
 <h2>Example: Anova for crime data based on summary information<a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in <code>R</code> using an additive multiple linear regression model. A partial analysis of variance using all 13 predictors produced the following table:</p>
+<p>A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in <code>R</code> using an additive multiple linear regression model. An incomplete analysis of variance using all thirteen predictors produced the following table:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1417,7 +1414,7 @@ t
 </li>
 <br>
 <li>
-<span style="color: red;">Using the relation that the total SS is the sum of the regression and error SS terms we can get the regression SS for the five-predictor model as <span class="math inline">\(68810 - 18604 = 50206\)</span>. To test the reduced model we need its sum of squares, found by subtraction as <span class="math inline">\(52931 - 50206 = 2725\)</span> (note that <span class="math inline">\(52931\)</span> is the regression sum of squares from the full model in (a)).
+<span style="color: red;">Using the relation that the total SS is the sum of the regression and residual SS terms we can get the regression SS for the five-predictor model as <span class="math inline">\(68810 - 18604 = 50206\)</span>. To test the reduced model we need its (conditional) regression sum of squares, found by subtraction as <span class="math inline">\(52931 - 50206 = 2725\)</span> (note that <span class="math inline">\(52931\)</span> is the regression sum of squares from the full model in (a)).
 <br>
 <br>
 This has 8 degrees of freedom associated so the regression MS for the additional 8 variables is <span class="math inline">\(2725/8 = 340.625\)</span> which we compare to the full model error MS to get <span class="math inline">\(F = 340.625/481.182 = 0.71\)</span>. From <code>R</code>, <span class="math inline">\(F_{8, 33}(5\%) = 2.235\)</span> so we retain the null hypothesis - the extra 8 predictors are not needed if the five variables nominated by the criminologist are already in the model.
@@ -1433,7 +1430,7 @@ A more direct solution is to note that the difference in the residual sums of sq
 </div>
 <div id="sec:infer" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Inference on individual parameters<a href="inference-for-the-multiple-linear-regression-model.html#sec:infer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the <code>summary()</code> command considers the joint distribution of the parameter vector, <span class="math inline">\(\underline{\beta}\)</span>. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.</p>
+<p>The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the <code>summary()</code> command considers the joint distribution of the parameter vector, <span class="math inline">\(\underline{\hat{\beta}}\)</span>. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.</p>
 <p>To test the hypothesis <span class="math inline">\(H_0: \beta_j = b_j\)</span> for a chosen <span class="math inline">\(j \in 1, \ldots, p\)</span>, given that the other parameters are fitted, we use</p>
 <p><span class="math display">\[
 \color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}}
@@ -1444,7 +1441,7 @@ A more direct solution is to note that the difference in the residual sums of sq
 \color{red}{\hat{\beta}_j} &amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\
 &amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
 \end{align*}\]</span></p>
-<p>Note that these hypothesis tests are only a guide. The <span class="math inline">\(t\)</span>-test outlined above, which are given in the model output via <code>R</code>, are exactly equivalent to an <span class="math inline">\(F\)</span>-test on this parameter <em>having been fitted last</em>. Since the <span class="math inline">\(\hat{\beta}_j\)</span> are correlated, statements about single parameters are not independent from statements about the remaining parameters.</p>
+<p>Note that these hypothesis tests and confidence intervals are only a guide. The <span class="math inline">\(t\)</span>-test outlined above, which are given in the model output via <code>R</code>, are exactly equivalent to an <span class="math inline">\(F\)</span>-test on this parameter <em>having been fitted last</em>. Since the <span class="math inline">\(\hat{\beta}_j\)</span> are correlated, statements about single parameters are not independent from statements about the remaining parameters.</p>
 <p>In practice, we often remove the variable with the largest <span class="math inline">\(p\)</span>-value (assuming <span class="math inline">\(p &gt; 0.05\)</span>, say) and refit the model, continuing until all the remaining variables have small <span class="math inline">\(p\)</span>-values (<span class="math inline">\(&lt;0.05\)</span>, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.</p>
 </div>
 <div id="example-inference-on-individual-parameters---warfarin-example" class="section level2 unnumbered hasAnchor">
@@ -1470,16 +1467,14 @@ A more direct solution is to note that the difference in the residual sums of sq
 ## Residual standard error: 0.4723 on 117 degrees of freedom
 ## Multiple R-squared:  0.3524, Adjusted R-squared:  0.3413 
 ## F-statistic: 31.83 on 2 and 117 DF,  p-value: 9.187e-12</code></pre>
-<p>The <span class="math inline">\(p\)</span>-values given above for the <span class="math inline">\(t\)</span>-tests are exactly the same as those for the respective <span class="math inline">\(F\)</span>-tests - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The <span class="math inline">\(p\)</span>-value for age then reduces to <span class="math inline">\(1.124 \times 10^{-12}\)</span>!</p>
-<p>We can easily produce confidence intervals for the fitted parameters in <code>R</code> using the <code>confint()</code> function.</p>
+<p>The <span class="math inline">\(p\)</span>-values given above for the <span class="math inline">\(t\)</span>-tests are exactly the same as those for the respective <span class="math inline">\(F\)</span>-tests - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The <span class="math inline">\(p\)</span>-value for age then reduces to <span class="math inline">\(1.124 \times 10^{-12}\)</span>! We can easily produce confidence intervals for the fitted parameters in <code>R</code> using the <code>confint()</code> function:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb70-1" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
 <pre><code>##                     2.5 %      97.5 %
 ## (Intercept)  0.4583113390 1.647596552
 ## height      -0.0078996982 0.008349579
 ## age          0.0007500711 0.010919132</code></pre>
 <p>We see that the confidence interval for height <span class="math inline">\((-0.008, 0.008)\)</span> contains zero implying that parameter should be removed. Note that this relationship between a <span class="math inline">\(p\)</span>-value at the <span class="math inline">\(\alpha\%\)</span> level and an associated confidence interval at the equivalent level, i.e. <span class="math inline">\(100(1 - \alpha)\%\)</span>, always holds.</p>
-<p>Thus we should remove height and <em>recalculate</em> the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model <code>m2</code> (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters.</p>
-<p>Fitting the model without height and recalculating the confidence interval for height we get</p>
+<p>Thus we should remove height and <em>recalculate</em> the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model <code>m2</code> (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-1" tabindex="-1"></a>mfinal <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> age, <span class="at">data =</span> warfarinStudy)</span>
 <span id="cb72-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-2" tabindex="-1"></a><span class="fu">summary</span>(mfinal)</span></code></pre></div>
 <pre><code>## 
@@ -1511,21 +1506,21 @@ A more direct solution is to note that the difference in the residual sums of sq
 <h2><span class="header-section-number">3.6</span> Confidence and prediction intervals for the fitted values<a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that the fitted values in a mutliple linear regression model are given by</p>
 <p><span class="math display">\[\begin{align*}
-\color{red}{\underline{\hat{Y}}} &amp;\color{red}{= \mathrm{X}\underline{\hat{\beta}}} \\
-&amp;\color{red}{= \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{Y}} \\
-&amp;\color{red}{= \mathrm{H}\underline{Y}}
+\underline{\hat{Y}} &amp;= \mathrm{X}\underline{\hat{\beta}} \\
+&amp;= \mathrm{X}(\mathrm{X}^T\mathrm{X})^{-1}\mathrm{X}^T\underline{Y} \\
+&amp;= \mathrm{H}\underline{Y}
 \end{align*}\]</span></p>
 <p>Making use of these alternative forms we found the expectation and the variance of the fitted values back in subsection <a href="introduction.html#sec:expvaryhat">1.4.4</a> of the notes, namely</p>
 <p><span class="math display">\[
-\color{red}{\mathrm{E}[\underline{\hat{Y}}] = \mathrm{X}\underline{\beta}}
+\mathrm{E}[\underline{\hat{Y}}] = \mathrm{X}\underline{\beta}
 \]</span></p>
 <p>and</p>
 <p><span class="math display">\[\begin{equation*}
-\color{red}{\mathrm{Var}[\underline{\hat{Y}}] = \mathrm{H}\sigma_{\epsilon}^2.}
+\mathrm{Var}[\underline{\hat{Y}}] = \mathrm{H}\sigma_{\epsilon}^2.
 \end{equation*}\]</span></p>
-<p>Hence, at the individual observation level, we have <span class="math inline">\(\mathrm{E}[\hat{Y}_i] =\underline{x}_i^T \underline{\hat{\beta}}\)</span>. Also, for the variance we have <span class="math inline">\(\mathrm{Var}[\hat{Y}_i] = h_{ii}\sigma_{\epsilon}^2\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>, where the <span class="math inline">\(h_{ii}\)</span> are the diagonal elements (the leverages, recall) of the hat matrix <span class="math inline">\(\mathrm{H}\)</span>. By noting that the fitted values are a linear combination of random variables, <span class="math inline">\(\underline{\hat{\beta}}\)</span>, we can see that they are also normally distributed. This means we can find a <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for the fitted value in the usual way as</p>
+<p>Hence, at the individual observation level, we have <span class="math inline">\(\mathrm{E}\left[\hat{Y}_i\right] =\underline{x}_i^T \underline{\beta}\)</span>. Also, for the variance we have <span class="math inline">\(\mathrm{Var}\left[\hat{Y}_i\right] = h_{ii}\sigma_{\epsilon}^2\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>, where the <span class="math inline">\(h_{ii}\)</span> are the diagonal elements (the leverages, recall) of the hat matrix <span class="math inline">\(\mathrm{H}\)</span>. By noting that the fitted values are a linear combination of random variables, <span class="math inline">\(\underline{\hat{\beta}}\)</span>, we can see that they are also normally distributed. This means we can find a <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for the fitted value in the usual way as</p>
 <p><span class="math display">\[
-\color{red}{\hat{Y}_i \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{ii}}}
+\hat{Y}_i \pm t_{\nu, 1 - \alpha/2} \times s \sqrt{h_{ii}}
 \]</span></p>
 <p>where <span class="math inline">\(\nu = n - p - 1\)</span> is the residual degrees of freedom and <span class="math inline">\(s\)</span> is the square root of RMS (see earlier).</p>
 <p>It is instructive at this point to consider how the individual <span class="math inline">\(h_{ii}\)</span> terms are calculated. Clearly, from a fitted model object we can just extract them using the R command <code>hatvalues()</code>, but what about for a new observation? Consider the variance of the fitted value, <span class="math inline">\(\hat{Y}_p\)</span>, for this new observation, with covariate vector <span class="math inline">\(\underline{x}_p\)</span>:</p>
@@ -1547,7 +1542,7 @@ A more direct solution is to note that the difference in the residual sums of sq
 <p><span class="math display">\[\begin{align*}
 \color{red}{\mathrm{Var}\left[\hat{Y}_p^* \right]} &amp;\color{red}{= \mathrm{Var}\left[\underline{x}_p^T \underline{\hat{\beta}}\right] + \mathrm{Var}[\epsilon_p]} \\
 &amp;\color{red}{= \underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p\sigma_{\epsilon}^2 + \sigma_{\epsilon}^2} \\
-&amp;\color{red}{= (\underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p + 1) \sigma_{\epsilon}^2},
+&amp;\color{red}{= \left(\underline{x}_p^T (\mathrm{X}^T\mathrm{X})^{-1} \underline{x}_p + 1\right) \sigma_{\epsilon}^2},
 \end{align*}\]</span></p>
 <p>and a <em>prediction</em> interval for a <em>new observation</em> is found as
 <span class="math display">\[
@@ -1574,11 +1569,11 @@ A more direct solution is to note that the difference in the residual sums of sq
 <p><span class="math display">\[
 \color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
 \]</span></p>
-<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. To fit the model, we proceed as usual, except we define
-<span class="math display">\[
-\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3}
+<p>for <span class="math inline">\(i = 1, \ldots, n\)</span>. Defining</p>
+<p><span class="math display">\[
+\color{red}{x_{i1}^* = x_i; x_{i2}^* = x_i^2; x_{i3}^* = x_i^3},
 \]</span></p>
-<p>The model then becomes</p>
+<p>the model then becomes</p>
 <p><span class="math display">\[
 \color{red}{Y_i = \beta_0 + \beta_1 x_{i1}^* + \beta_2 x_{i2}^* + \beta_3 x_{i3}^* + \epsilon_i}
 \]</span></p>
@@ -1587,17 +1582,17 @@ A more direct solution is to note that the difference in the residual sums of sq
 \color{red}{Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1}^2 +
 \beta_4 x_{i1}x_{i2} + \beta_5 x_{i2}^2 + \epsilon_i}
 \]</span></p>
-<p><em>Warning:</em> When fitting polynomials, there can be high correlations between powers of the covariates, and hence multicollinearity problems, (i.e. problems in inverting (<span class="math inline">\(\mathrm{X}^T\mathrm{X})^{-1}\)</span>. For example, consider a(n equi-spaced) covariate <span class="math inline">\(\underline{x}^T = (1, 2, \ldots, 10)\)</span></p>
+<p>Hence, we can fit polynomial models in the same way to models seen so far during the module. However, when fitting polynomials, there can be high correlations between powers of the covariates, and hence near-multicollinearity problems, known as <em>polynomial multicollinearity</em>. For example, consider a(n equi-spaced) covariate <span class="math inline">\(\underline{x}^T = (1, 2, \ldots, 10)\)</span></p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb80-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-2" tabindex="-1"></a><span class="fu">cor</span>(x, x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9745586</code></pre>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb82-1" tabindex="-1"></a><span class="fu">cor</span>(x<span class="sc">^</span><span class="dv">2</span>, x<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9871797</code></pre>
-<p>These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is <span class="math inline">\(\underline{x}_1\)</span> then we introduce <span class="math inline">\(z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)\)</span> and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.</p>
+<p>From practical 1, we saw that this can inflate standard errors, thereby diluting tests on individual parameters and this often conflicts with a large <span class="math inline">\(F\)</span> value (i.e. highly significant) for the overall model. These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is <span class="math inline">\(\underline{x}_1\)</span> then we introduce <span class="math inline">\(z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)\)</span> and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.</p>
 </div>
 <div id="example-polynomial-model" class="section level2 unnumbered hasAnchor">
 <h2>Example: Polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for three brands of beer were measured. The results for one particular brand can be found on Canvas in the file <em>beer1.RData</em>. A plot of the foam height against time is given below:</p>
+<p>An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for the three brands of beer were measured. The results for one particular brand can be found on Canvas in the file <em>beer1.RData</em>. A plot of the foam height against time is given below:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:beerplot"></span>
 <img src="inference_files/figure-html/beerplot-1.png" alt="Scatterplot of foam height against time for the beer data." width="65%" />
 <p class="caption">
@@ -1608,7 +1603,7 @@ Figure 3.4: Scatterplot of foam height against time for the beer data.
 <p><span class="math display">\[
 \color{red}{\text{Height}_i = \beta_0 + \beta_1 \text{Time}_i + \beta_2 \text{Time}_i^2 + \epsilon_i}
 \]</span></p>
-<p>This can be done in several ways in <code>R</code>. We will use the built-in function <code>poly()</code> to fit the model - note that this function automatically uses <em>orthogonal</em> polynomials which remove the correlations between the powers of the covariate completely. Fitting the model in <code>R</code>, we use the following commands:</p>
+<p>for <span class="math inline">\(i = 1, \ldots, 15\)</span>. This can be done in several ways in <code>R</code>. We will use the built-in function <code>poly()</code> to fit the model - note that this function automatically uses <em>orthogonal</em> polynomials which remove the correlations between the powers of the covariate completely, at the cost of interpretation but the gain of model selection. Fitting the model in <code>R</code>, we use the following commands:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb84-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Height <span class="sc">~</span> <span class="fu">poly</span>(Time, <span class="dv">2</span>), <span class="at">data =</span> beer1)</span></code></pre></div>
 <p>We can summarise the model in the usual way (as it is still a multiple linear regression model):</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb85-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
@@ -1631,11 +1626,13 @@ Figure 3.4: Scatterplot of foam height against time for the beer data.
 ## Residual standard error: 0.2948 on 12 degrees of freedom
 ## Multiple R-squared:  0.994,  Adjusted R-squared:  0.9931 
 ## F-statistic:  1002 on 2 and 12 DF,  p-value: 4.442e-14</code></pre>
-<p>We see that both the linear and quadratic terms in time are highly significant beyond the <span class="math inline">\(0.1\%\)</span> level. The <span class="math inline">\(R^2\)</span> value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time.</p>
+<p>We see that both the linear and quadratic terms in time are highly significant beyond the <span class="math inline">\(0.1\%\)</span> level. The <span class="math inline">\(R^2\)</span> value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time. There seems little value in considering higher order terms in this case, but how do we choose in cases that are less clear-cut?</p>
 <div id="choosing-the-order-of-a-polynomial-model" class="section level3 hasAnchor" number="3.7.1">
 <h3><span class="header-section-number">3.7.1</span> Choosing the order of a polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.</p>
 <p>We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of <span class="math inline">\(R^2\)</span> (although other criteria may be better). As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.</p>
+<div id="hierarchical-model-building" class="section level4 unnumbered hasAnchor">
+<h4>Hierarchical model building<a href="inference-for-the-multiple-linear-regression-model.html#hierarchical-model-building" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Consider the model
 <span class="math display">\[
 Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i
@@ -1652,6 +1649,7 @@ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i
 <p>The linear term has now reappeared and so our model has effectively changed. Scale changes (such as our mean-centering seen in chapter 1) should not make any important changes to the model, but in this case an additional term has been added, which is highly undesirable. We want our models to be scale invariant.</p>
 <p>This illustrates why we should not remove lower order terms in the presence of higher order terms. Model building should be hierarchical and we do not want the interpretation of the model to depend on the choice of scale. Removal of the first order term here corresponds to the hypothesis that the predicted response is symmetric about <span class="math inline">\(x_i = 0\)</span>, which is not usually tenable and the same argument can be made about taking out the intercept term when it is not significant. Thus it also should be retained.</p>
 
+</div>
 </div>
 </div>
 </div>
