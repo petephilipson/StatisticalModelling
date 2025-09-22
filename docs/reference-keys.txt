@@ -74,7 +74,7 @@ the-extended-anova-table
 the-general-extra-sum-of-squares-method
 sec:infer
 confidence-and-prediction-intervals-for-the-fitted-values
-polynomial-models
+sec:polymodels
 choosing-the-order-of-a-polynomial-model
 analysis-of-designed-experiments
 completely-randomised-design
@@ -84,9 +84,7 @@ model-checking
 completely-randomised-design-dealing-with-quantitative-variables
 randomised-block-design
 two-way-analysis-of-variance
-orthogonality-in-a-two-way-analysis-of-variance-model
-contrasts
-example-contrasts-for-the-chicken-egg-production-data
+orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model
 factorial-experiments
 exploratory-plots-for-interactions
 general-linear-models

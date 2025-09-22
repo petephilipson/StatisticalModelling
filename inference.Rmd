@@ -703,7 +703,7 @@ predict(fit1, newdat, interval = "prediction")
 
 The prediction interval is much wider, by a factor of about 5 for these values of the explanatory variables.
 
-## Polynomial models
+## Polynomial models {#sec:polymodels}
 Sometimes the response might have a curvilinear relationship with one or more of the explanatory variables and we may think about fitting a polynomial model - remember that this still falls under our multiple linear regression framework as long as the postulated model is linear in the parameters, $\vec{\beta}$. For instance, if there is just one explanatory variable we might consider fitting
 
 \[

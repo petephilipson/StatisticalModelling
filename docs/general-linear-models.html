@@ -260,7 +260,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
 <li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
@@ -283,11 +283,9 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
-<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality and testing of blocks in a two-way analysis of variance model</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
-<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
-<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
 <ul>
@@ -381,8 +379,8 @@ Figure 5.1: Plot of mileage against engine displacement by transmission type.
 </p>
 </div>
 <p>There is a clear difference in the intercepts with most automatic transmission points above manual transmission points. Mileage declines with engine displacement, and it looks like the rate of decline may be different for the two transmission types. In particular, there looks to be a steeper decline for cars with automatic transmission. Let us see what happens if we fit a common line, i.e. ignore transmission type.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="general-linear-models.html#cb120-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> gasoline)</span>
-<span id="cb120-2"><a href="general-linear-models.html#cb120-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="general-linear-models.html#cb118-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> gasoline)</span>
+<span id="cb118-2"><a href="general-linear-models.html#cb118-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1, data = gasoline)
@@ -416,8 +414,8 @@ Figure 5.2: Plot of mileage against engine displacement by transmission type wit
 \color{red}{H_0: \beta_2 = 0 \;\;\text{versus}\;\; H_1: \beta_2 \neq 0}
 \]</span></p>
 <p>We use the <code>R</code> commands</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="general-linear-models.html#cb122-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> gasoline)</span>
-<span id="cb122-2"><a href="general-linear-models.html#cb122-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="general-linear-models.html#cb120-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb120-2"><a href="general-linear-models.html#cb120-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1 + x2, data = gasoline)
@@ -448,8 +446,8 @@ Figure 5.3: Plot of mileage against engine displacement by transmission type wit
 <p><span class="math display">\[
 \color{red}{H_0: \beta_3 = 0 \;\;\text{versus}\;\; H_1: \beta_3 \neq 0}
 \]</span></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="general-linear-models.html#cb124-1" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> gasoline)</span>
-<span id="cb124-2"><a href="general-linear-models.html#cb124-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="general-linear-models.html#cb122-1" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb122-2"><a href="general-linear-models.html#cb122-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1 + x2 + x1:x2, data = gasoline)

@@ -260,7 +260,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
 <li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
@@ -283,11 +283,9 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
-<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality and testing of blocks in a two-way analysis of variance model</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
-<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
-<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
 <ul>
@@ -326,14 +324,14 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="analysis-of-designed-experiments" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Analysis of designed experiments<a href="analysis-of-designed-experiments.html#analysis-of-designed-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>So far in the module we have focused on continuous covariates. Although very common, a real-world dataset - and thus the statistical model - will typically contain a mixture of continuous and categorical covariates.In this chapter we will consider how to handle categorical variables, in the context of designed experiments.</p>
 <div id="completely-randomised-design" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Completely randomised design<a href="analysis-of-designed-experiments.html#completely-randomised-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A completely randomised design occurs when all experimental units are drawn from the same ‘population’ of interest. In this scenario, there are no obvious ‘groupings’ where members of different groups might be expected to respond differently. ‘Treatments’ are then applied to the experimental units - this is an example of a ‘factor’ which can take <span class="math inline">\(k\)</span> values, one for each of <span class="math inline">\(k\)</span> potential treatments.</p>
-<p>A sensible initial model might be</p>
+<p>A completely randomised design occurs when all experimental units are drawn from the same ‘population’ of interest. In this scenario, there are no obvious ‘groupings’ where members of different groups might be expected to respond differently. ‘Treatments’ are then applied to the experimental units - this is an example of a <em>factor</em> which can take <span class="math inline">\(k\)</span> values, one for each of <span class="math inline">\(k\)</span> potential treatments. A sensible initial model might be</p>
 <p><span class="math display">\[
 \color{red}{Y_{ij} = \mu + \alpha_i + \epsilon_{ij}}
 \]</span></p>
-<p>for <span class="math inline">\(i = 1, \ldots, k\)</span> and <span class="math inline">\(j = 1, \ldots n_i\)</span> where <span class="math inline">\(k\)</span> is the number of treatments or factor values, <span class="math inline">\(n_i\)</span> is the number of observations on the <span class="math inline">\(i^{th}\)</span> treatment. We make the usual assumptions about the error terms, <span class="math inline">\(\epsilon_i\)</span>. In this model:</p>
+<p>for <span class="math inline">\(i = 1, \ldots, k\)</span> and <span class="math inline">\(j = 1, \ldots n_i\)</span> where <span class="math inline">\(k\)</span> is the number of treatments or factor values, <span class="math inline">\(n_i\)</span> is the number of observations on the <span class="math inline">\(i^{th}\)</span> treatment. We make the usual assumptions about the error terms, <span class="math inline">\(\epsilon_{ij}\)</span>. In this model:</p>
 <ul>
 <li><span style="color: red;"><span class="math inline">\(\mu\)</span> denotes an overall mean</span></li>
 <li><span style="color: red;"><span class="math inline">\(\alpha_i\)</span> is the additional effect of the <span class="math inline">\(i^{th}\)</span> treatment.</span></li>
@@ -464,7 +462,7 @@ D
 <p>Comment: There is clearly some variability between our treatments. What we want to know is whether this is just chance or is there evidence of a genuine difference between treatments? By inspection, <span class="math inline">\(C\)</span> seems to have a higher mean than the other 3 treatments.</p>
 <p>We can set this up as a linear model
 <span class="math display">\[
-\color{red}{\underline{Y} = \mathrm{X}\underline{\beta} + \underline{\epsilon}}
+\underline{Y} = \mathrm{X}\underline{\beta} + \underline{\epsilon}
 \]</span></p>
 <p>where, from the data above, we have:
 <span class="math display">\[\begin{align*}
@@ -624,7 +622,10 @@ TSS
 </tr>
 </tbody>
 </table>
-<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(k\)</span> is the number of `treatments’.</p>
+<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(k\)</span> is the number of ‘treatments’. Similarly to the last chapter, we thus have a breakdown of the total variability as</p>
+<p><span class="math display">\[
+\color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Residual SS}}.
+\]</span></p>
 <p>We then compare the <span class="math inline">\(F\)</span>-statistic with <span class="math inline">\(F\)</span>-tables on <span class="math inline">\(k-1\)</span> (from the ‘treatment’ row) and <span class="math inline">\(n - k\)</span> (from the residual row) degrees of freedom, rejecting the null hypothesis if the <span class="math inline">\(F\)</span>-statistic is large relative to the tables, and calculating a <span class="math inline">\(p\)</span>-value in the usual way.</p>
 <div id="analysis-of-completely-randomised-design-data-in-r" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Analysis of completely randomised design data in <code>R</code><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -704,7 +705,7 @@ Figure 4.1: Residual plots for the crop yield data.
 </div>
 <div id="completely-randomised-design-dealing-with-quantitative-variables" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Completely randomised design: dealing with quantitative variables<a href="analysis-of-designed-experiments.html#completely-randomised-design-dealing-with-quantitative-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes the treatments are quantitative levels of an additive, or particular levels of an underlying continuous variable such as temperature, or pressure. For example: 0, 5, 10, 20, 30 grams of supplement in the diet with three individuals allocated to each treatment. This should be analysed as a regression problem with multiple observations at each <span class="math inline">\(x\)</span>-value. When handling quantitative variables we must also consider the functional form of the covariate, i.e. is the effect linear, or quadratic?</p>
+<p>Sometimes the treatments are quantitative levels of an additive, or particular levels of an underlying continuous variable such as temperature, or pressure. For example: 0, 5, 10, 20, 30 grams of supplement, such as creatine, in the diet with three individuals allocated to each treatment. This should be analysed as a regression problem with multiple observations at each <span class="math inline">\(x\)</span>-value. When handling quantitative variables we must also consider the functional form of the covariate, i.e. is the effect linear, or quadratic?</p>
 </div>
 <div id="example-randomised-design-with-a-quantitative-variable" class="section level3 unnumbered hasAnchor">
 <h3>Example: Randomised design with a quantitative variable<a href="analysis-of-designed-experiments.html#example-randomised-design-with-a-quantitative-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -719,10 +720,10 @@ Figure 4.2: Exploratory plot for the grain and plant density data.
 <p>In cases such as this, we have to choose whether to treat <span class="math inline">\(x\)</span> as a continuous covariate, or to convert it to a factor - there are pros and cons to either approach. A continuous variable</p>
 <p>+ <span style="color: red;">may offer a simpler interpretation (and allow predictions for intermediate values)</span><br>
 - <span style="color: red;">may overlook more complex relationships between the response and the covariate unless we resort to high-order polynomials. </span></p>
-<p>On the other hand, a factor will use <span class="math inline">\(k-1\)</span> degrees of freedom (for a variable with <span class="math inline">\(k\)</span> levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data.</p>
+<p>On the other hand, a factor will use <span class="math inline">\(k-1\)</span> degrees of freedom (for a variable with <span class="math inline">\(k\)</span> levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data, along with the factor model.</p>
 <div id="quadratic-model" class="section level4 unnumbered hasAnchor">
 <h4>Quadratic model<a href="analysis-of-designed-experiments.html#quadratic-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We can fit a quadratic model in various ways. Here we will use the raw polynomial version:</p>
+<p>We can fit a quadratic model in various ways - see subsection <a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels">3.7</a>. Here we will use the raw polynomial version:</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="analysis-of-designed-experiments.html#cb95-1" tabindex="-1"></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> grain)</span>
 <span id="cb95-2"><a href="analysis-of-designed-experiments.html#cb95-2" tabindex="-1"></a><span class="fu">anova</span>(fit_poly)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -787,17 +788,22 @@ Figure 4.4: Residual plots for the polynomial model fitted to the grain data.
 <p>The groups are called <em>blocks</em>. Essentially the blocking factor is a `nuisance factor’; we know it probably affects the response but we are not that interested in it per se. However we need to correct for it to make our treatment comparisons more exact, i.e. by reducing the residual mean square (i.e. the variance). Randomised block designs are analysed with a <em>two-way analysis of variance</em>.</p>
 <div id="two-way-analysis-of-variance" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Two-way analysis of variance<a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In a one-way anova we look for the effect of one ‘factor’, in a two-way anova we look for the effects of two factors. The second factor may also be of genuine interest, or it may be a <em>blocking</em> or <em>nuisance factor</em> (c.f. the paired sample t-test). A further complication arises because of the possibility of <em>interactions</em> between the factors, namely do the treatments work differently in the different groups? We will consider interactions later.</p>
+<p>In a one-way anova we look for the effect of one factor, in a two-way anova we look for the effects of two factors. The second factor may also be of genuine interest, or it may be a <em>blocking</em> or <em>nuisance factor</em> (c.f. the paired sample t-test). A further complication arises because of the possibility of <em>interactions</em> between the factors, namely do the treatments work differently in the different groups? We will consider interactions later.</p>
 <p>The different values of a factor are called ‘levels’. A factorial experiment is one where all of the explanatory variables are qualitative factors rather than quantitative variables. We will later consider cases where we have both factors and quantitative explanatory variables.</p>
 <p>Typically, we are interested in a randomised block design when we have models of the form:</p>
 <p><span class="math display">\[
 \color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}}
 \]</span></p>
-<p>where <span class="math inline">\(i = 1, 2, \ldots, k_1\)</span> refer to the levels of factor 1 and <span class="math inline">\(j = 1, 2, \ldots, k_2\)</span> refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make an assumption in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that <span class="math inline">\(\alpha_1 = \beta_1 = 0\)</span>. The additional source of variation leads to an extra row in the anova table.</p>
+<p>where <span class="math inline">\(i = 1, 2, \ldots, k_1\)</span> refer to the levels of factor 1 and <span class="math inline">\(j = 1, 2, \ldots, k_2\)</span> refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make assumptions in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that <span class="math inline">\(\alpha_1 = \beta_1 = 0\)</span>. The additional source of variation leads to an extra row in the anova table.</p>
+<p>We now have a further breakdown of the total variability as</p>
+<p><span class="math display">\[
+\color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Block SS} + \text{Residual SS}}.
+\]</span></p>
+<p>Without the blocking factor, this source of variation is absorbed into the residual sum of squares, which affects the significance of the treatments.</p>
 </div>
-<div id="orthogonality-in-a-two-way-analysis-of-variance-model" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Orthogonality in a two-way analysis of variance model<a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be <em>orthogonal</em>; if there is not equal replication then the sums of squares depends on the order of fitting. To avoid bias we fit the blocking factor first. Generally, if the <span class="math inline">\(F\)</span>-statistic for blocks exceeds unity (i.e. <span class="math inline">\(&gt; 1\)</span>) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.</p>
+<div id="orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Orthogonality and testing of blocks in a two-way analysis of variance model<a href="analysis-of-designed-experiments.html#orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be <em>orthogonal</em>; if there is not equal replication then the sums of squares depends on the order of fitting and, to avoid bias, we fit the blocking factor first. Generally, if the <span class="math inline">\(F\)</span>-statistic for blocks exceeds unity (i.e. <span class="math inline">\(&gt; 1\)</span>) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.</p>
 </div>
 <div id="example-two-way-anova-on-nitrate-data" class="section level3 unnumbered hasAnchor">
 <h3>Example: Two-way anova on nitrate data<a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1032,74 +1038,38 @@ Figure 4.5: Residual plots for the two-way anova model on the chicken egg data.
 </p>
 </div>
 <p>From the left-hand plot we see there is random scatter with no evidence of curvature or changing variance, and no outliers. There is a good fit to the straight line on the right-hand plot, and a large <span class="math inline">\(p\)</span>-value from the Anderson-Darling test, implying the normality assumption is fine.</p>
-</div>
-</div>
-<div id="contrasts" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Contrasts<a href="analysis-of-designed-experiments.html#contrasts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints:</p>
-<ol type="i">
-<li>
-<span style="color: red;">The coefficients must sum to zero for each contrast.</span>
-</li>
-<li>
-<span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span>
-</li>
-<li>
-<span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts <span class="math inline">\(= 0\)</span>). </span>
-</li>
-</ol>
-<p>We can then test if any of the contrasts are significantly different from zero. Using <code>R</code>, we can generate a <span class="math inline">\(t\)</span>-statistic, testing if the true value of the contrast is zero, with an associated <span class="math inline">\(p\)</span>-value that can be interpreted in the usual way so that small <span class="math inline">\(p\)</span>-values imply the contrast is significantly different from zero.</p>
-</div>
-<div id="example-contrasts-for-the-chicken-egg-production-data" class="section level3 hasAnchor" number="4.2.4">
-<h3><span class="header-section-number">4.2.4</span> Example: Contrasts for the chicken egg production data<a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the example on whether lighting affected egg production, the two most obvious comparisons are:</p>
-<ol style="list-style-type: decimal">
-<li>the average of the two enhanced light treatments against standard daylight (<span class="math inline">\(\text{contrast} = (-1, 0.5,0.5)\)</span>) and</li>
-<li>comparing the two enhanced light treatments (<span class="math inline">\(\text{contrast} = (0, 1, -1)\)</span>).</li>
-</ol>
-<p>These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since:</p>
-<p><span class="math display">\[\begin{align*}
-\begin{matrix}\begin{pmatrix}-1.0&amp; 0.5&amp; 0.5\end{pmatrix}\\\mbox{}\end{matrix}
-\begin{pmatrix}
-    0.0 \\
-     1.0 \\
-    -1.0 \\
-         \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0
-\end{align*}\]</span></p>
-<p>Using <code>R</code> to carry out the analysis:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="analysis-of-designed-experiments.html#cb108-1" tabindex="-1"></a>ContrastMatrix1 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb108-2"><a href="analysis-of-designed-experiments.html#cb108-2" tabindex="-1"></a><span class="fu">contrasts</span>(ChickenEggs<span class="sc">$</span>light) <span class="ot">&lt;-</span> ContrastMatrix1</span>
-<span id="cb108-3"><a href="analysis-of-designed-experiments.html#cb108-3" tabindex="-1"></a><span class="fu">summary.lm</span>(<span class="fu">aov</span>(eggs <span class="sc">~</span> unit <span class="sc">+</span> light, <span class="at">data =</span> ChickenEggs))</span></code></pre></div>
-<pre><code>## 
-## Call:
-## aov(formula = eggs ~ unit + light, data = ChickenEggs)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -26.667  -8.125   2.083   5.521  26.000 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  353.667     11.357  31.142 7.28e-08 ***
-## unit2        -32.000     16.061  -1.992   0.0934 .  
-## unit3        -16.667     16.061  -1.038   0.3394    
-## unit4        -35.000     16.061  -2.179   0.0721 .  
-## light1        26.250      8.030   3.269   0.0171 *  
-## light2         3.125      6.954   0.449   0.6690    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.67 on 6 degrees of freedom
-## Multiple R-squared:  0.7381, Adjusted R-squared:  0.5199 
-## F-statistic: 3.382 on 5 and 6 DF,  p-value: 0.08504</code></pre>
-<div id="comments-2" class="section level4 unnumbered hasAnchor">
-<h4>Comments<a href="analysis-of-designed-experiments.html#comments-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ol style="list-style-type: decimal">
-<li><span style="color: red;">The first contrast is significant (<span class="math inline">\(p = 0.0171\)</span>) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span></li>
-<li><span style="color: red;">The second contrast has a large <span class="math inline">\(p\)</span>-value, implying no significant differences in mean between the two light treatments. </span></li>
-<li><span style="color: red;">As we have not specified contrasts for units, <code>R</code> has compared each unit against the first unit. </span></li>
-<li><span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span></li>
-</ol>
+<!-- ### Contrasts -->
+<!-- Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints: -->
+<!-- <ol type="i"> -->
+<!-- <li> <span style="color: red;">The coefficients must sum to zero for each contrast.</span> </li> -->
+<!-- <li> <span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span> </li> -->
+<!-- <li> <span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts $= 0$). </span> </li> -->
+<!-- </ol> -->
+<!-- We can then test if any of the contrasts are significantly different from zero. Using `R`, we can generate a $t$-statistic, testing if the true value of the contrast is zero, with an associated $p$-value that can be interpreted in the usual way so that small $p$-values imply the contrast is significantly different from zero. -->
+<!-- ### Example: Contrasts for the chicken egg production data -->
+<!-- In the example on whether lighting affected egg production, the two most obvious comparisons are: -->
+<!-- 1. the average of the two enhanced light treatments against standard daylight ($\text{contrast} = (-1, 0.5,0.5)$) and  -->
+<!-- 1. comparing the two enhanced light treatments ($\text{contrast} = (0, 1, -1)$). -->
+<!-- These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since: -->
+<!-- \begin{align*} -->
+<!-- \begin{matrix}\begin{pmatrix}-1.0& 0.5& 0.5\end{pmatrix}\\\mbox{}\end{matrix} -->
+<!-- \begin{pmatrix} -->
+<!--     0.0 \\ -->
+<!--     1.0 \\ -->
+<!--    -1.0 \\ -->
+<!--          \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0 -->
+<!-- \end{align*} -->
+<!-- Using `R` to carry out the analysis: -->
+<!-- ```{r} -->
+<!-- ContrastMatrix1 <-  cbind(c(-1, 0.5, 0.5), c(0, 1, -1)) -->
+<!-- contrasts(ChickenEggs$light) <- ContrastMatrix1 -->
+<!-- summary.lm(aov(eggs ~ unit + light, data = ChickenEggs)) -->
+<!-- ``` -->
+<!-- #### Comments {-} -->
+<!-- 1. <span style="color: red;">The first contrast is significant ($p = 0.0171$) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span> -->
+<!-- 1. <span style="color: red;">The second contrast has a large $p$-value, implying no significant differences in mean between the two light treatments. </span> -->
+<!-- 1. <span style="color: red;">As we have not specified contrasts for units, `R` has compared each unit against the first unit. </span> -->
+<!-- 1. <span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span> -->
 </div>
 </div>
 </div>
@@ -1110,7 +1080,7 @@ Figure 4.5: Residual plots for the two-way anova model on the chicken egg data.
 <p><span class="math display">\[
 \color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij}}
 \]</span></p>
-<p>where we make similar assumptions to the randomised block structure, but we additionally have the term, <span class="math inline">\(\gamma_{ij}\)</span>, which denotes the interaction between the two factors. Again, any term with <span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span> equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples.</p>
+<p>where we make similar assumptions to the randomised block structure, but we additionally have the term, <span class="math inline">\(\gamma_{ij}\)</span>, which denotes the interaction between the two factors. Now, any term with <span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span> equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples.</p>
 <div id="example-two-way-anova-with-interactions-for-the-yeast-data" class="section level3 unnumbered hasAnchor">
 <h3>Example: Two-way anova with interactions for the yeast data<a href="analysis-of-designed-experiments.html#example-two-way-anova-with-interactions-for-the-yeast-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As part of an investigation of toxic agents, 48 yeast strains were allocated to three poisons (I, II, III) and four treatments (<span class="math inline">\(A, B, C, D\)</span>). Each poison-treatment combination occurred four times and the response was survival time (measured in tens of hours). A snapshot of the data are given below:</p>
@@ -1242,9 +1212,9 @@ D
 </tbody>
 </table>
 <p>The data are available in the file <em>yeast.RData</em>. The syntax <code>:</code> is used in <code>R</code> to represent an interaction. Thus, we can fit the interaction model as follows</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-of-designed-experiments.html#cb110-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;yeast.RData&quot;</span>)</span>
-<span id="cb110-2"><a href="analysis-of-designed-experiments.html#cb110-2" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> poison <span class="sc">+</span> treatment <span class="sc">+</span> poison<span class="sc">:</span>treatment, <span class="at">data =</span> yeast)</span>
-<span id="cb110-3"><a href="analysis-of-designed-experiments.html#cb110-3" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="analysis-of-designed-experiments.html#cb108-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;yeast.RData&quot;</span>)</span>
+<span id="cb108-2"><a href="analysis-of-designed-experiments.html#cb108-2" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> poison <span class="sc">+</span> treatment <span class="sc">+</span> poison<span class="sc">:</span>treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb108-3"><a href="analysis-of-designed-experiments.html#cb108-3" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## poison            2 1.0330  0.5165  23.222 3.33e-07 ***
 ## treatment         3 0.9212  0.3071  13.806 3.78e-06 ***
@@ -1253,14 +1223,14 @@ D
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>From an Anderson-Darling test of the standardised residuals we obtain a test statistic of <span class="math inline">\(1.59\)</span> and <span class="math inline">\(p &lt; 0.001\)</span> (we will investigate this shortly …):</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="analysis-of-designed-experiments.html#cb112-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(aov1))</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-of-designed-experiments.html#cb110-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(aov1))</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 
 ## data:  rstandard(aov1)
 ## A = 1.5923, p-value = 0.0003712</code></pre>
-<div id="comments-3" class="section level4 unnumbered hasAnchor">
-<h4>Comments<a href="analysis-of-designed-experiments.html#comments-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="comments-2" class="section level4 unnumbered hasAnchor">
+<h4>Comments<a href="analysis-of-designed-experiments.html#comments-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
 <li><span style="color: red;">The interaction term is not significant, implying that the effects of the poisons are approximately the same for each treatment and vice versa. </span></li>
 <li><span style="color: red;">However, poison and treatment are both highly significant. </span></li>
@@ -1297,8 +1267,8 @@ Figure 4.7: Residual plots for the yeast data.
 <div id="example-transforming-the-response" class="section level3 unnumbered hasAnchor">
 <h3>Example: Transforming the response<a href="analysis-of-designed-experiments.html#example-transforming-the-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can fit a transformed model directly in <code>R</code> via the following commands:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis-of-designed-experiments.html#cb115-1" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> treatment <span class="sc">+</span> poison <span class="sc">+</span> treatment<span class="sc">*</span>poison, <span class="at">data =</span> yeast)</span>
-<span id="cb115-2"><a href="analysis-of-designed-experiments.html#cb115-2" tabindex="-1"></a><span class="fu">anova</span>(aov2)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analysis-of-designed-experiments.html#cb113-1" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> treatment <span class="sc">+</span> poison <span class="sc">+</span> treatment<span class="sc">*</span>poison, <span class="at">data =</span> yeast)</span>
+<span id="cb113-2"><a href="analysis-of-designed-experiments.html#cb113-2" tabindex="-1"></a><span class="fu">anova</span>(aov2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: log(time)
@@ -1329,8 +1299,8 @@ Figure 4.8: Residual plots for the transformed yeast data.
 <div id="multiple-comparisions-for-the-log-response-model" class="section level4 unnumbered hasAnchor">
 <h4>Multiple comparisions for the log-response model<a href="analysis-of-designed-experiments.html#multiple-comparisions-for-the-log-response-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In order to see how the different levels of the factor affect the response, we need to fit the factors without an interaction and then look at which factor levels differ in mean value:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="analysis-of-designed-experiments.html#cb118-1" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> poison <span class="sc">+</span> treatment, <span class="at">data =</span> yeast)</span>
-<span id="cb118-2"><a href="analysis-of-designed-experiments.html#cb118-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov3)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="analysis-of-designed-experiments.html#cb116-1" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> poison <span class="sc">+</span> treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb116-2"><a href="analysis-of-designed-experiments.html#cb116-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov3)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 

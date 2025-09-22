@@ -3,17 +3,16 @@ title: ''
 ---
 
 # Analysis of designed experiments
+So far in the module we have focused on continuous covariates. Although very common, a real-world dataset - and thus the statistical model - will typically contain a mixture of continuous and categorical covariates.In this chapter we will consider how to handle categorical variables, in the context of designed experiments.
 
 ## Completely randomised design
-A completely randomised design occurs when all experimental units are drawn from the same 'population' of interest. In this scenario, there are no obvious 'groupings' where members of different groups might be expected to respond differently. 'Treatments' are then applied to the experimental units - this is an example of a 'factor' which can take $k$ values, one for each of $k$ potential treatments.
-
-A sensible initial model might be
+A completely randomised design occurs when all experimental units are drawn from the same 'population' of interest. In this scenario, there are no obvious 'groupings' where members of different groups might be expected to respond differently. 'Treatments' are then applied to the experimental units - this is an example of a *factor* which can take $k$ values, one for each of $k$ potential treatments. A sensible initial model might be
 
 \[
 \color{red}{Y_{ij} = \mu + \alpha_i + \epsilon_{ij}}
 \]
 
-for $i = 1, \ldots, k$ and $j = 1, \ldots n_i$ where $k$ is the number of treatments or factor values, $n_i$ is the number of observations on the $i^{th}$ treatment. We make the usual assumptions about the error terms, $\epsilon_i$. In this model:
+for $i = 1, \ldots, k$ and $j = 1, \ldots n_i$ where $k$ is the number of treatments or factor values, $n_i$ is the number of observations on the $i^{th}$ treatment. We make the usual assumptions about the error terms, $\epsilon_{ij}$. In this model:
 
 - <span style="color: red;">$\mu$ denotes an overall mean</span>
 - <span style="color: red;">$\alpha_i$ is the additional effect of the $i^{th}$ treatment.</span>
@@ -53,7 +52,7 @@ Comment: There is clearly some variability between our treatments. What we want 
 
 We can set this up as a linear model
 \[
-\color{red}{\vec{Y} = \up{X}\vec{\beta} + \vec{\epsilon}}
+\vec{Y} = \up{X}\vec{\beta} + \vec{\epsilon}
 \]
 
 where, from the data above, we have:
@@ -165,7 +164,11 @@ kable(anova_tbl_fac, "html", escape = FALSE) %>%
   kable_styling("striped", full_width = FALSE)
 ```
 
-where $n$ is the sample size and $k$ is the number of `treatments'.
+where $n$ is the sample size and $k$ is the number of 'treatments'. Similarly to the last chapter, we thus have a breakdown of the total variability as
+
+\[
+\color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Residual SS}}.
+\]
 
 We then compare the $F$-statistic with $F$-tables on $k-1$ (from the 'treatment' row) and $n - k$ (from the residual row) degrees of freedom, rejecting the null hypothesis if the $F$-statistic is large relative to the tables, and calculating a $p$-value in the usual way.
 
@@ -242,7 +245,7 @@ From the Anderson-Darling test we obtain a $p$-value of 0.466, suggesting that n
 - The second plot fits quite well to a straight line implying approximate normality of the residuals and the large $p$-value implies that there is no significant departure from normality.</span>
 
 ### Completely randomised design: dealing with quantitative variables
-Sometimes the treatments are quantitative levels of an additive, or particular levels of an underlying continuous variable such as temperature, or pressure. For example: 0, 5, 10, 20, 30 grams of supplement in the diet with three individuals allocated to each treatment. This should be analysed as a regression problem with multiple observations at each $x$-value. When handling quantitative variables we must also consider the functional form of the covariate, i.e. is the effect linear, or quadratic? 
+Sometimes the treatments are quantitative levels of an additive, or particular levels of an underlying continuous variable such as temperature, or pressure. For example: 0, 5, 10, 20, 30 grams of supplement, such as creatine, in the diet with three individuals allocated to each treatment. This should be analysed as a regression problem with multiple observations at each $x$-value. When handling quantitative variables we must also consider the functional form of the covariate, i.e. is the effect linear, or quadratic? 
 
 ### Example: Randomised design with a quantitative variable {-}
 The data in this example are the amount of grain obtained at various plant densities (per square metre), available in the file *grain.RData*. An exploratory plot allows us to see the structure of the data, and look for patterns which may suggest candidate models.
@@ -259,10 +262,10 @@ In cases such as this, we have to choose whether to treat $x$ as a continuous co
 \+ <span style="color: red;">may offer a simpler interpretation (and allow predictions for intermediate values)</span><br> 
 \- <span style="color: red;">may overlook more complex relationships between the response and the covariate unless we resort to high-order polynomials. </span>
 
-On the other hand, a factor will use $k-1$ degrees of freedom (for a variable with $k$ levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data.
+On the other hand, a factor will use $k-1$ degrees of freedom (for a variable with $k$ levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data, along with the factor model.
 
 #### Quadratic model {-}
-We can fit a quadratic model in various ways. Here we will use the raw polynomial version:
+We can fit a quadratic model in various ways - see subsection \@ref(sec:polymodels). Here we will use the raw polynomial version:
 
 ```{r}
 fit_poly <- lm(y ~ poly(x, 2, raw = TRUE), data = grain)
@@ -323,7 +326,7 @@ A randomised block design is the most commonly used design in practice. Backgrou
 The groups are called *blocks*. Essentially the blocking factor is a `nuisance factor'; we know it probably affects the response but we are not that interested in it per se. However we need to correct for it to make our treatment comparisons more exact, i.e. by reducing the residual mean square (i.e. the variance). Randomised block designs are analysed with a *two-way analysis of variance*. 
 
 ### Two-way analysis of variance
-In a one-way anova we look for the effect of one 'factor', in a two-way anova we look for the effects of two factors. The second factor may also be of genuine interest, or it may be a *blocking* or *nuisance factor* (c.f. the paired sample t-test). A further complication arises because of the possibility of *interactions* between the factors, namely do the treatments work differently in the different groups? We will consider interactions later.
+In a one-way anova we look for the effect of one factor, in a two-way anova we look for the effects of two factors. The second factor may also be of genuine interest, or it may be a *blocking* or *nuisance factor* (c.f. the paired sample t-test). A further complication arises because of the possibility of *interactions* between the factors, namely do the treatments work differently in the different groups? We will consider interactions later.
 
 The different values of a factor are called 'levels'. A factorial experiment is one where all of the explanatory variables are qualitative factors rather than quantitative variables. We will later consider cases where we have both factors and quantitative explanatory variables.
 
@@ -333,10 +336,18 @@ Typically, we are interested in a randomised block design when we have models of
 \color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}}
 \]
 
-where $i = 1, 2, \ldots, k_1$ refer to the levels of factor 1 and $j = 1, 2, \ldots, k_2$ refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make an assumption in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that $\alpha_1 = \beta_1 = 0$. The additional source of variation leads to an extra row in the anova table.
+where $i = 1, 2, \ldots, k_1$ refer to the levels of factor 1 and $j = 1, 2, \ldots, k_2$ refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make assumptions in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that $\alpha_1 = \beta_1 = 0$. The additional source of variation leads to an extra row in the anova table.
 
-### Orthogonality in a two-way analysis of variance model
-If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be *orthogonal*; if there is not equal replication then the sums of squares depends on the order of fitting. To avoid bias we fit the blocking factor first. Generally, if the $F$-statistic for blocks exceeds unity (i.e. $> 1$) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.
+We now have a further breakdown of the total variability as
+
+\[
+\color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Block SS} + \text{Residual SS}}.
+\]
+
+Without the blocking factor, this source of variation is absorbed into the residual sum of squares, which affects the significance of the treatments.
+
+### Orthogonality and testing of blocks in a two-way analysis of variance model
+If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be *orthogonal*; if there is not equal replication then the sums of squares depends on the order of fitting and, to avoid bias, we fit the blocking factor first. Generally, if the $F$-statistic for blocks exceeds unity (i.e. $> 1$) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.
 
 ### Example: Two-way anova on nitrate data {-}
 Six nitrogen timing treatments were used in six fields in each of four farms (the *blocking* factor), giving $n = 24$, and the resulting nitrate in wheat stems was assayed. The data were analysed to produce the anova table below:
@@ -414,47 +425,48 @@ ad.test(rstandard(fitaov))
 
 From the left-hand plot we see there is random scatter with no evidence of curvature or changing variance, and no outliers. There is a good fit to the straight line on the right-hand plot, and a large $p$-value from the Anderson-Darling test, implying the normality assumption is fine. 
 
-### Contrasts
-Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints:
+<!-- ### Contrasts -->
+<!-- Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints: -->
 
-<ol type="i">
-<li> <span style="color: red;">The coefficients must sum to zero for each contrast.</span> </li>
-<li> <span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span> </li>
-<li> <span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts $= 0$). </span> </li>
-</ol>
+<!-- <ol type="i"> -->
+<!-- <li> <span style="color: red;">The coefficients must sum to zero for each contrast.</span> </li> -->
+<!-- <li> <span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span> </li> -->
+<!-- <li> <span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts $= 0$). </span> </li> -->
+<!-- </ol> -->
 
-We can then test if any of the contrasts are significantly different from zero. Using `R`, we can generate a $t$-statistic, testing if the true value of the contrast is zero, with an associated $p$-value that can be interpreted in the usual way so that small $p$-values imply the contrast is significantly different from zero.
+<!-- We can then test if any of the contrasts are significantly different from zero. Using `R`, we can generate a $t$-statistic, testing if the true value of the contrast is zero, with an associated $p$-value that can be interpreted in the usual way so that small $p$-values imply the contrast is significantly different from zero. -->
 
-### Example: Contrasts for the chicken egg production data
-In the example on whether lighting affected egg production, the two most obvious comparisons are:
+<!-- ### Example: Contrasts for the chicken egg production data -->
+<!-- In the example on whether lighting affected egg production, the two most obvious comparisons are: -->
 
-1. the average of the two enhanced light treatments against standard daylight ($\text{contrast} = (-1, 0.5,0.5)$) and 
-1. comparing the two enhanced light treatments ($\text{contrast} = (0, 1, -1)$).
+<!-- 1. the average of the two enhanced light treatments against standard daylight ($\text{contrast} = (-1, 0.5,0.5)$) and  -->
+<!-- 1. comparing the two enhanced light treatments ($\text{contrast} = (0, 1, -1)$). -->
 
-These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since:
+<!-- These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since: -->
 
-\begin{align*}
-\begin{matrix}\begin{pmatrix}-1.0& 0.5& 0.5\end{pmatrix}\\\mbox{}\end{matrix}
-\begin{pmatrix}
-    0.0 \\
-	 1.0 \\
- 	-1.0 \\
-         \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0
-\end{align*}
+<!-- \begin{align*} -->
+<!-- \begin{matrix}\begin{pmatrix}-1.0& 0.5& 0.5\end{pmatrix}\\\mbox{}\end{matrix} -->
+<!-- \begin{pmatrix} -->
+<!--     0.0 \\ -->
+<!-- 	 1.0 \\ -->
+<!--  	-1.0 \\ -->
+<!--          \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0 -->
+<!-- \end{align*} -->
 
-Using `R` to carry out the analysis:
-```{r}
-ContrastMatrix1 <-  cbind(c(-1, 0.5, 0.5), c(0, 1, -1))
-contrasts(ChickenEggs$light) <- ContrastMatrix1
-summary.lm(aov(eggs ~ unit + light, data = ChickenEggs))
-```
+<!-- Using `R` to carry out the analysis: -->
+<!-- ```{r} -->
+<!-- ContrastMatrix1 <-  cbind(c(-1, 0.5, 0.5), c(0, 1, -1)) -->
+<!-- contrasts(ChickenEggs$light) <- ContrastMatrix1 -->
+<!-- summary.lm(aov(eggs ~ unit + light, data = ChickenEggs)) -->
+<!-- ``` -->
 
-#### Comments {-}
+<!-- #### Comments {-} -->
 
-1. <span style="color: red;">The first contrast is significant ($p = 0.0171$) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span>
-1. <span style="color: red;">The second contrast has a large $p$-value, implying no significant differences in mean between the two light treatments. </span>
-1. <span style="color: red;">As we have not specified contrasts for units, `R` has compared each unit against the first unit. </span>
-1. <span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span>
+<!-- 1. <span style="color: red;">The first contrast is significant ($p = 0.0171$) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span> -->
+<!-- 1. <span style="color: red;">The second contrast has a large $p$-value, implying no significant differences in mean between the two light treatments. </span> -->
+<!-- 1. <span style="color: red;">As we have not specified contrasts for units, `R` has compared each unit against the first unit. </span> -->
+<!-- 1. <span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span> -->
+
 
 ## Factorial experiments
 Sometimes, when there are two factors in an experiment, both are of genuine, and equal, interest and we are interested as to whether they are each important. In addition, we may wish to consider whether they interact, i.e. whether the level of one factor affects the effect of the other factor.
@@ -465,7 +477,7 @@ We are thus interested in fitting a model of the form:
 \color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij}}
 \]
 
-where we make similar assumptions to the randomised block structure, but we additionally have the term, $\gamma_{ij}$, which denotes the interaction between the two factors. Again, any term with $i$ or $j$ equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples. 
+where we make similar assumptions to the randomised block structure, but we additionally have the term, $\gamma_{ij}$, which denotes the interaction between the two factors. Now, any term with $i$ or $j$ equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples. 
 
 ### Example: Two-way anova with interactions for the yeast data {-}
 As part of an investigation of toxic agents, 48 yeast strains were allocated to three poisons (I, II, III) and four treatments ($A, B, C, D$). Each poison-treatment combination occurred four times and the response was survival time (measured in tens of hours). A snapshot of the data are given below:
@@ -516,8 +528,8 @@ ad.test(rstandard(aov1))
 Potential presence or absence of an interaction can be explored using interaction plots. In such plots, non-parallel (or crossing) lines are indicative of the presence of an interaction since this suggests that the response differs for certain combinations of the factors. We can produce an interaction plot in `R` via the below commands:
 
 ```{r yeastinteract, fig.show = 'hold', fig.cap = 'Interaction plots for the yeast data.', echo=FALSE, fig.align='center', out.width='48%'}
-interaction.plot(yeast$treatment, yeast$poison, yeast$time,xlab = "Treatment", ylab = "Average time", trace.label = "Poison")
-interaction.plot(yeast$poison, yeast$treatment, yeast$time, xlab = "Poison", ylab = "Average time", trace.label = "Treatment")
+interaction.plot(yeast$treatment, yeast$poison, yeast$time,xlab = "Treatment", ylab = "Average time", trace.label = "Poison", lwd = 1.7)
+interaction.plot(yeast$poison, yeast$treatment, yeast$time, xlab = "Poison", ylab = "Average time", trace.label = "Treatment", lwd = 1.7)
 ```
 
 <span style="color: red;">We can see that the plots are approximately parallel, implying no significant interaction, although we see that treatment $D$ responds somewhat differently to the others for poisons $I$ and $II$. For each treatment (left-hand plot), poisons are generally $I > II> III$ whereas for each poison (right-hand plot), treatments are $B > D > C > A$. </span>

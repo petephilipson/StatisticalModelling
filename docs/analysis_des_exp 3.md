@@ -206,7 +206,7 @@ The anova table used to test these hypotheses is of the general form:
 </tbody>
 </table>
 
-where $n$ is the sample size and $k$ is the number of 'treatments'. Similarly to the last chapter, we thus have a breakdown of the total variability as
+where $n$ is the sample size and $k$ is the number of 'treatments'. Similarly to the last chapter, we this have a breakdown of the total variability as
 
 \[
 \color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Residual SS}}.
@@ -444,15 +444,7 @@ Typically, we are interested in a randomised block design when we have models of
 
 where $i = 1, 2, \ldots, k_1$ refer to the levels of factor 1 and $j = 1, 2, \ldots, k_2$ refer to the levels of factor 2. We make the usual assumption of normally distributed errors with constant variance. As with single factor experiments, we must make assumptions in order to estimate these parameters, since this model is again over-parameterised otherwise. We now (further) assume that $\alpha_1 = \beta_1 = 0$. The additional source of variation leads to an extra row in the anova table.
 
-We now have a further breakdown of the total variability as
-
-\[
-\color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Block SS} + \text{Residual SS}}.
-\]
-
-Without the blocking factor, this source of variation is absorbed into the residual sum of squares, which affects the significance of the treatments.
-
-### Orthogonality and testing of blocks in a two-way analysis of variance model
+### Orthogonality in a two-way analysis of variance model
 If each treatment occurs an equal number of times in each block, then the estimates of the treatment effects are uncorrelated with those of the blocks. The two factors are then said to be *orthogonal*; if there is not equal replication then the sums of squares depends on the order of fitting and, to avoid bias, we fit the blocking factor first. Generally, if the $F$-statistic for blocks exceeds unity (i.e. $> 1$) then it is advantageous to have used blocks. The treatment comparison will then be more accurate. We will now consider an example.
 
 ### Example: Two-way anova on nitrate data {-}
@@ -617,48 +609,73 @@ We can check model adequacy in the usual way:
 
 From the left-hand plot we see there is random scatter with no evidence of curvature or changing variance, and no outliers. There is a good fit to the straight line on the right-hand plot, and a large $p$-value from the Anderson-Darling test, implying the normality assumption is fine. 
 
-<!-- ### Contrasts -->
-<!-- Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints: -->
+### Contrasts
+Sometimes, given our knowledge of what the treatments are, we might want to test certain comparisons which are not just comparing individual groups. To do this we can define contrasts, subject to the following constraints:
 
-<!-- <ol type="i"> -->
-<!-- <li> <span style="color: red;">The coefficients must sum to zero for each contrast.</span> </li> -->
-<!-- <li> <span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span> </li> -->
-<!-- <li> <span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts $= 0$). </span> </li> -->
-<!-- </ol> -->
+<ol type="i">
+<li> <span style="color: red;">The coefficients must sum to zero for each contrast.</span> </li>
+<li> <span style="color: red;">The number of contrasts should be equal to the number of treatments - 1 (i.e. the degrees of freedom).</span> </li>
+<li> <span style="color: red;">The contrasts should be chosen so that they are orthogonal to each other (i.e. the product of any pair of contrasts $= 0$). </span> </li>
+</ol>
 
-<!-- We can then test if any of the contrasts are significantly different from zero. Using `R`, we can generate a $t$-statistic, testing if the true value of the contrast is zero, with an associated $p$-value that can be interpreted in the usual way so that small $p$-values imply the contrast is significantly different from zero. -->
+We can then test if any of the contrasts are significantly different from zero. Using `R`, we can generate a $t$-statistic, testing if the true value of the contrast is zero, with an associated $p$-value that can be interpreted in the usual way so that small $p$-values imply the contrast is significantly different from zero.
 
-<!-- ### Example: Contrasts for the chicken egg production data -->
-<!-- In the example on whether lighting affected egg production, the two most obvious comparisons are: -->
+### Example: Contrasts for the chicken egg production data
+In the example on whether lighting affected egg production, the two most obvious comparisons are:
 
-<!-- 1. the average of the two enhanced light treatments against standard daylight ($\text{contrast} = (-1, 0.5,0.5)$) and  -->
-<!-- 1. comparing the two enhanced light treatments ($\text{contrast} = (0, 1, -1)$). -->
+1. the average of the two enhanced light treatments against standard daylight ($\text{contrast} = (-1, 0.5,0.5)$) and 
+1. comparing the two enhanced light treatments ($\text{contrast} = (0, 1, -1)$).
 
-<!-- These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since: -->
+These contrasts satisfy the conditions since each sums to zero, and there are two contrasts for the three levels of light. Furthermore, they are orthogonal since:
 
-<!-- \begin{align*} -->
-<!-- \begin{matrix}\begin{pmatrix}-1.0& 0.5& 0.5\end{pmatrix}\\\mbox{}\end{matrix} -->
-<!-- \begin{pmatrix} -->
-<!--     0.0 \\ -->
-<!-- 	 1.0 \\ -->
-<!--  	-1.0 \\ -->
-<!--          \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0 -->
-<!-- \end{align*} -->
+\begin{align*}
+\begin{matrix}\begin{pmatrix}-1.0& 0.5& 0.5\end{pmatrix}\\\mbox{}\end{matrix}
+\begin{pmatrix}
+    0.0 \\
+	 1.0 \\
+ 	-1.0 \\
+         \end{pmatrix} = (-1 \times 0) + (0.5 \times 1) + (0.5 \times (-1)) = 0
+\end{align*}
 
-<!-- Using `R` to carry out the analysis: -->
-<!-- ```{r} -->
-<!-- ContrastMatrix1 <-  cbind(c(-1, 0.5, 0.5), c(0, 1, -1)) -->
-<!-- contrasts(ChickenEggs$light) <- ContrastMatrix1 -->
-<!-- summary.lm(aov(eggs ~ unit + light, data = ChickenEggs)) -->
-<!-- ``` -->
+Using `R` to carry out the analysis:
 
-<!-- #### Comments {-} -->
+``` r
+ContrastMatrix1 <-  cbind(c(-1, 0.5, 0.5), c(0, 1, -1))
+contrasts(ChickenEggs$light) <- ContrastMatrix1
+summary.lm(aov(eggs ~ unit + light, data = ChickenEggs))
+```
 
-<!-- 1. <span style="color: red;">The first contrast is significant ($p = 0.0171$) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span> -->
-<!-- 1. <span style="color: red;">The second contrast has a large $p$-value, implying no significant differences in mean between the two light treatments. </span> -->
-<!-- 1. <span style="color: red;">As we have not specified contrasts for units, `R` has compared each unit against the first unit. </span> -->
-<!-- 1. <span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span> -->
+```
+## 
+## Call:
+## aov(formula = eggs ~ unit + light, data = ChickenEggs)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -26.667  -8.125   2.083   5.521  26.000 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  353.667     11.357  31.142 7.28e-08 ***
+## unit2        -32.000     16.061  -1.992   0.0934 .  
+## unit3        -16.667     16.061  -1.038   0.3394    
+## unit4        -35.000     16.061  -2.179   0.0721 .  
+## light1        26.250      8.030   3.269   0.0171 *  
+## light2         3.125      6.954   0.449   0.6690    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 19.67 on 6 degrees of freedom
+## Multiple R-squared:  0.7381,	Adjusted R-squared:  0.5199 
+## F-statistic: 3.382 on 5 and 6 DF,  p-value: 0.08504
+```
 
+#### Comments {-}
+
+1. <span style="color: red;">The first contrast is significant ($p = 0.0171$) and positive, implying that the mean of the light treatments is greater than the mean of the natural daylight. </span>
+1. <span style="color: red;">The second contrast has a large $p$-value, implying no significant differences in mean between the two light treatments. </span>
+1. <span style="color: red;">As we have not specified contrasts for units, `R` has compared each unit against the first unit. </span>
+1. <span style="color: red;">All of these comparisons are non-significant, implying little difference between units. </span>
 
 ## Factorial experiments
 Sometimes, when there are two factors in an experiment, both are of genuine, and equal, interest and we are interested as to whether they are each important. In addition, we may wish to consider whether they interact, i.e. whether the level of one factor affects the effect of the other factor.
@@ -669,7 +686,7 @@ We are thus interested in fitting a model of the form:
 \color{red}{Y_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij}}
 \]
 
-where we make similar assumptions to the randomised block structure, but we additionally have the term, $\gamma_{ij}$, which denotes the interaction between the two factors. Now, any term with $i$ or $j$ equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples. 
+where we make similar assumptions to the randomised block structure, but we additionally have the term, $\gamma_{ij}$, which denotes the interaction between the two factors. Again, any term with $i$ or $j$ equal to 1 is set to zero to avoid over-parameterisation. Interaction terms can only be fitted if there is replication for at least some of the combinations of the two factors. Thus we could not have fitted an interaction term in the previous examples. 
 
 ### Example: Two-way anova with interactions for the yeast data {-}
 As part of an investigation of toxic agents, 48 yeast strains were allocated to three poisons (I, II, III) and four treatments ($A, B, C, D$). Each poison-treatment combination occurred four times and the response was survival time (measured in tens of hours). A snapshot of the data are given below:

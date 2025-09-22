@@ -260,7 +260,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
 <li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
@@ -283,11 +283,9 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#randomised-block-design"><i class="fa fa-check"></i><b>4.2</b> Randomised block design</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#two-way-analysis-of-variance"><i class="fa fa-check"></i><b>4.2.1</b> Two-way analysis of variance</a></li>
-<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality in a two-way analysis of variance model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#orthogonality-and-testing-of-blocks-in-a-two-way-analysis-of-variance-model"><i class="fa fa-check"></i><b>4.2.2</b> Orthogonality and testing of blocks in a two-way analysis of variance model</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-two-way-anova-on-nitrate-data"><i class="fa fa-check"></i>Example: Two-way anova on nitrate data</a></li>
 <li class="chapter" data-level="" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-chicken-egg-production"><i class="fa fa-check"></i>Example: Chicken egg production</a></li>
-<li class="chapter" data-level="4.2.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#contrasts"><i class="fa fa-check"></i><b>4.2.3</b> Contrasts</a></li>
-<li class="chapter" data-level="4.2.4" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#example-contrasts-for-the-chicken-egg-production-data"><i class="fa fa-check"></i><b>4.2.4</b> Example: Contrasts for the chicken egg production data</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="analysis-of-designed-experiments.html"><a href="analysis-of-designed-experiments.html#factorial-experiments"><i class="fa fa-check"></i><b>4.3</b> Factorial experiments</a>
 <ul>
@@ -1563,8 +1561,8 @@ A more direct solution is to note that the difference in the residual sums of sq
 ## 1 25.9166 5.161269 46.67192</code></pre>
 <p>The prediction interval is much wider, by a factor of about 5 for these values of the explanatory variables.</p>
 </div>
-<div id="polynomial-models" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Polynomial models<a href="inference-for-the-multiple-linear-regression-model.html#polynomial-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:polymodels" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Polynomial models<a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes the response might have a curvilinear relationship with one or more of the explanatory variables and we may think about fitting a polynomial model - remember that this still falls under our multiple linear regression framework as long as the postulated model is linear in the parameters, <span class="math inline">\(\underline{\beta}\)</span>. For instance, if there is just one explanatory variable we might consider fitting</p>
 <p><span class="math display">\[
 \color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
@@ -1630,7 +1628,7 @@ Figure 3.4: Scatterplot of foam height against time for the beer data.
 <div id="choosing-the-order-of-a-polynomial-model" class="section level3 hasAnchor" number="3.7.1">
 <h3><span class="header-section-number">3.7.1</span> Choosing the order of a polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.</p>
-<p>We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of <span class="math inline">\(R^2\)</span> (although other criteria may be better). As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.</p>
+<p>We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of <span class="math inline">\(R^2\)</span> (although other criteria may be better); in the special case of orthogonal polynomials this is made easier as each term in the model is independent. As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.</p>
 <div id="hierarchical-model-building" class="section level4 unnumbered hasAnchor">
 <h4>Hierarchical model building<a href="inference-for-the-multiple-linear-regression-model.html#hierarchical-model-building" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Consider the model
