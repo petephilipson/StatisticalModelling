@@ -151,9 +151,7 @@ To summarise these plots we can say:
 
 <span style="color: red;">- there is one point with a standardised residual greater than 2 in modulus. Possible outlier? We expect about $5\%$ to be in this range, i.e. 1 in a sample size of 24.</span>
 
-<span style="color: red;">Thus there is no clear evidence of a departure from our assumptions.</span>
-
-Note that when solely discrete (or ordinal) variable(s) are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.
+Thus there is no clear evidence of a departure from our assumptions. Note that when solely discrete (or ordinal) variable(s) are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.
 
 ### Normality of the residuals
 As mentioned earlier, analysis of the multiple linear regression model hinges on assumptions of normality (and independence) of the errors; you will consider models that deviate from this assumption in semester two. Hence, we need to check this assumption after fitting a model as the consequences of non-normality of the residuals are:
@@ -174,9 +172,7 @@ qqnorm(rstandard(fit2), pch = 16, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, ylab
 abline(a = 0, b = 1, lty = 2) 
 ```
 
-As before, for the `R` code to work we must have previously defined the object `fit2`. 
-
-Comment: The standardised residuals fit fairly well to a straight line but are being partially distorted by the potential outlier. Successive observations in the plot are not independent and so `ripples' often occur by chance.
+As before, for the `R` code to work we must have previously defined the object `fit2`. The standardised residuals fit fairly well to a straight line but are being partially distorted by the potential outlier. Successive observations in the plot are not independent and so 'ripples' often occur by chance.
 
 ### Anderson-Darling test
 Visual inspection of residual plots is a useful way to see where any departures from our assumptions may lie. However, it may also be good to have a summary measure via a formal statistical test to assess where there is a significant departure from normality. The most commonly used statistic is the *Anderson-Darling* (AD) statistic - `R` outputs the test statistic and a p-value when carrying out an AD test. The null hypotheses is that the residuals can reasonably be assumed to come from a normal distribution, with the alternative hypothesis stating the converse. As such, large p-values imply the normality assumption is fine, small p-values imply a significant departure from normality.

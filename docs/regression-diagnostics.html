@@ -483,8 +483,7 @@ Figure 2.3: Scatterplot of standardised residuals against fitted values for the 
 <p><span style="color: red;">- there is no clear pattern in the residuals although there is a (mild) suggestion of curvature in the plot against exercise.</span></p>
 <p><span style="color: red;"> - the variance does not appear to change in a systematic way.</span></p>
 <p><span style="color: red;">- there is one point with a standardised residual greater than 2 in modulus. Possible outlier? We expect about <span class="math inline">\(5\%\)</span> to be in this range, i.e. 1 in a sample size of 24.</span></p>
-<p><span style="color: red;">Thus there is no clear evidence of a departure from our assumptions.</span></p>
-<p>Note that when solely discrete (or ordinal) variable(s) are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.</p>
+<p>Thus there is no clear evidence of a departure from our assumptions. Note that when solely discrete (or ordinal) variable(s) are included in the model, the residual plot appears as strips of points at the observed values for the covariate. This is to be expected! We can still assess variability by checking whether the length of the strip is roughly the same and that it is centred around zero.</p>
 </div>
 </div>
 <div id="normality-of-the-residuals" class="section level3 hasAnchor" number="2.1.3">
@@ -503,8 +502,7 @@ Figure 2.3: Scatterplot of standardised residuals against fitted values for the 
 Figure 2.4: Normality plot of standardised residuals.
 </p>
 </div>
-<p>As before, for the <code>R</code> code to work we must have previously defined the object <code>fit2</code>.</p>
-<p>Comment: The standardised residuals fit fairly well to a straight line but are being partially distorted by the potential outlier. Successive observations in the plot are not independent and so `ripples’ often occur by chance.</p>
+<p>As before, for the <code>R</code> code to work we must have previously defined the object <code>fit2</code>. The standardised residuals fit fairly well to a straight line but are being partially distorted by the potential outlier. Successive observations in the plot are not independent and so ‘ripples’ often occur by chance.</p>
 </div>
 <div id="anderson-darling-test" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Anderson-Darling test<a href="regression-diagnostics.html#anderson-darling-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
