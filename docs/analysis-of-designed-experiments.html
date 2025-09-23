@@ -301,6 +301,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria"><i class="fa fa-check"></i><b>5.2</b> Model selection criteria</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria-adjusted-r2"><i class="fa fa-check"></i><b>5.2.1</b> Model selection criteria: adjusted <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -324,7 +328,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="analysis-of-designed-experiments" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Analysis of designed experiments<a href="analysis-of-designed-experiments.html#analysis-of-designed-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>So far in the module we have focused on continuous covariates. Although very common, a real-world dataset - and thus the statistical model - will typically contain a mixture of continuous and categorical covariates.In this chapter we will consider how to handle categorical variables, in the context of designed experiments.</p>
+<p>So far in the module we have focused on models with at least one continuous covariate. In this chapter we will consider how to handle models with exclusively categorical variables, in the context of designed experiments.</p>
 <div id="completely-randomised-design" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Completely randomised design<a href="analysis-of-designed-experiments.html#completely-randomised-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A completely randomised design occurs when all experimental units are drawn from the same ‘population’ of interest. In this scenario, there are no obvious ‘groupings’ where members of different groups might be expected to respond differently. ‘Treatments’ are then applied to the experimental units - this is an example of a <em>factor</em> which can take <span class="math inline">\(k\)</span> values, one for each of <span class="math inline">\(k\)</span> potential treatments. A sensible initial model might be</p>
@@ -622,7 +626,7 @@ TSS
 </tr>
 </tbody>
 </table>
-<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(k\)</span> is the number of ‘treatments’. Similarly to the last chapter, we thus have a breakdown of the total variability as</p>
+<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(k\)</span> is the number of ‘treatments’. Similarly to chapter 3, we thus have a breakdown of the total variability as</p>
 <p><span class="math display">\[
 \color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Residual SS}}.
 \]</span></p>

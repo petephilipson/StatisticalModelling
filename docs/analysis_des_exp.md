@@ -3,7 +3,7 @@ title: ''
 ---
 
 # Analysis of designed experiments
-So far in the module we have focused on continuous covariates. Although very common, a real-world dataset - and thus the statistical model - will typically contain a mixture of continuous and categorical covariates.In this chapter we will consider how to handle categorical variables, in the context of designed experiments.
+So far in the module we have focused on models with at least one continuous covariate. In this chapter we will consider how to handle models with exclusively categorical variables, in the context of designed experiments.
 
 ## Completely randomised design
 A completely randomised design occurs when all experimental units are drawn from the same 'population' of interest. In this scenario, there are no obvious 'groupings' where members of different groups might be expected to respond differently. 'Treatments' are then applied to the experimental units - this is an example of a *factor* which can take $k$ values, one for each of $k$ potential treatments. A sensible initial model might be
@@ -206,7 +206,7 @@ The anova table used to test these hypotheses is of the general form:
 </tbody>
 </table>
 
-where $n$ is the sample size and $k$ is the number of 'treatments'. Similarly to the last chapter, we thus have a breakdown of the total variability as
+where $n$ is the sample size and $k$ is the number of 'treatments'. Similarly to chapter 3, we thus have a breakdown of the total variability as
 
 \[
 \color{red}{\text{Total SS (TSS)} = \text{Treatment SS} + \text{Residual SS}}.

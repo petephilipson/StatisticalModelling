@@ -301,6 +301,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria"><i class="fa fa-check"></i><b>5.2</b> Model selection criteria</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria-adjusted-r2"><i class="fa fa-check"></i><b>5.2.1</b> Model selection criteria: adjusted <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -325,7 +329,7 @@ div.csl-indent {
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Regression is one of the fundamental topics in statistical modelling, providing a mechanism for expressing the potential dependence of some response of interest on a number of covariates. Its uses are widespread, permeating almost every scientific field, providing the bedrock for analysis of data arising from medicine, population health, demography, agriculture, sports and many more. In this module we will focus on the particular modelling case of when the response variable is continuous.</p>
-<p>We will begin with a recap of the multiple linear regression model in chapter 1, extending some of the ideas you have seen in MAS2902. Subsequently, we will consider checking our core assumptions and using regression diagnostics to identify any unusual observations. The method of analysis of variance (anova) will then be introduced in chapter 3, allowing us to remove predictors from a model using the extra sum of squares technique. Focus then shifts in chapter 4 to looking at models to handle factors in the context of designed experiments, giving rise to classic one-way and two-way anova models. The fifth and final chapter will introduce indicator variables to handle binary explanatory variables and consider model selection techniques.</p>
+<p>We will begin with a recap of the multiple linear regression model in chapter 1, extending some of the ideas you have seen in MAS2902. Subsequently, we will consider checking our core assumptions and using regression diagnostics to identify any unusual observations. The method of analysis of variance (anova) will then be introduced in chapter 3, allowing us to remove predictors from a model using the extra sum of squares technique. The fourth chapter will introduce indicator variables to handle binary explanatory variables and consider model selection techniques. Focus then shifts in chapter 5 to looking at models to handle factors in the context of designed experiments, giving rise to classic one-way and two-way anova models.</p>
 <!-- The long-term aim is to build towards a framework of a general linear model, which will itself be developed further in MAS3906 (should you take this optional module) to allow for response variables of alternative types, i.e. binary or count data, via a generalised linear model. -->
 <div id="multiple-linear-regression" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Multiple linear regression<a href="introduction.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>

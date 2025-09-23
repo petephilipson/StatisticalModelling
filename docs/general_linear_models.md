@@ -4,7 +4,7 @@ title:
 
 # General linear models
 
-In the models considered thus far, we have either had exclusively continuous covariates (multiple linear regression models) or solely factors (anova models). In reality, we are often faced with variables of both types within the same dataset. Both of these models actually fall under the umbrella term of a *general linear model*, as do many more. We will now consider a model of this type.
+In the models considered thus far, we have had exclusively continuous covariates (multiple linear regression models) In reality, we are often faced with both continuous and categorical variables within the same dataset. Both of these models actually fall under the umbrella term of a *general linear model*, as do many more. We will now consider a model of this mixed type. Models with exclusively categorical variables (known as *factors*) will be the subject of the next chapter.
 
 ## Indicator and dummy variables
 Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. However we may want to consider:
@@ -15,16 +15,17 @@ Let us consider an example where there appeared to be a linear relationship betw
 We can thus define an indicator variable which indicates the sex of the lobster. Let $x_1 = 0$ for a male and $x_1 = 1$ for a female, i.e.
 
 \[
-\color{red}{x_{1} = \begin{cases} 1& \text{if ``Female''} \\
-0& \text{if ``Male''}
+\color{red}{x_{1} = \begin{cases} 1& \text{if `Female`} \\
+0& \text{if `Male`}
 \end{cases}}
 \]
 
-This can also be written as $I(x_1 = \text{``Female''})$, where $I()$ is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is `female').
+<!-- <span style="color:red;">$x_{1} = \begin{cases} 1& \text{if ``Female''} \\ 0& \text{if ``Male''}\end{cases}$</span> -->
 
-If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we did in Chapter 4); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously.
+This can also be written as $I(x_1 = \text{`Female`})$, where $I()$ is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is 'female').
 
-Consider the model:
+If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we will see in Chapter 5); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously. Consider the model:
+
 \[
 Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 \]
@@ -34,9 +35,8 @@ where $x_1$ is an indicator variable and $x_2$ is a quantitative variable. Then
 1. <span style="color: red;">$\E(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2$, and </span>
 1. <span style="color: red;">$\E(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + \beta_2 x_2$ </span>
 
-So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of $\beta_1$. Hence, if this value is close to zero then one line will suffice.
+So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of $\beta_1$. Hence, if this value is close to zero then one line will suffice. Formally, we can test for a common intercept by testing 
 
-Formally, we can test for a common intercept by testing 
 \[
 \color{red}{H_0: \beta_1 = 0 \;\;\text{versus}\;\; H_1: \beta_1 \neq 0}
 \]
@@ -213,3 +213,10 @@ This can be expressed as two separate models:
 \end{align*}
 
 Overall it can be seen that the mileage decreases by 0.12 for every unit increase in engine displacement when the transmission is automatic, and by 0.04 units when the transmission is manual.  The decrease is greater when the transmission is automatic, as we would expect based on our initial plot. The effect of engine displacement differs according to the transmission type and two non-parallel lines must be used to model the data.
+
+## Model selection criteria
+Recall $R^2 = \text{RSS}/\text{TSS}$, is the coefficient of determination, i.e. the proportion of the total (corrected) sum of squares of the response $Y$ explained by the model. The aim is to select a model that accounts for as much of this variation as is practical, i.e. we would like to only include regressors that are useful in some sense. 
+
+However, $R^2$ cannot decrease as regressor variables are added to the model. Thus the maximum $R^2$ will always be the model that contains all the regressor variables. As more regressors are added $R^2$ increases, but 'tails off'. Thus, we could choose $k$ (the number of regressors to include) at the `elbow'. In addition, some alternative measures exist which can be minimised or maximised directly, removing some of the subjective issues based around using $R^2$ alone.
+
+### Model selection criteria: adjusted $R^2$

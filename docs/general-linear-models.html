@@ -301,6 +301,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="general-linear-models.html"><a href="general-linear-models.html#model-interpretation"><i class="fa fa-check"></i>Model interpretation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria"><i class="fa fa-check"></i><b>5.2</b> Model selection criteria</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="general-linear-models.html"><a href="general-linear-models.html#model-selection-criteria-adjusted-r2"><i class="fa fa-check"></i><b>5.2.1</b> Model selection criteria: adjusted <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -324,7 +328,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="general-linear-models" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> General linear models<a href="general-linear-models.html#general-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In the models considered thus far, we have either had exclusively continuous covariates (multiple linear regression models) or solely factors (anova models). In reality, we are often faced with variables of both types within the same dataset. Both of these models actually fall under the umbrella term of a <em>general linear model</em>, as do many more. We will now consider a model of this type.</p>
+<p>In the models considered thus far, we have had exclusively continuous covariates (multiple linear regression models) In reality, we are often faced with both continuous and categorical variables within the same dataset. Both of these models actually fall under the umbrella term of a <em>general linear model</em>, as do many more. We will now consider a model of this mixed type. Models with exclusively categorical variables (known as <em>factors</em>) will be the subject of the next chapter.</p>
 <div id="indicator-and-dummy-variables" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Indicator and dummy variables<a href="general-linear-models.html#indicator-and-dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. However we may want to consider:</p>
@@ -334,14 +338,14 @@ div.csl-indent {
 </ol>
 <p>We can thus define an indicator variable which indicates the sex of the lobster. Let <span class="math inline">\(x_1 = 0\)</span> for a male and <span class="math inline">\(x_1 = 1\)</span> for a female, i.e.</p>
 <p><span class="math display">\[
-\color{red}{x_{1} = \begin{cases} 1&amp; \text{if ``Female&#39;&#39;} \\
-0&amp; \text{if ``Male&#39;&#39;}
+\color{red}{x_{1} = \begin{cases} 1&amp; \text{if `Female`} \\
+0&amp; \text{if `Male`}
 \end{cases}}
 \]</span></p>
-<p>This can also be written as <span class="math inline">\(I(x_1 = \text{``Female&#39;&#39;})\)</span>, where <span class="math inline">\(I()\)</span> is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is `female’).</p>
-<p>If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we did in Chapter 4); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously.</p>
-<p>Consider the model:
-<span class="math display">\[
+<!-- <span style="color:red;">$x_{1} = \begin{cases} 1& \text{if ``Female''} \\ 0& \text{if ``Male''}\end{cases}$</span> -->
+<p>This can also be written as <span class="math inline">\(I(x_1 = \text{`Female`})\)</span>, where <span class="math inline">\(I()\)</span> is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is ‘female’).</p>
+<p>If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we will see in Chapter 5); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously. Consider the model:</p>
+<p><span class="math display">\[
 Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 \]</span></p>
 <p>where <span class="math inline">\(x_1\)</span> is an indicator variable and <span class="math inline">\(x_2\)</span> is a quantitative variable. Then</p>
@@ -349,9 +353,8 @@ Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 <li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2\)</span>, and </span></li>
 <li><span style="color: red;"><span class="math inline">\(\mathrm{E}(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + \beta_2 x_2\)</span> </span></li>
 </ol>
-<p>So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of <span class="math inline">\(\beta_1\)</span>. Hence, if this value is close to zero then one line will suffice.</p>
-<p>Formally, we can test for a common intercept by testing
-<span class="math display">\[
+<p>So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of <span class="math inline">\(\beta_1\)</span>. Hence, if this value is close to zero then one line will suffice. Formally, we can test for a common intercept by testing</p>
+<p><span class="math display">\[
 \color{red}{H_0: \beta_1 = 0 \;\;\text{versus}\;\; H_1: \beta_1 \neq 0}
 \]</span></p>
 <p>in the usual way (i.e. we are testing for a common line, which corresponds to no difference between the two categories). To fit two lines with different slopes, we fit:</p>
@@ -491,6 +494,14 @@ Figure 5.4: Plot of mileage against engine displacement by transmission type wit
 \color{red}{\text{Type 1: Mileage}} &amp;\color{red}{= 29.15 - 0.04\times \text{Engine displacement}}
 \end{align*}\]</span></p>
 <p>Overall it can be seen that the mileage decreases by 0.12 for every unit increase in engine displacement when the transmission is automatic, and by 0.04 units when the transmission is manual. The decrease is greater when the transmission is automatic, as we would expect based on our initial plot. The effect of engine displacement differs according to the transmission type and two non-parallel lines must be used to model the data.</p>
+</div>
+</div>
+<div id="model-selection-criteria" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Model selection criteria<a href="general-linear-models.html#model-selection-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall <span class="math inline">\(R^2 = \text{RSS}/\text{TSS}\)</span>, is the coefficient of determination, i.e. the proportion of the total (corrected) sum of squares of the response <span class="math inline">\(Y\)</span> explained by the model. The aim is to select a model that accounts for as much of this variation as is practical, i.e. we would like to only include regressors that are useful in some sense.</p>
+<p>However, <span class="math inline">\(R^2\)</span> cannot decrease as regressor variables are added to the model. Thus the maximum <span class="math inline">\(R^2\)</span> will always be the model that contains all the regressor variables. As more regressors are added <span class="math inline">\(R^2\)</span> increases, but ‘tails off’. Thus, we could choose <span class="math inline">\(k\)</span> (the number of regressors to include) at the `elbow’. In addition, some alternative measures exist which can be minimised or maximised directly, removing some of the subjective issues based around using <span class="math inline">\(R^2\)</span> alone.</p>
+<div id="model-selection-criteria-adjusted-r2" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Model selection criteria: adjusted <span class="math inline">\(R^2\)</span><a href="general-linear-models.html#model-selection-criteria-adjusted-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>

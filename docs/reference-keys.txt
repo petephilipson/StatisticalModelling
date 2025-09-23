@@ -89,3 +89,5 @@ factorial-experiments
 exploratory-plots-for-interactions
 general-linear-models
 indicator-and-dummy-variables
+model-selection-criteria
+model-selection-criteria-adjusted-r2
