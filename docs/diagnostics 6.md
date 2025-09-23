@@ -55,13 +55,22 @@ To get around these issues, we work with the *standardised* residuals
 
 where $s^2$ is our estimate of $\sigma_{\epsilon}^2$ (see Chapter 1). The standardised residuals have a mean of zero (as do the raw residuals) since their sum is constrained to be zero - which induces dependence - and a variance of (approximately) one. Placing the residuals on a common scale also allows us to look for outliers or unusual observations more easily (see later). We can calculate the standardised residuals in `R` using the following command, where `fit2` is our second fitted model from chapter 1:
 
-```{r, echo = F}
-load("bodyweight.RData")
-fit2 <- lm(Weight ~ Consumption + Exercise, data = bodyweight)
+
+
+
+``` r
+rstandard(fit2)
 ```
 
-```{r}
-rstandard(fit2)
+```
+##           1           2           3           4           5           6 
+## -0.20643768 -0.74827738 -0.80142866  0.54358256  0.85837659 -0.98421544 
+##           7           8           9          10          11          12 
+##  1.14666224 -0.09647632 -0.04022545 -0.22714152 -0.33189908 -0.46936793 
+##          13          14          15          16          17          18 
+##  0.09836234  1.13448521  1.56936911 -1.43201467  1.05443091 -0.82758724 
+##          19          20          21          22          23          24 
+## -1.03068909 -0.53747090 -1.26308890  0.19268170 -0.58264176  2.77358349
 ```
 
 We use the terminology of standardised residuals in this module since this is what is adopted in `R`. You may sometimes see the phrase '(internally) studentised' residuals elsewhere (in MAS2902 for instance) for this same concept. There is also, as you might expect, an externally studentised residual, but this is not explored further here.
@@ -69,9 +78,7 @@ We use the terminology of standardised residuals in this module since this is wh
 ### Residual plots
 We typically use visual inspection (i.e. plots) to check the model assumptions since the raw values themselves are hard to interpret. We primarily plot $\hat{e}_i$ against the fitted values $\hat{y_i}$, and they can also be plotted against each of the explanatory variables in order to verify the functional form. If the model assumptions are satisfied, then, for each plot, the standardised residuals should be randomly scattered within a horizontal band: 
 
-```{r blank1, echo = FALSE, fig.align='center', out.width='65%'}
-plot.new()
-```
+<img src="diagnostics_files/figure-html/blank1-1.png" width="65%" style="display: block; margin: auto;" />
 
 Otherwise, we could get signs of non-constant variance, i.e. increasing, double bow, decreasing, or signs of non-linearity (see practical 2). In practice, nonlinearity is hard to distinguish from correlation in the standardised residuals. Some examples of residuals not conforming to model assumptions are given above.
 
@@ -106,40 +113,43 @@ Note that it is not reasonable to remove outliers just because we don't like the
 Residual plots for the pre-diabetes data can be generated in `R` using the following commands:
 
 #### Standardised residuals against covariates {-}
-```{r, eval=FALSE}
+
+``` r
 plot(bodyweight$Consumption, rstandard(fit2), 
      xlab = "Consumption", ylab ="Standardised residuals")
 abline(h = c(-2, 0, 2), lty = 2) 
 ```
 
-```{r, echo=FALSE, fig.cap = 'Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.', fig.align='center', out.width='65%'}
-plot(bodyweight$Consumption, rstandard(fit2), pch = 16, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, xlab = "Consumption", ylab ="Standardised residuals")
-abline(h = c(-2, 0, 2), lty = 2, lwd = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.</p>
+</div>
 
-```{r, eval=FALSE}
+
+``` r
 plot(bodyweight$Exercise, rstandard(fit2), 
      xlab = "Exercise", ylab ="Standardised residuals")
 abline(h = c(-2, 0, 2), lty = 2) 
 ```
 
-```{r, echo=FALSE, fig.cap = 'Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.', fig.align='center', out.width='65%'}
-plot(bodyweight$Exercise, rstandard(fit2), pch = 16, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, xlab = "Exercise", ylab ="Standardised residuals")
-abline(h = c(-2, 0, 2), lty = 2, lwd = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Scatterplot of standardised residuals against (average) food consumption for the pre-diabetes data.</p>
+</div>
 
 
 #### Standardised residuals against fitted values {-}
-```{r, eval=FALSE}
+
+``` r
 plot(fitted.values(fit2), rstandard(fit2), 
      xlab = "Fitted values", ylab ="Standardised residuals")
 abline(h = c(-2, 0, 2), lty = 2) 
 ```
 
-```{r, echo=FALSE, fig.cap = 'Scatterplot of standardised residuals against fitted values for the multiple linear regession model with consumption and exercise.', fig.align='center', out.width='65%'}
-plot(fitted.values(fit2), rstandard(fit2), pch = 16, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, xlab = "Fitted values", ylab ="Standardised residuals")
-abline(h = c(-2, 0, 2), lty = 2, lwd = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-8-1.png" alt="Scatterplot of standardised residuals against fitted values for the multiple linear regession model with consumption and exercise." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-8)Scatterplot of standardised residuals against fitted values for the multiple linear regession model with consumption and exercise.</p>
+</div>
 
 In each of the above plots, we have added a dashed horizontal line at zero to help look for patterns, we would expect around half of the standardised residuals to lie both above and below the line in each case. Further dashed lines at $\pm 2$ allow us to identify how many points lie outside these bounds (recall, we expect $\approx 5\%$ in a well-behaved model).
 
@@ -164,15 +174,16 @@ As mentioned earlier, analysis of the multiple linear regression model hinges on
 
 However, it has been shown that only really long-tailed distributions cause a major problem and that mild non-normality can safely be ignored. Furthermore, the larger the sample size the more the the non-normality is the more the consequences are mitigated. To get the normality plot for the pre-diabetes data, we use the following commands:
 
-```{r, eval=FALSE}
+
+``` r
 qqnorm(rstandard(fit2), ylab = "Standardised residuals")
 abline(a = 0, b = 1, lty = 2)
 ```
 
-```{r, echo=FALSE, fig.cap = 'Normality plot of standardised residuals.', fig.align='center', out.width='65%'}
-qqnorm(rstandard(fit2), pch = 16, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, ylab ="Standardised residuals")
-abline(a = 0, b = 1, lty = 2) 
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-10-1.png" alt="Normality plot of standardised residuals." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-10)Normality plot of standardised residuals.</p>
+</div>
 
 As before, for the `R` code to work we must have previously defined the object `fit2`. 
 
@@ -185,9 +196,18 @@ Comment: Note that there are some issues with the AD test for large sample sizes
 
 ##### Anderson-Darling test in `R` {-}
 To carry out an AD test in `R` we first need to load the library `nortest`. For the pre-diabetes example:
-```{r adtest}
+
+``` r
 library(nortest)
 ad.test(rstandard(fit2))
+```
+
+```
+## 
+## 	Anderson-Darling normality test
+## 
+## data:  rstandard(fit2)
+## A = 0.53928, p-value = 0.1494
 ```
 
 As the p-value is fairly large in this case, we do not have a significant departure from normality and conclude that the assumption is not disputed for this model.
@@ -197,22 +217,15 @@ One of the assumptions of the model is that the true (but unknown) errors, $\vec
 
 Consider a multiple linear regression model with one continuous covariate ($x_1$) and one binary covariate ($x_2$), such as a treatment arm in a trial. If there are considerable differences between the two treatment groups then this will induce a bimodal distribution on the (unconditional) response variable, $\vec{Y}$:
 
-```{r, echo=FALSE, fig.align='center', out.width="60%"}
-knitr::include_graphics("Graphics/cache/y_bimodal.png")
-```
+<img src="Graphics/cache/y_bimodal.png" width="65%" style="display: block; margin: auto;" />
 
 However, if we then fit a multiple linear regression model and look at the (standardised) residuals we see an approximate normal distribution
 
-```{r, echo=FALSE, fig.align='center', out.width="60%"}
-knitr::include_graphics("Graphics/cache/e_caution.png")
-```
+<img src="Graphics/cache/e_caution.png" width="65%" style="display: block; margin: auto;" />
 
-Similarly, we can inspect quantile-quantile plots of both the response (upper plot) and the (standardised) residuals (lower plot).
+Similarly, we can inspect quantile-quantile plots of both the response (below left) and the (standardised) residuals (below right).
 
-```{r, echo=FALSE, fig.align='center', out.width="48%"}
-knitr::include_graphics("Graphics/cache/y_bimodal_norm.png")
-knitr::include_graphics("Graphics/cache/e_caution_norm.png")
-```
+<img src="Graphics/cache/y_bimodal_norm.png" width="65%" style="display: block; margin: auto;" /><img src="Graphics/cache/e_caution_norm.png" width="65%" style="display: block; margin: auto;" />
 
 We observe that the upper plot does not conform to a straight line relationship whereas the right-hand one does. Note in passing that an AD test gives $p < 0.001$ (reject $H_0$) for the response variable and $p > 0.10$ (retain $H_0$) for the residuals.
 
@@ -230,9 +243,7 @@ High leverage points can have an unusually large effect on the estimates of regr
 
 If the value of $h_{ii}$ is large, then $\Var[\hat{\epsilon}_i]$  will be small, i.e. the fit will be close to $Y_i$, since $\Var[\hat{\epsilon}_i] = (1 - h_{ii})\sigma_{\epsilon}^2$ and this will approach zero as the hat values get close to unity. This means that the regression line is `forced' to fit well to points with a large leverage value so these points have the potential to severely alter the gradient of the regression line. A consequence of this is that the variance of $\hat{Y_i}$, which is given by $h_{ii}\sigma_{\epsilon}^2$, will be at its largest for points of high leverage. The sketches below demonstrate this.
 
-```{r blank2, echo = FALSE, fig.align='center', out.width='65%'}
-plot.new()
-```
+<img src="diagnostics_files/figure-html/blank2-1.png" width="65%" style="display: block; margin: auto;" />
 
 #### Properties of the leverage values {-}
 1. The leverages are bounded between 0 and 1, i.e. $0 \leq h_{ii} \leq 1$
@@ -254,29 +265,41 @@ Usually, a value of $h_{ii} > 2(p + 1)/n$ is regarded as indicating a point of h
 ### Example: Leverage values for the pre-diabetes data {-}
 As for the residual checks, we typically plot the leverage values to look for large values. This can be achieved in `R` via the following commands:
 
-```{r, eval=FALSE}
+
+``` r
 plot(hatvalues(fit2), ylab ="Leverages", pch = 16)
 abline(h = 2*3/24 , col = 2, lty = 2)
 ```
 
-```{r levsplot1, echo=FALSE, fig.cap ='Leverage values from mutliple linear regression model for pre-diabetes data.', fig.align='center', out.width='65%'}
-plot(hatvalues(fit2), ylab ="Leverages", 
-     ylim = range(0, max(hatvalues(fit2))), pch = 16, cex = 1.5, 
-     cex.lab = 1.5, cex.axis = 1.5)
-abline(h = 2*3/24 , col = 2, lty = 2, lwd = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/levsplot1-1.png" alt="Leverage values from mutliple linear regression model for pre-diabetes data." width="65%" />
+<p class="caption">(\#fig:levsplot1)Leverage values from mutliple linear regression model for pre-diabetes data.</p>
+</div>
 
 Note that $p = 2$ here (and $n = 24$) since we have two explanatory variables: consumption and exercise. From the plot, we can identify that there are two points of high leverage here. For large datasets, it may be more prudent to use `R` to find out how many points exceed the threshold
 
-```{r}
+
+``` r
 table(hatvalues(fit2) > 2*3/24)
+```
+
+```
+## 
+## FALSE  TRUE 
+##    22     2
 ```
 
 If any points are flagged we can identify them using
 
-```{r}
+
+``` r
 levs <- hatvalues(fit2)
 levs[levs > 2*3/24]
+```
+
+```
+##         1         3 
+## 0.2942944 0.4251701
 ```
 
 This tells us that it is points 1 and 3 in this case.
@@ -292,19 +315,27 @@ for $i = 1, \ldots, n$, and $\hat{e}_i$ and $h_{ii}$ are the standardised residu
 
 Large values of $D_i$ indicate that the point has a large influence on the model. We can calculate and plot the Cook's distances in `R` using:
 
-```{r, eval=FALSE}
+
+``` r
 plot(cooks.distance(fit2), ylab = "Cooks distance", pch = 16)
 ```
 
-```{r cooksplot1, echo=FALSE, fig.cap ='Cook distances from mutliple linear regression model for pre-diabetes data.', fig.align='center', out.width='65%'}
-plot(cooks.distance(fit2), ylab = "Cooks distance", pch = 16, cex = 1.5,      cex.lab = 1.5, cex.axis = 1.5)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/cooksplot1-1.png" alt="Cook distances from mutliple linear regression model for pre-diabetes data." width="65%" />
+<p class="caption">(\#fig:cooksplot1)Cook distances from mutliple linear regression model for pre-diabetes data.</p>
+</div>
 
 There is no agreed threshold to identify influential observations, unlike for points of high leverage. However, a value of 1 has been suggested but this is typically conservative. A pragmatic approach is to investigate any (groups of) observations that appear to have larger values than the others. In our example, taking a threshold of 0.10 appears sensible.
 
-```{r}
+
+``` r
 cooks <- cooks.distance(fit2)
 cooks[cooks > 0.10]
+```
+
+```
+##         3        15        21        24 
+## 0.1583550 0.2177828 0.1302879 0.1374646
 ```
 
 We see that point 15 has the largest Cook’s distance, then point 3, and then point 24. Point 24 was the point with the largest absolute value of the standardised residuals; 3 was the point with the highest leverage. Observation 15 has the second largest absolute value of the standardised residuals, and the third highest leverage.
@@ -312,15 +343,13 @@ We see that point 15 has the largest Cook’s distance, then point 3, and then p
 ### Dealing with unusual observations
 What should we do with the influential and/or high leverage points? As a first pass, we should check that they have been entered correctly, either by ourselves or by a data clerk or external source, but this may not be possible. Visually, we can plot the data with them highlighted and check whether they stand out. Can they be explained? The following `R` code produces such a plot for our example, where we have highlighted points 3 (highest leverage), 15 (largest Cook's distance) and 24 (large outlier) as X, Y and Z respectively. We also colour-code points by exercise (1 is black, 2 is red, 3 is green): 
 
-```{r label_inf_plot1, echo=FALSE, fig.cap = 'Scatterplot for pre-diabetes data with unusual points identified.', fig.align='center', out.width='65%'}
-plot(Weight ~ Consumption, col=(Exercise + 1), 
-       data = bodyweight, pch = 16)
-points(bodyweight[3, 2], bodyweight[3, 1], pch="X")
-points(bodyweight[15, 2], bodyweight[15, 1], pch="Y")
-points(bodyweight[24, 2], bodyweight[24, 1], pch="Z")
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/label_inf_plot1-1.png" alt="Scatterplot for pre-diabetes data with unusual points identified." width="65%" />
+<p class="caption">(\#fig:label_inf_plot1)Scatterplot for pre-diabetes data with unusual points identified.</p>
+</div>
 
-```{r, eval=FALSE}
+
+``` r
 # Or in one command
 points(bodyweight[c(3, 15, 24), 2:1], pch  = c("X", "Y", "Z"))
 ```
@@ -331,34 +360,25 @@ We see that the point with the highest leverage (point 3, X) has an unusually la
 We now return to Example 1.10 from chapter 1 and carry out the full suite of checks (i.e. outliers, points of high leverage/influence and a normality test) on the model for points scored using clean sheets as the single (mean-centered) covariate.
 
 To recap, the call to fit the model (after mean-centering the variable) was
-```{r, echo = FALSE}
-load("prem.RData")
-```
 
-```{r}
+
+
+``` r
 CleanSheetsScaled <- scale(prem$CleanSheets, scale = FALSE)
 fit_mean_centre <- lm(Points ~ CleanSheetsScaled, data = prem)
 ```
 
 A scatterplot of the original data, with the line of best fit superimposed, is included below, with each point labelled by final league position, from 1 (top) to 20 (bottom):
 
-```{r prem_label, echo=FALSE, fig.cap = '', fig.align='center', out.width='65%'}
-plot(Points ~ CleanSheetsScaled, pch = 16, xlab = 'Mean-centered clean sheets', 
-     data = prem, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, ylim = c(20, 100))
-abline(a = fit_mean_centre$coef[1], b = fit_mean_centre$coef[2], lty = 2)
-labs <- paste(1:20, sep = ",")
-text(CleanSheetsScaled, prem$Points + 4, labels = labs, offset = 1, cex = 1.3)
-```
+<img src="diagnostics_files/figure-html/prem_label-1.png" width="65%" style="display: block; margin: auto;" />
 
 <ol type="a">
 <li> Interpret the plot of the (standardised) residuals.
 </li>
-```{r, echo=FALSE, fig.cap = 'Plot of standardised residuals against fitted values.', fig.align='center', out.width='65%'}
-plot(fitted.values(fit_mean_centre), rstandard(fit_mean_centre), pch = 16, 
-     cex = 1.5, cex.axis = 1.5, cex.lab = 1.5,
-     xlab = "Fitted values", ylab ="Standardised residuals")
-abline(h = c(-2, 0, 2), lty = 2) 
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-22-1.png" alt="Plot of standardised residuals against fitted values." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-22)Plot of standardised residuals against fitted values.</p>
+</div>
 
 <span style="color: red;">- All but one of the residuals lies in $(-2, 2)$, and we would expect one by chance in this dataset of twenty observations.</span> 
 
@@ -367,13 +387,22 @@ abline(h = c(-2, 0, 2), lty = 2)
 <li> Assess the normality assumption of the residuals and interpret the output of the Anderson-Darling test.
 </li>
 
-```{r, echo=FALSE, fig.cap = 'Normality plot of standardised residuals.', fig.align='center', out.width='65%'}
-qqnorm(rstandard(fit2), pch = 16, , cex = 1.5, cex.axis = 1.5, cex.lab = 1.5, ylab ="Standardised residuals")
-abline(a = 0, b = 1, lty = 2) 
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-23-1.png" alt="Normality plot of standardised residuals." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-23)Normality plot of standardised residuals.</p>
+</div>
+
+
+``` r
+ad.test(rstandard(fit_mean_centre)) # See Chapter 1
 ```
 
-```{r}
-ad.test(rstandard(fit_mean_centre)) # See Chapter 1
+```
+## 
+## 	Anderson-Darling normality test
+## 
+## data:  rstandard(fit_mean_centre)
+## A = 0.33253, p-value = 0.4807
 ```
 
 <span style="color: red;">- From the plot, the points lie close to the nominal 45 degree line.</span>
@@ -384,26 +413,14 @@ ad.test(rstandard(fit_mean_centre)) # See Chapter 1
 
 <li> Use regression diagnostics to identify any points of high leverage, or of high influence.
 </li>
-```{r, fig.show = "hold", echo=FALSE, fig.cap = 'Plot of leverages (left) and Cook distances (right) indexed by final league position.', , fig.align='center', out.width='48%'}
-levs <- hatvalues(fit_mean_centre)
-plot(1:20, levs, pch = 16, cex = 1.1, cex.axis = 1.1, cex.lab = 1.1,
-   xlab = "Index", ylab ="Leverage", ylim = c(0, max(levs) + 0.03))
-text(1:20, levs + 0.015, labels = labs, offset = 2, cex = 0.85)
-cooks <- cooks.distance(fit_mean_centre)
-plot(1:20, cooks, pch = 16, cex = 1.1, cex.axis = 1.1, cex.lab = 1.1,
-   xlab = "Index", ylab ="Cook distance", ylim = c(0, max(levs) + 0.03))
-text(1:20, cooks + 0.015, labels = labs, offset = 2, cex = 0.85)
-```
+<div class="figure" style="text-align: center">
+<img src="diagnostics_files/figure-html/unnamed-chunk-25-1.png" alt="Plot of leverages (left) and Cook distances (right) indexed by final league position." width="48%" /><img src="diagnostics_files/figure-html/unnamed-chunk-25-2.png" alt="Plot of leverages (left) and Cook distances (right) indexed by final league position." width="48%" />
+<p class="caption">(\#fig:unnamed-chunk-25)Plot of leverages (left) and Cook distances (right) indexed by final league position.</p>
+</div>
 
 <span style="color: red;">The leverage values are plotted on the left, and the Cook's distances on the right. We can see one point above the threshold (dashed line) for the leverages (which is $2\times 2/20 = 0.20$ here). This corresponds to observation 2. On inspection of the original data, we see that this is the team (Manchester City) with the most clean sheets, so is large in $x$ space, thus having the capacity to alter the regression line.</span>
 
-```{r, echo=FALSE, fig.cap = '', , fig.align='center', out.width='65%'}
-plot(Points ~ CleanSheetsScaled, pch = 16, xlab = 'Mean-centered clean sheets', 
-     data = prem, cex = 1.5, cex.lab = 1.5, cex.axis = 1.5, ylim = c(20, 100))
-abline(a = fit_mean_centre$coef[1], b = fit_mean_centre$coef[2], lty = 2)
-labs <- paste(1:20, sep = ",")
-text(CleanSheetsScaled, prem$Points + 4, labels = labs, offset = 1, cex = 1.3)
-```
+<img src="diagnostics_files/figure-html/unnamed-chunk-26-1.png" width="65%" style="display: block; margin: auto;" />
 
 <span style="color: red;">For the influential points, we see that the largest is for observation 1. This point lies a considerable distance from the regression line, our model would expect fewer points based on this covariate value. Other covariates may be needed in the model. The next largest Cook's distances (points 5 and 7) are not that much larger than the body of the points so we do not consider them further, apart from observing that they deviate the most from the fitted line (for point 5 it is above the line of best fit, for point 7 it is below).</span>
 

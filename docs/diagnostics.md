@@ -217,15 +217,15 @@ One of the assumptions of the model is that the true (but unknown) errors, $\vec
 
 Consider a multiple linear regression model with one continuous covariate ($x_1$) and one binary covariate ($x_2$), such as a treatment arm in a trial. If there are considerable differences between the two treatment groups then this will induce a bimodal distribution on the (unconditional) response variable, $\vec{Y}$:
 
-<img src="Graphics/cache/y_bimodal.png" width="65%" style="display: block; margin: auto;" />
+<img src="Graphics/cache/y_bimodal.png" width="60%" style="display: block; margin: auto;" />
 
 However, if we then fit a multiple linear regression model and look at the (standardised) residuals we see an approximate normal distribution
 
-<img src="Graphics/cache/e_caution.png" width="65%" style="display: block; margin: auto;" />
+<img src="Graphics/cache/e_caution.png" width="60%" style="display: block; margin: auto;" />
 
-Similarly, we can inspect quantile-quantile plots of both the response (below left) and the (standardised) residuals (below right).
+Similarly, we can inspect quantile-quantile plots of both the response (upper plot) and the (standardised) residuals (lower plot).
 
-<img src="Graphics/cache/y_bimodal_norm.png" width="65%" style="display: block; margin: auto;" /><img src="Graphics/cache/e_caution_norm.png" width="65%" style="display: block; margin: auto;" />
+<img src="Graphics/cache/y_bimodal_norm.png" width="48%" style="display: block; margin: auto;" /><img src="Graphics/cache/e_caution_norm.png" width="48%" style="display: block; margin: auto;" />
 
 We observe that the upper plot does not conform to a straight line relationship whereas the right-hand one does. Note in passing that an AD test gives $p < 0.001$ (reject $H_0$) for the response variable and $p > 0.10$ (retain $H_0$) for the residuals.
 

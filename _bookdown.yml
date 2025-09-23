@@ -6,8 +6,8 @@ rmd_files:
   - multiplelinearreg.Rmd
   - diagnostics.Rmd
   - inference.Rmd
-  - analysis_des_exp.Rmd
   - general_linear_models.Rmd
+  - analysis_des_exp.Rmd
 output:
   bookdown::gitbook:
     includes:
