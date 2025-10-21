@@ -206,7 +206,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\(\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\)</span>: multicollinearity</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
@@ -256,14 +256,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
-<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
-<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
-<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.5</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.6</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+<li class="chapter" data-level="3.6.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.6.1</b> Choosing the order of a polynomial model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>4</b> General linear models</a>
@@ -1127,7 +1125,7 @@ Figure 3.3: Scatterplot of height against age for the warfarin study.
 <p>We see that <span class="math inline">\(p = 0.8923 &gt; 0.05\)</span> so we can retain the null hypothesis and our original model containing both H2S and lactic acid is our chosen model; acetic, phosphoric and citric acid are not needed in the model, in the presence of H2S and lactic acid.</p>
 <div id="summary-extra-sum-of-squares-method" class="section level3 unnumbered hasAnchor">
 <h3>Summary: extra sum of squares method<a href="inference-for-the-multiple-linear-regression-model.html#summary-extra-sum-of-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific <span class="math inline">\(p\)</span>-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) - i.e. anything with a solitary degree of freedom - we can still apply the method, but it is slightly inefficient, as we shall see in section <a href="inference-for-the-multiple-linear-regression-model.html#sec:infer">3.5</a>.</p>
+<p>Removing several parameters at once can lead to the removal of potentially important predictors. This can happen if one variable is borderline significant and the others are not. Hence, we should proceed cautiously. The method must be used for factors with more than two levels since we need a way of assessing the overall significance of the variable which cannot be done using parameter-specific <span class="math inline">\(p\)</span>-values - see later chapters. For a solitary continuous (or ordinal) covariate (or a factor with 2 levels) - i.e. anything with a solitary degree of freedom - we can still apply the method, but it is slightly inefficient, as we shall see in section <a href="#sec:infer"><strong>??</strong></a>.</p>
 </div>
 </div>
 <div id="example-anova-for-crime-data-based-on-summary-information" class="section level2 unnumbered hasAnchor">
@@ -1445,83 +1443,43 @@ A more direct solution is to note that the difference in the residual sums of sq
 <span style="color: red;">To calculate <span class="math inline">\(R^2\)</span> we divide the regression total sum of squares by the total sum of squares to identify how much of the total is explained by the regressors. In this case <span class="math inline">\(R^2 = 52931/68810 = 0.769\)</span>, so all of the predictors combined explain around <span class="math inline">\(77\%\)</span> of the variability in crime rates. For the pathologist’s model <span class="math inline">\(R^2 = 50206/68810 = 0.730\)</span>, i.e. around <span class="math inline">\(73\%\)</span> of the variability. This is not much different for the loss of eight predictors and suggests there is some validity to the claim.</span>
 </li>
 </ol>
+<!-- ## Inference on individual parameters {#sec:infer} -->
+<!-- The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model. -->
+<!-- To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use -->
+<!-- \[ -->
+<!-- \color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}} -->
+<!-- \] -->
+<!-- and this is compared to the $t$-distribution on $n - p - 1$ degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. $\hat{\beta}_j = 0$, whereby $b_j = 0$. -->
+<!-- As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+1)^{th}$ diagonal element of $(\up{X}^T\up{X})^{-1}$, for $j = 0, \ldots, p$. The variance of $\hat{\beta}_j$ is then estimated as $v_{jj}s^2$ since our $\beta$ parameters are indexed starting at $0$ for the intercept. We can then construct a $100(1 - \alpha)\%$ confidence interval for $\beta_j$ as  -->
+<!-- \begin{align*} -->
+<!-- \color{red}{\hat{\beta}_j} &\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\ -->
+<!-- &\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)} -->
+<!-- \end{align*} -->
+<!-- Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters.  -->
+<!-- In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model. -->
+<!-- ## Example: Inference on individual parameters - warfarin example {-} -->
+<!-- Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain -->
+<!-- ```{r} -->
+<!-- summary(m1) -->
+<!-- ``` -->
+<!-- The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function: -->
+<!-- ```{r} -->
+<!-- confint(m1) -->
+<!-- ``` -->
+<!-- We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds.  -->
+<!-- Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get -->
+<!-- ```{r} -->
+<!-- mfinal = lm(root_dose ~ age, data = warfarinStudy) -->
+<!-- summary(mfinal) -->
+<!-- ``` -->
+<!-- The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The $95\%$ confidence interval for age is thus $0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)$. This can be equivalently obtained from `R` using `confint(mfinal)`.  -->
+<!-- ```{r} -->
+<!-- confint(mfinal) -->
+<!-- ``` -->
+<!-- Comparing with the confidence interval from the full model we see that it is now much narrower. -->
 </div>
-<div id="sec:infer" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Inference on individual parameters<a href="inference-for-the-multiple-linear-regression-model.html#sec:infer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the <code>summary()</code> command considers the joint distribution of the parameter vector, <span class="math inline">\(\underline{\hat{\beta}}\)</span>. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.</p>
-<p>To test the hypothesis <span class="math inline">\(H_0: \beta_j = b_j\)</span> for a chosen <span class="math inline">\(j \in 1, \ldots, p\)</span>, given that the other parameters are fitted, we use</p>
-<p><span class="math display">\[
-\color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}}
-\]</span></p>
-<p>and this is compared to the <span class="math inline">\(t\)</span>-distribution on <span class="math inline">\(n - p - 1\)</span> degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. <span class="math inline">\(\hat{\beta}_j = 0\)</span>, whereby <span class="math inline">\(b_j = 0\)</span>.</p>
-<p>As in chapter 1, subsection <a href="introduction.html#sec:inferforbetahat">1.4.3</a>, let <span class="math inline">\(v_{jj}\)</span> be the <span class="math inline">\((j+1)^{th}\)</span> diagonal element of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>, for <span class="math inline">\(j = 0, \ldots, p\)</span>. The variance of <span class="math inline">\(\hat{\beta}_j\)</span> is then estimated as <span class="math inline">\(v_{jj}s^2\)</span> since our <span class="math inline">\(\beta\)</span> parameters are indexed starting at <span class="math inline">\(0\)</span> for the intercept. We can then construct a <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_j\)</span> as</p>
-<p><span class="math display">\[\begin{align*}
-\color{red}{\hat{\beta}_j} &amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\
-&amp;\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
-\end{align*}\]</span></p>
-<p>Note that these hypothesis tests and confidence intervals are only a guide. The <span class="math inline">\(t\)</span>-test outlined above, which are given in the model output via <code>R</code>, are exactly equivalent to an <span class="math inline">\(F\)</span>-test on this parameter <em>having been fitted last</em>. Since the <span class="math inline">\(\hat{\beta}_j\)</span> are correlated, statements about single parameters are not independent from statements about the remaining parameters.</p>
-<p>In practice, we often remove the variable with the largest <span class="math inline">\(p\)</span>-value (assuming <span class="math inline">\(p &gt; 0.05\)</span>, say) and refit the model, continuing until all the remaining variables have small <span class="math inline">\(p\)</span>-values (<span class="math inline">\(&lt;0.05\)</span>, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.</p>
-</div>
-<div id="example-inference-on-individual-parameters---warfarin-example" class="section level2 unnumbered hasAnchor">
-<h2>Example: Inference on individual parameters - warfarin example<a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb68-1" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = root_dose ~ height + age, data = warfarinStudy)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.95647 -0.30922 -0.07802  0.33932  1.09938 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 1.0529539  0.3002567   3.507 0.000644 ***
-## height      0.0002249  0.0041024   0.055 0.956367    
-## age         0.0058346  0.0025674   2.273 0.024876 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4723 on 117 degrees of freedom
-## Multiple R-squared:  0.3524, Adjusted R-squared:  0.3413 
-## F-statistic: 31.83 on 2 and 117 DF,  p-value: 9.187e-12</code></pre>
-<p>The <span class="math inline">\(p\)</span>-values given above for the <span class="math inline">\(t\)</span>-tests are exactly the same as those for the respective <span class="math inline">\(F\)</span>-tests - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The <span class="math inline">\(p\)</span>-value for age then reduces to <span class="math inline">\(1.124 \times 10^{-12}\)</span>! We can easily produce confidence intervals for the fitted parameters in <code>R</code> using the <code>confint()</code> function:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb70-1" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
-<pre><code>##                     2.5 %      97.5 %
-## (Intercept)  0.4583113390 1.647596552
-## height      -0.0078996982 0.008349579
-## age          0.0007500711 0.010919132</code></pre>
-<p>We see that the confidence interval for height <span class="math inline">\((-0.008, 0.008)\)</span> contains zero implying that parameter should be removed. Note that this relationship between a <span class="math inline">\(p\)</span>-value at the <span class="math inline">\(\alpha\%\)</span> level and an associated confidence interval at the equivalent level, i.e. <span class="math inline">\(100(1 - \alpha)\%\)</span>, always holds.</p>
-<p>Thus we should remove height and <em>recalculate</em> the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model <code>m2</code> (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-1" tabindex="-1"></a>mfinal <span class="ot">=</span> <span class="fu">lm</span>(root_dose <span class="sc">~</span> age, <span class="at">data =</span> warfarinStudy)</span>
-<span id="cb72-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-2" tabindex="-1"></a><span class="fu">summary</span>(mfinal)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = root_dose ~ age, data = warfarinStudy)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.9546 -0.3119 -0.0802  0.3416  1.1020 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 1.068346   0.106103  10.069  &lt; 2e-16 ***
-## age         0.005969   0.000745   8.012 9.01e-13 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4703 on 118 degrees of freedom
-## Multiple R-squared:  0.3523, Adjusted R-squared:  0.3469 
-## F-statistic: 64.19 on 1 and 118 DF,  p-value: 9.01e-13</code></pre>
-<p>The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The <span class="math inline">\(95\%\)</span> confidence interval for age is thus <span class="math inline">\(0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)\)</span>. This can be equivalently obtained from <code>R</code> using <code>confint(mfinal)</code>.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb74-1" tabindex="-1"></a><span class="fu">confint</span>(mfinal)</span></code></pre></div>
-<pre><code>##                   2.5 %      97.5 %
-## (Intercept) 0.858232773 1.278458803
-## age         0.004493902 0.007444623</code></pre>
-<p>Comparing with the confidence interval from the full model we see that it is now much narrower.</p>
-</div>
-<div id="confidence-and-prediction-intervals-for-the-fitted-values" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Confidence and prediction intervals for the fitted values<a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="confidence-and-prediction-intervals-for-the-fitted-values" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Confidence and prediction intervals for the fitted values<a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that the fitted values in a mutliple linear regression model are given by</p>
 <p><span class="math display">\[\begin{align*}
 \underline{\hat{Y}} &amp;= \mathrm{X}\underline{\hat{\beta}} \\
@@ -1571,18 +1529,18 @@ A more direct solution is to note that the difference in the residual sums of sq
 <div id="example-confidence-and-prediction-intervals-for-the-cheese-data" class="section level2 unnumbered hasAnchor">
 <h2>Example: Confidence and prediction intervals for the cheese data<a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Confidence and prediction intervals for the fitted values can be easily calculated using <code>R</code>. We need a fitted model (obviously!) and a dataframe containing the covariate values for which we want to construct our confidence and prediction intervals - this is best seen by example. Thus, for the original cheese example with just two covariates:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
-<span id="cb76-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-2" tabindex="-1"></a>newdat <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">H2S =</span> <span class="dv">6</span>, <span class="at">Lactic =</span> <span class="fl">1.5</span>)</span>
-<span id="cb76-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-3" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb68-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> H2S <span class="sc">+</span> Lactic, <span class="at">data =</span> cheese)</span>
+<span id="cb68-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb68-2" tabindex="-1"></a>newdat <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">H2S =</span> <span class="dv">6</span>, <span class="at">Lactic =</span> <span class="fl">1.5</span>)</span>
+<span id="cb68-3"><a href="inference-for-the-multiple-linear-regression-model.html#cb68-3" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit      lwr      upr
 ## 1 25.9166 22.09274 29.74045</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb78-1" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb70-1" tabindex="-1"></a><span class="fu">predict</span>(fit1, newdat, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit      lwr      upr
 ## 1 25.9166 5.161269 46.67192</code></pre>
 <p>The prediction interval is much wider, by a factor of about 5 for these values of the explanatory variables.</p>
 </div>
-<div id="sec:polymodels" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Polynomial models<a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:polymodels" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Polynomial models<a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sometimes the response might have a curvilinear relationship with one or more of the explanatory variables and we may think about fitting a polynomial model - remember that this still falls under our multiple linear regression framework as long as the postulated model is linear in the parameters, <span class="math inline">\(\underline{\beta}\)</span>. For instance, if there is just one explanatory variable we might consider fitting</p>
 <p><span class="math display">\[
 \color{red}{Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i}
@@ -1601,10 +1559,10 @@ A more direct solution is to note that the difference in the residual sums of sq
 \beta_4 x_{i1}x_{i2} + \beta_5 x_{i2}^2 + \epsilon_i}
 \]</span></p>
 <p>Hence, we can fit polynomial models in the same way to models seen so far during the module. However, when fitting polynomials, there can be high correlations between powers of the covariates, and hence near-multicollinearity problems, known as <em>polynomial multicollinearity</em>. For example, consider a(n equi-spaced) covariate <span class="math inline">\(\underline{x}^T = (1, 2, \ldots, 10)\)</span></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb80-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb80-2" tabindex="-1"></a><span class="fu">cor</span>(x, x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb72-2"><a href="inference-for-the-multiple-linear-regression-model.html#cb72-2" tabindex="-1"></a><span class="fu">cor</span>(x, x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9745586</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb82-1" tabindex="-1"></a><span class="fu">cor</span>(x<span class="sc">^</span><span class="dv">2</span>, x<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb74-1" tabindex="-1"></a><span class="fu">cor</span>(x<span class="sc">^</span><span class="dv">2</span>, x<span class="sc">^</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9871797</code></pre>
 <p>From practical 1, we saw that this can inflate standard errors, thereby diluting tests on individual parameters and this often conflicts with a large <span class="math inline">\(F\)</span> value (i.e. highly significant) for the overall model. These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is <span class="math inline">\(\underline{x}_1\)</span> then we introduce <span class="math inline">\(z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)\)</span> and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.</p>
 </div>
@@ -1622,9 +1580,9 @@ Figure 3.4: Scatterplot of foam height against time for the beer data.
 \color{red}{\text{Height}_i = \beta_0 + \beta_1 \text{Time}_i + \beta_2 \text{Time}_i^2 + \epsilon_i}
 \]</span></p>
 <p>for <span class="math inline">\(i = 1, \ldots, 15\)</span>. This can be done in several ways in <code>R</code>. We will use the built-in function <code>poly()</code> to fit the model - note that this function automatically uses <em>orthogonal</em> polynomials which remove the correlations between the powers of the covariate completely, at the cost of interpretation but the gain of model selection. Fitting the model in <code>R</code>, we use the following commands:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb84-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Height <span class="sc">~</span> <span class="fu">poly</span>(Time, <span class="dv">2</span>), <span class="at">data =</span> beer1)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb76-1" tabindex="-1"></a>fit1 <span class="ot">=</span> <span class="fu">lm</span>(Height <span class="sc">~</span> <span class="fu">poly</span>(Time, <span class="dv">2</span>), <span class="at">data =</span> beer1)</span></code></pre></div>
 <p>We can summarise the model in the usual way (as it is still a multiple linear regression model):</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb85-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="inference-for-the-multiple-linear-regression-model.html#cb77-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Height ~ poly(Time, 2), data = beer1)
@@ -1645,8 +1603,8 @@ Figure 3.4: Scatterplot of foam height against time for the beer data.
 ## Multiple R-squared:  0.994,  Adjusted R-squared:  0.9931 
 ## F-statistic:  1002 on 2 and 12 DF,  p-value: 4.442e-14</code></pre>
 <p>We see that both the linear and quadratic terms in time are highly significant beyond the <span class="math inline">\(0.1\%\)</span> level. The <span class="math inline">\(R^2\)</span> value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time. There seems little value in considering higher order terms in this case, but how do we choose in cases that are less clear-cut?</p>
-<div id="choosing-the-order-of-a-polynomial-model" class="section level3 hasAnchor" number="3.7.1">
-<h3><span class="header-section-number">3.7.1</span> Choosing the order of a polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="choosing-the-order-of-a-polynomial-model" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Choosing the order of a polynomial model<a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When dealing with polynomial regression models we now have an additional modelling question to consider - should we fit a quadratic, cubic, quartic or higher-order polynomial? As usual, we try to choose the simplest model which gives a reasonable fit. In practice, polynomials higher than a cubic are rarely used - practitioners would usually favour splines or a nonlinear model over a high order polynomial.</p>
 <p>We start with a low order model and successively fit higher order terms until no significant improvement is obtained. Improvement is a subjective term, so this could be measured in terms of <span class="math inline">\(R^2\)</span> (although other criteria may be better); in the special case of orthogonal polynomials this is made easier as each term in the model is independent. As soon as the highest order term becomes non-significant, then that term is unnecessary and model selection can finish. Once the order is selected, model adequacy should be checked in the usual way, i.e. residual plots, regression diagnostics.</p>
 <div id="hierarchical-model-building" class="section level4 unnumbered hasAnchor">

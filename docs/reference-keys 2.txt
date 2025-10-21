@@ -72,6 +72,7 @@ the-basic-anova-table
 the-extra-sum-of-squares-method
 the-extended-anova-table
 the-general-extra-sum-of-squares-method
+sec:infer
 confidence-and-prediction-intervals-for-the-fitted-values
 sec:polymodels
 choosing-the-order-of-a-polynomial-model

@@ -206,7 +206,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\(\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\)</span>: multicollinearity</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
@@ -256,14 +256,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
-<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
-<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
-<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.5</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.6</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+<li class="chapter" data-level="3.6.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.6.1</b> Choosing the order of a polynomial model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>4</b> General linear models</a>
@@ -650,15 +648,15 @@ TSS
 <div id="analysis-of-completely-randomised-design-data-in-r" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Analysis of completely randomised design data in <code>R</code><a href="analysis-of-designed-experiments.html#analysis-of-completely-randomised-design-data-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We enter the data as</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="analysis-of-designed-experiments.html#cb107-1" tabindex="-1"></a>yield <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">33.63</span>, <span class="fl">37.80</span>, <span class="fl">36.58</span>, <span class="fl">35.83</span>, <span class="fl">38.18</span>, <span class="fl">37.89</span>, </span>
-<span id="cb107-2"><a href="analysis-of-designed-experiments.html#cb107-2" tabindex="-1"></a>             <span class="fl">42.92</span>, <span class="fl">40.43</span>, <span class="fl">41.46</span>, <span class="fl">38.02</span>, <span class="fl">39.62</span>, <span class="fl">35.99</span>)</span>
-<span id="cb107-3"><a href="analysis-of-designed-experiments.html#cb107-3" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)</span>
-<span id="cb107-4"><a href="analysis-of-designed-experiments.html#cb107-4" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(treat)</span>
-<span id="cb107-5"><a href="analysis-of-designed-experiments.html#cb107-5" tabindex="-1"></a><span class="co"># Or alternatively (more directly)</span></span>
-<span id="cb107-6"><a href="analysis-of-designed-experiments.html#cb107-6" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">12</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="analysis-of-designed-experiments.html#cb99-1" tabindex="-1"></a>yield <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">33.63</span>, <span class="fl">37.80</span>, <span class="fl">36.58</span>, <span class="fl">35.83</span>, <span class="fl">38.18</span>, <span class="fl">37.89</span>, </span>
+<span id="cb99-2"><a href="analysis-of-designed-experiments.html#cb99-2" tabindex="-1"></a>             <span class="fl">42.92</span>, <span class="fl">40.43</span>, <span class="fl">41.46</span>, <span class="fl">38.02</span>, <span class="fl">39.62</span>, <span class="fl">35.99</span>)</span>
+<span id="cb99-3"><a href="analysis-of-designed-experiments.html#cb99-3" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)</span>
+<span id="cb99-4"><a href="analysis-of-designed-experiments.html#cb99-4" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(treat)</span>
+<span id="cb99-5"><a href="analysis-of-designed-experiments.html#cb99-5" tabindex="-1"></a><span class="co"># Or alternatively (more directly)</span></span>
+<span id="cb99-6"><a href="analysis-of-designed-experiments.html#cb99-6" tabindex="-1"></a>treatf <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">12</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
 <p>The analysis then proceeds as</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="analysis-of-designed-experiments.html#cb108-1" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> treatf)</span>
-<span id="cb108-2"><a href="analysis-of-designed-experiments.html#cb108-2" tabindex="-1"></a><span class="fu">summary</span>(fitaov)             </span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="analysis-of-designed-experiments.html#cb100-1" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> treatf)</span>
+<span id="cb100-2"><a href="analysis-of-designed-experiments.html#cb100-2" tabindex="-1"></a><span class="fu">summary</span>(fitaov)             </span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## treatf       3  51.97  17.322   6.235 0.0173 *
 ## Residuals    8  22.23   2.778                 
@@ -680,7 +678,7 @@ q = \frac{\mu_A - \mu_B}{s\sqrt{0.5 \left(\frac{1}{n_A} + \frac{1}{n_B}\right)}}
 <div id="example-multiple-comparisons" class="section level2 unnumbered hasAnchor">
 <h2>Example: Multiple comparisons<a href="analysis-of-designed-experiments.html#example-multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can calculate Tukey’s honest significant differences (HSD) in <code>R</code> as follows:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="analysis-of-designed-experiments.html#cb110-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="analysis-of-designed-experiments.html#cb102-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -698,19 +696,19 @@ q = \frac{\mu_A - \mu_B}{s\sqrt{0.5 \left(\frac{1}{n_A} + \frac{1}{n_B}\right)}}
 <div id="model-checking" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Model checking<a href="analysis-of-designed-experiments.html#model-checking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is much less common to have highly influential points in an anova context as several observations typically come from each possible treatment/factor level, which provides a measure of robustness. However, it is useful to conduct a conventional residual check by plotting the standardised residuals against the fitted values to check for constant variance and outliers, and to produce a quantile-quantile plot to check for normality, alongside a formal test (via Anderson-Darling). This is done as before, i.e.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="analysis-of-designed-experiments.html#cb112-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted.values</span>(fitaov), <span class="fu">rstandard</span>(fitaov), </span>
-<span id="cb112-2"><a href="analysis-of-designed-experiments.html#cb112-2" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Fitted values&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
-<span id="cb112-3"><a href="analysis-of-designed-experiments.html#cb112-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb112-4"><a href="analysis-of-designed-experiments.html#cb112-4" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(fitaov), <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
-<span id="cb112-5"><a href="analysis-of-designed-experiments.html#cb112-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="analysis-of-designed-experiments.html#cb104-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted.values</span>(fitaov), <span class="fu">rstandard</span>(fitaov), </span>
+<span id="cb104-2"><a href="analysis-of-designed-experiments.html#cb104-2" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Fitted values&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb104-3"><a href="analysis-of-designed-experiments.html#cb104-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb104-4"><a href="analysis-of-designed-experiments.html#cb104-4" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(fitaov), <span class="at">ylab=</span><span class="st">&quot;Standardised residuals&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span>
+<span id="cb104-5"><a href="analysis-of-designed-experiments.html#cb104-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cropresids"></span>
 <img src="analysis_des_exp_files/figure-html/cropresids-1.png" alt="Residual plots for the crop yield data." width="48%" /><img src="analysis_des_exp_files/figure-html/cropresids-2.png" alt="Residual plots for the crop yield data." width="48%" />
 <p class="caption">
 Figure 5.1: Residual plots for the crop yield data.
 </p>
 </div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analysis-of-designed-experiments.html#cb113-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
-<span id="cb113-2"><a href="analysis-of-designed-experiments.html#cb113-2" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fitaov))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="analysis-of-designed-experiments.html#cb105-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb105-2"><a href="analysis-of-designed-experiments.html#cb105-2" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fitaov))</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 
@@ -743,9 +741,9 @@ Figure 5.2: Exploratory plot for the grain and plant density data.
 <p>On the other hand, a factor will use <span class="math inline">\(k-1\)</span> degrees of freedom (for a variable with <span class="math inline">\(k\)</span> levels) but will estimate each level separately. In this case, we see that yield increases with plant density up to a maximum and then declines again. This is possibly indicative of a quadratic model, which we will now fit to the data, along with the factor model.</p>
 <div id="quadratic-model" class="section level4 unnumbered hasAnchor">
 <h4>Quadratic model<a href="analysis-of-designed-experiments.html#quadratic-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We can fit a quadratic model in various ways - see subsection <a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels">3.7</a>. Here we will use the raw polynomial version:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis-of-designed-experiments.html#cb115-1" tabindex="-1"></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> grain)</span>
-<span id="cb115-2"><a href="analysis-of-designed-experiments.html#cb115-2" tabindex="-1"></a><span class="fu">anova</span>(fit_poly)</span></code></pre></div>
+<p>We can fit a quadratic model in various ways - see subsection <a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels">3.6</a>. Here we will use the raw polynomial version:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="analysis-of-designed-experiments.html#cb107-1" tabindex="-1"></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="at">data =</span> grain)</span>
+<span id="cb107-2"><a href="analysis-of-designed-experiments.html#cb107-2" tabindex="-1"></a><span class="fu">anova</span>(fit_poly)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
@@ -760,11 +758,11 @@ Figure 5.2: Exploratory plot for the grain and plant density data.
 <div id="factor-model" class="section level4 unnumbered hasAnchor">
 <h4>Factor model<a href="analysis-of-designed-experiments.html#factor-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Alternatively, we can recast <span class="math inline">\(x\)</span> as a factor. This, in fact, leads to a <em>one-way analysis of variance</em> model. As such, we can analyse it using the <code>aov()</code> command (or <code>lm()</code> as usual).</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analysis-of-designed-experiments.html#cb117-1" tabindex="-1"></a>(grain<span class="sc">$</span>x.factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(grain<span class="sc">$</span>x<span class="sc">/</span><span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="analysis-of-designed-experiments.html#cb109-1" tabindex="-1"></a>(grain<span class="sc">$</span>x.factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(grain<span class="sc">$</span>x<span class="sc">/</span><span class="dv">10</span>))</span></code></pre></div>
 <pre><code>##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
 ## Levels: 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analysis-of-designed-experiments.html#cb119-1" tabindex="-1"></a>fit_factor <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> x.factor, <span class="at">data =</span> grain)</span>
-<span id="cb119-2"><a href="analysis-of-designed-experiments.html#cb119-2" tabindex="-1"></a><span class="fu">anova</span>(fit_factor)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="analysis-of-designed-experiments.html#cb111-1" tabindex="-1"></a>fit_factor <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> x.factor, <span class="at">data =</span> grain)</span>
+<span id="cb111-2"><a href="analysis-of-designed-experiments.html#cb111-2" tabindex="-1"></a><span class="fu">anova</span>(fit_factor)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
@@ -793,7 +791,7 @@ Figure 5.4: Residual plots for the polynomial model fitted to the grain data.
 </p>
 </div>
 <p>In this case the residuals checks are fine and the model also has standardised residuals that yield a p-value <span class="math inline">\(&gt;0.1\)</span> for the Anderson-Darling test:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="analysis-of-designed-experiments.html#cb121-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fit_poly))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analysis-of-designed-experiments.html#cb113-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(fit_poly))</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 
@@ -1008,9 +1006,9 @@ Unit 4
 </tbody>
 </table>
 <p>The data are available on Canvas in the data file <em>ChickenEggs.RData</em>. We can carry out a two-way anova in <code>R</code> as follows:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="analysis-of-designed-experiments.html#cb123-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;ChickenEggs.RData&quot;</span>)</span>
-<span id="cb123-2"><a href="analysis-of-designed-experiments.html#cb123-2" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(eggs <span class="sc">~</span> unit <span class="sc">+</span> light, <span class="at">data =</span> ChickenEggs)</span>
-<span id="cb123-3"><a href="analysis-of-designed-experiments.html#cb123-3" tabindex="-1"></a><span class="fu">summary</span>(fitaov)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analysis-of-designed-experiments.html#cb115-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;ChickenEggs.RData&quot;</span>)</span>
+<span id="cb115-2"><a href="analysis-of-designed-experiments.html#cb115-2" tabindex="-1"></a>fitaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(eggs <span class="sc">~</span> unit <span class="sc">+</span> light, <span class="at">data =</span> ChickenEggs)</span>
+<span id="cb115-3"><a href="analysis-of-designed-experiments.html#cb115-3" tabindex="-1"></a><span class="fu">summary</span>(fitaov)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
 ## unit         3   2330   776.8   2.008 0.2145  
 ## light        2   4212  2106.2   5.444 0.0449 *
@@ -1024,7 +1022,7 @@ Unit 4
 <li><span style="color: red;">The differences between treatment were significant (<span class="math inline">\(p=0.045\)</span>). </span></li>
 </ol>
 <p>We can now use Tukey’s HSD (via <code>R</code>) to see where the differences are:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="analysis-of-designed-experiments.html#cb125-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analysis-of-designed-experiments.html#cb117-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(fitaov)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1232,9 +1230,9 @@ D
 </tbody>
 </table>
 <p>The data are available in the file <em>yeast.RData</em>. The syntax <code>:</code> is used in <code>R</code> to represent an interaction. Thus, we can fit the interaction model as follows</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analysis-of-designed-experiments.html#cb128-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;yeast.RData&quot;</span>)</span>
-<span id="cb128-2"><a href="analysis-of-designed-experiments.html#cb128-2" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> poison <span class="sc">+</span> treatment <span class="sc">+</span> poison<span class="sc">:</span>treatment, <span class="at">data =</span> yeast)</span>
-<span id="cb128-3"><a href="analysis-of-designed-experiments.html#cb128-3" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="analysis-of-designed-experiments.html#cb120-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;yeast.RData&quot;</span>)</span>
+<span id="cb120-2"><a href="analysis-of-designed-experiments.html#cb120-2" tabindex="-1"></a>aov1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> poison <span class="sc">+</span> treatment <span class="sc">+</span> poison<span class="sc">:</span>treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb120-3"><a href="analysis-of-designed-experiments.html#cb120-3" tabindex="-1"></a><span class="fu">summary</span>(aov1)</span></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## poison            2 1.0330  0.5165  23.222 3.33e-07 ***
 ## treatment         3 0.9212  0.3071  13.806 3.78e-06 ***
@@ -1243,7 +1241,7 @@ D
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>From an Anderson-Darling test of the standardised residuals we obtain a test statistic of <span class="math inline">\(1.59\)</span> and <span class="math inline">\(p &lt; 0.001\)</span> (we will investigate this shortly …):</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="analysis-of-designed-experiments.html#cb130-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(aov1))</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="analysis-of-designed-experiments.html#cb122-1" tabindex="-1"></a><span class="fu">ad.test</span>(<span class="fu">rstandard</span>(aov1))</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 
@@ -1287,8 +1285,8 @@ Figure 5.7: Residual plots for the yeast data.
 <div id="example-transforming-the-response" class="section level3 unnumbered hasAnchor">
 <h3>Example: Transforming the response<a href="analysis-of-designed-experiments.html#example-transforming-the-response" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can fit a transformed model directly in <code>R</code> via the following commands:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="analysis-of-designed-experiments.html#cb133-1" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> treatment <span class="sc">+</span> poison <span class="sc">+</span> treatment<span class="sc">*</span>poison, <span class="at">data =</span> yeast)</span>
-<span id="cb133-2"><a href="analysis-of-designed-experiments.html#cb133-2" tabindex="-1"></a><span class="fu">anova</span>(aov2)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="analysis-of-designed-experiments.html#cb125-1" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> treatment <span class="sc">+</span> poison <span class="sc">+</span> treatment<span class="sc">*</span>poison, <span class="at">data =</span> yeast)</span>
+<span id="cb125-2"><a href="analysis-of-designed-experiments.html#cb125-2" tabindex="-1"></a><span class="fu">anova</span>(aov2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: log(time)
@@ -1319,8 +1317,8 @@ Figure 5.8: Residual plots for the transformed yeast data.
 <div id="multiple-comparisions-for-the-log-response-model" class="section level4 unnumbered hasAnchor">
 <h4>Multiple comparisions for the log-response model<a href="analysis-of-designed-experiments.html#multiple-comparisions-for-the-log-response-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In order to see how the different levels of the factor affect the response, we need to fit the factors without an interaction and then look at which factor levels differ in mean value:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="analysis-of-designed-experiments.html#cb136-1" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> poison <span class="sc">+</span> treatment, <span class="at">data =</span> yeast)</span>
-<span id="cb136-2"><a href="analysis-of-designed-experiments.html#cb136-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov3)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analysis-of-designed-experiments.html#cb128-1" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(time) <span class="sc">~</span> poison <span class="sc">+</span> treatment, <span class="at">data =</span> yeast)</span>
+<span id="cb128-2"><a href="analysis-of-designed-experiments.html#cb128-2" tabindex="-1"></a><span class="fu">TukeyHSD</span>(aov3)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 

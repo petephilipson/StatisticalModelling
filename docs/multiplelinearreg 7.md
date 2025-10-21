@@ -111,37 +111,30 @@ for $i = 1, \ldots, n$. This is the vector of explanatory variables alone (i.e. 
 ## Example - Matrix form for pre-diabetes data {-}
 We now introduce a specific example, which we shall return to throughout the chapter. In a study on body weight in 24 patients over 50, who have been diagnosed with pre-diabetes. Data were collected on their weight (in kilograms), food consumption (in calories), and a(n) (ordinal) measure of how much exercise each patient takes, on average per week: 0 = no exercise, 1 = some exercise, 2 = moderate exercise, 3 = heavy exercise. The food consumption was calculated by averaging over a week’s consumption and we will treat the ordinal covariate (exercise) as if it was continuous. The full data are given in Table \@ref(tab:bodyweight)
 
-```{r bodyweight, echo=FALSE, results='asis', tab.cap = "Weight, average food consumption and exercise score for twenty-four pre-diabetes patients in body weight study."}
-library(knitr)
-bodyweighttab2 <- data.frame(
-  "Weight (kg)" = c(60.4, 81.1, 94.9, 86.4, 90.3, 60.4, 77.8, 85.0, 71.6, 64.6, 75.1, 89.6),
-  "Consumption (cal)" = c(2680, 3280, 3890, 3170, 3390, 2670, 2770, 3330, 2710, 2600, 2880, 3430),
-  "Exercise" = c(3, 1, 2, 0, 1, 2, 0, 1, 0, 1, 0, 0),
-  "Weight (kg)" = c(84.4, 93.0, 61.3, 74.9, 94.3, 61.8, 78.1, 74.8, 59.0, 69.2, 67.1, 82.4),
-  "Consumption (cal)" = c(3160, 3330, 2360, 3030, 3390, 2700, 3090, 3020, 2410, 2830, 2620, 2820),
-  "Exercise" = c(0, 0, 2, 0, 0, 2, 0, 1, 0, 2, 0, 1),
-check.names = FALSE
-)
-kable(bodyweighttab2) #, caption = "Weight and average food consumption for twenty-four pre-diabetes patients in body weight study.", align = rep('c', 4), booktabs = TRUE) %>%
-  #kable_styling(latex_options = "hold_position", full_width = FALSE) %>%
-  #row_spec(0, bold = TRUE) %>%
-  #row_spec(1:nrow(bodyweighttab))
-```
+
+Table: (\#tab:bodyweight)Weight, average food consumption and exercise score for twenty-four pre-diabetes patients in body weight study.
+
+| Weight (kg)| Consumption (cal)| Exercise| Weight (kg)| Consumption (cal)| Exercise|
+|-----------:|-----------------:|--------:|-----------:|-----------------:|--------:|
+|        60.4|              2680|        3|        84.4|              3160|        0|
+|        81.1|              3280|        1|        93.0|              3330|        0|
+|        94.9|              3890|        2|        61.3|              2360|        2|
+|        86.4|              3170|        0|        74.9|              3030|        0|
+|        90.3|              3390|        1|        94.3|              3390|        0|
+|        60.4|              2670|        2|        61.8|              2700|        2|
+|        77.8|              2770|        0|        78.1|              3090|        0|
+|        85.0|              3330|        1|        74.8|              3020|        1|
+|        71.6|              2710|        0|        59.0|              2410|        0|
+|        64.6|              2600|        1|        69.2|              2830|        2|
+|        75.1|              2880|        0|        67.1|              2620|        0|
+|        89.6|              3430|        0|        82.4|              2820|        1|
 
 We can produce scatterplots of weight against consumption and exercise:
 
-```{r, fig.show = 'hold', fig.cap = "Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data", echo=FALSE, fig.align='center', out.width='48%'}
-bodyweight <- data.frame(
-    "Weight (kg)" = c(60.4, 81.1, 94.9, 86.4, 90.3, 60.4, 77.8, 85.0, 71.6, 64.6, 75.1, 89.6, 84.4, 93.0, 61.3, 74.9, 94.3, 61.8, 78.1, 74.8, 59.0, 69.2, 67.1, 82.4),
-    "Consumption (cal)" = c(2680, 3280, 3890, 3170, 3390, 2670, 2770, 3330, 2710, 2600, 2880, 3430,3160, 3330, 2360, 3030, 3390, 2700, 3090, 3020, 2410, 2830, 2620, 2820), 
-    "Exercise" <- c(3, 1, 2, 0, 1, 2, 0, 1, 0, 1, 0, 0,
-                         0, 0, 2, 0, 0, 2, 0, 1, 0, 2, 0, 1),
-    check.names = FALSE)
-plot(bodyweight[, 1] ~ bodyweight[, 2], pch = 16,
-     xlab = "Consumption (cal)", ylab = "Weight (kg)")
-plot(bodyweight[, 1] ~ bodyweight[, 3], pch = 16,
-     xlab = "Exercise", ylab = "Weight (kg)")
-```
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data" width="48%" /><img src="multiplelinearreg_files/figure-html/unnamed-chunk-1-2.png" alt="Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data" width="48%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Scatterplot of weight against (average) food consumption (left) and exercise (right) for the pre-diabetes data</p>
+</div>
 
 Comments:   
 
@@ -595,20 +588,23 @@ Once we start to think about large datasets and a large number of parameters, fi
 ### Using data in `R`
 There are various ways of using data with `R`. Data can be read in manually, i.e.
 
-```{r}
+
+``` r
 ## Type the data in the console
 bodyweight = c(60.4, 81.1, 94.9, 86.4, 90.3, 60.4, 77.8, 85.0, 71.6, 64.6, 75.1, 89.6, 
 84.4, 93.0, 61.3, 74.9, 94.3, 61.8, 78.1, 74.8, 59.0, 69.2, 67.1, 82.4)
 ```
 
 The majority of the time, in this module and the wider world, the (external) data in the file `ExternalData.RData` will be read/loaded directly into `R`, e.g.
-```{r, eval=FALSE}
+
+``` r
 ## Load in an external dataset
 load("ExternalData.RData")
 ```
 
 Alternatively, we may sometimes make use of datasets that are internal to `R` in that they are part of an `R` package, i.e. for the dataset `InternalRDataset`:
-```{r, eval=FALSE}
+
+``` r
 ## Load in an internal dataset
 data(InternalRDataset)
 ```
@@ -617,12 +613,14 @@ To view the available datasets in `R` we can type `data()` at the console, or, f
 
 ## Example: Analysis of bodyweight data using `R` {-}
 To use `R` for the plots and analysis seen earlier:
-```{r}
+
+``` r
 ## Load the data
 load("bodyweight.RData")
 ```
 
-```{r, eval=FALSE}
+
+``` r
 ## Plots
 # Weight versus consumption
 plot(Weight ~ Consumption, data = bodyweight, pch = 16)
@@ -630,7 +628,8 @@ plot(Weight ~ Consumption, data = bodyweight, pch = 16)
 plot(Weight ~ Exercise, data = bodyweight, pch = 16)
 ```
 
-```{r}
+
+``` r
 ## Analysis
 # Simple linear regression on consumption
 fit1 <- lm(Weight ~ Consumption, data = bodyweight)
@@ -641,28 +640,69 @@ fit2 <- lm(Weight ~ Consumption + Exercise, data = bodyweight)
 We can inspect a model fit using various commands
 <ol type="i">
 <li> The `summary()` command gives an overview of the fit </li>
-```{r}
+
+``` r
 summary(fit2)
+```
+
+```
+## 
+## Call:
+## lm(formula = Weight ~ Consumption + Exercise, data = bodyweight)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.5751 -2.5704 -0.7894  2.4049 10.9266 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -2.104925   7.017861  -0.300  0.76717    
+## Consumption  0.027254   0.002286  11.921 8.23e-11 ***
+## Exercise    -3.278296   0.916795  -3.576  0.00178 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.044 on 21 degrees of freedom
+## Multiple R-squared:  0.8916,	Adjusted R-squared:  0.8813 
+## F-statistic:  86.4 on 2 and 21 DF,  p-value: 7.346e-11
 ```
 We will consider output of this nature in detail later in the module.
 <li> The fitted values and residuals can also be extracted (output - to three decimal places - is suppressed here) 
-```{r, eval=FALSE}
+
+``` r
 round(fitted.values(fit2), 3)
 round(residuals(fit2), 3)
 ```
 </li>
 <li> The variance-covariance matrix for $\vec{\hat{\beta}}$ is also contained within the fit. For the second model fit we get
-```{r}
+
+``` r
 vcov(fit2)
+```
+
+```
+##             (Intercept)   Consumption      Exercise
+## (Intercept)  49.2503765 -1.584890e-02 -1.6584367474
+## Consumption  -0.0158489  5.227021e-06  0.0003330453
+## Exercise     -1.6584367  3.330453e-04  0.8405137595
 ```
 </li>
 <li> The hat-values that make up the diagonal of the $\up{H}$ matrix can also be found - again we round to three decimal places:
-```{r}
+
+``` r
 round(hatvalues(fit2), 3)
+```
+
+```
+##     1     2     3     4     5     6     7     8     9    10    11    12    13 
+## 0.294 0.075 0.425 0.079 0.101 0.132 0.095 0.086 0.106 0.087 0.080 0.124 0.078 
+##    14    15    16    17    18    19    20    21    22    23    24 
+## 0.101 0.210 0.073 0.114 0.128 0.074 0.045 0.197 0.117 0.127 0.051
 ```
 </li>
 <li> We can also add a fitted regression line to a scatterplot via the `abline()` command:
-```{r, eval=FALSE}
+
+``` r
 plot(Weight ~ Consumption, data = bodyweight, pch = 16)
 abline(fit1, lty = 2)
 ```
@@ -725,36 +765,52 @@ This may well not be true (or possible), not just here but for many datasets. Fo
 ## Example: Analysis of men's Premier League football data - the role of the intercept {-}
 The data in the following example comes from the 2012-13 men's English Premier League final football table (on Canvas in the file *prem.RData*). For each team the number of points they achieved (the response - why?), goals they scored, conceded, and their goal difference (scored - conceded) are recorded, alongside how many times they did not concede a goal (a 'clean sheet'), which will be our primary focus for now. A snapshot of the data are given below:
 
-```{r premdata}
+
+``` r
 load("prem.RData")
 kable(head(prem, 5))
 ```
+
+
+
+| Position|Team              | Scored| Conceded| GoalDifference| Points| CleanSheets|
+|--------:|:-----------------|------:|--------:|--------------:|------:|-----------:|
+|        1|Manchester United |     86|       43|             43|     89|          13|
+|        2|Manchester City   |     66|       34|             32|     78|          18|
+|        3|Chelsea           |     75|       39|             36|     75|          14|
+|        4|Arsenal           |     72|       37|             35|     73|          14|
+|        5|Tottenham Hotspur |     66|       46|             20|     72|           9|
 Below is a scatterplot of points against clean sheets:
-```{r premplot1, fig.cap = 'Scatterplot of points against clean sheets for the Premier League 2012/13 data.', echo=FALSE, fig.align='center', out.width='65%'}
-fitprem1 <- lm(Points ~ CleanSheets, data = prem)
-plot(Points ~ CleanSheets, data = prem,  pch = 16, xlim = c(0, 25), ylim = c(0, 100))
-```
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/premplot1-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data." width="65%" />
+<p class="caption">(\#fig:premplot1)Scatterplot of points against clean sheets for the Premier League 2012/13 data.</p>
+</div>
 
 <ol type="a">
   <li>Fit a simple linear regression model with clean sheets as the sole covariate. Overlay the regression line on the scatterplot of the raw data and comment.
-```{r premfitted1, echo = TRUE, fig.cap = 'Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.', fig.align='center', out.width='65%'}
+
+``` r
 fitprem1 <- lm(Points ~ CleanSheets, data = prem)
 plot(Points ~ CleanSheets, data = prem, pch = 16, xlim = c(0, 25), ylim = c(0, 100))
 abline(fitprem1, lty = 2, lwd = 1.5, col = "red")
 ```
+
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/premfitted1-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit." width="65%" />
+<p class="caption">(\#fig:premfitted1)Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.</p>
+</div>
 </li>
   <li>Fit a second model, this time without an intercept and overlay this regression line. What do you observe?  
 <span style="color: red">We can fit the second model and overlay the line using:</span>
-```{r, echo = TRUE, eval=FALSE}
+
+``` r
 fitprem2 <- lm(Points ~ CleanSheets - 1, data = prem)
 abline(fitprem2, lty = 3, lwd = 1.5)
 ```
-```{r premfitted2, echo = FALSE, fig.cap = 'Scatterplot of points against clean sheets for the Premier League 2012/13 data with two overlaid model fits.', fig.align='center', out.width='65%'}
-fitprem2 <- lm(Points ~ CleanSheets - 1, data = prem)
-plot(Points ~ CleanSheets, data = prem, pch = 16, xlim = c(0, 25), ylim = c(0, 100))
-abline(fitprem1, lty = 2, lwd = 1.5, col = "red")
-abline(fitprem2, lty = 3, lwd = 1.5, col = "blue")
-```
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/premfitted2-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with two overlaid model fits." width="65%" />
+<p class="caption">(\#fig:premfitted2)Scatterplot of points against clean sheets for the Premier League 2012/13 data with two overlaid model fits.</p>
+</div>
 </ol>
 
 <span style="color: red">We can see that the model without the intercept has a different slope since $\hat{\beta}_0$ and $\hat{\beta}_1$ are correlated (see MAS2902). Note also that the line of best fit for the model without the intercept is forced to go through the origin. Both models seem to do a reasonable job - assessing by eye - of capturing the relationship between points and clean sheets. This is not always the case though, as we will see in practical 1.</span>
@@ -764,15 +820,36 @@ Having established that including an intercept is a sensible thing to do, we now
 
 However, if we did wish to say something meaningful about the intercept how would we go about it? We first inspect the fit for our first model from the previous example:
 
-```{r}
+
+``` r
 summary(fitprem1)
 ```
 
-```{r, echo = FALSE, fig.cap = 'Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.', fig.align='center', out.width='65%'}
-fitprem1 <- lm(Points ~ CleanSheets, data = prem)
-plot(Points ~ CleanSheets, data = prem, pch = 16, xlim = c(0, 25), ylim = c(0, 100))
-abline(fitprem1, lty = 2, lwd = 1.5, col = "red")
 ```
+## 
+## Call:
+## lm(formula = Points ~ CleanSheets, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.6526  -7.9816  -0.7842   7.0974  26.8211 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  16.3368     8.0303   2.034 0.056915 .  
+## CleanSheets   3.5263     0.7544   4.674 0.000189 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 12.3 on 18 degrees of freedom
+## Multiple R-squared:  0.5483,	Adjusted R-squared:  0.5232 
+## F-statistic: 21.85 on 1 and 18 DF,  p-value: 0.0001888
+```
+
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-15-1.png" alt="Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-15)Scatterplot of points against clean sheets for the Premier League 2012/13 data with overlaid model fit.</p>
+</div>
 
 We see that the estimate of the intercept, $\hat{\beta}_0$, is 16.34. This tells us that when clean sheets takes the value zero, then we would expect a team to obtain around 16 points (as points is an integer we round). Here this makes some sense, since no clean sheets would mean a team concedes at least one goal in every match they play. Note, however, that the smallest observed value for this variable is five, so by using the value of zero we are extrapolating beyond the observed range of our data and this can be problematic.
 
@@ -796,31 +873,50 @@ This tends to give a more intuitive interpretation generally. Mean-centering als
 ## Example: Mean-centering (men's Premier League football data) {-}
 Returning to the data from the men's football Premier League. Below is a scatterplot of points against the raw (solid circles) and mean-centered (triangles) versions of our clean sheets covariate.
 
-```{r, echo = FALSE, fig.cap = 'Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles).', fig.align='center', out.width='65%'}
-plot(Points ~ CleanSheets, data = prem, pch = 16, xlim = c(-10, 20), ylim = c(20, 90), xlab = "Clean sheets", ylab = "Points")
-CleanSheetsScaled <- scale(prem$CleanSheets, scale = FALSE)
-points(Points ~ CleanSheetsScaled, data = prem, pch = 2)
-```
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-16-1.png" alt="Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles)." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-16)Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles).</p>
+</div>
 
 <ol type="a">
   <li> Fit a model using a mean-centered version of clean sheets.     
   [Hint: use the `scale` command in `R` to perform the mean-centering].     
   <span style="color: red">We fit - and inspect - the model using the `R` commands</span> 
-```{r}
+
+``` r
 CleanSheetsScaled <- scale(prem$CleanSheets, 
                            scale = FALSE)
 fit_mean_centre <- lm(Points ~ CleanSheetsScaled, 
                       data = prem)
 summary(fit_mean_centre)  
 ```
+
+```
+## 
+## Call:
+## lm(formula = Points ~ CleanSheetsScaled, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.6526  -7.9816  -0.7842   7.0974  26.8211 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)        51.6000     2.7513  18.755 2.91e-13 ***
+## CleanSheetsScaled   3.5263     0.7544   4.674 0.000189 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 12.3 on 18 degrees of freedom
+## Multiple R-squared:  0.5483,	Adjusted R-squared:  0.5232 
+## F-statistic: 21.85 on 1 and 18 DF,  p-value: 0.0001888
+```
  </li>
   <li> Overlay the lines of best fit for the models using the raw and mean-centered covariates. What do you notice?
-```{r, echo = FALSE, fig.cap = 'Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles) with overlaid lines of best fit.', fig.align='center', out.width='65%'}
-plot(Points ~ CleanSheets, data = prem, pch = 16, xlim = c(-10, 20), ylim = c(20, 90), xlab = "Clean sheets", ylab = "Points")
-points(Points ~ CleanSheetsScaled, data = prem, pch = 2)
-abline(fitprem1, lty = 2, lwd = 1.5, col = "red")
-abline(fit_mean_centre, lty = 2, lwd = 1.5, col = "blue")
-```
+<div class="figure" style="text-align: center">
+<img src="multiplelinearreg_files/figure-html/unnamed-chunk-18-1.png" alt="Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles) with overlaid lines of best fit." width="65%" />
+<p class="caption">(\#fig:unnamed-chunk-18)Scatterplot of points against the observed clean sheets (solid circles) and their mean-centered counterpart (triangles) with overlaid lines of best fit.</p>
+</div>
 </li>
   
 <span style="color: red">From the summary, we see that the estimate of the slope is exactly the same as before, i.e. $\hat{\beta}_1 = 3.53$ so the line has the same gradient, but the intercept is different. The intercept estimate is $\hat{\beta}_0 = 51.60$ (recall, it was around 16 earlier) which suggests that a team with the \textit{average} number of clean sheets will obtain around 52 points (nearest integer, as before). This interpretation is cleaner than our earlier interpretation using the raw rather than mean-centered covariate.</span>
@@ -828,8 +924,8 @@ abline(fit_mean_centre, lty = 2, lwd = 1.5, col = "blue")
 
 Although we have illustrated the role of the intercept using simple linear regression, the same ideas hold in the multiple linear regression model. We now return to the issue of multicollinearity.
 
-## Properties of $\left(\up{X}^T\up{X}\right)^{-1}$: multicollinearity {#sec:multicol}
-We saw earlier that both the estimator of $\vec{\beta}$ and its variance depend on the quantity $\left(\up{X}^T\up{X}\right)^{-1}$. As such, this quantity plays a critical part in fitting a regression model and in determining the significance (or otherwise) of estimated parameters. We will now consider a situation known as *multicollinearity* that leads to problems with taking the inverse of $\up{X}^T\up{X}$.
+## Properties of $(\up{X}^T\up{X})^{-1}$: multicollinearity {#sec:multicol}
+We saw earlier that both the estimator of $\vec{\beta}$ and its variance both depend on the quantity $\up{X}^T\up{X}^{-1}$. As such, this quantity plays a critical part in fitting a regression model and in determining the significance (or otherwise) of estimated parameters. We will now consider a situation known as *multicollinearity* that leads to problems with taking the inverse of $\up{X}^T\up{X}$.
 
 ## Example: Multicollinearity in men's Premier League football data {-}
 Returning to the Premier League football data, a sports data analyst sets out to fit the following model:
@@ -839,7 +935,8 @@ Returning to the Premier League football data, a sports data analyst sets out to
 
 <ol type="a">
 <li> Construct the design matrix $\up{X}$, and hence calculate $\up{X}^T\up{X}$ and $(\up{X}^T\up{X})^{-1}$.
-```{r, eval = FALSE}
+
+``` r
 X <- cbind(1, prem$GoalDifference, prem$Scored, 
            prem$Conceded)
 XTX <- crossprod(X)
@@ -855,8 +952,32 @@ solve(XTX)
 <li> Fit the model in `R` and inspect the fit - what do you notice?
 
 <span style="color: red">Implementing the model we get</span>
-```{r}
+
+``` r
 summary(lm(Points ~ GoalDifference + Scored + Conceded, data = prem))
+```
+
+```
+## 
+## Call:
+## lm(formula = Points ~ GoalDifference + Scored + Conceded, data = prem)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.0387  -2.7741   0.2508   3.7633   5.7760 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     38.3511     9.6368   3.980 0.000969 ***
+## GoalDifference   0.5710     0.1097   5.206 7.13e-05 ***
+## Scored           0.2493     0.1803   1.382 0.184780    
+## Conceded             NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.471 on 17 degrees of freedom
+## Multiple R-squared:  0.9437,	Adjusted R-squared:  0.937 
+## F-statistic: 142.4 on 2 and 17 DF,  p-value: 2.404e-11
 ```
 <span style="color: red">There is no parameter estimate or standard error for goals conceded, which seems to have been removed from the model.</span> 
 </li>

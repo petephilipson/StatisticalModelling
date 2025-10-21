@@ -62,22 +62,40 @@ Equation \@ref(eq:ssreg) can also be stated as
 
 where $\text{SS}$ refers to the *sum of squares*. Under an anova approach, results are typically presented and summarised in table form:
 
-```{r, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
-
-anova_tbl <- data.frame(
-  Source = c("Regression", "Residual", "Total"),
-  'Degrees of freedom (df)' = c("$\\color{red}{p}$", "$\\color{red}{n - p - 1}$", "$\\color{red}{n - 1}$"),
-  'Sum of squares (SS)' = c("Reg SS", "RSS", "TSS"),
-  'Mean square (MS)' = c("$\\color{red}{\\text{Reg MS}\\, = \\frac{\\text{Reg SS}}{p}}$",
-         "$\\color{red}{\\text{RMS} = \\frac{\\text{RSS}}{n - p - 1}}$", ""),
-  "Mean square ratio (MSR)" = c("$\\color{red}{F = \\frac{\\text{Reg MS}}{\\text{RMS}}}$", "", ""), check.names = FALSE
-)
-
-kable(anova_tbl, "html", escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE)
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:left;"> Degrees of freedom (df) </th>
+   <th style="text-align:left;"> Sum of squares (SS) </th>
+   <th style="text-align:left;"> Mean square (MS) </th>
+   <th style="text-align:left;"> Mean square ratio (MSR) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Regression </td>
+   <td style="text-align:left;"> $\color{red}{p}$ </td>
+   <td style="text-align:left;"> Reg SS </td>
+   <td style="text-align:left;"> $\color{red}{\text{Reg MS}\, = \frac{\text{Reg SS}}{p}}$ </td>
+   <td style="text-align:left;"> $\color{red}{F = \frac{\text{Reg MS}}{\text{RMS}}}$ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual </td>
+   <td style="text-align:left;"> $\color{red}{n - p - 1}$ </td>
+   <td style="text-align:left;"> RSS </td>
+   <td style="text-align:left;"> $\color{red}{\text{RMS} = \frac{\text{RSS}}{n - p - 1}}$ </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:left;"> $\color{red}{n - 1}$ </td>
+   <td style="text-align:left;"> TSS </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 So the regression model can be reduced to a single summary measure, $F$, that can be used to test the overall significance of the model. Recall, from chapter 1, that our (unbiased) estimate of the error variance was found as
 
@@ -180,10 +198,21 @@ As cheddar cheese matures, a variety of chemical processes take place. The taste
 - H2S: the natural log of the concentration of hydrogen sulfide;
 - Lactic: the concentration of lactic acid.
 
-```{r cheesedata}
+
+``` r
 load("cheese.RData")
 kable(head(cheese, 5))
 ```
+
+
+
+| Taste|    H2S| Lactic|
+|-----:|------:|------:|
+|  57.2|  7.908|   1.90|
+|  56.7| 10.199|   2.01|
+|  54.9|  6.752|   1.52|
+|  47.9|  7.496|   1.81|
+|  40.9|  9.588|   1.74|
 
 For these data we can fit a multiple linear regression model
 
@@ -204,31 +233,56 @@ for $i = 1, \ldots, 30$, and with the usual assumptions about $\epsilon_i$ of no
 
 <span style="color: red;">We can then fit a regression model in the usual way, before extracting the *residual* sum of squares as follows:</span>
 
-```{r fitcheese}
+
+``` r
 fit_cheese = lm(Taste ~ H2S + Lactic, data = cheese)
 (rss = sum(fit_cheese$residuals^2))
+```
+
+```
+## [1] 2668.965
+```
+
+``` r
 # Brackets output answer to console
 ```
 
 <span style="color: red;">We can now produce the anova table for this model:</span>
 
-```{r anovacheese, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
-
-anova_tbl_cheese <- data.frame(
-  Source = c("$\\color{red}{\\text{Regression}}$", "$\\color{red}{\\text{Residual}}$", "$\\color{red}{\\text{Total}}$"),
-  df = c("$\\color{red}{2}$", "$\\color{red}{27}$", "$\\color{red}{29}$"),
-  SS = c("$\\color{red}{4993.921}$", "$\\color{red}{2668.965}$", "$\\color{red}{7662.887}$"),
-  MS = c("$\\color{red}{2496.961}$",
-         "$\\color{red}{98.851}$", ""),
-  MSR = c("$\\color{red}{25.260}$", "", "")
-)
-
-kable(anova_tbl_cheese, escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) %>%
-  row_spec(0, color = "red") # Makes headers red & bold
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;color: red !important;"> Source </th>
+   <th style="text-align:left;color: red !important;"> df </th>
+   <th style="text-align:left;color: red !important;"> SS </th>
+   <th style="text-align:left;color: red !important;"> MS </th>
+   <th style="text-align:left;color: red !important;"> MSR </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> $\color{red}{\text{Regression}}$ </td>
+   <td style="text-align:left;"> $\color{red}{2}$ </td>
+   <td style="text-align:left;"> $\color{red}{4993.921}$ </td>
+   <td style="text-align:left;"> $\color{red}{2496.961}$ </td>
+   <td style="text-align:left;"> $\color{red}{25.260}$ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> $\color{red}{\text{Residual}}$ </td>
+   <td style="text-align:left;"> $\color{red}{27}$ </td>
+   <td style="text-align:left;"> $\color{red}{2668.965}$ </td>
+   <td style="text-align:left;"> $\color{red}{98.851}$ </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> $\color{red}{\text{Total}}$ </td>
+   <td style="text-align:left;"> $\color{red}{29}$ </td>
+   <td style="text-align:left;"> $\color{red}{7662.887}$ </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 <span style="color: red;">Clearly, we have a large F-statistic. Comparing with $F_{2, 27}$ (why?) in tables we see that $p < 0.01$ and we clearly reject the null hypothesis that $\beta_1 = \beta_2 = 0$. We can also calculate</span>
 \[
@@ -240,10 +294,23 @@ Thus, around two-thirds of the variation has been explained, but this does not n
 ### Anova in `R` {-}
 We can fit the model in `R` in the usual way and then use the `anova()` command to get the sum of squares breakdown via the following commands:
 
-```{r}
+
+``` r
 load("cheese.RData")
 fit1 = lm(Taste ~ H2S + Lactic, data = cheese)
 anova(fit1)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value    Pr(>F)    
+## H2S        1 4376.7  4376.7 44.2764 3.851e-07 ***
+## Lactic     1  617.2   617.2  6.2435   0.01885 *  
+## Residuals 27 2669.0    98.9                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 We get the (rounded) residual sum of squares directly ($RSS = 2669$), but a breakdown of the regression sum of squares rather than the total value, although we can easily get the total by addition, i.e. $\text{Reg SS} = 4376.7 + 617.2 = 4993.9$. 
@@ -252,14 +319,42 @@ N.B. What we actually get is the *Type I* sums of squares, where the order varia
 
 The F-statistic can be found in `R` using the last line of the output from 
 
-```{r}
+
+``` r
 summary(fit1)
+```
+
+```
+## 
+## Call:
+## lm(formula = Taste ~ H2S + Lactic, data = cheese)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -17.343  -6.530  -1.164   4.844  25.618 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept)  -27.592      8.982  -3.072  0.00481 **
+## H2S            3.946      1.136   3.475  0.00174 **
+## Lactic        19.887      7.959   2.499  0.01885 * 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.942 on 27 degrees of freedom
+## Multiple R-squared:  0.6517,	Adjusted R-squared:  0.6259 
+## F-statistic: 25.26 on 2 and 27 DF,  p-value: 6.551e-07
 ```
 
 Hence $F = 25.26$ in this case - as in our anova table, with an exact p-value of $6.551 \times 10^{-7}$. We can also obtain $R^2$ from the penultimate line of the output, or directly using
 
-```{r}
+
+``` r
 summary(fit1)$r.squared
+```
+
+```
+## [1] 0.6517024
 ```
 
 which again matches what we found earlier. Hence, we can use `R` to circumvent the need for a formal anova table since both $F$ and $R^2$ can be easily extracted.
@@ -276,21 +371,13 @@ The regression sum of squares is broken down in to its contribution from each co
 
 Note that $\text{Reg SS}_{x_1 + x_2}$ is the regression sum of squares from the *full* model.
 
-```{r extanova, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
 
-ext_anova_tbl <- data.frame(
-  Source = c("Regression on $x_1$", "Regression on $x_2$ having fitted $x_1$", "Residual", "Total"),
-  df = c("1", "1", "$n - 3$", "$n - 1$"),
-  SS = c("$\\text{Reg SS}_{x_1}$", "$\\text{Reg SS}_{x_2 \\mid x_1} =$ <br> $\\text{Reg SS}_{x_1 + x_2} - \\text{Reg SS}_{x_1}$", "RSS", "TSS"),
-  MS = c("$\\text{Reg MS}_{x_1}=\\text{Reg SS}_{x_1}$",
-         "$\\text{Reg MS}_{x_2 \\mid x_1}=\\text{Reg MS}_{x_2 \\mid x_1}$", "$\\text{RMS} = \\frac{\\text{RSS}}{n - 3}$", ""),
-  MSR = c("$F_1 = \\frac{\\text{Reg MS}_{x_1}}{\\text{RMS}}$", "$F_2= \\frac{\\text{Reg MS}_{x_2 \\mid x_1}}{\\text{RMS}}$", "", "")
-)
-
-kable(ext_anova_tbl, escape = FALSE)
-```
+|Source                                  |df      |SS                                                                                      |MS                                                          |MSR                                                    |
+|:---------------------------------------|:-------|:---------------------------------------------------------------------------------------|:-----------------------------------------------------------|:------------------------------------------------------|
+|Regression on $x_1$                     |1       |$\text{Reg SS}_{x_1}$                                                                   |$\text{Reg MS}_{x_1}=\text{Reg SS}_{x_1}$                   |$F_1 = \frac{\text{Reg MS}_{x_1}}{\text{RMS}}$         |
+|Regression on $x_2$ having fitted $x_1$ |1       |$\text{Reg SS}_{x_2 \mid x_1} =$ <br> $\text{Reg SS}_{x_1 + x_2} - \text{Reg SS}_{x_1}$ |$\text{Reg MS}_{x_2 \mid x_1}=\text{Reg MS}_{x_2 \mid x_1}$ |$F_2= \frac{\text{Reg MS}_{x_2 \mid x_1}}{\text{RMS}}$ |
+|Residual                                |$n - 3$ |RSS                                                                                     |$\text{RMS} = \frac{\text{RSS}}{n - 3}$                     |                                                       |
+|Total                                   |$n - 1$ |TSS                                                                                     |                                                            |                                                       |
 
 Note that $\text{Reg SS}_{x_1 + x_2}$ is the regression sum of squares from the *full* model.
 
@@ -299,53 +386,131 @@ Returning to the cheese data, we can fit the model with either hydrogen sulfide 
 
 To produce anova tables for the extra sum of squares approach we can use the generic `R` command `anova()` as a basis, albeit with some additional work involved to construct the anova table. Fitting hydrogen sulfide first, we get:
 
-```{r}
+
+``` r
 fit1 = lm(Taste ~ H2S + Lactic, data = cheese)
 anova(fit1)
 ```
 
+```
+## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value    Pr(>F)    
+## H2S        1 4376.7  4376.7 44.2764 3.851e-07 ***
+## Lactic     1  617.2   617.2  6.2435   0.01885 *  
+## Residuals 27 2669.0    98.9                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
 We can thus populate the anova table:
 
-```{r anovacheese2, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
-
-anova_tbl_cheese2 <- data.frame(
-  Source = c("Regression on H2S", "Regression on lactic acid having fitted H2S", "Residual" , "Total"),
-  df = c(1, 1, 27, 29),
-  SS = c(4376.746, 617.176, 2668.965, 7662.887),
-  MS = c(4376.746, 617.176, 98.851, ""),
-  MSR = c(44.276, 6.244, "", "")
-)
-
-kable(anova_tbl_cheese2, escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) 
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> MSR </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Regression on H2S </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4376.746 </td>
+   <td style="text-align:left;"> 4376.746 </td>
+   <td style="text-align:left;"> 44.276 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regression on lactic acid having fitted H2S </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 617.176 </td>
+   <td style="text-align:left;"> 617.176 </td>
+   <td style="text-align:left;"> 6.244 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 2668.965 </td>
+   <td style="text-align:left;"> 98.851 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 7662.887 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 Since $F_{1, 27}(5\%) = 4.21$ we can see that H2S is needed in the model since $F_1 = 44.276$ hugely exceeds this critical value (the exact p-value from `R` is $3.851 \times 10^{-7}$). We also see that $F_2 = 6.244$ exceeds the critical value, so lactic acid is needed in the model, after H2S has already been included (from `R`, $p = 0.01885$). The model where we switch the order of the variables can be fitted in `R` using
 
-```{r}
+
+``` r
 fit1A = lm(Taste ~ Lactic + H2S, data = cheese)
 anova(fit1A)
 ```
 
+```
+## Analysis of Variance Table
+## 
+## Response: Taste
+##           Df Sum Sq Mean Sq F value   Pr(>F)    
+## Lactic     1 3800.4  3800.4  38.446 1.25e-06 ***
+## H2S        1 1193.5  1193.5  12.074 0.001743 ** 
+## Residuals 27 2669.0    98.9                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
 This leads to the anova table below:
 
-```{r anovacheese3, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
-
-anova_tbl_cheese3 <- data.frame(
-  Source = c("Regression on lactic acid", "Regression on H2S having fitted lactic acid", "Residual" , "Total"),
-  df = c(1, 1, 27, 29),
-  SS = c(3800.398, 1193.523, 2668.965, 7662.887),
-  MS = c(3800.398, 1193.523, 98.851, ""),
-  MSR = c(38.446, 12.074, "", "")
-)
-
-kable(anova_tbl_cheese3, escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) 
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:right;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> MSR </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Regression on lactic acid </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3800.398 </td>
+   <td style="text-align:left;"> 3800.398 </td>
+   <td style="text-align:left;"> 38.446 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regression on H2S having fitted lactic acid </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1193.523 </td>
+   <td style="text-align:left;"> 1193.523 </td>
+   <td style="text-align:left;"> 12.074 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 2668.965 </td>
+   <td style="text-align:left;"> 98.851 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 7662.887 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 We can see that both $F_1$ and $F_2$ are comfortably bigger than our critical value of 4.21 (this is still the same value) so conclude that lactic acid is needed in the model, and that hydrogen sulfide is needed in the model after lactic acid has been included. The conclusion is unambiguous here: both variables are needed in the model, irrespective of ordering. Note that the residual and total SS are unaffected by the ordering (this is also true for the critical value).
 
@@ -355,40 +520,66 @@ We now consider another example where the conclusion is not so clear cut. Hencef
 Children with heart problems take warfarin to avoid getting strokes. 
 In a study of 120 children, the warfarin dose (mg), age (months) and height (cm) were measured. A scatterplot of the dose against age produced the following plot
 
-```{r warfarinplot1, fig.cap = 'Scatterplot of dose against age for the warfarin study.', echo=FALSE, fig.align='center', out.width='65%'}
-load("warfarinStudy.RData")
-plot(warfarin_dose ~ age, data = warfarinStudy, pch = 16, 
-     xlab = 'Age (months)', ylab = 'Warfarin dose (mg)')
-```
+<div class="figure" style="text-align: center">
+<img src="inference_files/figure-html/warfarinplot1-1.png" alt="Scatterplot of dose against age for the warfarin study." width="65%" />
+<p class="caption">(\#fig:warfarinplot1)Scatterplot of dose against age for the warfarin study.</p>
+</div>
 
 The average dose increase with age but so does the variability (spread of observations). The latter breaks one of our assumptions! We need to transform the dose to stabilise the variance (we will return to transformations formally later in the semester). Here we take the square root transformation (other transformations may also work as well, or better) which has the effect of reducing the larger values (more than the smaller values due to the nature of the square root operator). The original variable is in the `R` dataframe *warfarinStudy*, so we can perform the transformation using
 
-```{r}
+
+``` r
 # Add the new variable to the data frame
 warfarinStudy$root_dose = sqrt(warfarinStudy$warfarin_dose)
 ```
 
 Plotting the square root of dose against age we see that it increases on average with increasing age and that the variability is now approximately constant.
 
-```{r warfarinplot2, fig.cap = 'Scatterplot of the square root of dose against age for the warfarin study.', echo=FALSE, fig.align='center', out.width='65%'}
-plot(root_dose ~ age, data = warfarinStudy, pch = 16, 
-     xlab = 'Age (months)', ylab = 'Square root of warfarin dose (mg)')
-```
+<div class="figure" style="text-align: center">
+<img src="inference_files/figure-html/warfarinplot2-1.png" alt="Scatterplot of the square root of dose against age for the warfarin study." width="65%" />
+<p class="caption">(\#fig:warfarinplot2)Scatterplot of the square root of dose against age for the warfarin study.</p>
+</div>
 
 A similar picture is obtained if we plot the square root of dose against height (the other possible covariate here). We shall now regress the square root of dose against height and age, looking at both possible orderings. The `R` command `anova()` breaks down the regression sum of squares into its individual contribution from each covariate:
 
-```{r}
+
+``` r
 m1 = lm(root_dose ~ height + age, data = warfarinStudy)
 anova(m1)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: root_dose
+##            Df Sum Sq Mean Sq F value    Pr(>F)    
+## height      1 13.046 13.0462 58.4899 6.289e-12 ***
+## age         1  1.152  1.1520  5.1647   0.02488 *  
+## Residuals 117 26.097  0.2231                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 <span style="color: red;">Height on its own produces a *miniscule* p-value ($6.289 \times 10^{-12}$) and thus we clearly need to include height. Fitting age \textit{after} height also gives a small p-value ($0.025 < 0.05$) which implies that we also need age, *once height has been fitted*.</span>
 
 In a similar way we can again use the command `anova()` for a model that includes age first, followed by height.
 
-```{r}
+
+``` r
 m2 = lm(root_dose ~ age + height, data = warfarinStudy)
 anova(m2)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: root_dose
+##            Df  Sum Sq Mean Sq F value    Pr(>F)    
+## age         1 14.1975 14.1975  63.652 1.124e-12 ***
+## height      1  0.0007  0.0007   0.003    0.9564    
+## Residuals 117 26.0969  0.2231                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 <span style="color: red;">Age on its own produces a very small p-value ($1.124 \times 10^{-12}$) and thus we clearly need to include age. Fitting height *after* age gives a non-significant p-value ($0.9564 > 0.05$), however, which implies that we do not need height *once age has been fitted*.</span>
@@ -399,10 +590,10 @@ Why has this happened?
 \newline
 <span style="color: red;">The problem has arisen because age and height are highly correlated. We shall come back to this problem later. The correlation is in fact 0.95 (see plot).</span>
 
-```{r warfarinplot3, fig.cap = 'Scatterplot of height against age for the warfarin study.', echo=FALSE, fig.align='center', out.width='65%'}
-plot(height ~ age, data = warfarinStudy, pch = 16, 
-     xlab = 'Age (months)', ylab = 'Height (cm)')
-```
+<div class="figure" style="text-align: center">
+<img src="inference_files/figure-html/warfarinplot3-1.png" alt="Scatterplot of height against age for the warfarin study." width="65%" />
+<p class="caption">(\#fig:warfarinplot3)Scatterplot of height against age for the warfarin study.</p>
+</div>
 
 ## The general extra sum of squares method
 The extra sum of squares method is most useful if we wish to test whether a subset of the explanatory variables have no effect on the response variable. This can help simplify the model by removing several covariates at once - it is also useful for dealing with factors that have several levels, such as eye colour or favoured mode of transport. 
@@ -420,21 +611,13 @@ where $\vec{\beta}_2$ is the $q-$vector of parameters that we wish to consider f
 
 To carry out the procedure, we firstcalculate (usually using `R`) the regression sum of squares for fitting all $p$ candidate parameters, i.e. fit the full (additive) model. We then calculate (again using `R`, typically) the regression sum of squares for fitting the $p - q$ parameters which we want to include, i.e. fit the subset model. We can then form an extended general anova table:
 
-```{r genextanova, results='asis', echo=FALSE}
-library(knitr)
-library(kableExtra)
 
-gen_ext_anova_tbl <- data.frame(
-  Source = c("Regression on $x_1, \\ldots x_{p-q}$", "Regression on $x_{p-q+1}, \\ldots x_p$ having fitted $x_1, \\ldots x_{p-q}$", "Residual", "Total"),
-  df = c("$p - q$", "$q$", "$n - p - 1$", "$n - 1$"),
-  SS = c("$\\text{Reg SS}_{\\vec{\\beta}_1}$", "$\\text{Reg SS}_{\\vec{\\beta}_2 \\mid \\vec{\\beta}_1} =$ <br> $\\text{Reg SS}_{\\vec{\\beta}} - \\text{Reg SS}_{\\vec{\\beta}_1}$", "RSS", "TSS"),
-  MS = c("$\\text{Reg MS}_{\\vec{\\beta}_1}=\\frac{\\text{Reg SS}_{\\vec{\\beta}_1}}{p-q}$",
-         "$\\text{Reg MS}_{\\vec{\\beta}_2 \\mid \\vec{\\beta}_1}=\\frac{\\text{Reg MS}_{\\vec{\\beta}_2 \\mid \\vec{\\beta}_1}}{q}$", "$\\text{RMS} = \\frac{\\text{RSS}}{n - p - 1}$", ""),
-  MSR = c("$F_1 = \\frac{\\text{Reg MS}_{\\vec{\\beta}_1}}{\\text{RMS}}$", "$F_2= \\frac{\\text{Reg MS}_{\\vec{\\beta}_2 \\mid \\vec{\\beta}_1}}{\\text{RMS}}$", "", "")
-)
-
-kable(gen_ext_anova_tbl, escape = FALSE)
-```
+|Source                                                                    |df          |SS                                                                                                                      |MS                                                                                                            |MSR                                                                        |
+|:-------------------------------------------------------------------------|:-----------|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------|
+|Regression on $x_1, \ldots x_{p-q}$                                       |$p - q$     |$\text{Reg SS}_{\vec{\beta}_1}$                                                                                         |$\text{Reg MS}_{\vec{\beta}_1}=\frac{\text{Reg SS}_{\vec{\beta}_1}}{p-q}$                                     |$F_1 = \frac{\text{Reg MS}_{\vec{\beta}_1}}{\text{RMS}}$                   |
+|Regression on $x_{p-q+1}, \ldots x_p$ having fitted $x_1, \ldots x_{p-q}$ |$q$         |$\text{Reg SS}_{\vec{\beta}_2 \mid \vec{\beta}_1} =$ <br> $\text{Reg SS}_{\vec{\beta}} - \text{Reg SS}_{\vec{\beta}_1}$ |$\text{Reg MS}_{\vec{\beta}_2 \mid \vec{\beta}_1}=\frac{\text{Reg MS}_{\vec{\beta}_2 \mid \vec{\beta}_1}}{q}$ |$F_2= \frac{\text{Reg MS}_{\vec{\beta}_2 \mid \vec{\beta}_1}}{\text{RMS}}$ |
+|Residual                                                                  |$n - p - 1$ |RSS                                                                                                                     |$\text{RMS} = \frac{\text{RSS}}{n - p - 1}$                                                                   |                                                                           |
+|Total                                                                     |$n - 1$     |TSS                                                                                                                     |                                                                                                              |                                                                           |
 
 We can now test $H_0: \beta_{p - q + 1} = \beta_{p - q + 2} = \ldots = \beta_p = 0$ given that $\beta_1, \ldots, \beta_{p - q}$ have been included in the model using $F_2$. This is tested against a general alternative $H_1: \text{at least one}\;\; \beta_j \neq 0$ for $j = p - q + 1, \ldots, p$. This is another example of an \textit{omnibus} test as we are testing for several things simultaneously. Large values of $F_2$ lead to rejection of the null hypothesis, $H_0$. This process allows us to remove a block of parameters from a model, rather than one-by-one, and is particularly useful when adding parameters to a model where previous research or expert knowledge suggests some covariates must be included in the model. In essence, we are then testing whether the extra covariates can add anything to the established model.
 
@@ -447,7 +630,8 @@ Returning to the cheese data, three additional variables are also available in t
 
 We can use the extra sum of squares method to investigate whether these additional variables should be added to the original model containing H2S and lactic acid. We do so by fitting the full model and the reduced model with the first $p$ parameters included (we do not need to fit a model with just the remaining parameters). As usual, we can make repeated use of `lm()` to do this:
 
-```{r}
+
+``` r
 load("cheese2.RData")
 fit1 = lm(Taste ~ H2S + Lactic, data = cheese2)
 fit2 = lm(Taste ~ ., data = cheese2)
@@ -456,13 +640,25 @@ fit2 = lm(Taste ~ ., data = cheese2)
 
 We can then use the `anova` command with two arguments (which must be *nested* models) to carry out the extra sum of squares method and test whether any of acetic, phosphoric or citric acid are needed in the model. The `R` command and output is shown below:
 
-```{r}
+
+``` r
 anova(fit1, fit2)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Model 1: Taste ~ H2S + Lactic
+## Model 2: Taste ~ H2S + Lactic + Acetic + Phosphoric + Citric
+##   Res.Df    RSS Df Sum of Sq      F Pr(>F)
+## 1     27 2669.0                           
+## 2     24 2602.5  3    66.484 0.2044 0.8923
 ```
 
 The syntax is such that we should always have the reduced model first, i.e.
 
-```{r, eval=FALSE}
+
+``` r
 anova(reduced_model, full_model)
 ```
 
@@ -474,18 +670,40 @@ Removing several parameters at once can lead to the removal of potentially impor
 ## Example: Anova for crime data based on summary information {-}
 A dataset consisting of crime rates from 47 US states along with 13 continuous explanatory variables was analysed in `R` using an additive multiple linear regression model. An incomplete analysis of variance using all thirteen predictors produced the following table:
 
-```{r anovacrime, results='asis', echo=FALSE}
-anova_tbl_crime <- data.frame(
-  Source = c("Regression on all predictors","Residual" , "Total"),
-  df = c("", "", 46),
-  SS = c(52931, 15879, 68810),
-  MS = c("", "", ""),
-  MSR = c("", "", "")
-)
-
-kable(anova_tbl_crime, escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) 
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:left;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> MSR </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Regression on all predictors </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:right;"> 52931 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:right;"> 15879 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:left;"> 46 </td>
+   <td style="text-align:right;"> 68810 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+</tbody>
+</table>
 
 <ol type="a">
 <li> Complete the anova table and test for significance for all 13 predictors simultaneously.
@@ -493,16 +711,36 @@ kable(anova_tbl_crime, escape = FALSE) %>%
 
 <li> A criminologist postulates that there are five key drivers of state crime and conducts a multiple linear regression model using these five covariates. The parameter estimates (and their standard errors) are given below. 
 
-```{r crime_example, results='asis', echo=FALSE}
-tbl_crime_partial <- data.frame(
-  Estimate = c(1.02, 2.03, 1.23, 0.91, 0.63),
-  `Standard error` = c(0.35, 0.47, 0.14, 0.43, 0.14),
-  check.names = FALSE
-)
-
-kable(tbl_crime_partial, escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) 
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Estimate </th>
+   <th style="text-align:right;"> Standard error </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1.02 </td>
+   <td style="text-align:right;"> 0.35 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2.03 </td>
+   <td style="text-align:right;"> 0.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1.23 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.91 </td>
+   <td style="text-align:right;"> 0.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+</tbody>
+</table>
 
 Which variable appears to be the most important? Which seems to be the least important?
 </li>
@@ -521,43 +759,86 @@ Which variable appears to be the most important? Which seems to be the least imp
 
 <span style="color: red;">Once we have the sums of squares and their associated degrees of freedom it is easy to calculate the mean square terms working within rows. For the regression we have $52931/13 = 4071.615$ and for the error $15879/33 = 481.82$. Finally, we calculate the test statistics as the ratio of the regression mean square to the error mean square, i.e. $4071.615/481.182 = 8.462$. This completes the anova table.</span>
 
-```{r anovacrimefilled, results='asis', echo=FALSE}
-anova_tbl_crime <- data.frame(
-  Source = c("Regression on all predictors","Residual" , "Total"),
-  df = c(13, 33, 46),
-  SS = c(52931, 15879, 68810),
-  MS = c("4071.615", "481.82", ""),
-  MSR = c("8.462", "", "")
-)
-anova_tbl_crime$df <- cell_spec(anova_tbl_crime$df, color = c("red", "red", "black"))
-anova_tbl_crime$MS <- cell_spec(anova_tbl_crime$MS, color = c("red", "red", "black"))
-anova_tbl_crime$MSR <- cell_spec(anova_tbl_crime$MSR, color = c("red", "black", "black"))
-kable(anova_tbl_crime, "html", escape = FALSE)  %>%
-  kable_styling("striped", full_width = FALSE)
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:left;"> df </th>
+   <th style="text-align:right;"> SS </th>
+   <th style="text-align:left;"> MS </th>
+   <th style="text-align:left;"> MSR </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Regression on all predictors </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">13</span> </td>
+   <td style="text-align:right;"> 52931 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">4071.615</span> </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">8.462</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residual </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">33</span> </td>
+   <td style="text-align:right;"> 15879 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">481.82</span> </td>
+   <td style="text-align:left;"> <span style="     color: black !important;"></span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:left;"> <span style="     color: black !important;">46</span> </td>
+   <td style="text-align:right;"> 68810 </td>
+   <td style="text-align:left;"> <span style="     color: black !important;"></span> </td>
+   <td style="text-align:left;"> <span style="     color: black !important;"></span> </td>
+  </tr>
+</tbody>
+</table>
 
 <span style="color: red;">We can look up the $5\%, 1\%$ and $0.1\%$ critical values in `R` using</span>
 
-```{r, results='asis', echo = F}
-cat('<code style="color: red;">qf(c(0.95, 0.99, 0.999), 13, 33)</code>')
-```
+<code style="color: red;">qf(c(0.95, 0.99, 0.999), 13, 33)</code>
 
 <span style="color: red;">to get 2.030, 2.723 and 3.773 respectively. Since $8.462 > 3.773$ we conclude that at least one of the predictors is important and there is very strong evidence of some relationship between crime rate and the explanatory variables.</span>
 
 </li>
 <li> <span style="color: red;">To answer this question we must take the ratios to get the respective $t$-statistics. This gives</span>
 
-```{r crime_solution, results='asis', echo=FALSE}
-tbl_crime_partial <- data.frame(
-  Estimate = c(1.02, 2.03, 1.23, 0.91, 0.63),
-  `Standard error` = c(0.35, 0.47, 0.14, 0.43, 0.14),
-  t = c(2.914, 4.319, 8.786, 2.116, 4.500),
-  check.names = FALSE
-)
-tbl_crime_partial$t <- cell_spec(tbl_crime_partial$t, color = rep("red", 5))
-kable(tbl_crime_partial, "html", escape = FALSE) %>%
-  kable_styling("striped", full_width = FALSE) 
-```
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Estimate </th>
+   <th style="text-align:right;"> Standard error </th>
+   <th style="text-align:left;"> t </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1.02 </td>
+   <td style="text-align:right;"> 0.35 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">2.914</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2.03 </td>
+   <td style="text-align:right;"> 0.47 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">4.319</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1.23 </td>
+   <td style="text-align:right;"> 0.14 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">8.786</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.91 </td>
+   <td style="text-align:right;"> 0.43 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">2.116</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 0.63 </td>
+   <td style="text-align:right;"> 0.14 </td>
+   <td style="text-align:left;"> <span style="     color: red !important;">4.5</span> </td>
+  </tr>
+</tbody>
+</table>
 
 <span style="color: red;">Hence, we can now say that $x_3$ is the most important predictor, followed by $x_5$ (which had the lowest estimate). The least important predictor is $x_4$, although it still has a reasonably large $t$-value</span>
 </li>
@@ -575,57 +856,117 @@ A more direct solution is to note that the difference in the residual sums of sq
 </li>
 </ol>
 
-<!-- ## Inference on individual parameters {#sec:infer} -->
-<!-- The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model. -->
+## Inference on individual parameters {#sec:infer}
+The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.
 
-<!-- To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use -->
+To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use
 
-<!-- \[ -->
-<!-- \color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}} -->
-<!-- \] -->
+\[
+\color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}}
+\]
 
-<!-- and this is compared to the $t$-distribution on $n - p - 1$ degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. $\hat{\beta}_j = 0$, whereby $b_j = 0$. -->
+and this is compared to the $t$-distribution on $n - p - 1$ degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. $\hat{\beta}_j = 0$, whereby $b_j = 0$.
 
-<!-- As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+1)^{th}$ diagonal element of $(\up{X}^T\up{X})^{-1}$, for $j = 0, \ldots, p$. The variance of $\hat{\beta}_j$ is then estimated as $v_{jj}s^2$ since our $\beta$ parameters are indexed starting at $0$ for the intercept. We can then construct a $100(1 - \alpha)\%$ confidence interval for $\beta_j$ as  -->
+As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+1)^{th}$ diagonal element of $(\up{X}^T\up{X})^{-1}$, for $j = 0, \ldots, p$. The variance of $\hat{\beta}_j$ is then estimated as $v_{jj}s^2$ since our $\beta$ parameters are indexed starting at $0$ for the intercept. We can then construct a $100(1 - \alpha)\%$ confidence interval for $\beta_j$ as 
 
-<!-- \begin{align*} -->
-<!-- \color{red}{\hat{\beta}_j} &\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\ -->
-<!-- &\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)} -->
-<!-- \end{align*} -->
+\begin{align*}
+\color{red}{\hat{\beta}_j} &\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\
+&\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
+\end{align*}
 
-<!-- Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters.  -->
+Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters. 
 
-<!-- In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model. -->
+In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.
 
-<!-- ## Example: Inference on individual parameters - warfarin example {-} -->
-<!-- Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain -->
+## Example: Inference on individual parameters - warfarin example {-}
+Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain
 
-<!-- ```{r} -->
-<!-- summary(m1) -->
-<!-- ``` -->
 
-<!-- The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function: -->
+``` r
+summary(m1)
+```
 
-<!-- ```{r} -->
-<!-- confint(m1) -->
-<!-- ``` -->
+```
+## 
+## Call:
+## lm(formula = root_dose ~ height + age, data = warfarinStudy)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.95647 -0.30922 -0.07802  0.33932  1.09938 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 1.0529539  0.3002567   3.507 0.000644 ***
+## height      0.0002249  0.0041024   0.055 0.956367    
+## age         0.0058346  0.0025674   2.273 0.024876 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4723 on 117 degrees of freedom
+## Multiple R-squared:  0.3524,	Adjusted R-squared:  0.3413 
+## F-statistic: 31.83 on 2 and 117 DF,  p-value: 9.187e-12
+```
 
-<!-- We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds.  -->
+The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function:
 
-<!-- Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get -->
 
-<!-- ```{r} -->
-<!-- mfinal = lm(root_dose ~ age, data = warfarinStudy) -->
-<!-- summary(mfinal) -->
-<!-- ``` -->
+``` r
+confint(m1)
+```
 
-<!-- The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The $95\%$ confidence interval for age is thus $0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)$. This can be equivalently obtained from `R` using `confint(mfinal)`.  -->
+```
+##                     2.5 %      97.5 %
+## (Intercept)  0.4583113390 1.647596552
+## height      -0.0078996982 0.008349579
+## age          0.0007500711 0.010919132
+```
 
-<!-- ```{r} -->
-<!-- confint(mfinal) -->
-<!-- ``` -->
+We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds. 
 
-<!-- Comparing with the confidence interval from the full model we see that it is now much narrower. -->
+Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get
+
+
+``` r
+mfinal = lm(root_dose ~ age, data = warfarinStudy)
+summary(mfinal)
+```
+
+```
+## 
+## Call:
+## lm(formula = root_dose ~ age, data = warfarinStudy)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.9546 -0.3119 -0.0802  0.3416  1.1020 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 1.068346   0.106103  10.069  < 2e-16 ***
+## age         0.005969   0.000745   8.012 9.01e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4703 on 118 degrees of freedom
+## Multiple R-squared:  0.3523,	Adjusted R-squared:  0.3469 
+## F-statistic: 64.19 on 1 and 118 DF,  p-value: 9.01e-13
+```
+
+The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The $95\%$ confidence interval for age is thus $0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)$. This can be equivalently obtained from `R` using `confint(mfinal)`. 
+
+
+``` r
+confint(mfinal)
+```
+
+```
+##                   2.5 %      97.5 %
+## (Intercept) 0.858232773 1.278458803
+## age         0.004493902 0.007444623
+```
+
+Comparing with the confidence interval from the full model we see that it is now much narrower.
 
 ## Confidence and prediction intervals for the fitted values
 Recall that the fitted values in a mutliple linear regression model are given by
@@ -694,11 +1035,25 @@ Note the distinction between the two intervals - the prediction interval is alwa
 ## Example: Confidence and prediction intervals for the cheese data {-}
 Confidence and prediction intervals for the fitted values can be easily calculated using `R`. We need a fitted model (obviously!) and a dataframe containing the covariate values for which we want to construct our confidence and prediction intervals - this is best seen by example. Thus, for the original cheese example with just two covariates:
 
-```{r}
+
+``` r
 fit1 = lm(Taste ~ H2S + Lactic, data = cheese)
 newdat = data.frame(H2S = 6, Lactic = 1.5)
 predict(fit1, newdat, interval = "confidence")
+```
+
+```
+##       fit      lwr      upr
+## 1 25.9166 22.09274 29.74045
+```
+
+``` r
 predict(fit1, newdat, interval = "prediction")
+```
+
+```
+##       fit      lwr      upr
+## 1 25.9166 5.161269 46.67192
 ```
 
 The prediction interval is much wider, by a factor of about 5 for these values of the explanatory variables.
@@ -731,10 +1086,22 @@ which is of exactly the form of a multiple linear regression model. Other covari
 
 Hence, we can fit polynomial models in the same way to models seen so far during the module. However, when fitting polynomials, there can be high correlations between powers of the covariates, and hence near-multicollinearity problems, known as *polynomial multicollinearity*. For example, consider a(n equi-spaced) covariate $\vec{x}^T = (1, 2, \ldots, 10)$
 
-```{r}
+
+``` r
 x = 1:10
 cor(x, x^2)
+```
+
+```
+## [1] 0.9745586
+```
+
+``` r
 cor(x^2, x^3)
+```
+
+```
+## [1] 0.9871797
 ```
 
 From practical 1, we saw that this can inflate standard errors, thereby diluting tests on individual parameters and this often conflicts with a large $F$ value (i.e. highly significant) for the overall model. These high correlations can be reduced by mean-centering - we will see this in a practical session. Suppose our covariate is $\vec{x}_1$ then we introduce $z_{i1} = x_{i1} - \bar{x_1}\;\; (i = 1, \ldots n)$ and use this in the model. Recall from chapter 1 (and practical 1) that this sort of scaling does not affect the fit of the regression model.
@@ -742,10 +1109,10 @@ From practical 1, we saw that this can inflate standard errors, thereby diluting
 ## Example: Polynomial model {-}
 An experiment was carried out to determine the frothiness of three types of beer from the time of pouring. Measurements of wet foam height at various time points for the three brands of beer were measured. The results for one particular brand can be found on Canvas in the file *beer1.RData*. A plot of the foam height against time is given below:
 
-```{r beerplot, fig.cap = 'Scatterplot of foam height against time for the beer data.', echo=FALSE, fig.align='center', out.width='65%'}
-load("beer1.RData")
-plot(Height ~ Time, data = beer1, pch = 16)
-```
+<div class="figure" style="text-align: center">
+<img src="inference_files/figure-html/beerplot-1.png" alt="Scatterplot of foam height against time for the beer data." width="65%" />
+<p class="caption">(\#fig:beerplot)Scatterplot of foam height against time for the beer data.</p>
+</div>
 
 The plot is strongly suggestive of a curvilinear (possibly quadratic?) relationship. We can fit the model with a quadratic term for time
 
@@ -755,14 +1122,38 @@ The plot is strongly suggestive of a curvilinear (possibly quadratic?) relations
 
 for $i = 1, \ldots, 15$. This can be done in several ways in `R`. We will use the built-in function `poly()` to fit the model - note that this function automatically uses *orthogonal* polynomials which remove the correlations between the powers of the covariate completely, at the cost of interpretation but the gain of model selection. Fitting the model in `R`, we use the following commands:
 
-```{r}
+
+``` r
 fit1 = lm(Height ~ poly(Time, 2), data = beer1)
 ```
 
 We can summarise the model in the usual way (as it is still a multiple linear regression model):
 
-```{r}
+
+``` r
 summary(fit1)
+```
+
+```
+## 
+## Call:
+## lm(formula = Height ~ poly(Time, 2), data = beer1)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.36021 -0.22760 -0.06058  0.25347  0.41401 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     11.16000    0.07612  146.62  < 2e-16 ***
+## poly(Time, 2)1 -12.85980    0.29480  -43.62 1.37e-14 ***
+## poly(Time, 2)2   2.96964    0.29480   10.07 3.31e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.2948 on 12 degrees of freedom
+## Multiple R-squared:  0.994,	Adjusted R-squared:  0.9931 
+## F-statistic:  1002 on 2 and 12 DF,  p-value: 4.442e-14
 ```
 
 We see that both the linear and quadratic terms in time are highly significant beyond the $0.1\%$ level. The $R^2$ value is also very high, suggesting most of the variability in foam height is explained by the quadratic model in time. There seems little value in considering higher order terms in this case, but how do we choose in cases that are less clear-cut?

@@ -856,117 +856,57 @@ A more direct solution is to note that the difference in the residual sums of sq
 </li>
 </ol>
 
-## Inference on individual parameters {#sec:infer}
-The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model.
+<!-- ## Inference on individual parameters {#sec:infer} -->
+<!-- The extra sum of squares method allows us to remove multiple parameters or on a one-by-one basis. In the latter case, however, there is a simpler approach than forming anova tables each time you wish to remove a parameter. The model fit given by the `summary()` command considers the joint distribution of the parameter vector, $\vec{\hat{\beta}}$. Hence we can use the output directly to test hypotheses and make inferences about individual parameters, without having to be concerned about the order in which the variables entered the model. -->
 
-To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use
+<!-- To test the hypothesis $H_0: \beta_j = b_j$ for a chosen $j \in 1, \ldots, p$, given that the other parameters are fitted, we use -->
 
-\[
-\color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}}
-\]
+<!-- \[ -->
+<!-- \color{red}{t = \frac{\mid\hat{\beta}_j - b_j\mid}{s.e.\left(\hat{\beta_j}\right)}} -->
+<!-- \] -->
 
-and this is compared to the $t$-distribution on $n - p - 1$ degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. $\hat{\beta}_j = 0$, whereby $b_j = 0$.
+<!-- and this is compared to the $t$-distribution on $n - p - 1$ degrees of freedom. Typically, we test whether the parameter has no effect on the regression line, i.e. $\hat{\beta}_j = 0$, whereby $b_j = 0$. -->
 
-As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+1)^{th}$ diagonal element of $(\up{X}^T\up{X})^{-1}$, for $j = 0, \ldots, p$. The variance of $\hat{\beta}_j$ is then estimated as $v_{jj}s^2$ since our $\beta$ parameters are indexed starting at $0$ for the intercept. We can then construct a $100(1 - \alpha)\%$ confidence interval for $\beta_j$ as 
+<!-- As in chapter 1, subsection \@ref(sec:inferforbetahat), let $v_{jj}$ be the $(j+1)^{th}$ diagonal element of $(\up{X}^T\up{X})^{-1}$, for $j = 0, \ldots, p$. The variance of $\hat{\beta}_j$ is then estimated as $v_{jj}s^2$ since our $\beta$ parameters are indexed starting at $0$ for the intercept. We can then construct a $100(1 - \alpha)\%$ confidence interval for $\beta_j$ as  -->
 
-\begin{align*}
-\color{red}{\hat{\beta}_j} &\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\
-&\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)}
-\end{align*}
+<!-- \begin{align*} -->
+<!-- \color{red}{\hat{\beta}_j} &\color{red}{\pm t_{n - p - 1; \alpha/2} \times \sqrt{v_{jj}s^2}} \\ -->
+<!-- &\color{red}{\pm t_{n - p - 1; \alpha/2} \times s.e.(\hat{\beta}_j)} -->
+<!-- \end{align*} -->
 
-Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters. 
+<!-- Note that these hypothesis tests and confidence intervals are only a guide. The $t$-test outlined above, which are given in the model output via `R`, are exactly equivalent to an $F$-test on this parameter *having been fitted last*. Since the $\hat{\beta}_j$ are correlated, statements about single parameters are not independent from statements about the remaining parameters.  -->
 
-In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model.
+<!-- In practice, we often remove the variable with the largest $p$-value (assuming $p > 0.05$, say) and refit the model, continuing until all the remaining variables have small $p$-values ($<0.05$, say), unless we have specific reasons or guidance that certain parameters should be retained in any final model. -->
 
-## Example: Inference on individual parameters - warfarin example {-}
-Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain
+<!-- ## Example: Inference on individual parameters - warfarin example {-} -->
+<!-- Returning to the warfarin example and inspecting the summary of the fitted model with both height and age included we obtain -->
 
+<!-- ```{r} -->
+<!-- summary(m1) -->
+<!-- ``` -->
 
-``` r
-summary(m1)
-```
+<!-- The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function: -->
 
-```
-## 
-## Call:
-## lm(formula = root_dose ~ height + age, data = warfarinStudy)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.95647 -0.30922 -0.07802  0.33932  1.09938 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 1.0529539  0.3002567   3.507 0.000644 ***
-## height      0.0002249  0.0041024   0.055 0.956367    
-## age         0.0058346  0.0025674   2.273 0.024876 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.4723 on 117 degrees of freedom
-## Multiple R-squared:  0.3524,	Adjusted R-squared:  0.3413 
-## F-statistic: 31.83 on 2 and 117 DF,  p-value: 9.187e-12
-```
+<!-- ```{r} -->
+<!-- confint(m1) -->
+<!-- ``` -->
 
-The $p$-values given above for the $t$-tests are exactly the same as those for the respective $F$-tests \textit{putting that variable last} - see the earler example. Thus the recommended course of action (as before) is to remove height and fit a model with height alone. The $p$-value for age then reduces to $1.124 \times 10^{-12}$! We can easily produce confidence intervals for the fitted parameters in `R` using the `confint()` function:
+<!-- We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds.  -->
 
+<!-- Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get -->
 
-``` r
-confint(m1)
-```
+<!-- ```{r} -->
+<!-- mfinal = lm(root_dose ~ age, data = warfarinStudy) -->
+<!-- summary(mfinal) -->
+<!-- ``` -->
 
-```
-##                     2.5 %      97.5 %
-## (Intercept)  0.4583113390 1.647596552
-## height      -0.0078996982 0.008349579
-## age          0.0007500711 0.010919132
-```
+<!-- The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The $95\%$ confidence interval for age is thus $0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)$. This can be equivalently obtained from `R` using `confint(mfinal)`.  -->
 
-We see that the confidence interval for height $(-0.008, 0.008)$ contains zero implying that parameter should be removed. Note that this relationship between a $p$-value at the $\alpha\%$ level and an associated confidence interval at the equivalent level, i.e. $100(1 - \alpha)\%$, always holds. 
+<!-- ```{r} -->
+<!-- confint(mfinal) -->
+<!-- ``` -->
 
-Thus we should remove height and *recalculate* the confidence interval for height. Note that we would achieve the same results under this approach if we use the fitted model `m2` (see earlier), which reverses the order of age and height. Hence, order matters for anova and contributions to the regression sum of squares, but not for inference on individual parameters. Fitting the model without height and recalculating the confidence interval for age we get
-
-
-``` r
-mfinal = lm(root_dose ~ age, data = warfarinStudy)
-summary(mfinal)
-```
-
-```
-## 
-## Call:
-## lm(formula = root_dose ~ age, data = warfarinStudy)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.9546 -0.3119 -0.0802  0.3416  1.1020 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 1.068346   0.106103  10.069  < 2e-16 ***
-## age         0.005969   0.000745   8.012 9.01e-13 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.4703 on 118 degrees of freedom
-## Multiple R-squared:  0.3523,	Adjusted R-squared:  0.3469 
-## F-statistic: 64.19 on 1 and 118 DF,  p-value: 9.01e-13
-```
-
-The standard error of the age parameter has reduced considerably from 0.0026 to 0.0007. The $95\%$ confidence interval for age is thus $0.005969 \pm 1.98 \times 0.00745 = (0.0045,0.0074)$. This can be equivalently obtained from `R` using `confint(mfinal)`. 
-
-
-``` r
-confint(mfinal)
-```
-
-```
-##                   2.5 %      97.5 %
-## (Intercept) 0.858232773 1.278458803
-## age         0.004493902 0.007444623
-```
-
-Comparing with the confidence interval from the full model we see that it is now much narrower.
+<!-- Comparing with the confidence interval from the full model we see that it is now much narrower. -->
 
 ## Confidence and prediction intervals for the fitted values
 Recall that the fitted values in a mutliple linear regression model are given by

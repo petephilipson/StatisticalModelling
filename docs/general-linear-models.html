@@ -206,7 +206,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.6.2" data-path="introduction.html"><a href="introduction.html#mean-centering-of-covariates"><i class="fa fa-check"></i><b>1.6.2</b> Mean-centering of covariates</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-mean-centering-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Mean-centering (men’s Premier League football data)</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\((\mathrm{X}^T\mathrm{X})^{-1}\)</span>: multicollinearity</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#sec:multicol"><i class="fa fa-check"></i><b>1.7</b> Properties of <span class="math inline">\(\left(\mathrm{X}^T\mathrm{X}\right)^{-1}\)</span>: multicollinearity</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#example-multicollinearity-in-mens-premier-league-football-data"><i class="fa fa-check"></i>Example: Multicollinearity in men’s Premier League football data</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="regression-diagnostics.html"><a href="regression-diagnostics.html"><i class="fa fa-check"></i><b>2</b> Regression diagnostics</a>
@@ -256,14 +256,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-anova-for-crime-data-based-on-summary-information"><i class="fa fa-check"></i>Example: Anova for crime data based on summary information</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#solution-1"><i class="fa fa-check"></i>Solution</a></li>
-<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:infer"><i class="fa fa-check"></i><b>3.5</b> Inference on individual parameters</a></li>
-<li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-inference-on-individual-parameters---warfarin-example"><i class="fa fa-check"></i>Example: Inference on individual parameters - warfarin example</a></li>
-<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.6</b> Confidence and prediction intervals for the fitted values</a></li>
+<li class="chapter" data-level="3.5" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#confidence-and-prediction-intervals-for-the-fitted-values"><i class="fa fa-check"></i><b>3.5</b> Confidence and prediction intervals for the fitted values</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-confidence-and-prediction-intervals-for-the-cheese-data"><i class="fa fa-check"></i>Example: Confidence and prediction intervals for the cheese data</a></li>
-<li class="chapter" data-level="3.7" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.7</b> Polynomial models</a></li>
+<li class="chapter" data-level="3.6" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#sec:polymodels"><i class="fa fa-check"></i><b>3.6</b> Polynomial models</a></li>
 <li class="chapter" data-level="" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#example-polynomial-model"><i class="fa fa-check"></i>Example: Polynomial model</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.7.1</b> Choosing the order of a polynomial model</a></li>
+<li class="chapter" data-level="3.6.1" data-path="inference-for-the-multiple-linear-regression-model.html"><a href="inference-for-the-multiple-linear-regression-model.html#choosing-the-order-of-a-polynomial-model"><i class="fa fa-check"></i><b>3.6.1</b> Choosing the order of a polynomial model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="general-linear-models.html"><a href="general-linear-models.html"><i class="fa fa-check"></i><b>4</b> General linear models</a>
@@ -398,8 +396,8 @@ Figure 4.1: Plot of mileage against engine displacement by transmission type.
 </p>
 </div>
 <p>There is a clear difference in the intercepts with most automatic transmission points above manual transmission points. Mileage declines with engine displacement, and it looks like the rate of decline may be different for the two transmission types. In particular, there looks to be a steeper decline for cars with automatic transmission. Let us see what happens if we fit a common line, i.e. ignore transmission type.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="general-linear-models.html#cb87-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> gasoline)</span>
-<span id="cb87-2"><a href="general-linear-models.html#cb87-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="general-linear-models.html#cb79-1" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> gasoline)</span>
+<span id="cb79-2"><a href="general-linear-models.html#cb79-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1, data = gasoline)
@@ -433,8 +431,8 @@ Figure 4.2: Plot of mileage against engine displacement by transmission type wit
 \color{red}{H_0: \beta_2 = 0 \;\;\text{versus}\;\; H_1: \beta_2 \neq 0}
 \]</span></p>
 <p>We use the <code>R</code> commands</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="general-linear-models.html#cb89-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> gasoline)</span>
-<span id="cb89-2"><a href="general-linear-models.html#cb89-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="general-linear-models.html#cb81-1" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb81-2"><a href="general-linear-models.html#cb81-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1 + x2, data = gasoline)
@@ -465,8 +463,8 @@ Figure 4.3: Plot of mileage against engine displacement by transmission type wit
 <p><span class="math display">\[
 \color{red}{H_0: \beta_3 = 0 \;\;\text{versus}\;\; H_1: \beta_3 \neq 0}
 \]</span></p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="general-linear-models.html#cb91-1" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> gasoline)</span>
-<span id="cb91-2"><a href="general-linear-models.html#cb91-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="general-linear-models.html#cb83-1" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> gasoline)</span>
+<span id="cb83-2"><a href="general-linear-models.html#cb83-2" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x1 + x2 + x1:x2, data = gasoline)
@@ -567,11 +565,11 @@ Figure 4.4: Plot of mileage against engine displacement by transmission type wit
 <div id="example-nurse-performance-data---backwards-elimination" class="section level3 unnumbered hasAnchor">
 <h3>Example: Nurse performance data - backwards elimination<a href="general-linear-models.html#example-nurse-performance-data---backwards-elimination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A nursing director wanted to see if she could predict her assessed measure of job performance given measures of personal characteristics of nurses (assertiveness, enthusiasm, ambition, communication skills, problem-solving skills and initiative). The data are available in the file <em>NursePerform.RData</em>.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="general-linear-models.html#cb93-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;NursePerform.RData&quot;</span>)</span>
-<span id="cb93-2"><a href="general-linear-models.html#cb93-2" tabindex="-1"></a>fitall <span class="ot">=</span> <span class="fu">lm</span>(JobPerf <span class="sc">~</span> Assert <span class="sc">+</span> Enthusiasm <span class="sc">+</span> Ambition </span>
-<span id="cb93-3"><a href="general-linear-models.html#cb93-3" tabindex="-1"></a>                <span class="sc">+</span> Communication <span class="sc">+</span> Problem <span class="sc">+</span> Initiative, </span>
-<span id="cb93-4"><a href="general-linear-models.html#cb93-4" tabindex="-1"></a>                <span class="at">data =</span> NursePerform)</span>
-<span id="cb93-5"><a href="general-linear-models.html#cb93-5" tabindex="-1"></a>fitbe <span class="ot">&lt;-</span> <span class="fu">step</span>(fitall, <span class="at">direction=</span><span class="st">&quot;backward&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="general-linear-models.html#cb85-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;NursePerform.RData&quot;</span>)</span>
+<span id="cb85-2"><a href="general-linear-models.html#cb85-2" tabindex="-1"></a>fitall <span class="ot">=</span> <span class="fu">lm</span>(JobPerf <span class="sc">~</span> Assert <span class="sc">+</span> Enthusiasm <span class="sc">+</span> Ambition </span>
+<span id="cb85-3"><a href="general-linear-models.html#cb85-3" tabindex="-1"></a>                <span class="sc">+</span> Communication <span class="sc">+</span> Problem <span class="sc">+</span> Initiative, </span>
+<span id="cb85-4"><a href="general-linear-models.html#cb85-4" tabindex="-1"></a>                <span class="at">data =</span> NursePerform)</span>
+<span id="cb85-5"><a href="general-linear-models.html#cb85-5" tabindex="-1"></a>fitbe <span class="ot">&lt;-</span> <span class="fu">step</span>(fitall, <span class="at">direction=</span><span class="st">&quot;backward&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=106.22
 ## JobPerf ~ Assert + Enthusiasm + Ambition + Communication + Problem + 
 ##     Initiative
@@ -617,10 +615,10 @@ Figure 4.4: Plot of mileage against engine displacement by transmission type wit
 </div>
 <div id="example-nurse-performance-data---forward-selection" class="section level3 unnumbered hasAnchor">
 <h3>Example: Nurse performance data - forward selection<a href="general-linear-models.html#example-nurse-performance-data---forward-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="general-linear-models.html#cb95-1" tabindex="-1"></a>fitnull <span class="ot">=</span> <span class="fu">lm</span>(JobPerf <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> NursePerform)</span>
-<span id="cb95-2"><a href="general-linear-models.html#cb95-2" tabindex="-1"></a>fitfs <span class="ot">=</span> <span class="fu">step</span>(fitnull, scope <span class="sc">~</span> Assert <span class="sc">+</span> Enthusiasm</span>
-<span id="cb95-3"><a href="general-linear-models.html#cb95-3" tabindex="-1"></a>                <span class="sc">+</span> Ambition <span class="sc">+</span> Communication <span class="sc">+</span> Problem</span>
-<span id="cb95-4"><a href="general-linear-models.html#cb95-4" tabindex="-1"></a>                <span class="sc">+</span> Initiative, <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="general-linear-models.html#cb87-1" tabindex="-1"></a>fitnull <span class="ot">=</span> <span class="fu">lm</span>(JobPerf <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> NursePerform)</span>
+<span id="cb87-2"><a href="general-linear-models.html#cb87-2" tabindex="-1"></a>fitfs <span class="ot">=</span> <span class="fu">step</span>(fitnull, scope <span class="sc">~</span> Assert <span class="sc">+</span> Enthusiasm</span>
+<span id="cb87-3"><a href="general-linear-models.html#cb87-3" tabindex="-1"></a>                <span class="sc">+</span> Ambition <span class="sc">+</span> Communication <span class="sc">+</span> Problem</span>
+<span id="cb87-4"><a href="general-linear-models.html#cb87-4" tabindex="-1"></a>                <span class="sc">+</span> Initiative, <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=150.81
 ## JobPerf ~ 1
 ## 
@@ -680,7 +678,7 @@ Figure 4.4: Plot of mileage against engine displacement by transmission type wit
 <div id="example-nurse-performance-data---stepwise-selection" class="section level3 unnumbered hasAnchor">
 <h3>Example: Nurse performance data - stepwise selection<a href="general-linear-models.html#example-nurse-performance-data---stepwise-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can apply the stepwise procedure using the same <code>R</code> command <code>step()</code>, needing only to change the <code>direction</code> argument. Note that for this method we can either start with the null or full model due to its iterative nature.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="general-linear-models.html#cb97-1" tabindex="-1"></a>fitstep <span class="ot">&lt;-</span> <span class="fu">step</span>(fitall, <span class="at">direction=</span><span class="st">&quot;both&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="general-linear-models.html#cb89-1" tabindex="-1"></a>fitstep <span class="ot">&lt;-</span> <span class="fu">step</span>(fitall, <span class="at">direction=</span><span class="st">&quot;both&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=106.22
 ## JobPerf ~ Assert + Enthusiasm + Ambition + Communication + Problem + 
 ##     Initiative
@@ -742,29 +740,29 @@ Figure 4.4: Plot of mileage against engine displacement by transmission type wit
 <ol type="i">
 <li>
 <p>Cheese data</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="general-linear-models.html#cb99-1" tabindex="-1"></a><span class="co"># Load the required library</span></span>
-<span id="cb99-2"><a href="general-linear-models.html#cb99-2" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="general-linear-models.html#cb91-1" tabindex="-1"></a><span class="co"># Load the required library</span></span>
+<span id="cb91-2"><a href="general-linear-models.html#cb91-2" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <pre><code>## Loading required package: carData</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="general-linear-models.html#cb101-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese2.RData&quot;</span>)</span>
-<span id="cb101-2"><a href="general-linear-models.html#cb101-2" tabindex="-1"></a>fitcheese <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> Acetic <span class="sc">+</span> H2S <span class="sc">+</span> Lactic <span class="sc">+</span> </span>
-<span id="cb101-3"><a href="general-linear-models.html#cb101-3" tabindex="-1"></a>                 Phosphoric <span class="sc">+</span> Citric, <span class="at">data =</span> cheese2)</span>
-<span id="cb101-4"><a href="general-linear-models.html#cb101-4" tabindex="-1"></a><span class="fu">vif</span>(fitcheese)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="general-linear-models.html#cb93-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;cheese2.RData&quot;</span>)</span>
+<span id="cb93-2"><a href="general-linear-models.html#cb93-2" tabindex="-1"></a>fitcheese <span class="ot">=</span> <span class="fu">lm</span>(Taste <span class="sc">~</span> Acetic <span class="sc">+</span> H2S <span class="sc">+</span> Lactic <span class="sc">+</span> </span>
+<span id="cb93-3"><a href="general-linear-models.html#cb93-3" tabindex="-1"></a>                 Phosphoric <span class="sc">+</span> Citric, <span class="at">data =</span> cheese2)</span>
+<span id="cb93-4"><a href="general-linear-models.html#cb93-4" tabindex="-1"></a><span class="fu">vif</span>(fitcheese)</span></code></pre></div>
 <pre><code>##     Acetic        H2S     Lactic Phosphoric     Citric 
 ##   2.231004   2.036519   1.974788   1.247715   1.060696</code></pre>
 The variables are essentially uncorrelated for these data. Note that the method outlined above only works for regressors with a single degree of freedom. Generalised VIFs can be calculated when we have factors with <span class="math inline">\(&gt;2\)</span> levels.
 </li>
 <li>
 <p>Warfarin dose data</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="general-linear-models.html#cb103-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;warfarinStudy.RData&quot;</span>)</span>
-<span id="cb103-2"><a href="general-linear-models.html#cb103-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(warfarin_dose <span class="sc">~</span> age <span class="sc">+</span> height, <span class="at">data =</span> warfarinStudy)</span>
-<span id="cb103-3"><a href="general-linear-models.html#cb103-3" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="general-linear-models.html#cb95-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;warfarinStudy.RData&quot;</span>)</span>
+<span id="cb95-2"><a href="general-linear-models.html#cb95-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(warfarin_dose <span class="sc">~</span> age <span class="sc">+</span> height, <span class="at">data =</span> warfarinStudy)</span>
+<span id="cb95-3"><a href="general-linear-models.html#cb95-3" tabindex="-1"></a><span class="fu">vif</span>(m2)</span></code></pre></div>
 <pre><code>##      age   height 
 ## 11.77452 11.77452</code></pre>
 Strong evidence that one variable should be removed. Typically, we use <span class="math inline">\(t\)</span>-statistics or sequential anova to decide which to remove. Recall, we decided in Chapter 3 to remove height as it had a larger <span class="math inline">\(p\)</span>-value when fitted last. Note: when there are only two explanatory variables, the VIFs will always be the same. Why?
 </li>
 <li>
 <p>Job performance of nurses data</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="general-linear-models.html#cb105-1" tabindex="-1"></a><span class="fu">vif</span>(fitall)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="general-linear-models.html#cb97-1" tabindex="-1"></a><span class="fu">vif</span>(fitall)</span></code></pre></div>
 <pre><code>##        Assert    Enthusiasm      Ambition Communication       Problem 
 ##      1.597785      1.588301      2.639563      2.400933      1.220138 
 ##    Initiative 

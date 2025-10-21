@@ -924,8 +924,8 @@ summary(fit_mean_centre)
 
 Although we have illustrated the role of the intercept using simple linear regression, the same ideas hold in the multiple linear regression model. We now return to the issue of multicollinearity.
 
-## Properties of $(\up{X}^T\up{X})^{-1}$: multicollinearity {#sec:multicol}
-We saw earlier that both the estimator of $\vec{\beta}$ and its variance both depend on the quantity $\up{X}^T\up{X}^{-1}$. As such, this quantity plays a critical part in fitting a regression model and in determining the significance (or otherwise) of estimated parameters. We will now consider a situation known as *multicollinearity* that leads to problems with taking the inverse of $\up{X}^T\up{X}$.
+## Properties of $\left(\up{X}^T\up{X}\right)^{-1}$: multicollinearity {#sec:multicol}
+We saw earlier that both the estimator of $\vec{\beta}$ and its variance depend on the quantity $\left(\up{X}^T\up{X}\right)^{-1}$. As such, this quantity plays a critical part in fitting a regression model and in determining the significance (or otherwise) of estimated parameters. We will now consider a situation known as *multicollinearity* that leads to problems with taking the inverse of $\up{X}^T\up{X}$.
 
 ## Example: Multicollinearity in men's Premier League football data {-}
 Returning to the Premier League football data, a sports data analyst sets out to fit the following model:
