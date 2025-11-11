@@ -5,7 +5,7 @@ title:
 # Categorical variables and interactions
 In the models considered thus far, we have had exclusively continuous covariates (multiple linear regression models). In reality, we are often faced with variables of other types within the same dataset, such as *categorical* covariates, e.g. smoking status or mode of transport. We will now consider a model with both types of covariate.
 
-## Indicator and dummy variables
+## Indicator and dummy variables {#sec:indvars}
 Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. We may want to consider:
 
 1. Is there a difference in the intercepts between males and females?

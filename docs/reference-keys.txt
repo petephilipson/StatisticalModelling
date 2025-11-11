@@ -81,7 +81,7 @@ confidence-and-prediction-intervals-for-the-fitted-values
 sec:polymodels
 choosing-the-order-of-a-polynomial-model
 categorical-variables-and-interactions
-indicator-and-dummy-variables
+sec:indvars
 model-selection-criteria
 model-selection-criteria-adjusted-r2
 model-selection-criteria-akaikes-information-criterion
@@ -96,6 +96,7 @@ the-box-cox-transformation
 transforming-the-explanatory-variables
 analysis-of-designed-experiments
 completely-randomised-design
+handling-factors-with-k-levels
 analysis-of-completely-randomised-design-data-in-r
 interpretation-of-results-multiple-comparisons
 model-checking

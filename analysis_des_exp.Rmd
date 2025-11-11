@@ -26,6 +26,9 @@ However, this is an *over-parameterised* model since we have $k + 1$ parameters 
 <br>
 We can then set this model up as a linear model and estimate the parameters using our general theory established in chapter 1. 
 
+### Handling factors with $k$ levels
+We considered the case of a binary variable in chapter 4. This, in fact, is a special case of a factor with only two levels, which we handle through the use of an indicator or dummy variable - see subsection \@ref(sec:indvars). The extension to $>2$ levels is straightforward, in that we now use $k-1$ indicator (or dummy) variables in the design matrix, $\up{X}$.
+
 ## Example: One-way anova {-}
 We shall demonstrate this design with a simple example. An experiment was carried out to determine the effects of four treatments $A, B, C$ and $D$ on a certain crop. A field was divided into $12$ plots and $3$ replicates of each of the $4$ treatments were randomly assigned to the plots. The following data were recorded:
 
