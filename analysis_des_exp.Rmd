@@ -3,7 +3,7 @@ title: ''
 ---
 
 # Analysis of designed experiments
-So far in the module we have focused on models with at least one continuous covariate. In this chapter we will consider how to handle models with exclusively categorical variables, in the context of designed experiments.
+So far in the module we have focused on models with at least one continuous covariate, sometimes in conjunction with a categorical variable as in the last chapter. In this chapter, we will consider how to handle models with exclusively categorical variables, in the context of designed experiments, which are known as *analysis of variance (anova) models*. All of these models actually fall under the umbrella term of a *general linear model*, as do some others. 
 
 ## Completely randomised design
 A completely randomised design occurs when all experimental units are drawn from the same 'population' of interest. In this scenario, there are no obvious 'groupings' where members of different groups might be expected to respond differently. 'Treatments' are then applied to the experimental units - this is an example of a *factor* which can take $k$ values, one for each of $k$ potential treatments. A sensible initial model might be

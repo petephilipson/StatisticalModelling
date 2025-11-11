@@ -313,7 +313,7 @@ Multicollinearity can also subtly lead to overestimation of standard errors and 
 Consider a case where there are $p$ possible explanatory variables. To calculate the VIF for the $k^{th}$ explanatory variable, we regress $x_k$ against the other explanatory variables, i.e. $x_1, \ldots, x_{k-1}, x_{k + 1}, \ldots, x_p$. If $R_k^2$ is the coefficient of determination from this model then
 
 \[
-\color{red}{\text{VIF}_k = \frac{1}{1 - R_k^2}}
+\color{gapsinnotes}{\text{VIF}_k = \frac{1}{1 - R_k^2}}
 \]
 
 As an ad hoc rule, we would consider removing a variable if $\text{VIF}_k > 5$ and its associated $p$-value is large. If $\text{VIF}_k$ is close to 1 that implies that $x_k$ is uncorrelated with the other explanatory variables. We can obtain the VIFs directly in `R` if we first (install and) load the library `car`. 
@@ -379,193 +379,13 @@ Strong evidence that one variable should be removed. Typically, we use $t$-stati
 There are three mian reasons for transforming variables in regression:
 
 <ol type="i">
-<li> <span style="color: red;">To cope with non-normality in the residuals. </span> </li>
-<li> <span style="color: red;">To make the variance of the response variable, and hence the residuals, homogeneous.</span> </li>
-<li> <span style="color: red;">To simplify the relationship between the response variable and the explanatory variables. </span> </li>
-</ol>
+<li> To cope with non-normality in the residuals. </li>
+<li> To make the variance of the response variable, and hence the residuals, homogeneous. </li>
+<li> To simplify the relationship between the response variable and the explanatory variables. </li>
+</ol?
 
 If the residuals are asymmetric with a long tail upwards, or if the variance is increasing, then it may be worth trying a log transformation (see chapter 3) or a square root or cube root transformation of the response variable. We should then re-fit the model and re-examine the residuals to see if the problem is resolved; the $R^2$ value should increase if the model fits better.
 
 ### The Box-Cox transformation
 #### Overview {-}
-Suppose that our relationship is not linear, but rather we have the model:
-
-\[
-\vec{Y}^{(\lambda)} = \up{X}\vec{\beta} + \vec{\epsilon}
-\]
-
-where
-\[
-  \vec{Y}^{(\lambda)}=
-  \begin{cases}
-              \frac{\vec{Y}^{\lambda} - 1}{\lambda} \hspace{0.5in}\textrm{if}\hspace{0.5in}\lambda \neq 0, \\
-               \log{\vec{Y}} \hspace{0.5in}\textrm{if}\hspace{0.5in}\lambda = 0.
-            \end{cases}
-\]
-
-We make the usual assumptions about the error terms and note that a choice of $\lambda = 1$ is equivalent to no transformation, and $\lambda = 0$ denotes the log-transformation. Given some data, and this model, we could estimate the parameters simultaneously to determine an estimated transformation. We note that we cannot use ordinary least squares because the model is now non-linear. Suppose, however, temporarily that we know $\lambda$.
-
-In this case, we could proceed as before to get:
-
-\begin{align*}
-\vec{\hat{\beta}} &= \left(\up{X}^T\up{X}\right)^{-1} \up{X}^T \vec{Y}^{(\lambda)} \\
-\sigma_{\epsilon}^2 &= \frac{1}{n - p - 1} \left(\vec{Y}^{(\lambda)}\right)^T (\up{I} - \up{H})\vec{Y}^{(\lambda)}
-\end{align*}
-
-If we plug these into the likelihood, it is now purely a function of $\lambda$. We can then find the value of $\lambda$ that maximises the (profile) likelihood. 
-
-### Example: Box-Cox transformation {-}
-In a study of the doubling time of yeast cells, several samples of yeast were observed over time and the average number of cells recorded, giving rise to the data below, which is entered into `R` (and plotted) as follows:
-
-
-``` r
-cells = c(1.00, 1.21, 1.476641, 1.838118, 2.375750, 2.560843, 3.653237, 4.592888, 5.214563, 
-             6.337479, 6.201024, 7.929808,  9.438030, 14.838897, 15.411255, 23.615537)
-time = seq(0, 3, by = 0.2)
-plot(time, cells, cex.lab = 1.2, pch = 16)
-```
-
-<div class="figure" style="text-align: center">
-<img src="general_linear_models_files/figure-html/nonlinplot-1.png" alt="Plot of yeast cells over time." width="65%" />
-<p class="caption">(\#fig:nonlinplot)Plot of yeast cells over time.</p>
-</div>
-
-The plot is clearly non-linear with an upward curve (exponential growth?). There is also a suggestion of an increasing variance over time. Nevertheless, we will go ahead and fit the linear regression to demonstrate its failings in cases such as this.
-
-
-``` r
-m1 <- lm(cells ~ time)
-summary(m1)
-```
-
-```
-## 
-## Call:
-## lm(formula = cells ~ time)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.4894 -2.1234 -0.7112  1.3418  8.0061 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   -2.148      1.435  -1.497    0.157    
-## time           5.919      0.815   7.262 4.14e-06 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 3.006 on 14 degrees of freedom
-## Multiple R-squared:  0.7902,	Adjusted R-squared:  0.7753 
-## F-statistic: 52.74 on 1 and 14 DF,  p-value: 4.144e-06
-```
-
-Comment: <span style="color: red;"> Despite the fact that the data is clearly not linear, the slope parameter is highly significant ($p<0.001$) and $R^2$ is quite large ($79\%$). </span>
-
-However, if we plot the standardised residuals against the fitted values using the following `R` code we obtain:
-
-
-``` r
-plot(fitted.values(m1), rstandard(m1), 
-       xlab="Fitted values", ylab="Standardised residuals", 
-       pch = 16, cex.lab = 1.2)
-abline(h = c(-2, 0, 2), col = "red", lty = 2)
-```
-
-<div class="figure" style="text-align: center">
-<img src="general_linear_models_files/figure-html/nonlinres-1.png" alt="Standardised residuals against fitted values for the yeast cells model." width="65%" />
-<p class="caption">(\#fig:nonlinres)Standardised residuals against fitted values for the yeast cells model.</p>
-</div>
-
-The plot has clear curvature and a fairly extreme outlier, showing that the model is inappropriate. However, we can use the fitted model in order to see how the likelihood varies with values of $\lambda$. This can be done in `R` via the `boxcox()` function (in conjunction with a fitted model object). Note that we need to load the `MASS` library to use the `boxcox()` function. We can produce the plot and extract the value of $\lambda$ that maximises the log-likelihood as follows:
-
-
-``` r
-library(MASS) # Load the MASS library
-bc = boxcox(m1, lambda = seq(-0.5 , 0.5, by = 0.01), plotit = T)
-```
-
-<div class="figure" style="text-align: center">
-<img src="general_linear_models_files/figure-html/boxcox-1.png" alt="Values of the log-likelihood against lambda for the yeast cells model." width="65%" />
-<p class="caption">(\#fig:boxcox)Values of the log-likelihood against lambda for the yeast cells model.</p>
-</div>
-
-``` r
-# Extract the maximum 
-bc$x[which.max(bc$y)]
-```
-
-```
-## [1] -0.05
-```
-
-Comments:
-
-- <span style="color: red;">The above plots the log-likelihood for various values of $\lambda$. </span> 
-- <span style="color: red;">We can see that the maximum is at about $\lambda = -0.05$ (the central dashed line). </span>
-- <span style="color: red;">However $\lambda = 0$ is in the $95\%$ range (between the left- and right-dotted lines) suggesting that a log transformation may be appropriate. </span>
-
-We can now try a log-transformed model, which we can summarise and perform model-checking in the usual way, i.e.
-
-
-``` r
-# Model fitting
-m2 =  lm(log(cells) ~ time)
-summary(m2)
-```
-
-```
-## 
-## Call:
-## lm(formula = log(cells) ~ time)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.17548 -0.06187 -0.00518  0.06664  0.16721 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.01120    0.04916   0.228    0.823    
-## time         0.99450    0.02792  35.617 3.89e-15 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.103 on 14 degrees of freedom
-## Multiple R-squared:  0.9891,	Adjusted R-squared:  0.9883 
-## F-statistic:  1269 on 1 and 14 DF,  p-value: 3.887e-15
-```
-
-``` r
-# Model checking
-plot(time, log(cells), pch = 16)
-abline(m2, col = "blue") # Add fitted line 
-```
-
-<div class="figure" style="text-align: center">
-<img src="general_linear_models_files/figure-html/transres-1.png" alt="Standardised residuals against fitted values for the transformed yeast cells model." width="65%" />
-<p class="caption">(\#fig:transres-1)Standardised residuals against fitted values for the transformed yeast cells model.</p>
-</div>
-
-``` r
-plot(fitted.values(m2), rstandard(m2), xlab = "Fitted values", 
-     ylab = "Standardised residuals", pch = 16) 
-abline(h = c(-2, 0, 2), col = "red", lty = 2)
-```
-
-<div class="figure" style="text-align: center">
-<img src="general_linear_models_files/figure-html/transres-2.png" alt="Standardised residuals against fitted values for the transformed yeast cells model." width="65%" />
-<p class="caption">(\#fig:transres-2)Standardised residuals against fitted values for the transformed yeast cells model.</p>
-</div>
-
-Comments: 
-
-- The $R^2$ value has substantially increased to $98.9\%$ (from $79\%$), showing a much better model fit.
-- From the first plot the transformed data seem to fit well to a straight line.
-- From the second plot we can see that the curvature has gone, but there is still a slight suggestion of an increase in variance. 
-- All points are within $(-2,2)$ and so there are no outliers. 
-
-Other standard model checking should also be done, e.g. a quantile-quantile plot to check the normality assumption, alongside an Anderson-Darling test.
-
-#### Transforming the explanatory variable(s)
-The Box-Cox method only deals with transforming the response variable, although we can also model the explanatory variable as the response - as in multicollinearity - in a null model (see later). Sometimes it is necessary to transform the explanatory variables as well. If an explanatory variable has a very asymmetric distribution then the unusual values often become highly influential points. Transforming the variable to make the distribution more symmetric (e.g. taking logs or square roots) is usually desirable. 
-
-
+Suppose that our relationship is not linear, but rather we have the model

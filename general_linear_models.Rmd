@@ -2,40 +2,39 @@
 title: 
 ---
 
-# General linear models
-
-In the models considered thus far, we have had exclusively continuous covariates (multiple linear regression models) In reality, we are often faced with both continuous and categorical variables within the same dataset. Both of these models actually fall under the umbrella term of a *general linear model*, as do many more. We will now consider a model of this mixed type. Models with exclusively categorical variables (known as *factors*) will be the subject of the next chapter.
+# Categorical variables and interactions
+In the models considered thus far, we have had exclusively continuous covariates (multiple linear regression models). In reality, we are often faced with variables of other types within the same dataset, such as *categorical* covariates, e.g. smoking status or mode of transport. We will now consider a model with both types of covariate.
 
 ## Indicator and dummy variables
-Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. However we may want to consider:
+Let us consider an example where there appeared to be a linear relationship between weight and length in both male and female lobsters. We may want to consider:
 
 1. Is there a difference in the intercepts between males and females?
 1. Is there a difference in the slopes?
 
-We can thus define an indicator variable which indicates the sex of the lobster. Let $x_1 = 0$ for a male and $x_1 = 1$ for a female, i.e.
+To handle a binary covariate, we can define an indicator variable which indicates the sex of the lobster. Let $x_{i1} = 0$ for a male and $x_{i1} = 1$ for a female, i.e.
 
 \[
-\color{red}{x_{1} = \begin{cases} 1& \text{if `Female`} \\
+\color{red}{x_{i1} = \begin{cases} 1& \text{if `Female`} \\
 0& \text{if `Male`}
 \end{cases}}
 \]
 
 <!-- <span style="color:red;">$x_{1} = \begin{cases} 1& \text{if ``Female''} \\ 0& \text{if ``Male''}\end{cases}$</span> -->
 
-This can also be written as $I(x_1 = \text{`Female`})$, where $I()$ is an indicator variable, taking the value 1 if the condition i parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is 'female').
+This can also be written as $I(x_{i1} = \text{`Female`})$, where $I()$ is an indicator variable, taking the value 1 if the condition in parentheses is true, and zero otherwise. An indicator always takes the values 0 or 1, to indicate the absence or presence of a particular characteristic (here the characteristic is 'female').
 
 If all the regressor variables are indicator variables, then we are actually dealing with anova models (as we will see in Chapter 5); if some of the regressor variables are indicator variables, then we have analysis of covariance (ancova) models. Our first example of using indicator variables will be to fit two simple linear regression equations simultaneously. Consider the model:
 
 \[
-Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i
 \]
 
-where $x_1$ is an indicator variable and $x_2$ is a quantitative variable. Then
+for $i = 1, \ldots, n$, where $x_{i1}$ is an indicator variable and $x_{i2}$ is a continuous variable. Then
 
-1. <span style="color: red;">$\E(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2$, and </span>
-1. <span style="color: red;">$\E(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + \beta_2 x_2$ </span>
+1. <span style="color: red;">$\E(Y_i \mid x_{i1} = 0) = \beta_0 + \beta_2 x_{i2}$, and </span>
+1. <span style="color: red;">$\E(Y_i \mid x_{i1} = 1) = (\beta_0 + \beta_1) + \beta_2 x_{i2}$ </span>
 
-So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of $\beta_1$. Hence, if this value is close to zero then one line will suffice. Formally, we can test for a common intercept by testing 
+for $i = 1, \ldots, n$. So what we are really doing is fitting two regression lines with a common slope, i.e. two parallel lines. The lines are separated in the vertical plane by the value of $\beta_1$. Hence, if this value is close to zero then one line will suffice. Formally, we can test for a common intercept by testing 
 
 \[
 \color{red}{H_0: \beta_1 = 0 \;\;\text{versus}\;\; H_1: \beta_1 \neq 0}
@@ -44,15 +43,15 @@ So what we are really doing is fitting two regression lines with a common slope,
 in the usual way (i.e. we are testing for a common line, which corresponds to no difference between the two categories). To fit two lines with different slopes, we fit:
 
 \[
-\color{red}{Y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + \epsilon}
+\color{red}{Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i1} x_{i2} + \epsilon_i, \;\; i = 1, \ldots, n}
 \]
 
 Under this formulation
 
-1.  <span style="color: red;">$\E(Y \mid x_1 = 0) = \beta_0 + \beta_2 x_2$ </span>
-1.  <span style="color: red;">$\E(Y \mid x_1 = 1) = (\beta_0 + \beta_1) + (\beta_2 + \beta_3) x_2$ </span>
+1.  <span style="color: red;">$\E(Y_i \mid x_{i1} = 0) = \beta_0 + \beta_2 x_{i2}$ </span>
+1.  <span style="color: red;">$\E(Y_i \mid x_{i1} = 1) = (\beta_0 + \beta_1) + (\beta_2 + \beta_3) x_{i2}$ </span>
 
-This is an interaction model! We can test for a common slope via
+for $i = 1, \ldots, n$. This is an interaction model! We can test for a common slope via
 \[
 \color{red}{H_0: \beta_3 = 0 \;\;\text{versus}\;\; H_1: \beta_3 \neq 0.}
 \]
@@ -202,56 +201,45 @@ where $p$ is the number of regressors in the model (hence $p+2$ is the total num
 ## Reducing the number of variables
 Often a regression model will include irrelevant explanatory variables, or will omit important explanatory variables. We try to include enough explanatory variables to explain the variation in the response variable adequately, however we would like to keep the number of explanatory variables down, since the variance of the prediction, $\hat{Y}$, increases as the number of regressors increases. From a set of potential explanatory variables, the choice of which subset to choose is therefore a compromise between the two aims.
 
-### Backwards elimination
+### Backward elimination
 One unsophisticated method is to do the regression using all possible combinations of the explanatory variables and to just choose all the significant ones. This doesn't work, because the explanatory variables all affect each other's significance levels! It also requires the fitting of $2^p - 1$ models, which may be unfeasible for moderate $p$.
 
-Instead, we shall initially consider the method of removing the variable with the largest $p$-value and continuing removing variables one at a time until all the remaining variables have small p-values ($< 0.05$). This is called *backwards elimination*.
+Instead, we shall initially consider the method of removing the variable with the largest $p$-value and continuing removing variables one at a time until all the remaining variables have small p-values ($< 0.05$), say, or there is no reduction in AIC. This is called *backward elimination*.
 
-#### Automated selection using AIC
-There is an automated procedure in `R` which performs backward elimination using Akaike’s Information criterion (AIC), which is useful when the number of potential regressors grows large. The procedure removes variables until the minimum AIC is obtained. We can carry out the automated versions for each of backwards elimination, forward selection and stepwise selection using AIC in `R` using the `step()` command. The next three examples will consider each approach in turn.
-
-### Example: Nurse performance data - backwards elimination {-}
-A nursing director wanted to see if she could predict her assessed measure of job performance given measures of personal characteristics of nurses (assertiveness, enthusiasm, ambition, communication skills, problem-solving skills and initiative). The data are available in the file *NursePerform.RData*.
-
-```{r nurseback}
-load("NursePerform.RData")
-fitall = lm(JobPerf ~ Assert + Enthusiasm + Ambition 
-                + Communication + Problem + Initiative, 
-                data = NursePerform)
-fitbe <- step(fitall, direction="backward")
-```
-
-Comments:
-
-- <span style="color: red;">Removing problem solving and communication skills has lowered AIC. </span>
-- <span style="color: red;">Removing any more variables raises AIC and so this procedure comes to the same model as using adjusted $R^2$. </span>
-
-### Forward selection and stepwise selection
-An alternative procedure is forward selection - this adds variables until the AIC does not reduce. It does not necessarily lead to the same model as backward elimination, depending on the correlation structure of the variables. Backward elimination is generally considered a safer strategy. A further procedure is stepwise regression (see next subsection), which at each step looks at removing *or* adding variables, whereby variables can both enter and leave the model repeatedly; this is not the case with both backward elimination and forward selection. 
-
-### Example: Nurse performance data - forward selection {-}
-
-```{r nurseforward}
-fitnull = lm(JobPerf ~ 1, data = NursePerform)
-fitfs = step(fitnull, scope ~ Assert + Enthusiasm
-                + Ambition + Communication + Problem
-                + Initiative, direction = "forward")
-```
-
-So, `Ambition` is added at the first step since it has the lowest AIC amongst all simple linear regression models.
-`Initiative` is added at the second step since it has the lowest AIC amongst all models, which must also include `Ambition` from step 1. `Enthusiasm` is added at the third step in a similar fashion. `Assert` is added at the fourth, and final, step  since neither of the remaining variables will further decrease the AIC.
+### Forward selection
+An alternative procedure is *forward selection* - this adds variables until the next candidate variable has a p-value > 0.05, say, or does not decrease the value of AIC. It does not necessarily lead to the same model as backward elimination, depending on the correlation structure of the variables. Backward elimination is generally considered a safer strategy. 
 
 ### Stepwise selection
-In this case both backward elimination and forward selection give the same final model. However, we may be concerned that these one-directional approaches lack flexibility as they make unanimous decisions about variables. Allowing a variable that has been removed at one step to subsequently return seems like a sensible approach - this is the idea behind stepwise selection. Starting with all the variables (i.e the full model), stepwise selection usually gives the same result as backward elimination.
+We may be concerned that one-directional approaches, such as backwards elmination and forwards selection, lack flexibility as they make unanimous decisions about variables. Allowing a variable that has been removed at one step to subsequently return seems like a sensible approach - this is the idea behind *stepwise selection*. At each step this method looks at removing *or* adding variables, subject to some criterion, whereby variables can both enter and leave the model repeatedly; this is not the case with both backward elimination and forward selection. Starting with all the variables (i.e the full model), stepwise selection usually gives the same result as backward elimination; note that the model can also be initialised at the null model.
 
-### Example: Nurse performance data - stepwise selection {-}
-We can apply the stepwise procedure using the same `R` command `step()`, needing only to change the `direction` argument. Note that for this method we can either start with the null or full model due to its iterative nature.
+#### Automated selection using AIC {-}
+There is an automated procedure in `R` which performs each of the automated model selection methods, using Akaike’s Information criterion (AIC) as a stopping rule, which is useful when the number of potential regressors grows large. The procedure adds or removes variables until the minimum AIC is obtained. We can carry out the automated versions for each of backwards elimination, forward selection and stepwise selection using AIC in `R` using the `step()` command, with appropriate arguments. 
 
-```{r nursestep}
-fitstep <- step(fitall, direction="both")
-```
+<!-- ### Example: Nurse performance data - forward selection {-} -->
 
-As expected, the first step removes `Problem` - the same as backward elimination. We now see that this method considers bringing back in discarded variables at each iteration - although this is not warranted in this example. We obtain the same model for all three methods in this case. Note that this is not always the case, particularly for large, complex datasets with higher multicollinearity.
+<!-- ```{r nurseforward} -->
+<!-- fitnull = lm(JobPerf ~ 1, data = NursePerform) -->
+<!-- fitfs = step(fitnull, scope ~ Assert + Enthusiasm -->
+<!--                 + Ambition + Communication + Problem -->
+<!--                 + Initiative, direction = "forward") -->
+<!-- ``` -->
+
+<!-- So, `Ambition` is added at the first step since it has the lowest AIC amongst all simple linear regression models. -->
+<!-- `Initiative` is added at the second step since it has the lowest AIC amongst all models, which must also include `Ambition` from step 1. `Enthusiasm` is added at the third step in a similar fashion. `Assert` is added at the fourth, and final, step  since neither of the remaining variables will further decrease the AIC. -->
+
+
+<!-- Automated selection using AIC -->
+<!-- There is an automated procedure in \texttt{R} which performs backward elimination using Akaike’s Information criterion (AIC), which is useful when the number of potential regressors grows large. The procedure removes variables until the minimum AIC is obtained. We can carry out the automated versions for each of backwards elimination, forward selection and stepwise selection using AIC in \texttt{R} using the \texttt{step()} command.  -->
+
+
+<!-- ### Example: Nurse performance data - stepwise selection {-} -->
+<!-- We can apply the stepwise procedure using the same `R` command `step()`, needing only to change the `direction` argument. Note that for this method we can either start with the null or full model due to its iterative nature. -->
+
+<!-- ```{r nursestep} -->
+<!-- fitstep <- step(fitall, direction="both") -->
+<!-- ``` -->
+
+<!-- As expected, the first step removes `Problem` - the same as backward elimination. We now see that this method considers bringing back in discarded variables at each iteration - although this is not warranted in this example. We obtain the same model for all three methods in this case. Note that this is not always the case, particularly for large, complex datasets with higher multicollinearity. -->
 
 ## Multicollinearity and the variance inflation factor
 We have mentioned earlier in the module about the problems that can occur if there is a high correlation between the explanatory variables:
@@ -265,10 +253,10 @@ Multicollinearity can also subtly lead to overestimation of standard errors and 
 Consider a case where there are $p$ possible explanatory variables. To calculate the VIF for the $k^{th}$ explanatory variable, we regress $x_k$ against the other explanatory variables, i.e. $x_1, \ldots, x_{k-1}, x_{k + 1}, \ldots, x_p$. If $R_k^2$ is the coefficient of determination from this model then
 
 \[
-\color{gapsinnotes}{\text{VIF}_k = \frac{1}{1 - R_k^2}}
+\color{red}{\text{VIF}_k = \frac{1}{1 - R_k^2}}
 \]
 
-As an ad hoc rule, we would consider removing a variable if $\text{VIF}_k > 4$ and its associated $p$-value is large. If $\text{VIF}_k$ is close to 1 that implies that $x_k$ is uncorrelated with the other explanatory variables. We can obtain the VIFs directly in `R` if we first (install and) load the library `car`. 
+As an ad hoc rule, we would consider removing a variable if $\text{VIF}_k > 5$ and its associated $p$-value is large. If $\text{VIF}_k$ is close to 1 that implies that $x_k$ is uncorrelated with the other explanatory variables. We can obtain the VIFs directly in `R` if we first (install and) load the library `car`. 
 
 ### Example: Variance inflation factors {-}
 We now return to some previous examples and calculate the variance inflation factors.
@@ -298,14 +286,122 @@ vif(m2)
 Strong evidence that one variable should be removed. Typically, we use $t$-statistics or sequential anova to decide which to remove. Recall, we decided in Chapter 3 to remove height as it had a larger $p$-value when fitted last. Note: when there are only two explanatory variables, the VIFs will always be the same. Why? 
 </li>
 
-<li> Job performance of nurses data
-```{r vifnurse}
-vif(fitall)
-```
+<!-- <li> Job performance of nurses data -->
+<!-- ```{r vifnurse} -->
+<!-- vif(fitall) -->
+<!-- ``` -->
 
-None of the VIFs are particularly high and so there is no reason, from a multicollinearity standpoint, to remove any of them. 
+<!-- None of the VIFs are particularly high and so there is no reason, from a multicollinearity standpoint, to remove any of them.  -->
 
-</li>
+<!-- </li> -->
 </ol>
 
 ## Transformations
+There are three mian reasons for transforming variables in regression:
+
+<ol type="i">
+<li> <span style="color: red;">To cope with non-normality in the residuals. </span> </li>
+<li> <span style="color: red;">To make the variance of the response variable, and hence the residuals, homogeneous.</span> </li>
+<li> <span style="color: red;">To simplify the relationship between the response variable and the explanatory variables. </span> </li>
+</ol>
+
+If the residuals are asymmetric with a long tail upwards, or if the variance is increasing, then it may be worth trying a log transformation (see chapter 3) or a square root or cube root transformation of the response variable. We should then re-fit the model and re-examine the residuals to see if the problem is resolved; the $R^2$ value should increase if the model fits better.
+
+### The Box-Cox transformation
+#### Overview {-}
+Suppose that our relationship is not linear, but rather we have the model:
+
+\[
+\vec{Y}^{(\lambda)} = \up{X}\vec{\beta} + \vec{\epsilon}
+\]
+
+where
+\[
+  \vec{Y}^{(\lambda)}=
+  \begin{cases}
+              \frac{\vec{Y}^{\lambda} - 1}{\lambda} \hspace{0.5in}\textrm{if}\hspace{0.5in}\lambda \neq 0, \\
+               \log{\vec{Y}} \hspace{0.5in}\textrm{if}\hspace{0.5in}\lambda = 0.
+            \end{cases}
+\]
+
+We make the usual assumptions about the error terms and note that a choice of $\lambda = 1$ is equivalent to no transformation, and $\lambda = 0$ denotes the log-transformation. Given some data, and this model, we could estimate the parameters simultaneously to determine an estimated transformation. We note that we cannot use ordinary least squares because the model is now non-linear. Suppose, however, temporarily that we know $\lambda$.
+
+In this case, we could proceed as before to get:
+
+\begin{align*}
+\vec{\hat{\beta}} &= \left(\up{X}^T\up{X}\right)^{-1} \up{X}^T \vec{Y}^{(\lambda)} \\
+\sigma_{\epsilon}^2 &= \frac{1}{n - p - 1} \left(\vec{Y}^{(\lambda)}\right)^T (\up{I} - \up{H})\vec{Y}^{(\lambda)}
+\end{align*}
+
+If we plug these into the likelihood, it is now purely a function of $\lambda$. We can then find the value of $\lambda$ that maximises the (profile) likelihood. 
+
+### Example: Box-Cox transformation {-}
+In a study of the doubling time of yeast cells, several samples of yeast were observed over time and the average number of cells recorded, giving rise to the data below, which is entered into `R` (and plotted) as follows:
+
+```{r nonlinplot, fig.cap = 'Plot of yeast cells over time.', fig.align='center', out.width='65%'}
+cells = c(1.00, 1.21, 1.476641, 1.838118, 2.375750, 2.560843, 3.653237, 4.592888, 5.214563, 
+             6.337479, 6.201024, 7.929808,  9.438030, 14.838897, 15.411255, 23.615537)
+time = seq(0, 3, by = 0.2)
+plot(time, cells, cex.lab = 1.2, pch = 16)
+```
+
+The plot is clearly non-linear with an upward curve (exponential growth?). There is also a suggestion of an increasing variance over time. Nevertheless, we will go ahead and fit the linear regression to demonstrate its failings in cases such as this.
+
+```{r nonlin}
+m1 <- lm(cells ~ time)
+summary(m1)
+```
+
+Comment: <span style="color: red;"> Despite the fact that the data is clearly not linear, the slope parameter is highly significant ($p<0.001$) and $R^2$ is quite large ($79\%$). </span>
+
+However, if we plot the standardised residuals against the fitted values using the following `R` code we obtain:
+
+```{r nonlinres, fig.cap = 'Standardised residuals against fitted values for the yeast cells model.', fig.align='center', out.width='65%'}
+plot(fitted.values(m1), rstandard(m1), 
+       xlab="Fitted values", ylab="Standardised residuals", 
+       pch = 16, cex.lab = 1.2)
+abline(h = c(-2, 0, 2), col = "red", lty = 2)
+```
+
+The plot has clear curvature and a fairly extreme outlier, showing that the model is inappropriate. However, we can use the fitted model in order to see how the likelihood varies with values of $\lambda$. This can be done in `R` via the `boxcox()` function (in conjunction with a fitted model object). Note that we need to load the `MASS` library to use the `boxcox()` function. We can produce the plot and extract the value of $\lambda$ that maximises the log-likelihood as follows:
+
+```{r boxcox, fig.cap = 'Values of the log-likelihood against lambda for the yeast cells model.', fig.align='center', out.width='65%'}
+library(MASS) # Load the MASS library
+bc = boxcox(m1, lambda = seq(-0.5 , 0.5, by = 0.01), plotit = T)
+# Extract the maximum 
+bc$x[which.max(bc$y)]
+```
+
+Comments:
+
+- <span style="color: red;">The above plots the log-likelihood for various values of $\lambda$. </span> 
+- <span style="color: red;">We can see that the maximum is at about $\lambda = -0.05$ (the central dashed line). </span>
+- <span style="color: red;">However $\lambda = 0$ is in the $95\%$ range (between the left- and right-dotted lines) suggesting that a log transformation may be appropriate. </span>
+
+We can now try a log-transformed model, which we can summarise and perform model-checking in the usual way, i.e.
+
+```{r transres, fig.cap = 'Standardised residuals against fitted values for the transformed yeast cells model.', fig.align='center', out.width='65%'}
+# Model fitting
+m2 =  lm(log(cells) ~ time)
+summary(m2)
+# Model checking
+plot(time, log(cells), pch = 16)
+abline(m2, col = "blue") # Add fitted line 
+plot(fitted.values(m2), rstandard(m2), xlab = "Fitted values", 
+     ylab = "Standardised residuals", pch = 16) 
+abline(h = c(-2, 0, 2), col = "red", lty = 2)
+```
+
+Comments: 
+
+- The $R^2$ value has substantially increased to $98.9\%$ (from $79\%$), showing a much better model fit.
+- From the first plot the transformed data seem to fit well to a straight line.
+- From the second plot we can see that the curvature has gone, but there is still a slight suggestion of an increase in variance. 
+- All points are within $(-2,2)$ and so there are no outliers. 
+
+Other standard model checking should also be done, e.g. a quantile-quantile plot to check the normality assumption, alongside an Anderson-Darling test.
+
+#### Transforming the explanatory variable(s)
+The Box-Cox method only deals with transforming the response variable, although we can also model the explanatory variable as the response - as in multicollinearity - in a null model (see later). Sometimes it is necessary to transform the explanatory variables as well. If an explanatory variable has a very asymmetric distribution then the unusual values often become highly influential points. Transforming the variable to make the distribution more symmetric (e.g. taking logs or square roots) is usually desirable. 
+
+
