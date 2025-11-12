@@ -168,17 +168,17 @@ The adjusted coefficient of determination is defined as
 where $\text{RMS}$ is the residual mean square error and $\text{TMS}$ is the total mean square error. This approach rescales $R^2$ using the degrees of freedom. Assuming we have $k$ degrees of freedom
 
 \begin{align*}
-\color{red}{R^2_{\text{adj}}} &\color{red}{= 1 - \frac{\text{RSS}/(n - p -1)}{\text{TSS}/(n - 1)}} \\
+R^2_{\text{adj}} &= 1 - \frac{\text{RSS}/(n - p -1)}{\text{TSS}/(n - 1)} \\
 \\
-&\color{red}{= 1 - \frac{\text{(TSS - Reg SS)}/(n - p - 1)}{\text{TSS}/(n - 1)}} \\
+&= 1 - \frac{\text{(TSS - Reg SS)}/(n - p - 1)}{\text{TSS}/(n - 1)} \\
 \\
-&\color{red}{= 1 - (1 - R^2)\frac{n - 1}{n - p - 1}}
+&= 1 - (1 - R^2)\frac{n - 1}{n - p - 1}
 \end{align*}
 
 This equivalence can also be stated as
 
 \[
-\color{red}{\frac{(n - 1)R^2 - p}{n - p - 1}}
+R^2_{\text{adj}} = \frac{(n - 1)R^2 - p}{n - p - 1}
 \]
 
 Hence, to summarise

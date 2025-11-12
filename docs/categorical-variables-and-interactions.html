@@ -526,15 +526,15 @@ Figure 4.4: Plot of mileage against engine displacement by transmission type wit
 \]</span></p>
 <p>where <span class="math inline">\(\text{RMS}\)</span> is the residual mean square error and <span class="math inline">\(\text{TMS}\)</span> is the total mean square error. This approach rescales <span class="math inline">\(R^2\)</span> using the degrees of freedom. Assuming we have <span class="math inline">\(k\)</span> degrees of freedom</p>
 <p><span class="math display">\[\begin{align*}
-\color{red}{R^2_{\text{adj}}} &amp;\color{red}{= 1 - \frac{\text{RSS}/(n - p -1)}{\text{TSS}/(n - 1)}} \\
+R^2_{\text{adj}} &amp;= 1 - \frac{\text{RSS}/(n - p -1)}{\text{TSS}/(n - 1)} \\
 \\
-&amp;\color{red}{= 1 - \frac{\text{(TSS - Reg SS)}/(n - p - 1)}{\text{TSS}/(n - 1)}} \\
+&amp;= 1 - \frac{\text{(TSS - Reg SS)}/(n - p - 1)}{\text{TSS}/(n - 1)} \\
 \\
-&amp;\color{red}{= 1 - (1 - R^2)\frac{n - 1}{n - p - 1}}
+&amp;= 1 - (1 - R^2)\frac{n - 1}{n - p - 1}
 \end{align*}\]</span></p>
 <p>This equivalence can also be stated as</p>
 <p><span class="math display">\[
-\color{red}{\frac{(n - 1)R^2 - p}{n - p - 1}}
+R^2_{\text{adj}} = \frac{(n - 1)R^2 - p}{n - p - 1}
 \]</span></p>
 <p>Hence, to summarise</p>
 <ul>
